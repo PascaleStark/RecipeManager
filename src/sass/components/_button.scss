@@ -1,0 +1,15 @@
+.btn {
+  font-family: inherit;
+  color: $color-font-primary;
+  background-color: $color-grey-medium;
+  text-transform: uppercase;
+  padding: 2.5rem 1.5rem;
+  border: none;
+  font-weight: bold;
+  outline: none;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $color-salmon-primary;
+  }
+}
