@@ -1,0 +1,24 @@
+.search {
+  &__label {
+    font-family: inherit;
+    color: $color-salmon-primary;
+    font-size: 1.8rem;
+    transform: translate(100%, 5rem);
+  }
+  &__field {
+    border: none;
+    border-radius: 30%;
+    color: $color-font-primary;
+    background-color: white;
+    padding: 2rem 2.5rem;
+    outline: none;
+  }
+
+  &__btn {
+    padding-bottom: 0.2rem;
+    border-bottom: 2px solid $color-salmon-primary;
+  }
+
+  &__icon {
+  }
+}

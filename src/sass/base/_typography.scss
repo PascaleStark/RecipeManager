@@ -1,0 +1,16 @@
+.heading--primary {
+  font-size: 4rem;
+  font-weight: 10rem;
+  font-family: monospace;
+  color: $color-font-primary;
+  text-align: center;
+}
+
+.icon {
+  z-index: 1000;
+  height: 1.5rem;
+  width: 1.5rem;
+  margin-right: 0.7rem;
+  fill: $color-salmon-primary;
+  transform: translateY(2px);
+}
