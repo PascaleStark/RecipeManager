@@ -13,31 +13,38 @@
       <div class="header__logo">
         <img src="src/img/logo.png" alt="Recipe-logo" class="header__img" />
       </div>
-      <form class="search">
-        <label for="search-field" class="search__label"
-          >Enter recipe information</label
-        >
+      <form class="header__search">
         <input
           type="text"
           name="search-field"
-          class="search__field"
-          placeholder="type recipe information"
+          class="header__search--input"
+          placeholder="Search recipes"
         />
-        <button class="btn search__btn">
-          <svg class="icon search__icon">
-            <use
-              xlink:href="src/img/sprite.svg#icon-magnifying-glass"
-            ></use></svg
-          >Search
-        </button>
+        <!-- <label for="search-field" class="search__label"
+          >Enter recipe information</label
+        > -->
       </form>
+      <button class="header__search--btn">
+        <svg class="icon header__search--icon">
+          <use xlink:href="src/img/sprite.svg#icon-magnifying-glass"></use>
+        </svg>
+      </button>
 
-      <select name="categories" id="categories">
+      <div class="dropdown">
+        <button class="btn dropdown__btn">
+          <svg class="icon icon__chevron-thin-down">
+            <use
+              xlink:href="src/img/sprite.svg#icon-chevron-thin-down"
+            ></use></svg
+          >Filter
+        </button>
+      </div>
+      <!-- <select class="header__categories" name="categories" id="categories">
         <option value="breakfast">Breakfast</option>
         <option value="main-dish">Main Dish</option>
         <option value="salad">Salad</option>
         <option value="desert">Desert</option>
-      </select>
+      </select> -->
       <button class="btn btn--add-recipe">
         <svg class="icon icon__plus">
           <use xlink:href="src/img/sprite.svg#icon-plus"></use></svg
@@ -49,6 +56,7 @@
         >Favorites
       </button>
     </header>
+
     <script src="src/index.js"></script>
   </body>
 </html>

@@ -1,7 +1,10 @@
 .btn {
+  display: flex;
+  align-items: center;
   font-family: inherit;
+  font-size: $font-size-primary;
   color: $color-font-primary;
-  background-color: $color-grey-medium;
+  background-color: $color-grey-light;
   text-transform: uppercase;
   padding: 2.5rem 1.5rem;
   border: none;
@@ -11,5 +14,8 @@
 
   &:hover {
     background-color: $color-salmon-primary;
+  }
+  &:hover > icon {
+    fill: red;
   }
 }

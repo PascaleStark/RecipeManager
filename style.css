@@ -7,7 +7,7 @@ html {
   font-size: 62.5%; }
 
 body {
-  background-color: #e4dcd4;
+  background-color: #e1dada;
   box-sizing: border-box;
   padding-top: 2.5rem; }
 
@@ -20,16 +20,20 @@ body {
 
 .icon {
   z-index: 1000;
-  height: 1.5rem;
-  width: 1.5rem;
-  margin-right: 0.7rem;
-  fill: #ecac8c;
-  transform: translateY(2px); }
+  height: 2.2rem;
+  width: 2.2rem;
+  margin-right: 1rem;
+  fill: #ecac8c; }
+  .icon:hover {
+    fill: #5c646c; }
 
 .btn {
+  display: flex;
+  align-items: center;
   font-family: inherit;
+  font-size: 1.6rem;
   color: #5c646c;
-  background-color: #e4dcd4;
+  background-color: #e1dada;
   text-transform: uppercase;
   padding: 2.5rem 1.5rem;
   border: none;
@@ -38,32 +42,54 @@ body {
   cursor: pointer; }
   .btn:hover {
     background-color: #ecac8c; }
-
-.search__label {
-  font-family: inherit;
-  color: #ecac8c;
-  font-size: 1.8rem;
-  transform: translate(100%, 5rem); }
-
-.search__field {
-  border: none;
-  border-radius: 30%;
-  color: #5c646c;
-  background-color: white;
-  padding: 2rem 2.5rem;
-  outline: none; }
-
-.search__btn {
-  padding-bottom: 0.2rem;
-  border-bottom: 2px solid #ecac8c; }
+  .btn:hover > icon {
+    fill: red; }
 
 .header {
   display: flex;
   justify-content: space-around;
-  align-items: center; }
+  align-items: center;
+  border-bottom: 1px solid #ecac8c; }
   .header__logo {
     width: 15rem;
-    height: 15rem; }
+    height: 15rem;
+    margin-left: 2rem; }
   .header__img {
     height: 100%;
     width: 100%; }
+  .header__search {
+    transition: all 0.3s;
+    flex: 0 0 30%; }
+    .header__search--input {
+      border: 2px solid transparent;
+      border-radius: 5rem;
+      background-color: white;
+      padding: 0.7rem 2rem;
+      outline: none;
+      font-family: inherit;
+      font-size: 1.6rem;
+      width: 95%;
+      transition: all 0.2s; }
+      .header__search--input:focus {
+        width: 100%;
+        color: #5c646c;
+        border: 2px solid #ecac8c;
+        box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1); }
+      .header__search--input::-webkit-input-placeholder {
+        font-size: 1.2rem;
+        text-transform: uppercase;
+        color: #a4a8ac; }
+    .header__search--btn {
+      font-family: inherit;
+      font-weight: bold;
+      color: #5c646c;
+      text-transform: uppercase;
+      padding: 0.5rem 0.5rem;
+      background-color: white;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      margin-left: -17rem; }
+    .header__search--icon {
+      height: 1.8rem;
+      width: 1.8rem; }
