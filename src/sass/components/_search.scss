@@ -11,7 +11,7 @@
     border: 2px solid transparent;
     border-radius: 5rem;
     background-color: white;
-    padding: 1.5rem 2.5rem;
+    padding: 1.5rem 5.5rem;
     outline: none;
     font-family: inherit;
     font-size: 2rem;
@@ -32,6 +32,7 @@
     }
   }
   &__btn {
+    display: block;
     font-family: inherit;
     font-weight: bold;
     color: $color-font-primary;
@@ -41,8 +42,13 @@
     border: none;
     outline: none;
     cursor: pointer;
-    margin-left: -17rem;
+    //margin-left: -17rem;
+
+    position: absolute;
+    top: 30%;
+    left: 2%;
   }
+
   &__icon {
     height: 1.8rem;
     width: 1.8rem;
