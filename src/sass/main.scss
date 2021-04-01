@@ -8,12 +8,14 @@
 @import "base/typography";
 
 @import "components/button";
+@import "components/recipeCard";
 @import "components/search";
 
 @import "layout/footer";
 @import "layout/grid";
 @import "layout/header";
-@import "layout/section-main";
+@import "layout/main-section";
+@import "layout/results-section";
 
 @import "pages/home";
 @import "pages/about";

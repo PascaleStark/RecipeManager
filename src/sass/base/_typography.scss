@@ -1,9 +1,28 @@
 .heading--primary {
-  font-size: 4rem;
-  font-weight: 10rem;
-  font-family: monospace;
-  color: $color-font-primary;
+  font-size: 5rem;
+  font-weight: bolder;
+  font-family: inherit;
+  color: $color-salmon-primary;
   text-align: center;
+  margin: 0 20rem;
+}
+
+.heading--secondary {
+  font-size: 5rem;
+  font-weight: bolder;
+  font-family: inherit;
+  color: $color-salmon-primary;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.heading--tertiary {
+  font-size: 3rem;
+  font-weight: bolder;
+  font-family: inherit;
+  color: $color-salmon-primary;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 .icon {
