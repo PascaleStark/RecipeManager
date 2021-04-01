@@ -1,0 +1,14 @@
+.results {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: $margin-big 0;
+
+  &__container {
+    margin-top: $margin-medium;
+    ////TESTING
+    width: 90%;
+    //height: 70rem;
+  }
+}

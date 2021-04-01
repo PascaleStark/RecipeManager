@@ -1,16 +1,39 @@
 .heading--primary {
-  font-size: 4rem;
-  font-weight: 10rem;
-  font-family: monospace;
-  color: $color-font-primary;
+  font-size: 5rem;
+  font-weight: bolder;
+  font-family: inherit;
+  color: $color-salmon-primary;
   text-align: center;
+  margin: 0 20rem;
+}
+
+.heading--secondary {
+  font-size: 5rem;
+  font-weight: bolder;
+  font-family: inherit;
+  color: $color-salmon-primary;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.heading--tertiary {
+  font-size: 3rem;
+  font-weight: bolder;
+  font-family: inherit;
+  color: $color-salmon-primary;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 .icon {
   z-index: 1000;
-  height: 1.5rem;
-  width: 1.5rem;
-  margin-right: 0.7rem;
+  height: 2.2rem;
+  width: 2.2rem;
+  margin-right: 1rem;
   fill: $color-salmon-primary;
-  transform: translateY(2px);
+  // transform: translateY(6px);
+
+  &:hover {
+    fill: $color-font-primary;
+  }
 }

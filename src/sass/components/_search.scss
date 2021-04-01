@@ -1,24 +1,50 @@
 .search {
-  &__label {
-    font-family: inherit;
-    color: $color-salmon-primary;
-    font-size: 1.8rem;
-    transform: translate(100%, 5rem);
-  }
-  &__field {
-    border: none;
-    border-radius: 30%;
-    color: $color-font-primary;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  opacity: 0.85;
+  transition: all 0.3s;
+
+  &__input {
+    border: 2px solid transparent;
+    border-radius: 5rem;
     background-color: white;
-    padding: 2rem 2.5rem;
+    padding: 1.5rem 2.5rem;
     outline: none;
-  }
+    font-family: inherit;
+    font-size: 2rem;
+    width: 95%;
+    transition: all 0.2s;
 
+    &:focus {
+      width: 100%;
+      color: $color-font-primary;
+      border: 2px solid $color-salmon-primary;
+      box-shadow: 0 1rem 2rem rgba(black, 0.1);
+    }
+
+    &::-webkit-input-placeholder {
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      color: $color-font-lighter;
+    }
+  }
   &__btn {
-    padding-bottom: 0.2rem;
-    border-bottom: 2px solid $color-salmon-primary;
+    font-family: inherit;
+    font-weight: bold;
+    color: $color-font-primary;
+    text-transform: uppercase;
+    padding: 0.5rem 0.5rem;
+    background-color: white;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    margin-left: -17rem;
   }
-
   &__icon {
+    height: 1.8rem;
+    width: 1.8rem;
   }
 }
