@@ -278,6 +278,98 @@
         </div>
       </div>
     </div>
+
+    <div class="add-recipe">
+      <div class="add-recipe__view">
+        <svg class="icon icon__close-outline">
+          <use
+            xlink:href="src/img/sprite.svg#icon-close-outline"
+          ></use></svg
+        >
+        <h1 class=" heading--secondary">Add recipe</h1>
+      
+      <form class="add-recipe__form">
+        <div class="add-recipe__form--information">
+          <h2 class="heading--tertiary u-marg-b-heading">Recipe information</h2>
+        <label for="title"> <svg class="icon icon__compose">
+          <use
+            xlink:href="src/img/sprite.svg#icon-compose"
+          ></use></svg
+        >Title</label>
+        <input  id="title" type="text" minlength="4" maxlength="45" placeholder="e.g: Baked chicken wings" required><br><br>
+
+        <label for="category"><svg class="icon icon__compose">
+          <use
+            xlink:href="src/img/sprite.svg#icon-compose"
+          ></use></svg
+        >Category</label>
+        <select  id="category" name="category" required>
+          <option value="Breakfast">Breakfast</option>
+          <option value="Main Dish">Main Dish</option>
+          <option value="Side Dish">Side Dish</option>
+          <option value="Salad">Salad</option>
+        </select>
+
+        <label for="publisher"><svg class="icon icon__compose">
+          <use
+            xlink:href="src/img/sprite.svg#icon-compose"
+          ></use></svg
+        >Publisher</label>
+        <input  id="publisher" type="text" maxlength="20" placeholder="e.g: John Doe"><br><br>
+
+        <label for="url"><svg class="icon icon__compose">
+          <use
+            xlink:href="src/img/sprite.svg#icon-compose"
+          ></use></svg
+        >URL</label>
+        <input  id="url" type="url" placeholder="e.g: JohnDoe.com/recipes/chicken-wings"><br><br>
+
+        <label for="preparation-time"><svg class="icon icon__compose">
+          <use
+            xlink:href="src/img/sprite.svg#icon-compose"
+          ></use></svg
+        >Preparation Time</label>
+        <input  id="preparation-time" type="text" maxlength="15" placeholder="e.g: 30 mins"><br><br>
+
+        <label for="cooking-time"><svg class="icon icon__compose">
+          <use
+            xlink:href="src/img/sprite.svg#icon-compose"
+          ></use></svg
+        >Cooking Time</label>
+        <input  id="cooking-time" type="text" maxlength="15" placeholder="e.g: 45 mins"><br><br>
+
+        <label for="servings"><svg class="icon icon__compose">
+          <use
+            xlink:href="src/img/sprite.svg#icon-compose"
+          ></use></svg
+        >Servings</label>
+        <input  id="servings" type="text" maxlength="15" placeholder="e.g: 4"><br><br>
+      </div>
+      <div class="add-recipe__form--details">
+      <div>
+        <h2 class="heading--tertiary u-marg-b-heading">Recipe details</h2>
+        <label for="ingredients"><svg class="icon icon__compose">
+          <use
+            xlink:href="src/img/sprite.svg#icon-compose"
+          ></use></svg
+        >Ingredients</label>
+        <textarea id="ingredients" name="ingredients" rows="15" cols="45" placeholder="use this format: quantity unit ingredient,quantity unit ingredient..." required></textarea>
+
+        <div class="add-recipe__form--details">
+          
+          <label for="directions"><svg class="icon icon__compose">
+            <use
+              xlink:href="src/img/sprite.svg#icon-compose"
+            ></use></svg>Directions</label>
+          <textarea id="directions" name="directions" rows="15" cols="45" placeholder="use this format: quantity unit ingredient,quantity unit ingredient..." required></textarea>
+          <!-- <input  id="directions" type="text" minlength="5" required><br><br> -->
+        </div>
+      </div>
+
+    </div>
+      </form>
+    </div>
+    </div>
     <script src="src/index.js"></script>
   </body>
 </html>
