@@ -250,6 +250,10 @@ body {
       width: 1.5rem;
       height: 1.5rem;
       transform: translateY(0.2rem); }
+    .add-recipe__form button {
+      background-color: #ecac8c; }
+      .add-recipe__form button:hover {
+        box-shadow: 0.5rem 0.5rem 1.5rem 3px rgba(0, 0, 0, 0.2); }
 
 .footer {
   background-color: #5c646c; }
