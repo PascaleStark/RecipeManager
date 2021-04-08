@@ -8,28 +8,29 @@
     <title>Project Name</title>
   </head>
   <body>
+
     <header class="header">
       <div class="header__logo">
         <!-- credit hatchful.shopify.com -->
         <img src="src/img/logo.png" alt="Recipe-logo" class="header__img" />
       </div>
       <h1 class="heading--primary">Recipe Manager</h1>
-      <div class="dropdown">
-        <button class="btn dropdown__btn">
+      <div class="header__dropdown">
+        <button class="btn header__dropdown--btn">
           <!-- credit icomoon.io -->
-          <svg class="icon icon__chevron-thin-down">
+          <svg class="icon">
             <use
               xlink:href="src/img/sprite.svg#icon-chevron-thin-down"
             ></use></svg
           >Filter
         </button>
       </div>
-      <button class="btn btn--add-recipe">
+      <button class="btn header__add-recipe--btn">
         <svg class="icon icon__plus">
           <use xlink:href="src/img/sprite.svg#icon-plus"></use></svg
         >Add Recipe
       </button>
-      <button class="btn btn--favorites">
+      <button class="btn header__favorites--btn">
         <svg class="icon icon-heart">
           <use xlink:href="src/img/sprite.svg#icon-heart"></use></svg
         >Favorites
@@ -57,8 +58,7 @@
       <h2 class="heading--secondary">Featured Recipes</h2>
       <div class="results__container">
         <div class="recipe">
-          <div class="recipe__container">
-            
+          <div class="recipe__container">           
             <div class="recipe__card">
                 <img
                 src="/src/img/pizza.jpg"
@@ -154,7 +154,7 @@
       </div>
     </section>
 
-    <div class="recipe-section">
+    <div class="modal-view">
       <div class="recipe-view">
         <svg class="icon icon__close-view icon__close-outline">
           <use
@@ -276,8 +276,8 @@
       </div>
     </div>
 
-    <div class="add-recipe">
-      <div class="add-recipe__view">
+    <div class="modal-view">
+      <div class="add-recipe-view">
         <svg class="icon icon__close-outline icon__close-form">
           <use
             xlink:href="src/img/sprite.svg#icon-close-outline"
@@ -285,8 +285,8 @@
         >
         <h1 class=" heading--secondary">Add recipe</h1>
       
-      <form class="add-recipe__form">
-        <div class="add-recipe__form--information">
+      <form class="add-recipe-view__form">
+        <div class="add-recipe-view__form--information">
           <h2 class="heading--tertiary u-marg-b-heading">Recipe information</h2>
         <label for="title"> <svg class="icon icon__compose">
           <use
@@ -346,7 +346,7 @@
       
 
 
-      <div class="add-recipe__form--details">
+      <div class="add-recipe-view__form--details">
       <div>
         <h2 class="heading--tertiary u-marg-b-heading">Recipe details</h2>
         <label for="ingredients"><svg class="icon icon__compose">
@@ -356,7 +356,7 @@
         >Ingredients</label>
         <textarea id="ingredients" name="ingredients" rows="15" cols="45" placeholder="use this format: quantity unit ingredient,quantity unit ingredient..." required></textarea>
 
-        <div class="add-recipe__form--details">
+        <div class="add-recipe-view__form--details">
           
           <label for="directions"><svg class="icon icon__compose">
             <use
