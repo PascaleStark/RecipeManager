@@ -86,9 +86,18 @@ body {
 .recipe__card {
   position: relative;
   box-shadow: 0.5rem 0.5rem 1.5rem 3px rgba(0, 0, 0, 0.4); }
+  .recipe__card::after {
+    display: block;
+    content: "";
+    /* 3:2 aspect ratio */
+    padding-bottom: 66.66%; }
   .recipe__card--img {
+    position: absolute;
+    left: 0;
+    top: 0;
     width: 100%;
     height: 100%;
+    object-fit: cover;
     filter: opacity(85%); }
   .recipe__card--icon {
     position: absolute;
@@ -241,6 +250,10 @@ body {
       width: 1.5rem;
       height: 1.5rem;
       transform: translateY(0.2rem); }
+    .add-recipe__form button {
+      background-color: #ecac8c; }
+      .add-recipe__form button:hover {
+        box-shadow: 0.5rem 0.5rem 1.5rem 3px rgba(0, 0, 0, 0.2); }
 
 .footer {
   background-color: #5c646c; }
