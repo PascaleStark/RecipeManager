@@ -211,12 +211,14 @@ body {
     .add-recipe__form select {
       padding: 0.5rem 1.5rem;
       border: 1px solid #f9f9f9;
+      border-radius: 3px;
       box-shadow: 0.5rem 0.5rem 1.5rem 3px rgba(0, 0, 0, 0.2);
       outline: none;
       font-family: inherit;
       font-size: 1.5rem;
       color: #5c646c;
-      margin-bottom: 2rem; }
+      margin-bottom: 2rem;
+      transition: all 0.2s; }
       .add-recipe__form input[type="text"], .add-recipe__form input[type="url"],
       .add-recipe__form textarea[type="text"],
       .add-recipe__form textarea[type="url"],
@@ -227,6 +229,10 @@ body {
       .add-recipe__form textarea::placeholder,
       .add-recipe__form select::placeholder {
         color: #a4a8ac; }
+      .add-recipe__form input:focus,
+      .add-recipe__form textarea:focus,
+      .add-recipe__form select:focus {
+        border: 1px solid #ecac8c; }
       .add-recipe__form input:focus::placeholder,
       .add-recipe__form textarea:focus::placeholder,
       .add-recipe__form select:focus::placeholder {
