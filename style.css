@@ -242,6 +242,14 @@ body {
       height: 1.5rem;
       transform: translateY(0.2rem); }
 
+.footer {
+  background-color: #5c646c; }
+  .footer__text {
+    color: #f9f9f9;
+    text-align: center;
+    padding: 3rem 4rem;
+    font-size: 1.8rem; }
+
 .header {
   display: flex;
   justify-content: space-around;
