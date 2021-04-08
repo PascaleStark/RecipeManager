@@ -1,21 +1,8 @@
-.recipe-section {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  max-height: 100%;
-  overflow-y: auto;
-  display: flex;
-  justify-content: center;
-  background-color: rgba(0, 0, 0, 0.85);
-  z-index: 3;
-}
 .recipe-view {
-  // TESTING
   display: none;
   position: relative;
   background-color: $color-grey-light2;
-  margin: 15rem 0;
+  margin: 12rem 0;
   width: 75vw;
   padding: 3rem 4rem;
   border-radius: 3px;
@@ -32,7 +19,6 @@
   &__info {
     display: grid;
     grid-template-columns: 2fr 1fr;
-
     margin-top: 4rem;
     &--image {
       max-width: 100%;

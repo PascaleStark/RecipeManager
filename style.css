@@ -177,47 +177,36 @@ body {
     height: 1.8rem;
     width: 1.8rem; }
 
-.add-recipe {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  max-height: 100%;
-  overflow-y: auto;
-  display: flex;
-  justify-content: center;
-  background-color: rgba(0, 0, 0, 0.85);
-  z-index: 3; }
-  .add-recipe__view {
-    display: none;
-    position: relative;
-    background-color: #f9f9f9;
-    margin: 15rem 0;
-    width: 75vw;
-    padding: 3rem 4rem;
-    border-radius: 3px;
-    box-shadow: 0.5rem 0.5rem 1.5rem 3px rgba(0, 0, 0, 0.4);
-    height: 100%; }
-    .add-recipe__view .icon__close-outline {
-      position: absolute;
-      top: 0.8rem;
-      right: 0.5rem;
-      cursor: pointer; }
-  .add-recipe__form {
+.add-recipe-view {
+  display: none;
+  position: relative;
+  background-color: #f9f9f9;
+  margin: 12rem 0;
+  width: 75vw;
+  padding: 3rem 4rem;
+  border-radius: 3px;
+  box-shadow: 0.5rem 0.5rem 1.5rem 3px rgba(0, 0, 0, 0.4);
+  height: 100%; }
+  .add-recipe-view .icon__close-outline {
+    position: absolute;
+    top: 0.8rem;
+    right: 0.5rem;
+    cursor: pointer; }
+  .add-recipe-view__form {
     margin-top: 5rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 9rem; }
-    .add-recipe__form--information .add-recipe__form--details {
+    .add-recipe-view__form--information .add-recipe-view__form--details {
       justify-self: center; }
-    .add-recipe__form label {
+    .add-recipe-view__form label {
       display: block;
       font-size: 1.6rem;
       color: #5c646c;
       margin-bottom: 1rem; }
-    .add-recipe__form input,
-    .add-recipe__form textarea,
-    .add-recipe__form select {
+    .add-recipe-view__form input,
+    .add-recipe-view__form textarea,
+    .add-recipe-view__form select {
       padding: 0.5rem 1.5rem;
       border: 1px solid #f9f9f9;
       border-radius: 3px;
@@ -228,31 +217,31 @@ body {
       color: #5c646c;
       margin-bottom: 2rem;
       transition: all 0.2s; }
-      .add-recipe__form input[type="text"], .add-recipe__form input[type="url"],
-      .add-recipe__form textarea[type="text"],
-      .add-recipe__form textarea[type="url"],
-      .add-recipe__form select[type="text"],
-      .add-recipe__form select[type="url"] {
+      .add-recipe-view__form input[type="text"], .add-recipe-view__form input[type="url"],
+      .add-recipe-view__form textarea[type="text"],
+      .add-recipe-view__form textarea[type="url"],
+      .add-recipe-view__form select[type="text"],
+      .add-recipe-view__form select[type="url"] {
         width: 35rem; }
-      .add-recipe__form input::placeholder,
-      .add-recipe__form textarea::placeholder,
-      .add-recipe__form select::placeholder {
+      .add-recipe-view__form input::placeholder,
+      .add-recipe-view__form textarea::placeholder,
+      .add-recipe-view__form select::placeholder {
         color: #a4a8ac; }
-      .add-recipe__form input:focus,
-      .add-recipe__form textarea:focus,
-      .add-recipe__form select:focus {
+      .add-recipe-view__form input:focus,
+      .add-recipe-view__form textarea:focus,
+      .add-recipe-view__form select:focus {
         border: 1px solid #ecac8c; }
-      .add-recipe__form input:focus::placeholder,
-      .add-recipe__form textarea:focus::placeholder,
-      .add-recipe__form select:focus::placeholder {
+      .add-recipe-view__form input:focus::placeholder,
+      .add-recipe-view__form textarea:focus::placeholder,
+      .add-recipe-view__form select:focus::placeholder {
         color: transparent; }
-    .add-recipe__form svg {
+    .add-recipe-view__form svg {
       width: 1.5rem;
       height: 1.5rem;
       transform: translateY(0.2rem); }
-    .add-recipe__form button {
+    .add-recipe-view__form button {
       background-color: #ecac8c; }
-      .add-recipe__form button:hover {
+      .add-recipe-view__form button:hover {
         box-shadow: 0.5rem 0.5rem 1.5rem 3px rgba(0, 0, 0, 0.2); }
 
 .footer {
@@ -290,17 +279,7 @@ body {
   background-size: cover;
   background-repeat: no-repeat; }
 
-.results {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 8rem 0; }
-  .results__container {
-    margin-top: 5rem;
-    width: 90%; }
-
-.recipe-section {
+.modal-view {
   position: fixed;
   top: 0;
   left: 0;
@@ -312,11 +291,21 @@ body {
   background-color: rgba(0, 0, 0, 0.85);
   z-index: 3; }
 
+.results {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 8rem 0; }
+  .results__container {
+    margin-top: 5rem;
+    width: 90%; }
+
 .recipe-view {
   display: none;
   position: relative;
   background-color: #f9f9f9;
-  margin: 15rem 0;
+  margin: 12rem 0;
   width: 75vw;
   padding: 3rem 4rem;
   border-radius: 3px;
