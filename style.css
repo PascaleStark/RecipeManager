@@ -1,16 +1,3 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: inherit; }
-
-html {
-  font-size: 62.5%; }
-
-body {
-  font-family: monospace;
-  background-color: #f9f9f9;
-  box-sizing: border-box; }
-
 .underline {
   border-bottom: 2px solid #5c646c; }
 
@@ -66,16 +53,16 @@ body {
   align-items: center;
   font-family: inherit;
   font-size: 1.6rem;
+  font-weight: bold;
   color: #5c646c;
   background-color: #f9f9f9;
   text-transform: uppercase;
   padding: 1.5rem 1.5rem;
   border: none;
-  font-weight: bold;
   outline: none;
   cursor: pointer; }
   .btn:hover {
-    background-color: #ecac8c; }
+    background-color: #e1dada; }
 
 .recipe__container {
   display: grid;
@@ -156,7 +143,7 @@ body {
       border: 2px solid #ecac8c;
       box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1); }
     .search__input::-webkit-input-placeholder {
-      font-size: 1.2rem;
+      font-size: 1.6rem;
       text-transform: uppercase;
       color: #a4a8ac; }
   .search__btn {
@@ -213,7 +200,7 @@ body {
       box-shadow: 0.5rem 0.5rem 1.5rem 3px rgba(0, 0, 0, 0.2);
       outline: none;
       font-family: inherit;
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       color: #5c646c;
       margin-bottom: 2rem;
       transition: all 0.2s; }
@@ -222,7 +209,7 @@ body {
       .add-recipe-view__form textarea[type="url"],
       .add-recipe-view__form select[type="text"],
       .add-recipe-view__form select[type="url"] {
-        width: 35rem; }
+        min-width: 30rem; }
       .add-recipe-view__form input::placeholder,
       .add-recipe-view__form textarea::placeholder,
       .add-recipe-view__form select::placeholder {
@@ -265,6 +252,45 @@ body {
   .header__img {
     height: 100%;
     width: 100%; }
+
+.nav {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-self: stretch; }
+  .nav__list {
+    display: flex;
+    list-style-type: none; }
+  .nav__add-recipe--btn, .nav__favorites--btn {
+    height: 100%; }
+
+.dropdown {
+  position: relative; }
+  .dropdown__btn {
+    height: 100%; }
+  .dropdown__filters {
+    transform: scale(0);
+    position: absolute;
+    width: 30rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f9f9f9;
+    color: #5c646c;
+    font-size: 1.8rem;
+    cursor: pointer;
+    z-index: 2; }
+    .dropdown__filters a {
+      align-self: stretch;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: #5c646c;
+      padding: 1.5rem; }
+      .dropdown__filters a:hover {
+        background-color: #e1dada;
+        box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.2); }
+  .dropdown:hover .dropdown__filters {
+    transform: scale(1); }
 
 .main {
   position: relative;

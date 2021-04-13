@@ -5,11 +5,11 @@
 }
 
 html {
-  font-size: 62.5%;
+  font-size: 62.5%; //1rem = 10px
 }
 
 body {
   font-family: monospace;
-  background-color: $color-grey-light2;
+  background-color: $color-grey-lighter;
   box-sizing: border-box;
 }
