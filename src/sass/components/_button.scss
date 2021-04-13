@@ -3,16 +3,16 @@
   align-items: center;
   font-family: inherit;
   font-size: $font-size-primary;
+  font-weight: bold;
   color: $color-font-primary;
-  background-color: $color-grey-light2;
+  background-color: $color-grey-lighter;
   text-transform: uppercase;
   padding: 1.5rem 1.5rem;
   border: none;
-  font-weight: bold;
   outline: none;
   cursor: pointer;
 
   &:hover {
-    background-color: $color-salmon-primary;
+    background-color: $color-grey-light;
   }
 }

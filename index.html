@@ -15,26 +15,43 @@
         <img src="src/img/logo.png" alt="Recipe-logo" class="header__img" />
       </div>
       <h1 class="heading--primary">Recipe Manager</h1>
-      <div class="header__dropdown">
-        <button class="btn header__dropdown--btn">
-          <!-- credit icomoon.io -->
-          <svg class="icon">
-            <use
-              xlink:href="src/img/sprite.svg#icon-chevron-thin-down"
-            ></use></svg
-          >Filter
-        </button>
-      </div>
-      <button class="btn header__add-recipe--btn">
-        <svg class="icon icon__plus">
-          <use xlink:href="src/img/sprite.svg#icon-plus"></use></svg
-        >Add Recipe
-      </button>
-      <button class="btn header__favorites--btn">
-        <svg class="icon icon-heart">
-          <use xlink:href="src/img/sprite.svg#icon-heart"></use></svg
-        >Favorites
-      </button>
+      <nav class="nav">
+        <ul class="nav__list">
+          <li class="dropdown">
+            <button class="btn dropdown__btn">
+              <!-- credit icomoon.io -->
+              <svg class="icon">
+                <use
+                  xlink:href="src/img/sprite.svg#icon-chevron-thin-down"
+                ></use></svg
+              >Filter 
+            </button>
+            <div class="dropdown__filters">
+              <a href="">Breakfast</a> 
+                <a href="">Main Dish</a>
+                <a href="">Side Dish</a>
+                <a href="">Salad</a>            
+        </div>
+          </li>
+          <li class="nav__add-recipe">
+            <button class="btn nav__add-recipe--btn">
+              <svg class="icon icon__plus">
+                <use xlink:href="src/img/sprite.svg#icon-plus"></use></svg
+              >Add Recipe
+            </button>
+          </li>
+          <li class="nav__favorites">
+            <button class="btn nav__favorites--btn">
+              <svg class="icon icon-heart">
+                <use xlink:href="src/img/sprite.svg#icon-heart"></use></svg
+              >Favorites
+            </button>
+          </li>
+          
+        </ul>
+       
+      </nav>
+      
     </header>
 
     <main class="main">
@@ -300,12 +317,14 @@
             xlink:href="src/img/sprite.svg#icon-compose"
           ></use></svg
         >Category</label>
-        <select  id="category" name="category" required>
-          <option value="Breakfast">Breakfast</option>
-          <option value="Main Dish">Main Dish</option>
-          <option value="Side Dish">Side Dish</option>
-          <option value="Salad">Salad</option>
-        </select>
+        <div class="category-select">
+          <select  id="category" name="category" required>
+            <option value="Breakfast">Breakfast</option>
+            <option value="Main Dish">Main Dish</option>
+            <option value="Side Dish">Side Dish</option>
+            <option value="Salad">Salad</option>
+          </select>
+        </div>
 
         <label for="publisher"><svg class="icon icon__compose">
           <use

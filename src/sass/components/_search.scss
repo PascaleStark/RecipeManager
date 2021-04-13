@@ -26,7 +26,7 @@
     }
 
     &::-webkit-input-placeholder {
-      font-size: 1.2rem;
+      font-size: $font-size-primary;
       text-transform: uppercase;
       color: $color-font-lighter;
     }
