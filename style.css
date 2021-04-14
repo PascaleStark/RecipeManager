@@ -287,7 +287,14 @@ body {
           .add-recipe-view__form textarea[type="url"],
           .add-recipe-view__form select[type="text"],
           .add-recipe-view__form select[type="url"] {
-            min-width: 30rem; } }
+            min-width: 35rem; } }
+        @media (max-width: 21.87em) {
+          .add-recipe-view__form input[type="text"], .add-recipe-view__form input[type="url"],
+          .add-recipe-view__form textarea[type="text"],
+          .add-recipe-view__form textarea[type="url"],
+          .add-recipe-view__form select[type="text"],
+          .add-recipe-view__form select[type="url"] {
+            min-width: 28rem; } }
       .add-recipe-view__form input::placeholder,
       .add-recipe-view__form textarea::placeholder,
       .add-recipe-view__form select::placeholder {
@@ -302,6 +309,21 @@ body {
         color: transparent; }
     .add-recipe-view__form textarea {
       resize: none; }
+      .add-recipe-view__form textarea#ingredients, .add-recipe-view__form textarea#directions {
+        width: 60rem;
+        height: 20rem; }
+        @media (max-width: 56.25em) {
+          .add-recipe-view__form textarea#ingredients, .add-recipe-view__form textarea#directions {
+            width: 45rem;
+            height: 20rem; } }
+        @media (max-width: 37.5em) {
+          .add-recipe-view__form textarea#ingredients, .add-recipe-view__form textarea#directions {
+            width: 35rem;
+            height: 10rem; } }
+        @media (max-width: 21.87em) {
+          .add-recipe-view__form textarea#ingredients, .add-recipe-view__form textarea#directions {
+            width: 25rem;
+            height: 20rem; } }
     .add-recipe-view__form svg {
       width: 1.5rem;
       height: 1.5rem;
