@@ -1,6 +1,12 @@
 .recipe-view {
   @include position-modal-element;
 
+  @include respond(phone) {
+    margin: 5rem 0;
+    width: 90vw;
+    padding: 3rem 4rem;
+  }
+
   .icon__close-outline {
     position: absolute;
     top: 0.8rem;
@@ -10,8 +16,12 @@
 
   &__info {
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 1.5fr 1fr;
     margin-top: 4rem;
+
+    @include respond(phone) {
+      grid-template-columns: 1fr;
+    }
     &--image {
       max-width: 100%;
       height: 30rem;
@@ -25,6 +35,10 @@
       justify-self: start;
       align-self: center;
 
+      @include respond(phone) {
+        grid-row: 1 / 2;
+      }
+
       svg {
         height: 3.5rem;
         width: 3.5rem;
@@ -36,7 +50,15 @@
     }
   }
   &__ingredients {
-    margin: 5rem 4rem;
+    margin: 5rem 4rem 2rem 4rem;
+    align-self: end;
+    @include respond(phone) {
+      margin: 2.5rem 1rem 5rem 1rem;
+    }
+
+    @include respond(phone) {
+      grid-row: 2/ 3;
+    }
 
     &--details {
       ul {
@@ -49,10 +71,17 @@
   }
 
   &__directions {
-    margin: 5rem 4rem;
+    margin: 2rem 4rem 5rem 4rem;
+
+    @include respond(phone) {
+      margin: 1.5rem 0.5rem 1.5rem 0.5rem;
+    }
     &--details {
       ul {
         border: none;
+        @include respond(phone) {
+          margin: -0.5rem;
+        }
       }
       li:not(:last-child) {
         margin-bottom: 2rem;

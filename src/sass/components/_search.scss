@@ -2,10 +2,14 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -70%);
   width: 60%;
   opacity: 0.85;
   transition: all 0.3s;
+
+  @include respond(phone) {
+    width: 90%;
+  }
 
   &__input {
     border: 2px solid transparent;

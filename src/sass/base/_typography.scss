@@ -4,7 +4,7 @@
   font-family: inherit;
   color: $color-salmon-primary;
   text-align: center;
-  margin: 0 15rem;
+  margin: 0 14rem;
 
   @include respond(tab-land) {
     font-size: 3rem;
@@ -13,6 +13,11 @@
   @include respond(tab-port) {
     font-size: 2.5rem;
     margin: 0 2rem;
+  }
+
+  @include respond(tab-port) {
+    font-size: 2rem;
+    margin: 0 1rem;
   }
 }
 
@@ -25,7 +30,7 @@
   text-transform: uppercase;
 
   @include respond(tab-land) {
-    font-size: 3rem;
+    font-size: 2.5rem;
   }
 
   @include respond(tab-port) {

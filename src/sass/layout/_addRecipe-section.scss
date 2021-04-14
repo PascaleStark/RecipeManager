@@ -1,6 +1,12 @@
 .add-recipe-view {
   @include position-modal-element;
 
+  @include respond(phone) {
+    margin: 5rem 0;
+    width: 90vw;
+    padding: 3rem 4rem;
+  }
+
   .icon__close-outline {
     position: absolute;
     top: 0.8rem;
