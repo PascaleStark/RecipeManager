@@ -1,0 +1,20 @@
+.hamburger-menu {
+  display: none;
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  height: 6rem;
+  width: 6rem;
+  border-radius: 50%;
+  background-color: white;
+
+  @include respond(phone) {
+    display: block;
+  }
+
+  &--icon {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+  }
+}

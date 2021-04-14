@@ -5,6 +5,10 @@
   margin-bottom: 2rem;
   box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.2);
 
+  @include respond(phone) {
+    justify-content: space-between;
+  }
+
   &__logo {
     width: 15rem;
     height: 10rem;
@@ -12,8 +16,13 @@
 
     @include respond(tab-port) {
       width: 10rem;
-      height: 7rem;
+      height: 8rem;
       margin-left: 2rem;
+    }
+
+    @include respond(phone) {
+      width: 8rem;
+      height: 5rem;
     }
   }
   &__img {
@@ -36,6 +45,10 @@
   &__add-recipe--btn,
   &__favorites--btn {
     height: 100%;
+  }
+
+  @include respond(phone) {
+    display: none;
   }
 }
 
