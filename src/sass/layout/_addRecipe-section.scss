@@ -1,6 +1,12 @@
 .add-recipe-view {
   @include position-modal-element;
 
+  @include respond(phone) {
+    margin: 5rem 0;
+    width: 90vw;
+    padding: 3rem 4rem;
+  }
+
   .icon__close-outline {
     position: absolute;
     top: 0.8rem;
@@ -67,7 +73,11 @@
         }
 
         @include respond(phone) {
-          min-width: 30rem;
+          min-width: 35rem;
+        }
+
+        @include respond(phone-small) {
+          min-width: 28rem;
         }
       }
 
@@ -84,6 +94,27 @@
 
     textarea {
       resize: none;
+
+      &#ingredients,
+      &#directions {
+        width: 60rem;
+        height: 20rem;
+
+        @include respond(tab-port) {
+          width: 45rem;
+          height: 20rem;
+        }
+
+        @include respond(phone) {
+          width: 35rem;
+          height: 10rem;
+        }
+
+        @include respond(phone-small) {
+          width: 25rem;
+          height: 20rem;
+        }
+      }
     }
 
     svg {

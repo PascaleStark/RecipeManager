@@ -4,6 +4,10 @@
     grid-template-rows: repeat(2, minmax(min-content, 15rem));
     grid-template-columns: repeat(3, 1fr);
     gap: 3.5rem;
+
+    @include respond(phone) {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
   &__card {
     position: relative;
@@ -37,6 +41,12 @@
       top: 80%;
       right: 0;
       padding: 0.5rem;
+
+      @include respond(tab-land) {
+        top: 100%;
+        min-width: 100%;
+        text-align: center;
+      }
     }
     &--back {
       position: absolute;
