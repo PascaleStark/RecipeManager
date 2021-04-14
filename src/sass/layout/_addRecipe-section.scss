@@ -12,10 +12,25 @@
     margin-top: 5rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 9rem;
+    grid-column-gap: 9rem;
+    grid-row-gap: 2rem;
 
-    &--information &--details {
+    @include respond(tab-port) {
+      grid-template-columns: 1fr;
+    }
+    @include respond(phone) {
+      grid-template-columns: 1fr;
+    }
+    &--information {
       justify-self: center;
+
+      @include respond(tab-port) {
+        justify-self: start;
+      }
+    }
+
+    &--details {
+      grid-column: 1 / -1;
     }
 
     label {
@@ -41,7 +56,19 @@
 
       &[type="text"],
       &[type="url"] {
-        min-width: 30rem;
+        min-width: 36rem;
+
+        @include respond(tab-land) {
+          min-width: 30rem;
+        }
+
+        @include respond(tab-port) {
+          min-width: 45rem;
+        }
+
+        @include respond(phone) {
+          min-width: 30rem;
+        }
       }
 
       &::placeholder {
@@ -55,6 +82,10 @@
       }
     }
 
+    textarea {
+      resize: none;
+    }
+
     svg {
       width: 1.5rem;
       height: 1.5rem;
@@ -62,9 +93,18 @@
     }
     button {
       background-color: $color-salmon-primary;
+      transform: translateY(1.5rem);
 
       &:hover {
         box-shadow: 0.5rem 0.5rem 1.5rem 3px rgba(0, 0, 0, 0.2);
+      }
+    }
+    &--btn {
+      justify-self: center;
+
+      @include respond(tab-port) {
+        margin-top: -3rem;
+        justify-self: start;
       }
     }
   }

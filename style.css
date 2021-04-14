@@ -1,3 +1,28 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit; }
+
+html {
+  font-size: 62.5%; }
+  @media (max-width: 75em) {
+    html {
+      font-size: 56.25%; } }
+  @media (max-width: 56.25em) {
+    html {
+      font-size: 46.9%; } }
+  @media (max-width: 37.5em) {
+    html {
+      font-size: 43.75%; } }
+  @media (min-width: 112.5em) {
+    html {
+      font-size: 75%; } }
+
+body {
+  font-family: monospace;
+  background-color: #f9f9f9;
+  box-sizing: border-box; }
+
 .underline {
   border-bottom: 2px solid #5c646c; }
 
@@ -5,12 +30,20 @@
   margin-bottom: 3rem; }
 
 .heading--primary {
-  font-size: 5rem;
+  font-size: 3.5rem;
   font-weight: bolder;
   font-family: inherit;
   color: #ecac8c;
   text-align: center;
-  margin: 0 20rem; }
+  margin: 0 15rem; }
+  @media (max-width: 75em) {
+    .heading--primary {
+      font-size: 3rem;
+      margin: 0 6rem; } }
+  @media (max-width: 56.25em) {
+    .heading--primary {
+      font-size: 2.5rem;
+      margin: 0 2rem; } }
 
 .heading--secondary {
   font-size: 3rem;
@@ -19,6 +52,12 @@
   color: #ecac8c;
   text-align: center;
   text-transform: uppercase; }
+  @media (max-width: 75em) {
+    .heading--secondary {
+      font-size: 3rem; } }
+  @media (max-width: 56.25em) {
+    .heading--secondary {
+      font-size: 2rem; } }
 
 .heading--tertiary {
   font-size: 2.5rem;
@@ -26,6 +65,12 @@
   font-family: inherit;
   color: #ecac8c;
   text-transform: uppercase; }
+  @media (max-width: 75em) {
+    .heading--tertiary {
+      font-size: 2rem; } }
+  @media (max-width: 75em) {
+    .heading--tertiary {
+      font-size: 1.5rem; } }
 
 .icon {
   z-index: 1;
@@ -183,9 +228,21 @@
     margin-top: 5rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 9rem; }
-    .add-recipe-view__form--information .add-recipe-view__form--details {
+    grid-column-gap: 9rem;
+    grid-row-gap: 2rem; }
+    @media (max-width: 56.25em) {
+      .add-recipe-view__form {
+        grid-template-columns: 1fr; } }
+    @media (max-width: 37.5em) {
+      .add-recipe-view__form {
+        grid-template-columns: 1fr; } }
+    .add-recipe-view__form--information {
       justify-self: center; }
+      @media (max-width: 56.25em) {
+        .add-recipe-view__form--information {
+          justify-self: start; } }
+    .add-recipe-view__form--details {
+      grid-column: 1 / -1; }
     .add-recipe-view__form label {
       display: block;
       font-size: 1.6rem;
@@ -209,7 +266,28 @@
       .add-recipe-view__form textarea[type="url"],
       .add-recipe-view__form select[type="text"],
       .add-recipe-view__form select[type="url"] {
-        min-width: 30rem; }
+        min-width: 36rem; }
+        @media (max-width: 75em) {
+          .add-recipe-view__form input[type="text"], .add-recipe-view__form input[type="url"],
+          .add-recipe-view__form textarea[type="text"],
+          .add-recipe-view__form textarea[type="url"],
+          .add-recipe-view__form select[type="text"],
+          .add-recipe-view__form select[type="url"] {
+            min-width: 30rem; } }
+        @media (max-width: 56.25em) {
+          .add-recipe-view__form input[type="text"], .add-recipe-view__form input[type="url"],
+          .add-recipe-view__form textarea[type="text"],
+          .add-recipe-view__form textarea[type="url"],
+          .add-recipe-view__form select[type="text"],
+          .add-recipe-view__form select[type="url"] {
+            min-width: 45rem; } }
+        @media (max-width: 37.5em) {
+          .add-recipe-view__form input[type="text"], .add-recipe-view__form input[type="url"],
+          .add-recipe-view__form textarea[type="text"],
+          .add-recipe-view__form textarea[type="url"],
+          .add-recipe-view__form select[type="text"],
+          .add-recipe-view__form select[type="url"] {
+            min-width: 30rem; } }
       .add-recipe-view__form input::placeholder,
       .add-recipe-view__form textarea::placeholder,
       .add-recipe-view__form select::placeholder {
@@ -222,14 +300,23 @@
       .add-recipe-view__form textarea:focus::placeholder,
       .add-recipe-view__form select:focus::placeholder {
         color: transparent; }
+    .add-recipe-view__form textarea {
+      resize: none; }
     .add-recipe-view__form svg {
       width: 1.5rem;
       height: 1.5rem;
       transform: translateY(0.2rem); }
     .add-recipe-view__form button {
-      background-color: #ecac8c; }
+      background-color: #ecac8c;
+      transform: translateY(1.5rem); }
       .add-recipe-view__form button:hover {
         box-shadow: 0.5rem 0.5rem 1.5rem 3px rgba(0, 0, 0, 0.2); }
+    .add-recipe-view__form--btn {
+      justify-self: center; }
+      @media (max-width: 56.25em) {
+        .add-recipe-view__form--btn {
+          margin-top: -3rem;
+          justify-self: start; } }
 
 .footer {
   background-color: #5c646c; }
@@ -249,6 +336,11 @@
     width: 15rem;
     height: 10rem;
     margin-left: 4rem; }
+    @media (max-width: 56.25em) {
+      .header__logo {
+        width: 10rem;
+        height: 7rem;
+        margin-left: 2rem; } }
   .header__img {
     height: 100%;
     width: 100%; }
