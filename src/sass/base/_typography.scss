@@ -54,6 +54,14 @@
   }
 }
 
+.heading--menu {
+  font-size: 3rem;
+  font-family: inherit;
+  color: $color-grey-light;
+  text-transform: uppercase;
+  letter-spacing: 1.7px;
+}
+
 .icon {
   z-index: 1;
   height: 2.2rem;
