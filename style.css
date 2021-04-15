@@ -76,6 +76,13 @@ body {
     .heading--tertiary {
       font-size: 1.5rem; } }
 
+.heading--menu {
+  font-size: 3rem;
+  font-family: inherit;
+  color: #e1dada;
+  text-transform: uppercase;
+  letter-spacing: 1.7px; }
+
 .icon {
   z-index: 1;
   height: 2.2rem;
@@ -378,7 +385,7 @@ body {
           justify-self: start; } }
 
 .footer {
-  background-color: #5c646c; }
+  background-color: rgba(0, 0, 0, 0.7); }
   .footer__text {
     color: #f9f9f9;
     text-align: center;
@@ -469,6 +476,70 @@ body {
     .main {
       width: 100%;
       height: 80vh; } }
+
+.menu-section {
+  position: relative;
+  padding: 10rem 6rem;
+  background-color: rgba(0, 0, 0, 0.7);
+  height: 75vh; }
+
+.menu-view__icon {
+  position: absolute;
+  top: 3rem;
+  right: 2rem;
+  height: 3rem;
+  width: 3rem; }
+  .menu-view__icon--home {
+    height: 4rem;
+    width: 4rem;
+    margin-right: 3rem;
+    transform: translateY(0.5rem); }
+
+.menu-view__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+
+.menu-view__list {
+  display: inline-block;
+  list-style-type: none;
+  padding-top: 5rem; }
+  .menu-view__list--item {
+    padding: 1.5rem; }
+    .menu-view__list--item a:link,
+    .menu-view__list--item a:visited {
+      display: block;
+      text-decoration: none;
+      text-transform: uppercase;
+      color: #e1dada;
+      font-size: 3rem;
+      font-family: inherit;
+      padding: 0rem 1.5rem;
+      box-shadow: 0 6px 4px -4px gray;
+      transition: all 0.4s; }
+    .menu-view__list--item a:hover,
+    .menu-view__list--item a:active {
+      color: #ecac8c; }
+
+.menu-view__sublist {
+  list-style-type: none;
+  padding-top: 1.5rem; }
+  .menu-view__sublist--item {
+    padding: 1rem; }
+    .menu-view__sublist--item a:link,
+    .menu-view__sublist--item a:visited {
+      text-decoration: none;
+      text-transform: uppercase;
+      color: #e1dada;
+      font-size: 2rem;
+      font-family: inherit;
+      padding: 0.5rem 2rem;
+      margin-left: 4rem;
+      box-shadow: 0 6px 4px -4px gray; }
+    .menu-view__sublist--item a:hover,
+    .menu-view__sublist--item a:active {
+      color: #ecac8c; }
 
 .modal-view {
   position: fixed;

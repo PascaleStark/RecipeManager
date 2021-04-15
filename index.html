@@ -401,25 +401,39 @@
     </div>
     </div>
 
-  <div class="menu-view">
-    <svg class="icon icon__close-outline">
-      <use
-        xlink:href="src/img/sprite.svg#icon-close-outline"
-      ></use></svg
-    >
-    <h2 class="heading--secondary">Menu</h2>
-    <div class="menu-view__list">
-      <ul class="menu-view__list--items">
-        <li><a href="#" class="link">Favorites</a></li>
-        <li><a href="#" class="link">Filter <svg class="icon icon__cheveron-down">
+    <div class="menu-section">
+      <div class="menu-view">
+        <svg class="icon icon__close-outline menu-view__icon">
           <use
-            xlink:href="src/img/sprite.svg#icon-cheveron-down"
+            xlink:href="src/img/sprite.svg#icon-close-outline"
           ></use></svg
-        ></a></li>
-        <li><a href="#" class="link">Add recipes</a></li>
-      </ul>
+        >
+
+        <h2 class="heading--menu"><svg class="icon menu-view__icon--home">
+          <use
+            xlink:href="src/img/sprite.svg#icon-home"
+          ></use></svg
+        >Menu</h2>
+        <div class="menu-view__container">
+          <ul class="menu-view__list">
+            <li class="menu-view__list--item"><a href="#" class="menu-view__list--link">Add recipe</a></li>
+            <li class="menu-view__list--item"><a href="#" class="menu-view__list--link">Favorites</a></li>
+            <li class="menu-view__list--item"><a href="#" class="menu-view__list--link">Filter <svg class="icon icon__cheveron-down link__chevron-down">
+              <use
+                xlink:href="src/img/sprite.svg#icon-cheveron-down"
+              ></use></svg
+            ></a></li>
+            <ul class="menu-view__sublist">
+              <li class="menu-view__sublist--item"><a href="#" class="menu-view__sublist--link">Breakfast</a></li>
+            <li class="menu-view__sublist--item"><a href="#" class="menu-view__sublist--link">Main Dish</a></li>
+            <li class="menu-view__sublist--item"><a href="#" class="menu-view__sublist--link">Side dish</a></li>
+            <li class="menu-view__sublist--item"><a href="#" class="menu-view__sublist--link">Salad</a></li>
+            </ul>
+          </ul>
+        </div>
+      </div>
     </div>
-  </div>
+  
 
     <footer class="footer">
       <div class="footer__text">
