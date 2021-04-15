@@ -137,7 +137,7 @@
                     </svg>
                     <h3 class="recipe__card--title heading--tertiary">Banana split</h3>
                     <div class='recipe__card--back'>
-                      <button class="btn recipe__card--btn"><span class="underline">View Recipe &rarr;</span></button>
+                      <button class="btn recipe__card--btn hidden"><span class="underline">View Recipe &rarr;</span></button>
                     </div>
                     </div>
 
@@ -177,7 +177,7 @@
     </section>
 
     <div class="modal-view">
-      <div class="recipe-view">
+      <div class="recipe-view hidden">
         <svg class="icon icon__close-view icon__close-outline">
           <use
             xlink:href="src/img/sprite.svg#icon-close-outline"
@@ -401,7 +401,7 @@
     </div>
     </div>
 
-    <div class="menu-section">
+    <div class="menu-section hidden">
       <div class="menu-view">
         <svg class="icon icon__close-outline menu-view__icon">
           <use
@@ -416,14 +416,14 @@
         >Menu</h2>
         <div class="menu-view__container">
           <ul class="menu-view__list">
-            <li class="menu-view__list--item"><a href="#" class="menu-view__list--link">Add recipe</a></li>
+            <li class="menu-view__list-km-item"><a href="#" class="menu-view__list--link addrecipe">Add recipe</a></li>
             <li class="menu-view__list--item"><a href="#" class="menu-view__list--link">Favorites</a></li>
             <li class="menu-view__list--item"><a href="#" class="menu-view__list--link">Filter <svg class="icon icon__cheveron-down link__chevron-down">
               <use
                 xlink:href="src/img/sprite.svg#icon-cheveron-down"
               ></use></svg
             ></a></li>
-            <ul class="menu-view__sublist">
+            <ul class="menu-view__sublist hidden">
               <li class="menu-view__sublist--item"><a href="#" class="menu-view__sublist--link">Breakfast</a></li>
             <li class="menu-view__sublist--item"><a href="#" class="menu-view__sublist--link">Main Dish</a></li>
             <li class="menu-view__sublist--item"><a href="#" class="menu-view__sublist--link">Side dish</a></li>
