@@ -11,7 +11,7 @@ const recipeDisplay = document.querySelector(".recipe-view");
 const btnMenu = document.querySelector(".hamburger-menu");
 const viewMenu = document.querySelector(".menu-section");
 const closeMenu = document.querySelector(".menu-view__icon");
-const dropFilter = document.querySelector(".link__chevron-down");
+const dropFilter = document.querySelector(".filter-link");
 const filterList = document.querySelector(".menu-view__sublist");
 
 // addRecipe.addEventListener("click", function () {
@@ -22,7 +22,7 @@ body.addEventListener("click", (event) => {
   if (event.target !== addRecipe && event.target !== menuAddRecipe) {
     return;
   }
-  viewMenu.classList.toggle("hidden");
+  viewMenu.style.display = "none";
   recipeView.style.display = "block";
 });
 
@@ -39,12 +39,12 @@ closeView.addEventListener("click", function () {
 });
 
 btnMenu.addEventListener("click", function () {
-  viewMenu.classList.toggle("hidden");
+  viewMenu.style.display = "block";
   body.classList.add("my-body-noscroll-class");
 });
 
 closeMenu.addEventListener("click", function () {
-  viewMenu.classList.toggle("hidden");
+  viewMenu.style.display = "none";
   body.classList.remove("my-body-noscroll-class");
 });
 
