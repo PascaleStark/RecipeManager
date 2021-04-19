@@ -319,14 +319,14 @@
             xlink:href="src/img/sprite.svg#icon-compose"
           ></use></svg
         >Title</label>
-        <input  id="title" type="text" minlength="4" maxlength="45" placeholder="e.g: Baked chicken wings" required><br><br>
+        <input  id="title" type="text" name="title" minlength="4" maxlength="45" placeholder="e.g: Baked chicken wings" required><br><br>
 
         <label for="publisher"><svg class="icon icon__compose">
           <use
             xlink:href="src/img/sprite.svg#icon-compose"
           ></use></svg
         >Publisher</label>
-        <input  id="publisher" type="text" maxlength="20" placeholder="e.g: John Doe"><br><br>
+        <input  id="publisher" name="publisher" type="text" maxlength="20" placeholder="e.g: John Doe"><br><br>
 
         <label for="category"><svg class="icon icon__compose">
           <use
@@ -348,14 +348,14 @@
             xlink:href="src/img/sprite.svg#icon-compose"
           ></use></svg
         >Preparation Time</label>
-        <input  id="preparation-time" type="text" maxlength="15" placeholder="e.g: 30 mins"><br><br>
+        <input  id="preparation-time" name="preparation-time" type="text" maxlength="15" placeholder="e.g: 30 mins"><br><br>
       
         <label for="cooking-time"><svg class="icon icon__compose">
           <use
             xlink:href="src/img/sprite.svg#icon-compose"
           ></use></svg
         >Cooking Time</label>
-        <input  id="cooking-time" type="text" maxlength="15" placeholder="e.g: 45 mins"><br><br>
+        <input  id="cooking-time" name="cooking-time" type="text" maxlength="15" placeholder="e.g: 45 mins"><br><br>
       
       
         <label for="servings"><svg class="icon icon__compose">
@@ -363,7 +363,7 @@
             xlink:href="src/img/sprite.svg#icon-compose"
           ></use></svg
         >Servings</label>
-        <input  id="servings" type="text" maxlength="15" placeholder="e.g: 4"><br><br>
+        <input  id="servings" name="servings" type="text" maxlength="15" placeholder="e.g: 4"><br><br>
              
       </div>
    
@@ -394,7 +394,7 @@
             <input  id="url" type="url" placeholder="e.g: JohnDoe.com/recipes/chicken-wings"><br><br>
           </div>
         <div class="add-recipe-view__form--btn">
-          <button class="btn"><span class="underline">Submit &rarr;</span></button> 
+          <button class="btn btn--form"><span class="underline">Submit &rarr;</span></button> 
         </div>
         
       </form>
