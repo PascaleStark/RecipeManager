@@ -55,12 +55,30 @@ dropFilter.addEventListener("click", function () {
 ///////////////////////////////////////////////
 //Add a recipe
 const form = document.querySelector(".add-recipe-view__form");
-const submitFormBtn = document.querySelector(".btn--form");
-const titleInput = document.getElementById("title");
-const dataArr = [...new FormData(form)];
-console.log(dataArr);
-const data = Object.fromEntries(dataArr);
-console.log(data);
+// const name = document.getElementById("title");
+// const publisher = document.getElementById("publisher");
+// const category = document.getElementById("category");
+// const cookingTime = document.getElementById("cooking_time");
+// const prepTime = document.getElementById("prep_time");
+// const servings = document.getElementById("servings");
+// const ingredients = document.getElementById("ingredients");
+// const directions = document.getElementById("directions");
+// const url = document.getElementById("url");
+
+// const data = {
+//   name: name.value,
+//   added_by: publisher.value,
+//   prep_time: prepTime.value,
+//   cooking_time: cookingTime.value,
+//   category: category.value,
+//   servings: servings.value,
+//   ingredients: ingredients.value,
+//   directions: directions.value,
+//   url: url.value,
+// };
+// console.log(data);
+// const dataArr = [...new FormData(form)];
+// const data = Object.fromEntries(dataArr);
 
 const timeout = function (s) {
   return new Promise(function (_, reject) {
@@ -92,6 +110,10 @@ const sendJSON = async function (url, uploadData) {
 
 form.addEventListener("submit", function (e) {
   e.preventDefault();
-  // console.log(Object.fromEntries(dataArr));
-  sendJSON("http://192.168.4.10:8300/recipes", data);
+  const dataArr = [...new FormData(form)];
+  const data = Object.fromEntries(dataArr);
+  console.log(data);
+  //clear form
+  form.reset();
+  sendJSON("http://192.168.4.10:8300/recipes/api", data);
 });
