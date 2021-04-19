@@ -51,3 +51,47 @@ closeMenu.addEventListener("click", function () {
 dropFilter.addEventListener("click", function () {
   filterList.classList.toggle("hidden");
 });
+
+///////////////////////////////////////////////
+//Add a recipe
+const form = document.querySelector(".add-recipe-view__form");
+const submitFormBtn = document.querySelector(".btn--form");
+const titleInput = document.getElementById("title");
+const dataArr = [...new FormData(form)];
+console.log(dataArr);
+const data = Object.fromEntries(dataArr);
+console.log(data);
+
+const timeout = function (s) {
+  return new Promise(function (_, reject) {
+    setTimeout(function () {
+      reject(new Error(`Request took too long! Timeout after ${s} second`));
+    }, s * 1000);
+  });
+};
+
+const sendJSON = async function (url, uploadData) {
+  try {
+    const fetchPro = fetch(url, {
+      method: "POST",
+      mode: "no-cors",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(uploadData),
+    });
+    const resp = await Promise.race([fetchPro, timeout(10)]);
+    const data = await resp.json();
+    console.log(data);
+    if (!resp.ok) throw new Error(`${data.message} (${resp.status})`);
+    return data;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
+  // console.log(Object.fromEntries(dataArr));
+  sendJSON("http://192.168.4.10:8300/recipes", data);
+});
