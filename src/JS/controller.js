@@ -13,7 +13,9 @@ const viewMenu = document.querySelector(".menu-section");
 const closeMenu = document.querySelector(".menu-view__icon");
 const dropFilter = document.querySelector(".filter-link");
 const filterList = document.querySelector(".menu-view__sublist");
-
+const btnFilter = document.querySelector(".dropdown__btn");
+const dropdownFilter = document.querySelector(".dropdown__filters");
+console.log(dropFilter);
 // addRecipe.addEventListener("click", function () {
 //   recipeView.style.display = "block";
 // });
@@ -52,33 +54,12 @@ dropFilter.addEventListener("click", function () {
   filterList.classList.toggle("hidden");
 });
 
+btnFilter.addEventListener("click", function () {
+  dropdownFilter.classList.add("scale-back");
+});
 ///////////////////////////////////////////////
 //Add a recipe
 const form = document.querySelector(".add-recipe-view__form");
-// const name = document.getElementById("title");
-// const publisher = document.getElementById("publisher");
-// const category = document.getElementById("category");
-// const cookingTime = document.getElementById("cooking_time");
-// const prepTime = document.getElementById("prep_time");
-// const servings = document.getElementById("servings");
-// const ingredients = document.getElementById("ingredients");
-// const directions = document.getElementById("directions");
-// const url = document.getElementById("url");
-
-// const data = {
-//   name: name.value,
-//   added_by: publisher.value,
-//   prep_time: prepTime.value,
-//   cooking_time: cookingTime.value,
-//   category: category.value,
-//   servings: servings.value,
-//   ingredients: ingredients.value,
-//   directions: directions.value,
-//   url: url.value,
-// };
-// console.log(data);
-// const dataArr = [...new FormData(form)];
-// const data = Object.fromEntries(dataArr);
 
 const timeout = function (s) {
   return new Promise(function (_, reject) {
