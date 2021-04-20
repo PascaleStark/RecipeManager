@@ -52,41 +52,41 @@
   }
 }
 
-.dropdown {
-  position: relative;
+// .dropdown {
+//   position: relative;
 
-  &__btn {
-    height: 100%;
-  }
+//   &__btn {
+//     height: 100%;
+//   }
 
-  &__filters {
-    transform: scale(0);
-    position: absolute;
-    width: 30rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: $color-grey-lighter;
-    color: $color-font-primary;
-    font-size: 1.8rem;
-    // overflow: visible;
-    cursor: pointer;
-    z-index: 2;
+//   &__filters {
+//     transform: scale(0);
+//     position: absolute;
+//     width: 30rem;
+//     display: flex;
+//     flex-direction: column;
+//     align-items: center;
+//     background-color: $color-grey-lighter;
+//     color: $color-font-primary;
+//     font-size: 1.8rem;
+//     // overflow: visible;
+//     cursor: pointer;
+//     z-index: 2;
 
-    & a {
-      align-self: stretch;
-      text-transform: uppercase;
-      text-decoration: none;
-      color: $color-font-primary;
-      padding: 1.5rem;
+//     & a {
+//       align-self: stretch;
+//       text-transform: uppercase;
+//       text-decoration: none;
+//       color: $color-font-primary;
+//       padding: 1.5rem;
 
-      &:hover {
-        background-color: $color-grey-light;
-        box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.2);
-      }
-    }
-  }
-  &:hover &__filters {
-    transform: scale(1);
-  }
-}
+//       &:hover {
+//         background-color: $color-grey-light;
+//         box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.2);
+//       }
+//     }
+//   }
+//   &:hover &__filters {
+//     transform: scale(1);
+//   }
+// }
