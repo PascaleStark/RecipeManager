@@ -1,5 +1,7 @@
 "use strict";
 
+import icons from "url:../img/sprite.svg";
+
 const body = document.getElementsByTagName("body")[0];
 const addRecipe = document.querySelector(".nav__add-recipe--btn");
 const menuAddRecipe = document.querySelector(".addrecipe");
@@ -12,7 +14,6 @@ const btnMenu = document.querySelector(".hamburger-menu");
 const viewMenu = document.querySelector(".menu-section");
 const closeMenu = document.querySelector(".menu-view__icon");
 const dropFilter = document.querySelector(".filter-link");
-const filterList = document.querySelector(".menu-view__sublist");
 const btnFilter = document.querySelector(".dropdown__btn");
 const dropdownFilter = document.querySelector(".dropdown__filters");
 console.log(dropFilter);
@@ -50,9 +51,9 @@ closeMenu.addEventListener("click", function () {
   body.classList.remove("my-body-noscroll-class");
 });
 
-dropFilter.addEventListener("click", function () {
-  filterList.classList.toggle("hidden");
-});
+// dropFilter.addEventListener("click", function () {
+//   filterList.classList.toggle("hidden");
+// });
 
 btnFilter.addEventListener("click", function () {
   dropdownFilter.classList.add("scale-back");
@@ -98,3 +99,5 @@ form.addEventListener("submit", function (e) {
   form.reset();
   sendJSON("http://192.168.4.10:8300/recipes/api", data);
 });
+
+console.log("TESTING PARCELLLL");

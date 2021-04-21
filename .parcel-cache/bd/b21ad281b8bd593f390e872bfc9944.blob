@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="381af7e926dee1ccea208748d9a01fe7">
+    <script defer="" src="9857a687224d05693f5a6716591c6287"></script>
+    <title>Recipe Manager</title>
+  </head>
+  <body>
+
+    <header class="header">
+      <div class="header__logo">
+        <!-- credit hatchful.shopify.com -->
+        <img src="89bfce2cc739c76262d5ae795691f77a" alt="Recipe-logo" class="header__img">
+      </div>
+      <h1 class="heading--primary">Recipe Manager</h1>
+      <nav class="nav">
+        <ul class="nav__list">
+          <!-- <li class="dropdown">
+            <button class="btn dropdown__btn">
+             
+              <svg class="icon">
+                <use
+                  xlink:href="src/img/sprite.svg#icon-chevron-thin-down"
+                ></use></svg
+              >Filter 
+            </button>
+            <div class="dropdown__filters">
+              <a href="">Breakfast</a> 
+                <a href="">Main Dish</a>
+                <a href="">Side Dish</a>
+                <a href="">Salad</a>            
+        </div>
+          </li> -->
+          <li class="nav__add-recipe">
+            <button class="btn nav__add-recipe--btn">
+              <svg class="icon icon__plus">
+                <use xlink:href="2d8aa8374d6366d6c1d8fbaf2dee6839"></use></svg>Add Recipe
+            </button>
+          </li>
+          <li class="nav__favorites">
+            <button class="btn nav__favorites--btn">
+              <svg class="icon icon-heart">
+                <use xlink:href="13247db2ec1b4f6accc32986dd955fb5"></use></svg>Favorites
+            </button>
+          </li>
+          
+        </ul>
+       
+      </nav>
+      
+    </header>
+
+    <main class="main">
+      <div class="hamburger-menu">
+        <svg class="icon hamburger-menu--icon">
+          <use xlink:href="79778c96c6c75a7d87e4a975f96fafee"></use>
+        </svg>
+      </div>
+      <form class="search">
+        <input type="text" name="search-input" class="search__input" placeholder="Search recipes">
+        <button class="search__btn">
+          <svg class="icon search__icon">
+            <use xlink:href="9c479bb25d96510cf8d4785a76eb0175"></use>
+          </svg>
+        </button>
+      </form>
+      
+    </main>
+
+    <section class="results">
+      
+        <h2 class="heading--secondary">Featured Recipes</h2>
+        <div class="results__header dropdown">
+        <ul>
+          <li class="dropdown">
+            <button class="btn dropdown__btn">
+              <!-- credit icomoon.io -->
+              <svg class="icon">
+                <use xlink:href="d6ba7e6ae39c02db507487b133dc48f7"></use></svg>Filter 
+            </button>
+          
+            <div class="dropdown__filters scale-back">
+              <a href="">Breakfast</a> 
+                <a href="">Main Dish</a>
+                <a href="">Side Dish</a>
+                <a href="">Salad</a>            
+        </div>
+      </li></ul></div>
+
+      <div class="results__container">
+        <div class="recipe">
+          <div class="recipe__container">           
+            <div class="recipe__card">
+                <img src="abfefcea8cff626dfe658a849ee7b701" class="recipe__card--img" alt="recipe img">        
+              <svg class="icon icon-heart recipe__card--icon">
+                <use xlink:href="13247db2ec1b4f6accc32986dd955fb5"></use>
+              </svg>
+              <h3 class="recipe__card--title heading--tertiary">Thin crust pizza</h3>
+              <div class="recipe__card--back">
+                <button class="btn recipe__card--btn"><span class="underline">View Recipe &rarr;</span></button>
+              </div>
+              </div>   
+
+              <div class="recipe__card">    
+                  <img src="590f0918ff9a023a39fc77f1728d368d" class="recipe__card--img" alt="recipe img">
+                <svg class="icon icon-heart recipe__card--icon">
+                  <use xlink:href="13247db2ec1b4f6accc32986dd955fb5"></use>
+                </svg>
+                <h3 class="recipe__card--title heading--tertiary">Tomato pasta</h3>
+                <div class="recipe__card--back">
+                  <button class="btn recipe__card--btn"><span class="underline">View Recipe &rarr;</span></button>
+                </div>
+                </div>
+
+                <div class="recipe__card">
+                  <img src="0d03859da8d0f37254b2aa06e1911ea6" class="recipe__card--img" alt="recipe img">
+                  <svg class="icon icon-heart recipe__card--icon">
+                    <use xlink:href="13247db2ec1b4f6accc32986dd955fb5"></use>
+                  </svg>
+                  <h3 class="recipe__card--title heading--tertiary">Lasagna</h3>
+                  <div class="recipe__card--back">
+                    <button class="btn recipe__card--btn"><span class="underline">View Recipe &rarr;</span></button>
+                  </div>
+                  </div>
+
+                  <div class="recipe__card">
+                    <img src="e4996ebd0ea9682b449f8f1d45d67466" class="recipe__card--img" alt="recipe img">
+                    <svg class="icon icon-heart recipe__card--icon">
+                      <use xlink:href="13247db2ec1b4f6accc32986dd955fb5"></use>
+                    </svg>
+                    <h3 class="recipe__card--title heading--tertiary">Banana split</h3>
+                    <div class="recipe__card--back">
+                      <button class="btn recipe__card--btn hidden"><span class="underline">View Recipe &rarr;</span></button>
+                    </div>
+                    </div>
+
+                    <div class="recipe__card">
+                      <img src="f3e4c0a89cc2c54e897b22632bcced6a" class="recipe__card--img" alt="recipe img">
+                      <svg class="icon icon-heart recipe__card--icon">
+                        <use xlink:href="13247db2ec1b4f6accc32986dd955fb5"></use>
+                      </svg>
+                      <h3 class="recipe__card--title heading--tertiary">Chocolate cake</h3>
+                      <div class="recipe__card--back">
+                        <button class="btn recipe__card--btn"><span class="underline">View Recipe &rarr;</span></button>
+                      </div>
+                      </div>
+
+                      <div class="recipe__card">
+                        <img src="d7e336126f882d63b3bede3cada22c3c" class="recipe__card--img" alt="recipe img">
+                        <svg class="icon icon-heart recipe__card--icon">
+                          <use xlink:href="13247db2ec1b4f6accc32986dd955fb5"></use>
+                        </svg>
+                        <h3 class="recipe__card--title heading--tertiary">Baked chicken wings</h3>
+                        <div class="recipe__card--back">
+                          <button class="btn recipe__card--btn"><span class="underline">View Recipe &rarr;</span></button>
+                        </div>
+                        </div>
+            </div>
+          </div>
+        </div>
+      
+    </section>
+
+    <div class="modal-view">
+      <div class="recipe-view hidden">
+        <svg class="icon icon__close-view icon__close-outline">
+          <use xlink:href="9a7591f02685c2be8c26119e2183f433"></use></svg>
+        <h1 class=" heading--secondary">Thin crust pizza</h1>
+        <div class="recipe-view__info">
+          <!-- <img src="/src/img/pizza.jpg" alt="recipe-view-img" class="recipe-view__info--image"/> -->
+          <div class="recipe-view__ingredients">
+            <h2 class="heading--tertiary">Ingredients</h2>
+            <div class="recipe-view__ingredients--details">
+              <ul class="list-style">
+                <li><svg class="icon icon__cheveron-right">
+                  <use xlink:href="59e8c4c26089c05d0009e6b40a73f23d"></use></svg><span class="recipe-view__element--text">150 g flour</span></li>
+                
+                <!--  -->
+                <!-- TESTING PURPOSES -->
+                <li><svg class="icon icon__cheveron-right">
+                  <use xlink:href="59e8c4c26089c05d0009e6b40a73f23d"></use></svg><span class="recipe-view__element--text">1.25 tsp yeast</span></li>
+  
+                <li><svg class="icon icon__cheveron-right">
+                  <use xlink:href="59e8c4c26089c05d0009e6b40a73f23d"></use></svg><span class="recipe-view__element--text">1.25 tsp yeast</span></li>
+  
+                <li><svg class="icon icon__cheveron-right">
+                  <use xlink:href="59e8c4c26089c05d0009e6b40a73f23d"></use></svg><span class="recipe-view__element--text">1.25 tsp yeast</span></li>
+  
+                <li><svg class="icon icon__cheveron-right">
+                  <use xlink:href="59e8c4c26089c05d0009e6b40a73f23d"></use></svg><span class="recipe-view__element--text">1.25 tsp yeast</span></li>
+  
+                <li><svg class="icon icon__cheveron-right">
+                  <use xlink:href="59e8c4c26089c05d0009e6b40a73f23d"></use></svg><span class="recipe-view__element--text">1.25 tsp yeast</span></li>
+  
+                <li><svg class="icon icon__cheveron-right">
+                  <use xlink:href="59e8c4c26089c05d0009e6b40a73f23d"></use></svg><span class="recipe-view__element--text">1.25 tsp yeast</span></li>
+              <!--  -->
+              </ul>
+            </div>
+          </div>
+          
+          <div class="recipe-view__info--details">
+            <svg class="icon icon__file--text">
+              <use xlink:href="86a7a7d54cf1abfd1aa810606e47cc12"></use></svg>
+            <ul class="list-style">
+              <li><span class="text-bolder">Preparation time:</span> 15 min</li>
+              <li><span class="text-bolder">Cooking time:</span> 38 min</li>
+              <li><span class="text-bolder">Servings:</span> 4</li>
+              <li><span class="text-bolder">Calories:</span> 450 kcal</li>
+              <li><span class="text-bolder">Publisher:</span> Pascale Stark</li>
+            </ul>
+          </div>
+            
+
+        </div>
+
+       
+
+        <div class="recipe-view__directions">
+          <h2 class="heading--tertiary">Directions</h2>
+          <div class="recipe-view__directions--details">
+            <ul class="list-style">
+              
+              <li class="recipe-view__directions--element"><svg class="icon icon__checkmark-outline">
+                <use xlink:href="0a29fa48f3b6a2913b9cf8c4e8cb8345"></use></svg><span class="text-bolder">Step 1</span> Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae repudiandae dignissimos error tenetur ab quaerat magnam nesciunt. Labore veniam, cupiditate dolores quis, eligendi accusantium in delectus fugiat ducimus similique adipisci.</li>
+  
+              <!--  -->
+              <!-- TESTING PURPOSES -->
+              <li class="recipe-view__directions--element"><svg class="icon icon__checkmark-outline">
+                <use xlink:href="0a29fa48f3b6a2913b9cf8c4e8cb8345"></use></svg><span class="text-bolder">Step 2</span> Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae repudiandae dignissimos error tenetur ab quaerat magnam nesciunt. Labore veniam, cupiditate dolores quis, eligendi accusantium in delectus fugiat ducimus similique adipisci.</li>
+
+              <li class="recipe-view__directions--element"><svg class="icon icon__checkmark-outline">
+                <use xlink:href="0a29fa48f3b6a2913b9cf8c4e8cb8345"></use></svg><span class="text-bolder">Step 3</span> Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae repudiandae dignissimos error tenetur ab quaerat magnam nesciunt. Labore veniam, cupiditate dolores quis, eligendi accusantium in delectus fugiat ducimus similique adipisci.</li>
+
+              <li class="recipe-view__directions--element"><svg class="icon icon__checkmark-outline">
+                <use xlink:href="0a29fa48f3b6a2913b9cf8c4e8cb8345"></use></svg><span class="text-bolder">Step 4</span> Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae repudiandae dignissimos error tenetur ab quaerat magnam nesciunt. Labore veniam, cupiditate dolores quis, eligendi accusantium in delectus fugiat ducimus similique adipisci.</li>
+
+              <li class="recipe-view__directions--element"><svg class="icon icon__checkmark-outline">
+                <use xlink:href="0a29fa48f3b6a2913b9cf8c4e8cb8345"></use></svg><span class="text-bolder">Step 5</span> Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae repudiandae dignissimos error tenetur ab quaerat magnam nesciunt. Labore veniam, cupiditate dolores quis, eligendi accusantium in delectus fugiat ducimus similique adipisci.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-view">
+      <div class="add-recipe-view">
+        <svg class="icon icon__close-outline icon__close-form">
+          <use xlink:href="9a7591f02685c2be8c26119e2183f433"></use></svg>
+        <h1 class=" heading--secondary u-marg-b-heading ">Add recipe</h1>
+        <h2 class="heading--tertiary u-marg-b-heading">Recipe information</h2>
+
+      <form class="add-recipe-view__form">
+        
+        <div class="add-recipe-view__form--information">
+          
+        <label for="title"> <svg class="icon icon__compose">
+          <use xlink:href="9e61a077eb6d2c7c8e0dd050f1ad3c41"></use></svg>Title</label>
+        <input id="title" type="text" name="name" minlength="4" maxlength="45" placeholder="e.g: Baked chicken wings" required=""><br><br>
+
+        <label for="publisher"><svg class="icon icon__compose">
+          <use xlink:href="9e61a077eb6d2c7c8e0dd050f1ad3c41"></use></svg>Publisher</label>
+        <input id="publisher" name="added_by" type="text" maxlength="20" placeholder="e.g: John Doe"><br><br>
+
+        <label for="category"><svg class="icon icon__compose">
+          <use xlink:href="9e61a077eb6d2c7c8e0dd050f1ad3c41"></use></svg>Category</label>
+        <div class="category-select">
+          <select id="category" name="category" required="">
+            <option value="Breakfast">Breakfast</option>
+            <option value="Main Dish">Main Dish</option>
+            <option value="Side Dish">Side Dish</option>
+            <option value="Salad">Salad</option>
+          </select>
+        </div>  
+      </div>
+      <div class="add-recipe-view__form--information">
+        <label for="prep_time"><svg class="icon icon__compose">
+          <use xlink:href="9e61a077eb6d2c7c8e0dd050f1ad3c41"></use></svg>Preparation Time</label>
+        <input id="prep_time" name="prep_time" type="text" maxlength="15" placeholder="e.g: 30 mins"><br><br>
+      
+        <label for="cooking_time"><svg class="icon icon__compose">
+          <use xlink:href="9e61a077eb6d2c7c8e0dd050f1ad3c41"></use></svg>Cooking Time</label>
+        <input id="cooking_time" name="cooking_time" type="text" maxlength="15" placeholder="e.g: 45 mins"><br><br>
+      
+      
+        <label for="servings"><svg class="icon icon__compose">
+          <use xlink:href="9e61a077eb6d2c7c8e0dd050f1ad3c41"></use></svg>Servings</label>
+        <input id="servings" name="servings" type="text" maxlength="15" placeholder="e.g: 4"><br><br>
+             
+      </div>
+   
+
+        
+      <div class="add-recipe-view__form--details">
+        <label for="ingredients"><svg class="icon icon__compose">
+          <use xlink:href="9e61a077eb6d2c7c8e0dd050f1ad3c41"></use></svg>Ingredients</label>
+        <textarea id="ingredients" name="ingredients" placeholder="use this format: quantity unit ingredient,quantity unit ingredient..." required=""></textarea>
+      </div>
+        <div class="add-recipe-view__form--details">
+          <label for="directions"><svg class="icon icon__compose">
+            <use xlink:href="9e61a077eb6d2c7c8e0dd050f1ad3c41"></use></svg>Directions</label>
+          <textarea id="directions" name="directions" placeholder="use this format: quantity unit ingredient,quantity unit ingredient..." required=""></textarea>
+        </div>
+
+          <div class="add-recipe-view__form--information">
+            <label for="url"><svg class="icon icon__compose">
+              <use xlink:href="9e61a077eb6d2c7c8e0dd050f1ad3c41"></use></svg>URL</label>
+            <input id="url" type="url" placeholder="e.g: JohnDoe.com/recipes/chicken-wings"><br><br>
+          </div>
+        <div class="add-recipe-view__form--btn">
+          <button class="btn btn--form"><span class="underline">Submit &rarr;</span></button> 
+        </div>
+        
+      </form>
+    </div>
+    </div>
+
+    <div class="menu-section hidden">
+      <div class="menu-view">
+        <svg class="icon icon__close-outline menu-view__icon">
+          <use xlink:href="9a7591f02685c2be8c26119e2183f433"></use></svg>
+
+        <h2 class="heading--menu"><svg class="icon menu-view__icon--home">
+          <use xlink:href="f04d0f01cfbc2a889e5fada14884c8c8"></use></svg>Menu</h2>
+        <div class="menu-view__container">
+          <ul class="menu-view__list">
+            <li class="menu-view__list--item"><a href="#" class="menu-view__list--link addrecipe">Add recipe</a></li>
+            <li class="menu-view__list--item"><a href="#" class="menu-view__list--link">Favorites</a></li>
+            <!-- <li class="menu-view__list--item"><a href="#" class="menu-view__list--link filter-link">Filter <svg class="icon icon__cheveron-down link__chevron-down">
+              <use
+                xlink:href="src/img/sprite.svg#icon-cheveron-down"
+              ></use></svg
+            ></a></li>
+            <ul class="menu-view__sublist hidden">
+              <li class="menu-view__sublist--item"><a href="#" class="menu-view__sublist--link">Breakfast</a></li>
+            <li class="menu-view__sublist--item"><a href="#" class="menu-view__sublist--link">Main Dish</a></li>
+            <li class="menu-view__sublist--item"><a href="#" class="menu-view__sublist--link">Side dish</a></li>
+            <li class="menu-view__sublist--item"><a href="#" class="menu-view__sublist--link">Salad</a></li>
+            </ul> -->
+          </ul>
+        </div>
+      </div>
+    </div>
+  
+
+    <footer class="footer">
+      <div class="footer__text">
+        &#169; 2021 Pascale Stark
+      </div>
+    </footer>
+    
+  </body>
+</html>

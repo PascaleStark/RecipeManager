@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.html",
   "scripts": {
-    "compile:sass": "node-sass src/sass/main.scss style.css -w"
+    "compile:sass": "node-sass src/sass/main.scss style.css -w",
+    "start": "parcel index.html"
   },
   "repository": {
     "type": "git",
@@ -18,5 +19,8 @@
   "homepage": "https://github.com/PascaleStark/RecipeManager#readme",
   "dependencies": {
     "node-sass": "^5.0.0"
+  },
+  "devDependencies": {
+    "parcel": "^2.0.0-beta.2"
   }
 }
