@@ -1,0 +1,1 @@
+module.exports = require('./bundle-url').getBundleURL() + "sprite.HASH_REF_f6dd4a40d6593d93d3fd54af733e6f35.svg"

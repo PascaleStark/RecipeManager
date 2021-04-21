@@ -533,7 +533,7 @@ form.addEventListener("submit", function (e) {
 console.log("TESTING PARCELLLL");
 
 },{"url:../img/sprite.svg":"43MEk"}],"43MEk":[function(require,module,exports) {
-module.exports = require('./bundle-url').getBundleURL() + "sprite.733e6f35.svg"
+module.exports = require('./bundle-url').getBundleURL() + "sprite.HASH_REF_f6dd4a40d6593d93d3fd54af733e6f35.svg"
 },{"./bundle-url":"3seVR"}],"3seVR":[function(require,module,exports) {
 "use strict";
 
@@ -582,4 +582,4 @@ exports.getBaseURL = getBaseURL;
 exports.getOrigin = getOrigin;
 },{}]},["1P7w3","587fY"], "587fY", "parcelRequirea6c1")
 
-//# sourceMappingURL=index.24291a5b.js.map
+//# sourceMappingURL=index.HASH_REF_008776c155a7e48dbf0b320324291a5b.js.map
