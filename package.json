@@ -19,8 +19,5 @@
   "homepage": "https://github.com/PascaleStark/RecipeManager#readme",
   "dependencies": {
     "node-sass": "^5.0.0"
-  },
-  "devDependencies": {
-    "parcel": "^2.0.0-beta.2"
   }
 }
