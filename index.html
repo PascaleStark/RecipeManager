@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="style.css" />
-    <script defer src="./src/JS/controller.js"></script>
+    <script defer src="./dist/main.js"></script>
     <title>Recipe Manager</title>
   </head>
   <body>
@@ -22,7 +22,7 @@
              
               <svg class="icon">
                 <use
-                  xlink:href="src/img/sprite.svg#icon-chevron-thin-down"
+                  xlink:href="src/img/icons.svg#icon-chevron-thin-down"
                 ></use></svg
               >Filter 
             </button>
@@ -36,14 +36,14 @@
           <li class="nav__add-recipe">
             <button class="btn nav__add-recipe--btn">
               <svg class="icon icon-plus">
-                <use xlink:href="./src/img/sprite.svg#icon-plus"></use></svg
+                <use xlink:href="./src/img/icons.svg#icon-plus"></use></svg
               >Add Recipe
             </button>
           </li>
           <li class="nav__favorites">
             <button class="btn nav__favorites--btn">
               <svg class="icon icon-heart">
-                <use xlink:href="./src/img/sprite.svg#icon-heart"></use></svg
+                <use xlink:href="./src/img/icons.svg#icon-heart"></use></svg
               >Favorites
             </button>
           </li>
@@ -54,7 +54,7 @@
     <main class="main">
       <div class="hamburger-menu">
         <svg class="icon hamburger-menu--icon">
-          <use xlink:href="./src/img/sprite.svg#icon-menu"></use>
+          <use xlink:href="./src/img/icons.svg#icon-menu"></use>
         </svg>
       </div>
       <form class="search">
@@ -66,7 +66,7 @@
         />
         <button class="search__btn">
           <svg class="icon search__icon">
-            <use xlink:href="./src/img/sprite.svg#icon-magnifying-glass"></use>
+            <use xlink:href="./src/img/icons.svg#icon-magnifying-glass"></use>
           </svg>
         </button>
       </form>
@@ -81,7 +81,7 @@
               <!-- credit icomoon.io -->
               <svg class="icon">
                 <use
-                  xlink:href="./src/img/sprite.svg#icon-chevron-thin-down"
+                  xlink:href="./src/img/icons.svg#icon-chevron-thin-down"
                 ></use></svg
               >Filter
             </button>
@@ -107,7 +107,7 @@
                 alt="recipe img"
               />
               <svg class="icon icon-heart recipe__card--icon">
-                <use xlink:href="./src/img/sprite.svg#icon-heart"></use>
+                <use xlink:href="./src/img/icons.svg#icon-heart"></use>
               </svg>
               <h3 class="recipe__card--title heading--tertiary">
                 Thin crust pizza
@@ -126,7 +126,7 @@
                   alt="recipe img"
                 />
                 <svg class="icon icon-heart recipe__card--icon">
-                  <use xlink:href="./src/img/sprite.svg#icon-heart"></use>
+                  <use xlink:href="./src/img/icons.svg#icon-heart"></use>
                 </svg>
                 <h3 class="recipe__card--title heading--tertiary">Tomato pasta</h3>
                 <div class='recipe__card--back'>
@@ -141,7 +141,7 @@
                     alt="recipe img"
                   />
                   <svg class="icon icon-heart recipe__card--icon">
-                    <use xlink:href="./src/img/sprite.svg#icon-heart"></use>
+                    <use xlink:href="./src/img/icons.svg#icon-heart"></use>
                   </svg>
                   <h3 class="recipe__card--title heading--tertiary">Lasagna</h3>
                   <div class='recipe__card--back'>
@@ -156,7 +156,7 @@
                       alt="recipe img"
                     />
                     <svg class="icon icon-heart recipe__card--icon">
-                      <use xlink:href="./src/img/sprite.svg#icon-heart"></use>
+                      <use xlink:href="./src/img/icons.svg#icon-heart"></use>
                     </svg>
                     <h3 class="recipe__card--title heading--tertiary">Banana split</h3>
                     <div class='recipe__card--back'>
@@ -171,7 +171,7 @@
                         alt="recipe img"
                       />
                       <svg class="icon icon-heart recipe__card--icon">
-                        <use xlink:href="./src/img/sprite.svg#icon-heart"></use>
+                        <use xlink:href="./src/img/icons.svg#icon-heart"></use>
                       </svg>
                       <h3 class="recipe__card--title heading--tertiary">Chocolate cake</h3>
                       <div class='recipe__card--back'>
@@ -186,7 +186,7 @@
                           alt="recipe img"
                         />
                         <svg class="icon icon-heart recipe__card--icon">
-                          <use xlink:href="./src/img/sprite.svg#icon-heart"></use>
+                          <use xlink:href="./src/img/icons.svg#icon-heart"></use>
                         </svg>
                         <h3 class="recipe__card--title heading--tertiary">Baked chicken wings</h3>
                         <div class='recipe__card--back'>
@@ -206,7 +206,7 @@
     <div class="modal-view">
       <div class="add-recipe-view">
         <svg class="icon icon__close-outline icon__close-form">
-          <use xlink:href="./src/img/sprite.svg#icon-close-outline"></use>
+          <use xlink:href="./src/img/icons.svg#icon-close-outline"></use>
         </svg>
         <h1 class="heading--secondary u-marg-b-heading">Add recipe</h1>
         <h2 class="heading--tertiary u-marg-b-heading">Recipe information</h2>
@@ -215,7 +215,7 @@
           <div class="add-recipe-view__form--information">
             <label for="title">
               <svg class="icon icon__compose">
-                <use xlink:href="./src/img/sprite.svg#icon-compose"></use></svg
+                <use xlink:href="./src/img/icons.svg#icon-compose"></use></svg
               >Title</label
             >
             <input
@@ -230,7 +230,7 @@
 
             <label for="publisher"
               ><svg class="icon icon__compose">
-                <use xlink:href="./src/img/sprite.svg#icon-compose"></use></svg
+                <use xlink:href="./src/img/icons.svg#icon-compose"></use></svg
               >Publisher</label
             >
             <input
@@ -243,7 +243,7 @@
 
             <label for="category"
               ><svg class="icon icon__compose">
-                <use xlink:href="./src/img/sprite.svg#icon-compose"></use></svg
+                <use xlink:href="./src/img/icons.svg#icon-compose"></use></svg
               >Category</label
             >
             <div class="category-select">
@@ -259,7 +259,7 @@
           <div class="add-recipe-view__form--information">
             <label for="prep_time"
               ><svg class="icon icon__compose">
-                <use xlink:href="./src/img/sprite.svg#icon-compose"></use></svg
+                <use xlink:href="./src/img/icons.svg#icon-compose"></use></svg
               >Preparation Time</label
             >
             <input
@@ -272,7 +272,7 @@
 
             <label for="cooking_time"
               ><svg class="icon icon__compose">
-                <use xlink:href="./src/img/sprite.svg#icon-compose"></use></svg
+                <use xlink:href="./src/img/icons.svg#icon-compose"></use></svg
               >Cooking Time</label
             >
             <input
@@ -285,7 +285,7 @@
 
             <label for="servings"
               ><svg class="icon icon__compose">
-                <use xlink:href="./src/img/sprite.svg#icon-compose"></use></svg
+                <use xlink:href="./src/img/icons.svg#icon-compose"></use></svg
               >Servings</label
             >
             <input
@@ -300,7 +300,7 @@
           <div class="add-recipe-view__form--details">
             <label for="ingredients"
               ><svg class="icon icon__compose">
-                <use xlink:href="./src/img/sprite.svg#icon-compose"></use></svg
+                <use xlink:href="./src/img/icons.svg#icon-compose"></use></svg
               >Ingredients</label
             >
             <textarea
@@ -313,7 +313,7 @@
           <div class="add-recipe-view__form--details">
             <label for="directions"
               ><svg class="icon icon__compose">
-                <use xlink:href="./src/img/sprite.svg#icon-compose"></use></svg
+                <use xlink:href="./src/img/icons.svg#icon-compose"></use></svg
               >Directions</label
             >
             <textarea
@@ -327,7 +327,7 @@
           <div class="add-recipe-view__form--information">
             <label for="url"
               ><svg class="icon icon__compose">
-                <use xlink:href="./src/img/sprite.svg#icon-compose"></use></svg
+                <use xlink:href="./src/img/icons.svg#icon-compose"></use></svg
               >URL</label
             >
             <input
@@ -348,12 +348,12 @@
     <div class="menu-section hidden">
       <div class="menu-view">
         <svg class="icon icon__close-outline menu-view__icon">
-          <use xlink:href="./src/img/sprite.svg#icon-close-outline"></use>
+          <use xlink:href="./src/img/icons.svg#icon-close-outline"></use>
         </svg>
 
         <h2 class="heading--menu">
           <svg class="icon menu-view__icon--home">
-            <use xlink:href="./src/img/sprite.svg#icon-home"></use></svg
+            <use xlink:href="./src/img/icons.svg#icon-home"></use></svg
           >Menu
         </h2>
         <div class="menu-view__container">
@@ -366,7 +366,7 @@
             </li>
             <!-- <li class="menu-view__list--item"><a href="#" class="menu-view__list--link filter-link">Filter <svg class="icon icon__cheveron-down link__chevron-down">
               <use
-                xlink:href="./src/img/sprite.svg#icon-cheveron-down"
+                xlink:href="./src/img/icons.svg#icon-cheveron-down"
               ></use></svg
             ></a></li>
             <ul class="menu-view__sublist hidden">
