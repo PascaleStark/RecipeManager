@@ -71,6 +71,7 @@ form.addEventListener("submit", function (e) {
   e.preventDefault();
   const dataArr = [...new FormData(form)];
   const data = Object.fromEntries(dataArr);
+  console.log(data);
   //clear form
   form.reset();
   addrecipe("http://192.168.4.10:8300/recipes", data);
@@ -100,7 +101,7 @@ const controlrecipeView = async function (url) {
 
 viewRecipeBtn.addEventListener("click", function () {
   recipeDisplay.style.display = "block";
-  controlrecipeView("http://192.168.4.10:8300/recipes/where?id=6");
+  controlrecipeView("http://192.168.4.10:8300/recipes/where?id=13");
 });
 
 modalView.addEventListener("click", function (e) {

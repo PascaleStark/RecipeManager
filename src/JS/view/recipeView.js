@@ -69,9 +69,9 @@ const recipeView = class {
     <li><span class="text-bolder">Cooking time:</span> ${
       this._data.cookingTime
     }</li>
-    <li><span class="text-bolder">Servings:</span>${this._data.servings}</li>
-    <li><span class="text-bolder">Categiry:</span>${this._data.category}</li>
-    <li><span class="text-bolder">Publisher:</span>${this._data.publisher}</li>
+    <li><span class="text-bolder">Servings:</span> ${this._data.servings}</li>
+    <li><span class="text-bolder">Category:</span> ${this._data.category}</li>
+    <li><span class="text-bolder">Publisher:</span> ${this._data.publisher}</li>
   </ul>
 </div>
 </div>
