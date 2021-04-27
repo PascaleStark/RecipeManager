@@ -1,4 +1,5 @@
 import { timeout } from "./helper";
+import regeneratorRuntime from "regenerator-runtime";
 
 export const loadRecipe = async function (url) {
   try {

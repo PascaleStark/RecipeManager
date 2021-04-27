@@ -1,7 +1,8 @@
 "use strict";
 import { timeout } from "./helper";
 import * as model from "./model";
-import recipeView from "./view/RecipeView";
+import recipeView from "./view/recipeView";
+import regeneratorRuntime from "regenerator-runtime";
 
 const body = document.getElementsByTagName("body")[0];
 const addRecipe = document.querySelector(".nav__add-recipe--btn");
@@ -101,7 +102,7 @@ const controlrecipeView = async function (url) {
 
 viewRecipeBtn.addEventListener("click", function () {
   recipeDisplay.style.display = "block";
-  controlrecipeView("http://192.168.4.10:8300/recipes/where?id=13");
+  controlrecipeView("http://192.168.4.10:8300/recipes/where?id=6");
 });
 
 modalView.addEventListener("click", function (e) {

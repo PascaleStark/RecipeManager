@@ -1,4 +1,6 @@
-class RecipeView {
+import regeneratorRuntime from "regenerator-runtime";
+
+const RecipeView = class {
   _parentEl = document.querySelector(".recipe-view");
   _data;
 
@@ -93,6 +95,6 @@ class RecipeView {
 </div>
 </div>`;
   }
-}
+};
 
-export default new recipeView();
+export default new RecipeView();
