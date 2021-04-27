@@ -1,4 +1,4 @@
-const recipeView = class {
+class RecipeView {
   _parentEl = document.querySelector(".recipe-view");
   _data;
 
@@ -93,6 +93,6 @@ const recipeView = class {
 </div>
 </div>`;
   }
-};
+}
 
 export default new recipeView();
