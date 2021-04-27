@@ -1,7 +1,7 @@
 "use strict";
 import { timeout } from "./helper";
 import * as model from "./model";
-import recipeView from "./view/recipeView";
+import recipeView from "./view/RecipeView";
 
 const body = document.getElementsByTagName("body")[0];
 const addRecipe = document.querySelector(".nav__add-recipe--btn");
