@@ -1,28 +1,25 @@
-class RecipeView {
+import regeneratorRuntime from "regenerator-runtime";
+
+const RecipeView = class {
   _parentEl = document.querySelector(".recipe-view");
+  _viewRecipeBtn = document.querySelector(".recipe__card--btn");
   _data;
 
-  //   addOpenRecipeHandler(handler) {
-  //     this._parentEl.addEventListener("click", function (e) {
-  //       const btnOpen = e.target
-  //         .closest(".modal-view")
-  //         .previousSibling.querySelector(".recipe__card--btn");
-  //       console.log(btnOpen);
-  //       if (!btnOpen) return;
-  //       if (e.target === btnOpen) {
-  //         this._parentEl.style.display = "block";
-  //         handler("http://192.168.4.10:8300/recipes/where?id=6");
-  //       }
-  //     });
-  //   }
+  addOpenRecipeHandler(handler) {
+    this._viewRecipeBtn.addEventListener("click", function (e) {
+      ///////the this_.parent will point to the btn. CHANGE IT
+      document.querySelector(".recipe-view").style.display = "block";
+      handler("http://192.168.4.10:8300/recipes/where?id=6");
+    });
+  }
 
-  //   addCloseRecipeHandler() {
-  //     this._parentEl.addEventListener("click", function (e) {
-  //       const modalView = e.target.closest(".modal-view");
-  //       if (modalView && modalView.id === "closeModal")
-  //         this._parentEl.style.display = "none";
-  //     });
-  //   }
+  closeRecipeView() {
+    this._parentEl.addEventListener("click", function (e) {
+      if (e.target && e.target.id === "closeModal")
+        ///////the this_.parent will point to the btn. CHANGE IT
+        document.querySelector(".recipe-view").style.display = "none";
+    });
+  }
 
   renderRecipeView(data) {
     this._parentEl.innerHTML = "";
@@ -93,6 +90,6 @@ class RecipeView {
 </div>
 </div>`;
   }
-}
+};
 
-export default new recipeView();
+export default new RecipeView();

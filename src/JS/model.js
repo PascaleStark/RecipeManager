@@ -1,4 +1,5 @@
 import { timeout } from "./helper";
+import regeneratorRuntime from "regenerator-runtime";
 
 export const loadRecipe = async function (url) {
   try {
@@ -7,6 +8,7 @@ export const loadRecipe = async function (url) {
       method: "GET",
     });
     const resp = await Promise.race([fetchPro, timeout(30)]);
+    console.log(resp);
     const data = await resp.json();
     console.log(data);
 
