@@ -1,7 +1,7 @@
 "use strict";
-import { timeout } from "./helper";
 import * as model from "./model";
 import recipeView from "./view/recipeView";
+import addRecipeView from "./view/addRecipeView";
 import regeneratorRuntime from "regenerator-runtime";
 
 const body = document.getElementsByTagName("body")[0];
@@ -43,49 +43,22 @@ btnFilter.addEventListener("click", function () {
 });
 ///////////////////////////////////////////////
 //Add a recipe
-
-const addrecipe = async function (url, uploadData) {
+const controlAddRecipe = async function (url, uploadData) {
   try {
-    const fetchPro = fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify(uploadData),
-    });
-    const resp = await Promise.race([fetchPro, timeout(10)]);
-    //console.log(resp);
-    const data = await resp.json();
-    //console.log(data);
-    if (!resp.ok) throw new Error(`${data.message} (${resp.status})`);
-    return data;
+    //1. Add Recipe
+    const result = await model.addRecipe(url, uploadData);
+    console.log(result);
+    //2. Render Success Message
+    addRecipeView.renderRecipeView();
   } catch (err) {
-    alert(
-      `${err} There was an error posting this recipe, please try again later!`
-    );
+    console.log(err);
   }
 };
-const form = document.querySelector(".add-recipe-view__form");
-form.addEventListener("submit", function (e) {
-  e.preventDefault();
-  const dataArr = [...new FormData(form)];
-  const data = Object.fromEntries(dataArr);
-  console.log(data);
-  //clear form
-  form.reset();
-  addrecipe("http://192.168.4.10:8300/recipes", data);
-  // console.log(result);
-  //close form
-  addrecipeView.style.display = "none";
-  body.classList.remove("my-body-noscroll-class");
-  //add success message
-});
-///////////////////////////////////////////////////////////
+////////////////////////////////////////////////
 const controlrecipeView = async function (url) {
   try {
     //1. Load recipe
     const recipe = await model.loadRecipe(url);
-
     //2. render recipe view
     recipeView.renderRecipeView(recipe);
   } catch (err) {
@@ -93,11 +66,12 @@ const controlrecipeView = async function (url) {
   }
 };
 
-///////////////////////////////////////////////////////////
+//////////////////////////////////////////////////
 //Event handlers using Publisher-Subscriber pattern
 const init = function () {
   recipeView.addOpenRecipeHandler(controlrecipeView);
   recipeView.closeRecipeView();
+  addRecipeView.addFormEventHandler(controlAddRecipe);
 };
 
 init();
