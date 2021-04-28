@@ -8,11 +8,7 @@ const body = document.getElementsByTagName("body")[0];
 const addRecipe = document.querySelector(".nav__add-recipe--btn");
 const menuAddRecipe = document.querySelector(".addrecipe");
 const closeForm = document.querySelector(".icon__close-form");
-const viewRecipeBtn = document.querySelector(".recipe__card--btn");
-const closeView = document.querySelector(".icon__close-view");
-const modalView = document.querySelector(".modal-view");
 const addrecipeView = document.querySelector(".add-recipe-view");
-const recipeDisplay = document.querySelector(".recipe-view");
 const btnMenu = document.querySelector(".hamburger-menu");
 const viewMenu = document.querySelector(".menu-section");
 const closeMenu = document.querySelector(".menu-view__icon");
@@ -52,19 +48,21 @@ const addrecipe = async function (url, uploadData) {
   try {
     const fetchPro = fetch(url, {
       method: "POST",
-      mode: "no-cors",
       headers: {
         "Content-type": "application/json",
       },
       body: JSON.stringify(uploadData),
     });
     const resp = await Promise.race([fetchPro, timeout(10)]);
+    //console.log(resp);
     const data = await resp.json();
-    console.log(data);
+    //console.log(data);
     if (!resp.ok) throw new Error(`${data.message} (${resp.status})`);
     return data;
   } catch (err) {
-    console.log(err);
+    alert(
+      `${err} There was an error posting this recipe, please try again later!`
+    );
   }
 };
 const form = document.querySelector(".add-recipe-view__form");
@@ -76,9 +74,13 @@ form.addEventListener("submit", function (e) {
   //clear form
   form.reset();
   addrecipe("http://192.168.4.10:8300/recipes", data);
+  // console.log(result);
+  //close form
+  addrecipeView.style.display = "none";
+  body.classList.remove("my-body-noscroll-class");
+  //add success message
 });
 ///////////////////////////////////////////////////////////
-
 const controlrecipeView = async function (url) {
   try {
     //1. Load recipe
@@ -93,19 +95,9 @@ const controlrecipeView = async function (url) {
 
 ///////////////////////////////////////////////////////////
 //Event handlers using Publisher-Subscriber pattern
-// const init = function () {
-//   recipeView.addOpenRecipeHandler(controlrecipeView);
-//   recipeView.addCloseRecipeHandler();
-// };
+const init = function () {
+  recipeView.addOpenRecipeHandler(controlrecipeView);
+  recipeView.closeRecipeView();
+};
 
-// init();
-
-viewRecipeBtn.addEventListener("click", function () {
-  recipeDisplay.style.display = "block";
-  controlrecipeView("http://192.168.4.10:8300/recipes/where?id=6");
-});
-
-modalView.addEventListener("click", function (e) {
-  if (e.target && e.target.id === "closeModal")
-    recipeDisplay.style.display = "none";
-});
+init();

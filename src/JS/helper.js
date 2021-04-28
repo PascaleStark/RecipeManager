@@ -1,5 +1,3 @@
-export const testingWebpack = "I am bundling your js files";
-export const testingWebpack2 = "I am still bundling your js files";
 export const timeout = function (s) {
   return new Promise(function (_, reject) {
     setTimeout(function () {

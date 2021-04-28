@@ -10,12 +10,8 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "testingWebpack": () => (/* binding */ testingWebpack),
-/* harmony export */   "testingWebpack2": () => (/* binding */ testingWebpack2),
 /* harmony export */   "timeout": () => (/* binding */ timeout)
 /* harmony export */ });
-var testingWebpack = "I am bundling your js files";
-var testingWebpack2 = "I am still bundling your js files";
 var timeout = function timeout(s) {
   return new Promise(function (_, reject) {
     setTimeout(function () {
@@ -63,10 +59,11 @@ var loadRecipe = /*#__PURE__*/function () {
 
           case 4:
             resp = _context.sent;
-            _context.next = 7;
+            console.log(resp);
+            _context.next = 8;
             return resp.json();
 
-          case 7:
+          case 8:
             data = _context.sent;
             console.log(data); //refactoring the recipe object
 
@@ -85,17 +82,17 @@ var loadRecipe = /*#__PURE__*/function () {
             };
             return _context.abrupt("return", recipe);
 
-          case 15:
-            _context.prev = 15;
+          case 16:
+            _context.prev = 16;
             _context.t0 = _context["catch"](0);
             console.log(_context.t0);
 
-          case 18:
+          case 19:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 15]]);
+    }, _callee, null, [[0, 16]]);
   }));
 
   return function loadRecipe(_x) {
@@ -134,32 +131,31 @@ var RecipeView = /*#__PURE__*/function () {
 
     _defineProperty(this, "_parentEl", document.querySelector(".recipe-view"));
 
+    _defineProperty(this, "_viewRecipeBtn", document.querySelector(".recipe__card--btn"));
+
     _defineProperty(this, "_data", void 0);
   }
 
   _createClass(RecipeView, [{
+    key: "addOpenRecipeHandler",
+    value: function addOpenRecipeHandler(handler) {
+      this._viewRecipeBtn.addEventListener("click", function (e) {
+        ///////the this_.parent will point to the btn. CHANGE IT
+        document.querySelector(".recipe-view").style.display = "block";
+        handler("http://192.168.4.10:8300/recipes/where?id=6");
+      });
+    }
+  }, {
+    key: "closeRecipeView",
+    value: function closeRecipeView() {
+      this._parentEl.addEventListener("click", function (e) {
+        if (e.target && e.target.id === "closeModal") ///////the this_.parent will point to the btn. CHANGE IT
+          document.querySelector(".recipe-view").style.display = "none";
+      });
+    }
+  }, {
     key: "renderRecipeView",
-    value: //   addOpenRecipeHandler(handler) {
-    //     this._parentEl.addEventListener("click", function (e) {
-    //       const btnOpen = e.target
-    //         .closest(".modal-view")
-    //         .previousSibling.querySelector(".recipe__card--btn");
-    //       console.log(btnOpen);
-    //       if (!btnOpen) return;
-    //       if (e.target === btnOpen) {
-    //         this._parentEl.style.display = "block";
-    //         handler("http://192.168.4.10:8300/recipes/where?id=6");
-    //       }
-    //     });
-    //   }
-    //   addCloseRecipeHandler() {
-    //     this._parentEl.addEventListener("click", function (e) {
-    //       const modalView = e.target.closest(".modal-view");
-    //       if (modalView && modalView.id === "closeModal")
-    //         this._parentEl.style.display = "none";
-    //     });
-    //   }
-    function renderRecipeView(data) {
+    value: function renderRecipeView(data) {
       this._parentEl.innerHTML = "";
       this._data = data;
 
@@ -1050,11 +1046,7 @@ var body = document.getElementsByTagName("body")[0];
 var addRecipe = document.querySelector(".nav__add-recipe--btn");
 var menuAddRecipe = document.querySelector(".addrecipe");
 var closeForm = document.querySelector(".icon__close-form");
-var viewRecipeBtn = document.querySelector(".recipe__card--btn");
-var closeView = document.querySelector(".icon__close-view");
-var modalView = document.querySelector(".modal-view");
 var addrecipeView = document.querySelector(".add-recipe-view");
-var recipeDisplay = document.querySelector(".recipe-view");
 var btnMenu = document.querySelector(".hamburger-menu");
 var viewMenu = document.querySelector(".menu-section");
 var closeMenu = document.querySelector(".menu-view__icon");
@@ -1095,7 +1087,6 @@ var addrecipe = /*#__PURE__*/function () {
             _context.prev = 0;
             fetchPro = fetch(url, {
               method: "POST",
-              mode: "no-cors",
               headers: {
                 "Content-type": "application/json"
               },
@@ -1111,29 +1102,28 @@ var addrecipe = /*#__PURE__*/function () {
 
           case 7:
             data = _context.sent;
-            console.log(data);
 
             if (resp.ok) {
-              _context.next = 11;
+              _context.next = 10;
               break;
             }
 
             throw new Error("".concat(data.message, " (").concat(resp.status, ")"));
 
-          case 11:
+          case 10:
             return _context.abrupt("return", data);
 
-          case 14:
-            _context.prev = 14;
+          case 13:
+            _context.prev = 13;
             _context.t0 = _context["catch"](0);
-            console.log(_context.t0);
+            alert("".concat(_context.t0, " There was an error posting this recipe, please try again later!"));
 
-          case 17:
+          case 16:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 14]]);
+    }, _callee, null, [[0, 13]]);
   }));
 
   return function addrecipe(_x, _x2) {
@@ -1151,7 +1141,11 @@ form.addEventListener("submit", function (e) {
   console.log(data); //clear form
 
   form.reset();
-  addrecipe("http://192.168.4.10:8300/recipes", data);
+  addrecipe("http://192.168.4.10:8300/recipes", data); // console.log(result);
+  //close form
+
+  addrecipeView.style.display = "none";
+  body.classList.remove("my-body-noscroll-class"); //add success message
 }); ///////////////////////////////////////////////////////////
 
 var controlrecipeView = /*#__PURE__*/function () {
@@ -1190,20 +1184,14 @@ var controlrecipeView = /*#__PURE__*/function () {
   };
 }(); ///////////////////////////////////////////////////////////
 //Event handlers using Publisher-Subscriber pattern
-// const init = function () {
-//   recipeView.addOpenRecipeHandler(controlrecipeView);
-//   recipeView.addCloseRecipeHandler();
-// };
-// init();
 
 
-viewRecipeBtn.addEventListener("click", function () {
-  recipeDisplay.style.display = "block";
-  controlrecipeView("http://192.168.4.10:8300/recipes/where?id=6");
-});
-modalView.addEventListener("click", function (e) {
-  if (e.target && e.target.id === "closeModal") recipeDisplay.style.display = "none";
-});
+var init = function init() {
+  _view_recipeView__WEBPACK_IMPORTED_MODULE_2__.default.addOpenRecipeHandler(controlrecipeView);
+  _view_recipeView__WEBPACK_IMPORTED_MODULE_2__.default.closeRecipeView();
+};
+
+init();
 })();
 
 /******/ })()
