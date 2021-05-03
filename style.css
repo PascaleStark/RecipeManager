@@ -391,6 +391,23 @@ body {
           margin-top: -3rem;
           justify-self: start; } }
 
+.sub-message {
+  height: 100vh; }
+  .sub-message p {
+    font-size: 4rem;
+    padding: 15rem 10rem 5rem 10rem; }
+  .sub-message__icon {
+    height: 3rem;
+    width: 3rem;
+    transform: translateY(0.5rem); }
+  .sub-message__img {
+    height: 30rem;
+    width: 30rem;
+    margin: auto; }
+  .sub-message img {
+    height: 100%;
+    margin: auto; }
+
 .footer {
   background-color: rgba(0, 0, 0, 0.7); }
   .footer__text {
