@@ -32,7 +32,8 @@ var timeout = function timeout(s) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "addRecipe": () => (/* binding */ addRecipe),
-/* harmony export */   "loadRecipe": () => (/* binding */ loadRecipe)
+/* harmony export */   "loadRecipe": () => (/* binding */ loadRecipe),
+/* harmony export */   "searchRecipe": () => (/* binding */ searchRecipe)
 /* harmony export */ });
 /* harmony import */ var _helper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./helper */ "./src/JS/helper.js");
 /* harmony import */ var regenerator_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! regenerator-runtime */ "./node_modules/regenerator-runtime/runtime.js");
@@ -156,6 +157,62 @@ var loadRecipe = /*#__PURE__*/function () {
     return _ref2.apply(this, arguments);
   };
 }();
+var searchRecipe = /*#__PURE__*/function () {
+  var _ref3 = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee3(url) {
+    var fetchPro, resp, data, recipes;
+    return regenerator_runtime__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee3$(_context3) {
+      while (1) {
+        switch (_context3.prev = _context3.next) {
+          case 0:
+            _context3.prev = 0;
+            //load recipe object
+            fetchPro = fetch(url, {
+              method: "GET"
+            });
+            _context3.next = 4;
+            return Promise.race([fetchPro, (0,_helper__WEBPACK_IMPORTED_MODULE_0__.timeout)(30)]);
+
+          case 4:
+            resp = _context3.sent;
+            _context3.next = 7;
+            return resp.json();
+
+          case 7:
+            data = _context3.sent;
+            console.log(data); //refactoring the recipe object
+
+            recipes = data.map(function (res) {
+              return {
+                title: res.name,
+                publisher: res.addedBy,
+                category: res.category,
+                prepartionTime: res.prepTime,
+                cookingTime: res.cookingTime,
+                servings: res.servings,
+                url: res.url,
+                ingredients: res.ingredients,
+                directions: res.directions
+              };
+            });
+            return _context3.abrupt("return", recipes);
+
+          case 13:
+            _context3.prev = 13;
+            _context3.t0 = _context3["catch"](0);
+            console.log(_context3.t0);
+
+          case 16:
+          case "end":
+            return _context3.stop();
+        }
+      }
+    }, _callee3, null, [[0, 13]]);
+  }));
+
+  return function searchRecipe(_x4) {
+    return _ref3.apply(this, arguments);
+  };
+}();
 
 /***/ }),
 
@@ -190,7 +247,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-// import regeneratorRuntime from "regenerator-runtime";
 var AddRecipeView = /*#__PURE__*/function () {
   function AddRecipeView() {
     _classCallCheck(this, AddRecipeView);
@@ -274,7 +330,7 @@ var AddRecipeView = /*#__PURE__*/function () {
   }, {
     key: "_generateMarkup",
     value: function _generateMarkup() {
-      return "<div class=\"sub-message\">\n    <svg class=\"icon icon__close-outline icon__close-form\">\n      <use xlink:href=\"./src/img/icons.svg#icon-close-outline\"></use>\n    </svg>\n\n    <p class=\"sub-message__msg\">\n      <svg class=\"icon sub-message__icon\">\n        <use\n          xlink:href=\"./src/img/icons.svg#icon-checkmark-outline\"\n        ></use>\n      </svg>\n      Your recipe has been posted successfully!\n    </p>\n    <div class=\"sub-message__img\">\n      <img src=\"./src/img/balloon.gif\" alt=\"hot-air-balloon\" />\n    </div>\n  </div>";
+      return "<div class=\"sub-message\">\n    <svg class=\"icon icon__close-outline icon__close-form\">\n      <use xlink:href=\"./src/img/icons.svg#icon-close-outline\"></use>\n    </svg>\n\n    <p class=\"sub-message__msg\">\n      <svg class=\"icon sub-message__icon\">\n        <use\n          xlink:href=\"./src/img/icons.svg#icon-checkmark-outline\"\n        ></use>\n      </svg>\n      Your recipe has been posted successfully!\n    </p>\n    <div class=\"sub-message__img\">\n    <!-- https://images.app.goo.gl/csVNcPY99rLkdkKZ8 -->\n      <img src=\"./src/img/balloon.gif\" alt=\"hot-air-balloon\" />\n    </div>\n  </div>";
     }
   }]);
 
@@ -1293,8 +1349,45 @@ var controlrecipeView = /*#__PURE__*/function () {
     return _ref2.apply(this, arguments);
   };
 }(); //////////////////////////////////////////////////
-//Event handlers using Publisher-Subscriber pattern
 
+
+var controlSearchRecipe = /*#__PURE__*/function () {
+  var _ref3 = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_3___default().mark(function _callee3(url) {
+    var searchEl, query, searchResults;
+    return regenerator_runtime__WEBPACK_IMPORTED_MODULE_3___default().wrap(function _callee3$(_context3) {
+      while (1) {
+        switch (_context3.prev = _context3.next) {
+          case 0:
+            searchEl = document.querySelector(".search__input");
+            query = searchEl.value; //1. look for all the recipes with the given keyword
+
+            _context3.next = 4;
+            return _model__WEBPACK_IMPORTED_MODULE_0__.searchRecipe(url);
+
+          case 4:
+            searchResults = _context3.sent;
+            //2. render the recipe cards with pagination
+            console.log(searchResults);
+            searchResults.forEach(function (result) {
+              var markup = "<div class=\"recipe__card\">\n    <img\n      src=\"./src/img/pizza.jpg\"\n      class=\"recipe__card--img\"\n      alt=\"recipe img\"\n    />\n    <svg class=\"icon icon-heart recipe__card--icon\">\n      <use xlink:href=\"./src/img/icons.svg#icon-heart\"></use>\n    </svg>\n    <h3 class=\"recipe__card--title heading--tertiary\">".concat(result.title, "</h3>\n    <div class='recipe__card--back'>\n      <button class=\"btn recipe__card--btn hidden\"><span class=\"underline\">View Recipe &rarr;</span></button>\n    </div>\n    </div>");
+              document.querySelector(".recipe__container").insertAdjacentHTML("afterbegin", markup);
+            });
+
+          case 7:
+          case "end":
+            return _context3.stop();
+        }
+      }
+    }, _callee3);
+  }));
+
+  return function controlSearchRecipe(_x4) {
+    return _ref3.apply(this, arguments);
+  };
+}();
+
+controlSearchRecipe("http://192.168.4.10:8300/recipes/search?q=pizza"); //////////////////////////////////////////////////
+//Event handlers using Publisher-Subscriber pattern
 
 var init = function init() {
   _view_recipeView__WEBPACK_IMPORTED_MODULE_1__.default.addOpenRecipeHandler(controlrecipeView);

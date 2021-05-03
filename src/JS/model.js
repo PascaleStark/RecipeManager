@@ -53,3 +53,32 @@ export const loadRecipe = async function (url) {
     console.log(err);
   }
 };
+
+export const searchRecipe = async function (url) {
+  try {
+    //load recipe object
+    const fetchPro = fetch(url, {
+      method: "GET",
+    });
+    const resp = await Promise.race([fetchPro, timeout(30)]);
+    //console.log(resp);
+    const data = await resp.json();
+    console.log(data);
+
+    //refactoring the recipe object
+    const recipes = data.map((res) => ({
+      title: res.name,
+      publisher: res.addedBy,
+      category: res.category,
+      prepartionTime: res.prepTime,
+      cookingTime: res.cookingTime,
+      servings: res.servings,
+      url: res.url,
+      ingredients: res.ingredients,
+      directions: res.directions,
+    }));
+    return recipes;
+  } catch (err) {
+    console.log(err);
+  }
+};

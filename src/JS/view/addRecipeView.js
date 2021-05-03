@@ -1,7 +1,4 @@
-// import regeneratorRuntime from "regenerator-runtime";
-
 const AddRecipeView = class {
-  //_parentEl = document.querySelector(".add-recipe-view__form");
   _parentEl = document.querySelector(".add-recipe-view");
 
   openAddRecipeView() {
@@ -80,6 +77,7 @@ const AddRecipeView = class {
       Your recipe has been posted successfully!
     </p>
     <div class="sub-message__img">
+    <!-- https://images.app.goo.gl/csVNcPY99rLkdkKZ8 -->
       <img src="./src/img/balloon.gif" alt="hot-air-balloon" />
     </div>
   </div>`;
