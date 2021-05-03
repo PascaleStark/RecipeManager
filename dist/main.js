@@ -32,7 +32,8 @@ var timeout = function timeout(s) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "addRecipe": () => (/* binding */ addRecipe),
-/* harmony export */   "loadRecipe": () => (/* binding */ loadRecipe)
+/* harmony export */   "loadRecipe": () => (/* binding */ loadRecipe),
+/* harmony export */   "searchRecipe": () => (/* binding */ searchRecipe)
 /* harmony export */ });
 /* harmony import */ var _helper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./helper */ "./src/JS/helper.js");
 /* harmony import */ var regenerator_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! regenerator-runtime */ "./node_modules/regenerator-runtime/runtime.js");
@@ -156,6 +157,62 @@ var loadRecipe = /*#__PURE__*/function () {
     return _ref2.apply(this, arguments);
   };
 }();
+var searchRecipe = /*#__PURE__*/function () {
+  var _ref3 = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee3(url) {
+    var fetchPro, resp, data, recipes;
+    return regenerator_runtime__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee3$(_context3) {
+      while (1) {
+        switch (_context3.prev = _context3.next) {
+          case 0:
+            _context3.prev = 0;
+            //load recipe object
+            fetchPro = fetch(url, {
+              method: "GET"
+            });
+            _context3.next = 4;
+            return Promise.race([fetchPro, (0,_helper__WEBPACK_IMPORTED_MODULE_0__.timeout)(30)]);
+
+          case 4:
+            resp = _context3.sent;
+            _context3.next = 7;
+            return resp.json();
+
+          case 7:
+            data = _context3.sent;
+            console.log(data); //refactoring the recipe object
+
+            recipes = data.map(function (res) {
+              return {
+                title: res.name,
+                publisher: res.addedBy,
+                category: res.category,
+                prepartionTime: res.prepTime,
+                cookingTime: res.cookingTime,
+                servings: res.servings,
+                url: res.url,
+                ingredients: res.ingredients,
+                directions: res.directions
+              };
+            });
+            return _context3.abrupt("return", recipes);
+
+          case 13:
+            _context3.prev = 13;
+            _context3.t0 = _context3["catch"](0);
+            console.log(_context3.t0);
+
+          case 16:
+          case "end":
+            return _context3.stop();
+        }
+      }
+    }, _callee3, null, [[0, 13]]);
+  }));
+
+  return function searchRecipe(_x4) {
+    return _ref3.apply(this, arguments);
+  };
+}();
 
 /***/ }),
 
@@ -170,8 +227,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var regenerator_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! regenerator-runtime */ "./node_modules/regenerator-runtime/runtime.js");
-/* harmony import */ var regenerator_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(regenerator_runtime__WEBPACK_IMPORTED_MODULE_0__);
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -192,20 +247,67 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-
-
 var AddRecipeView = /*#__PURE__*/function () {
   function AddRecipeView() {
     _classCallCheck(this, AddRecipeView);
 
-    _defineProperty(this, "_parentEl", document.querySelector(".add-recipe-view__form"));
+    _defineProperty(this, "_parentEl", document.querySelector(".add-recipe-view"));
   }
 
   _createClass(AddRecipeView, [{
+    key: "openAddRecipeView",
+    value: function openAddRecipeView() {
+      var body = document.getElementsByTagName("body")[0];
+      var viewMenu = document.querySelector(".menu-section");
+      body.addEventListener("click", function (event) {
+        var addRecipe = document.querySelector(".nav__add-recipe--btn");
+        var menuAddRecipe = document.querySelector(".addrecipe");
+
+        if (event.target !== addRecipe && event.target !== menuAddRecipe) {
+          return;
+        }
+
+        viewMenu.style.display = "none";
+        document.querySelector(".add-recipe-view").style.display = "block";
+      });
+    }
+  }, {
+    key: "closeAddRecipeView",
+    value: function closeAddRecipeView() {
+      var body = document.getElementsByTagName("body")[0];
+      var closeForm = document.querySelector(".icon__close-form");
+      closeForm.addEventListener("click", function () {
+        document.querySelector(".add-recipe-view").style.display = "none";
+        body.classList.remove("my-body-noscroll-class");
+      });
+    }
+  }, {
+    key: "openAddRecipeMenu",
+    value: function openAddRecipeMenu() {
+      var body = document.getElementsByTagName("body")[0];
+      var btnMenu = document.querySelector(".hamburger-menu");
+      var viewMenu = document.querySelector(".menu-section");
+      btnMenu.addEventListener("click", function () {
+        viewMenu.style.display = "block";
+        body.classList.add("my-body-noscroll-class");
+      });
+    }
+  }, {
+    key: "closeAddRecipeMenu",
+    value: function closeAddRecipeMenu() {
+      var body = document.getElementsByTagName("body")[0];
+      var viewMenu = document.querySelector(".menu-section");
+      var closeMenu = document.querySelector(".menu-view__icon");
+      closeMenu.addEventListener("click", function () {
+        viewMenu.style.display = "none";
+        body.classList.remove("my-body-noscroll-class");
+      });
+    }
+  }, {
     key: "addFormEventHandler",
     value: function addFormEventHandler(handler) {
-      this._parentEl.addEventListener("submit", function (e) {
-        var form = document.querySelector(".add-recipe-view__form");
+      var form = document.querySelector(".add-recipe-view__form");
+      form.addEventListener("submit", function (e) {
         e.preventDefault();
 
         var dataArr = _toConsumableArray(new FormData(form));
@@ -217,8 +319,8 @@ var AddRecipeView = /*#__PURE__*/function () {
       });
     }
   }, {
-    key: "renderRecipeView",
-    value: function renderRecipeView() {
+    key: "renderView",
+    value: function renderView() {
       this._parentEl.innerHTML = "";
 
       this._generateMarkup();
@@ -228,7 +330,7 @@ var AddRecipeView = /*#__PURE__*/function () {
   }, {
     key: "_generateMarkup",
     value: function _generateMarkup() {
-      return "<svg class=\"icon\">\n    <use\n      xlink:href=\"./src/img/icons.svg#icon-checkmark-outline\"\n    ></use></svg>\n<p class=\" heading--secondary\">Your recipe has been posted successfully! You can now search for it and view it anytime</p>";
+      return "<div class=\"sub-message\">\n    <svg class=\"icon icon__close-outline icon__close-form\">\n      <use xlink:href=\"./src/img/icons.svg#icon-close-outline\"></use>\n    </svg>\n\n    <p class=\"sub-message__msg\">\n      <svg class=\"icon sub-message__icon\">\n        <use\n          xlink:href=\"./src/img/icons.svg#icon-checkmark-outline\"\n        ></use>\n      </svg>\n      Your recipe has been posted successfully!\n    </p>\n    <div class=\"sub-message__img\">\n    <!-- https://images.app.goo.gl/csVNcPY99rLkdkKZ8 -->\n      <img src=\"./src/img/balloon.gif\" alt=\"hot-air-balloon\" />\n    </div>\n  </div>";
     }
   }]);
 
@@ -279,7 +381,7 @@ var RecipeView = /*#__PURE__*/function () {
       this._viewRecipeBtn.addEventListener("click", function (e) {
         ///////the this_.parent will point to the btn. CHANGE IT
         document.querySelector(".recipe-view").style.display = "block";
-        handler("http://192.168.4.10:8300/recipes/where?id=6");
+        handler("http://192.168.4.10:8300/recipes/where?id=57");
       });
     }
   }, {
@@ -291,8 +393,8 @@ var RecipeView = /*#__PURE__*/function () {
       });
     }
   }, {
-    key: "renderRecipeView",
-    value: function renderRecipeView(data) {
+    key: "renderView",
+    value: function renderView(data) {
       this._parentEl.innerHTML = "";
       this._data = data;
 
@@ -1167,36 +1269,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
-var body = document.getElementsByTagName("body")[0];
-var addRecipe = document.querySelector(".nav__add-recipe--btn");
-var menuAddRecipe = document.querySelector(".addrecipe");
-var closeForm = document.querySelector(".icon__close-form");
-var addrecipeView = document.querySelector(".add-recipe-view");
-var btnMenu = document.querySelector(".hamburger-menu");
-var viewMenu = document.querySelector(".menu-section");
-var closeMenu = document.querySelector(".menu-view__icon");
 var btnFilter = document.querySelector(".dropdown__btn");
 var dropdownFilter = document.querySelector(".dropdown__filters");
-body.addEventListener("click", function (event) {
-  if (event.target !== addRecipe && event.target !== menuAddRecipe) {
-    return;
-  }
-
-  viewMenu.style.display = "none";
-  addrecipeView.style.display = "block";
-});
-closeForm.addEventListener("click", function () {
-  addrecipeView.style.display = "none";
-  body.classList.remove("my-body-noscroll-class");
-});
-btnMenu.addEventListener("click", function () {
-  viewMenu.style.display = "block";
-  body.classList.add("my-body-noscroll-class");
-});
-closeMenu.addEventListener("click", function () {
-  viewMenu.style.display = "none";
-  body.classList.remove("my-body-noscroll-class");
-});
 btnFilter.addEventListener("click", function () {
   dropdownFilter.classList.add("scale-back");
 }); ///////////////////////////////////////////////
@@ -1217,7 +1291,7 @@ var controlAddRecipe = /*#__PURE__*/function () {
             result = _context.sent;
             console.log(result); //2. Render Success Message
 
-            _view_addRecipeView__WEBPACK_IMPORTED_MODULE_2__.default.renderRecipeView();
+            _view_addRecipeView__WEBPACK_IMPORTED_MODULE_2__.default.renderView();
             _context.next = 11;
             break;
 
@@ -1254,7 +1328,7 @@ var controlrecipeView = /*#__PURE__*/function () {
           case 3:
             recipe = _context2.sent;
             //2. render recipe view
-            _view_recipeView__WEBPACK_IMPORTED_MODULE_1__.default.renderRecipeView(recipe);
+            _view_recipeView__WEBPACK_IMPORTED_MODULE_1__.default.renderView(recipe);
             _context2.next = 10;
             break;
 
@@ -1275,13 +1349,54 @@ var controlrecipeView = /*#__PURE__*/function () {
     return _ref2.apply(this, arguments);
   };
 }(); //////////////////////////////////////////////////
-//Event handlers using Publisher-Subscriber pattern
 
+
+var controlSearchRecipe = /*#__PURE__*/function () {
+  var _ref3 = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_3___default().mark(function _callee3(url) {
+    var searchEl, query, searchResults;
+    return regenerator_runtime__WEBPACK_IMPORTED_MODULE_3___default().wrap(function _callee3$(_context3) {
+      while (1) {
+        switch (_context3.prev = _context3.next) {
+          case 0:
+            searchEl = document.querySelector(".search__input");
+            query = searchEl.value; //1. look for all the recipes with the given keyword
+
+            _context3.next = 4;
+            return _model__WEBPACK_IMPORTED_MODULE_0__.searchRecipe(url);
+
+          case 4:
+            searchResults = _context3.sent;
+            //2. render the recipe cards with pagination
+            console.log(searchResults);
+            searchResults.forEach(function (result) {
+              var markup = "<div class=\"recipe__card\">\n    <img\n      src=\"./src/img/pizza.jpg\"\n      class=\"recipe__card--img\"\n      alt=\"recipe img\"\n    />\n    <svg class=\"icon icon-heart recipe__card--icon\">\n      <use xlink:href=\"./src/img/icons.svg#icon-heart\"></use>\n    </svg>\n    <h3 class=\"recipe__card--title heading--tertiary\">".concat(result.title, "</h3>\n    <div class='recipe__card--back'>\n      <button class=\"btn recipe__card--btn hidden\"><span class=\"underline\">View Recipe &rarr;</span></button>\n    </div>\n    </div>");
+              document.querySelector(".recipe__container").insertAdjacentHTML("afterbegin", markup);
+            });
+
+          case 7:
+          case "end":
+            return _context3.stop();
+        }
+      }
+    }, _callee3);
+  }));
+
+  return function controlSearchRecipe(_x4) {
+    return _ref3.apply(this, arguments);
+  };
+}();
+
+controlSearchRecipe("http://192.168.4.10:8300/recipes/search?q=pizza"); //////////////////////////////////////////////////
+//Event handlers using Publisher-Subscriber pattern
 
 var init = function init() {
   _view_recipeView__WEBPACK_IMPORTED_MODULE_1__.default.addOpenRecipeHandler(controlrecipeView);
   _view_recipeView__WEBPACK_IMPORTED_MODULE_1__.default.closeRecipeView();
   _view_addRecipeView__WEBPACK_IMPORTED_MODULE_2__.default.addFormEventHandler(controlAddRecipe);
+  _view_addRecipeView__WEBPACK_IMPORTED_MODULE_2__.default.openAddRecipeView();
+  _view_addRecipeView__WEBPACK_IMPORTED_MODULE_2__.default.closeAddRecipeView();
+  _view_addRecipeView__WEBPACK_IMPORTED_MODULE_2__.default.openAddRecipeMenu();
+  _view_addRecipeView__WEBPACK_IMPORTED_MODULE_2__.default.closeAddRecipeMenu();
 };
 
 init();
