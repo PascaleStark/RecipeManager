@@ -56,11 +56,11 @@ const controlSearchRecipe = async function (query) {
      <use xlink:href="./src/img/icons.svg#icon-heart"></use>
    </svg>
    <h3 class="recipe__card--title heading--tertiary">${result.title}</h3>
-   <div class='recipe__card--back'>
-     <button class="btn recipe__card--btn hidden"><span class="underline">View Recipe &rarr;</span></button>
+   <div class="recipe__card--back" id="btn-view" data-id="${result.id}">
+     <button class="btn recipe__card--btn hidden" ><span class="underline">View Recipe &rarr;</span></button>
    </div>
    </div>`;
-
+      console.log(markup);
       document
         .querySelector(".recipe__container")
         .insertAdjacentHTML("afterbegin", markup);
@@ -82,6 +82,17 @@ searchForm.addEventListener("submit", function (e) {
   searchEl.value = "";
 });
 
+//view any result
+const body = document.getElementsByTagName("body")[0];
+body.addEventListener("click", function (e) {
+  const targetEl = e.target.closest("#btn-view");
+  console.log(targetEl);
+  if (targetEl) {
+    const id = targetEl.dataset.id;
+    document.querySelector(".recipe-view").style.display = "block";
+    controlrecipeView(`${URL}/where?id=${id}`);
+  }
+});
 //////////////////////////////////////////////////
 //Event handlers using Publisher-Subscriber pattern
 const init = function () {
