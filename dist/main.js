@@ -1,6 +1,21 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/JS/config.js":
+/*!**************************!*\
+  !*** ./src/JS/config.js ***!
+  \**************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "URL": () => (/* binding */ URL)
+/* harmony export */ });
+var URL = "http://192.168.4.10:8300/recipes";
+
+/***/ }),
+
 /***/ "./src/JS/helper.js":
 /*!**************************!*\
   !*** ./src/JS/helper.js ***!
@@ -179,7 +194,8 @@ var searchRecipe = /*#__PURE__*/function () {
 
           case 7:
             data = _context3.sent;
-            console.log(data); //refactoring the recipe object
+            console.log(data); // if (!data) throw new Error(`No recipe is found`);
+            //refactoring the recipe object
 
             recipes = data.map(function (res) {
               return {
@@ -1259,11 +1275,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _view_addRecipeView__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./view/addRecipeView */ "./src/JS/view/addRecipeView.js");
 /* harmony import */ var regenerator_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! regenerator-runtime */ "./node_modules/regenerator-runtime/runtime.js");
 /* harmony import */ var regenerator_runtime__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(regenerator_runtime__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _config_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./config.js */ "./src/JS/config.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 
 
 
@@ -1352,33 +1370,42 @@ var controlrecipeView = /*#__PURE__*/function () {
 
 
 var controlSearchRecipe = /*#__PURE__*/function () {
-  var _ref3 = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_3___default().mark(function _callee3(url) {
-    var searchEl, query, searchResults;
+  var _ref3 = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_3___default().mark(function _callee3(query) {
+    var searchResults;
     return regenerator_runtime__WEBPACK_IMPORTED_MODULE_3___default().wrap(function _callee3$(_context3) {
       while (1) {
         switch (_context3.prev = _context3.next) {
           case 0:
-            searchEl = document.querySelector(".search__input");
-            query = searchEl.value; //1. look for all the recipes with the given keyword
+            _context3.prev = 0;
+            _context3.next = 3;
+            return _model__WEBPACK_IMPORTED_MODULE_0__.searchRecipe("".concat(_config_js__WEBPACK_IMPORTED_MODULE_4__.URL, "/search?q=").concat(query));
 
-            _context3.next = 4;
-            return _model__WEBPACK_IMPORTED_MODULE_0__.searchRecipe(url);
-
-          case 4:
+          case 3:
             searchResults = _context3.sent;
             //2. render the recipe cards with pagination
             console.log(searchResults);
+            document.querySelector(".recipe__container").innerHTML = ""; // if (searchResults.length === 0)
+            //   throw new Error(`There are no results for your search!`);
+
             searchResults.forEach(function (result) {
-              var markup = "<div class=\"recipe__card\">\n    <img\n      src=\"./src/img/pizza.jpg\"\n      class=\"recipe__card--img\"\n      alt=\"recipe img\"\n    />\n    <svg class=\"icon icon-heart recipe__card--icon\">\n      <use xlink:href=\"./src/img/icons.svg#icon-heart\"></use>\n    </svg>\n    <h3 class=\"recipe__card--title heading--tertiary\">".concat(result.title, "</h3>\n    <div class='recipe__card--back'>\n      <button class=\"btn recipe__card--btn hidden\"><span class=\"underline\">View Recipe &rarr;</span></button>\n    </div>\n    </div>");
+              var markup = "<div class=\"recipe__card\">\n   <img\n     src=\"./src/img/pizza.jpg\"\n     class=\"recipe__card--img\"\n     alt=\"recipe img\"\n   />\n   <svg class=\"icon icon-heart recipe__card--icon\">\n     <use xlink:href=\"./src/img/icons.svg#icon-heart\"></use>\n   </svg>\n   <h3 class=\"recipe__card--title heading--tertiary\">".concat(result.title, "</h3>\n   <div class='recipe__card--back'>\n     <button class=\"btn recipe__card--btn hidden\"><span class=\"underline\">View Recipe &rarr;</span></button>\n   </div>\n   </div>");
               document.querySelector(".recipe__container").insertAdjacentHTML("afterbegin", markup);
             });
+            document.querySelector(".results__heading").textContent = "Search Results";
+            _context3.next = 13;
+            break;
 
-          case 7:
+          case 10:
+            _context3.prev = 10;
+            _context3.t0 = _context3["catch"](0);
+            console.error(_context3.t0);
+
+          case 13:
           case "end":
             return _context3.stop();
         }
       }
-    }, _callee3);
+    }, _callee3, null, [[0, 10]]);
   }));
 
   return function controlSearchRecipe(_x4) {
@@ -1386,7 +1413,16 @@ var controlSearchRecipe = /*#__PURE__*/function () {
   };
 }();
 
-controlSearchRecipe("http://192.168.4.10:8300/recipes/search?q=pizza"); //////////////////////////////////////////////////
+var searchForm = document.querySelector(".search");
+console.log(searchForm);
+searchForm.addEventListener("submit", function (e) {
+  var searchEl = document.querySelector(".search__input");
+  e.preventDefault();
+  var query = searchEl.value;
+  console.log(query);
+  controlSearchRecipe(query);
+  searchEl.value = "";
+}); //////////////////////////////////////////////////
 //Event handlers using Publisher-Subscriber pattern
 
 var init = function init() {
