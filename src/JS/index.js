@@ -41,7 +41,6 @@ const controlSearchRecipe = async function (query) {
     //1. look for all the recipes with the given keyword
     const searchResults = await model.searchRecipe(`${URL}/search?q=${query}`);
     //2. render the recipe cards with pagination
-    console.log(searchResults);
     document.querySelector(".recipe__container").innerHTML = "";
     // if (searchResults.length === 0)
     //   throw new Error(`There are no results for your search!`);
@@ -60,12 +59,14 @@ const controlSearchRecipe = async function (query) {
      <button class="btn recipe__card--btn hidden" ><span class="underline">View Recipe &rarr;</span></button>
    </div>
    </div>`;
-      console.log(markup);
       document
         .querySelector(".recipe__container")
         .insertAdjacentHTML("afterbegin", markup);
     });
     document.querySelector(".results__heading").textContent = "Search Results";
+    document
+      .querySelector(".results__heading")
+      .scrollIntoView({ behavior: "smooth" });
   } catch (err) {
     console.error(err);
   }

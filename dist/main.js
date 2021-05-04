@@ -1385,16 +1385,17 @@ var controlSearchRecipe = /*#__PURE__*/function () {
           case 3:
             searchResults = _context3.sent;
             //2. render the recipe cards with pagination
-            console.log(searchResults);
             document.querySelector(".recipe__container").innerHTML = ""; // if (searchResults.length === 0)
             //   throw new Error(`There are no results for your search!`);
 
             searchResults.forEach(function (result) {
               var markup = "<div class=\"recipe__card\">\n   <img\n     src=\"./src/img/pizza.jpg\"\n     class=\"recipe__card--img\"\n     alt=\"recipe img\"\n   />\n   <svg class=\"icon icon-heart recipe__card--icon\">\n     <use xlink:href=\"./src/img/icons.svg#icon-heart\"></use>\n   </svg>\n   <h3 class=\"recipe__card--title heading--tertiary\">".concat(result.title, "</h3>\n   <div class=\"recipe__card--back\" id=\"btn-view\" data-id=\"").concat(result.id, "\">\n     <button class=\"btn recipe__card--btn hidden\" ><span class=\"underline\">View Recipe &rarr;</span></button>\n   </div>\n   </div>");
-              console.log(markup);
               document.querySelector(".recipe__container").insertAdjacentHTML("afterbegin", markup);
             });
             document.querySelector(".results__heading").textContent = "Search Results";
+            document.querySelector(".results__heading").scrollIntoView({
+              behavior: "smooth"
+            });
             _context3.next = 13;
             break;
 
