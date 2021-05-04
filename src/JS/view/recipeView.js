@@ -1,9 +1,9 @@
 import regeneratorRuntime from "regenerator-runtime";
+import View from "./view.js";
 
-const RecipeView = class {
+class RecipeView extends View {
   _parentEl = document.querySelector(".recipe-view");
   _viewRecipeBtn = document.querySelector(".recipe__card--btn");
-  _data;
 
   addOpenRecipeHandler(handler) {
     this._viewRecipeBtn.addEventListener("click", function (e) {
@@ -21,16 +21,7 @@ const RecipeView = class {
     });
   }
 
-  // _renderSpinner() {
-  //   return `<div class="spinner">
-  //   <svg class="spinner__icon">
-  //     <use xlink:href="./src/img/icons.svg#icon-spinner3"></use>
-  //   </svg>
-  // </div>`;
-  // }
-
   renderView(data) {
-    // this._parentEl.insertAdjacentHTML("beforeend", this._renderSpinner());
     this._parentEl.innerHTML = "";
     this._data = data;
     this._generateMarkup();
@@ -99,6 +90,6 @@ const RecipeView = class {
 </div>
 </div>`;
   }
-};
+}
 
 export default new RecipeView();

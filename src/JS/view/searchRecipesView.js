@@ -1,17 +1,20 @@
 import regeneratorRuntime from "regenerator-runtime";
 import { URL } from "../config.js";
+import View from "./view.js";
 
-const SearchRecipeView = class {
+class SearchRecipeView extends View {
   _parentEl = document.querySelector(".recipe__container");
   _resultsHeading = document.querySelector(".results__heading");
   _searchForm = document.querySelector(".search");
   _body = document.getElementsByTagName("body")[0];
-  _data;
 
   openSearchRecipeView(handler) {
     this._searchForm.addEventListener("submit", function (e) {
       const searchEl = document.querySelector(".search__input");
       e.preventDefault();
+      document
+        .querySelector(".results__heading")
+        .scrollIntoView({ behavior: "smooth" });
       const query = searchEl.value;
       handler(query);
       searchEl.value = "";
@@ -41,7 +44,6 @@ const SearchRecipeView = class {
       );
     });
     this._resultsHeading.textContent = "Search Results";
-    this._resultsHeading.scrollIntoView({ behavior: "smooth" });
   }
 
   _generateMarkup(result) {
@@ -60,6 +62,6 @@ const SearchRecipeView = class {
     </div>
     </div>`;
   }
-};
+}
 
 export default new SearchRecipeView();

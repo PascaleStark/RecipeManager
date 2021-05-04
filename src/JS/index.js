@@ -28,9 +28,11 @@ const controlAddRecipe = async function (url, uploadData) {
 ////////////////////////////////////////////////
 const controlrecipeView = async function (url) {
   try {
-    //1. Load recipe
+    //1. render spinner
+    recipeView.renderSpinner();
+    //2. Load recipe
     const recipe = await model.loadRecipe(url);
-    //2. render recipe view
+    //3. render recipe view
     recipeView.renderView(recipe);
   } catch (err) {
     console.log(err);
@@ -39,9 +41,11 @@ const controlrecipeView = async function (url) {
 //////////////////////////////////////////////////
 const controlSearchRecipe = async function (query) {
   try {
-    //1. look for all the recipes with the given keyword
+    //1. render spinner
+    searchRecipeView.renderSpinner();
+    //2. look for all the recipes with the given keyword
     const searchResults = await model.searchRecipe(`${URL}/search?q=${query}`);
-    //2. render the recipe cards with pagination
+    //3. render the recipe cards with pagination
     // if (searchResults.length === 0)
     //   throw new Error(`There are no results for your search!`);
     searchRecipeView.renderSearchView(searchResults);
