@@ -1385,7 +1385,6 @@ var controlSearchRecipe = /*#__PURE__*/function () {
           case 3:
             searchResults = _context3.sent;
             //2. render the recipe cards with pagination
-            console.log(searchResults);
             document.querySelector(".recipe__container").innerHTML = ""; // if (searchResults.length === 0)
             //   throw new Error(`There are no results for your search!`);
 
@@ -1397,20 +1396,20 @@ var controlSearchRecipe = /*#__PURE__*/function () {
             document.querySelector(".results__heading").scrollIntoView({
               behavior: "smooth"
             });
-            _context3.next = 14;
+            _context3.next = 13;
             break;
 
-          case 11:
-            _context3.prev = 11;
+          case 10:
+            _context3.prev = 10;
             _context3.t0 = _context3["catch"](0);
             console.error(_context3.t0);
 
-          case 14:
+          case 13:
           case "end":
             return _context3.stop();
         }
       }
-    }, _callee3, null, [[0, 11]]);
+    }, _callee3, null, [[0, 10]]);
   }));
 
   return function controlSearchRecipe(_x4) {

@@ -41,7 +41,6 @@ const controlSearchRecipe = async function (query) {
     //1. look for all the recipes with the given keyword
     const searchResults = await model.searchRecipe(`${URL}/search?q=${query}`);
     //2. render the recipe cards with pagination
-    console.log(searchResults);
     document.querySelector(".recipe__container").innerHTML = "";
     // if (searchResults.length === 0)
     //   throw new Error(`There are no results for your search!`);
