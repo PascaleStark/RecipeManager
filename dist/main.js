@@ -1383,7 +1383,8 @@ var controlSearchRecipe = /*#__PURE__*/function () {
           case 3:
             searchResults = _context3.sent;
             //2. render the recipe cards with pagination
-            console.log(searchResults); // if (searchResults.length === 0)
+            console.log(searchResults);
+            document.querySelector(".recipe__container").innerHTML = ""; // if (searchResults.length === 0)
             //   throw new Error(`There are no results for your search!`);
 
             searchResults.forEach(function (result) {
@@ -1391,20 +1392,20 @@ var controlSearchRecipe = /*#__PURE__*/function () {
               document.querySelector(".recipe__container").insertAdjacentHTML("afterbegin", markup);
             });
             document.querySelector(".results__heading").textContent = "Search Results";
-            _context3.next = 12;
+            _context3.next = 13;
             break;
 
-          case 9:
-            _context3.prev = 9;
+          case 10:
+            _context3.prev = 10;
             _context3.t0 = _context3["catch"](0);
             console.error(_context3.t0);
 
-          case 12:
+          case 13:
           case "end":
             return _context3.stop();
         }
       }
-    }, _callee3, null, [[0, 9]]);
+    }, _callee3, null, [[0, 10]]);
   }));
 
   return function controlSearchRecipe(_x4) {
