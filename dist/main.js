@@ -372,25 +372,55 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var regenerator_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! regenerator-runtime */ "./node_modules/regenerator-runtime/runtime.js");
 /* harmony import */ var regenerator_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(regenerator_runtime__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _view_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./view.js */ "./src/JS/view/view.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
 
-var RecipeView = /*#__PURE__*/function () {
+
+var RecipeView = /*#__PURE__*/function (_View) {
+  _inherits(RecipeView, _View);
+
+  var _super = _createSuper(RecipeView);
+
   function RecipeView() {
+    var _this;
+
     _classCallCheck(this, RecipeView);
 
-    _defineProperty(this, "_parentEl", document.querySelector(".recipe-view"));
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
 
-    _defineProperty(this, "_viewRecipeBtn", document.querySelector(".recipe__card--btn"));
+    _this = _super.call.apply(_super, [this].concat(args));
 
-    _defineProperty(this, "_data", void 0);
+    _defineProperty(_assertThisInitialized(_this), "_parentEl", document.querySelector(".recipe-view"));
+
+    _defineProperty(_assertThisInitialized(_this), "_viewRecipeBtn", document.querySelector(".recipe__card--btn"));
+
+    return _this;
   }
 
   _createClass(RecipeView, [{
@@ -409,18 +439,10 @@ var RecipeView = /*#__PURE__*/function () {
         if (e.target && e.target.id === "closeModal") ///////the this_.parent will point to the btn. CHANGE IT
           document.querySelector(".recipe-view").style.display = "none";
       });
-    } // _renderSpinner() {
-    //   return `<div class="spinner">
-    //   <svg class="spinner__icon">
-    //     <use xlink:href="./src/img/icons.svg#icon-spinner3"></use>
-    //   </svg>
-    // </div>`;
-    // }
-
+    }
   }, {
     key: "renderView",
     value: function renderView(data) {
-      // this._parentEl.insertAdjacentHTML("beforeend", this._renderSpinner());
       this._parentEl.innerHTML = "";
       this._data = data;
 
@@ -440,7 +462,7 @@ var RecipeView = /*#__PURE__*/function () {
   }]);
 
   return RecipeView;
-}();
+}(_view_js__WEBPACK_IMPORTED_MODULE_1__.default);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (new RecipeView());
 
@@ -460,30 +482,60 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var regenerator_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! regenerator-runtime */ "./node_modules/regenerator-runtime/runtime.js");
 /* harmony import */ var regenerator_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(regenerator_runtime__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _config_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../config.js */ "./src/JS/config.js");
+/* harmony import */ var _view_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./view.js */ "./src/JS/view/view.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
 
 
-var SearchRecipeView = /*#__PURE__*/function () {
+
+var SearchRecipeView = /*#__PURE__*/function (_View) {
+  _inherits(SearchRecipeView, _View);
+
+  var _super = _createSuper(SearchRecipeView);
+
   function SearchRecipeView() {
+    var _this;
+
     _classCallCheck(this, SearchRecipeView);
 
-    _defineProperty(this, "_parentEl", document.querySelector(".recipe__container"));
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
 
-    _defineProperty(this, "_resultsHeading", document.querySelector(".results__heading"));
+    _this = _super.call.apply(_super, [this].concat(args));
 
-    _defineProperty(this, "_searchForm", document.querySelector(".search"));
+    _defineProperty(_assertThisInitialized(_this), "_parentEl", document.querySelector(".recipe__container"));
 
-    _defineProperty(this, "_body", document.getElementsByTagName("body")[0]);
+    _defineProperty(_assertThisInitialized(_this), "_resultsHeading", document.querySelector(".results__heading"));
 
-    _defineProperty(this, "_data", void 0);
+    _defineProperty(_assertThisInitialized(_this), "_searchForm", document.querySelector(".search"));
+
+    _defineProperty(_assertThisInitialized(_this), "_body", document.getElementsByTagName("body")[0]);
+
+    return _this;
   }
 
   _createClass(SearchRecipeView, [{
@@ -492,6 +544,9 @@ var SearchRecipeView = /*#__PURE__*/function () {
       this._searchForm.addEventListener("submit", function (e) {
         var searchEl = document.querySelector(".search__input");
         e.preventDefault();
+        document.querySelector(".results__heading").scrollIntoView({
+          behavior: "smooth"
+        });
         var query = searchEl.value;
         handler(query);
         searchEl.value = "";
@@ -515,20 +570,16 @@ var SearchRecipeView = /*#__PURE__*/function () {
   }, {
     key: "renderSearchView",
     value: function renderSearchView(data) {
-      var _this = this;
+      var _this2 = this;
 
       this._parentEl.innerHTML = "";
       this._data = data;
 
       this._data.forEach(function (result) {
-        _this._parentEl.insertAdjacentHTML("afterbegin", _this._generateMarkup(result));
+        _this2._parentEl.insertAdjacentHTML("afterbegin", _this2._generateMarkup(result));
       });
 
       this._resultsHeading.textContent = "Search Results";
-
-      this._resultsHeading.scrollIntoView({
-        behavior: "smooth"
-      });
     }
   }, {
     key: "_generateMarkup",
@@ -538,9 +589,52 @@ var SearchRecipeView = /*#__PURE__*/function () {
   }]);
 
   return SearchRecipeView;
-}();
+}(_view_js__WEBPACK_IMPORTED_MODULE_2__.default);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (new SearchRecipeView());
+
+/***/ }),
+
+/***/ "./src/JS/view/view.js":
+/*!*****************************!*\
+  !*** ./src/JS/view/view.js ***!
+  \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ View)
+/* harmony export */ });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var View = /*#__PURE__*/function () {
+  function View() {
+    _classCallCheck(this, View);
+
+    _defineProperty(this, "_data", void 0);
+  }
+
+  _createClass(View, [{
+    key: "renderSpinner",
+    value: function renderSpinner() {
+      var spinnerMarkup = "<div class=\"spinner\">\n      <svg class=\"spinner__icon\">\n        <use xlink:href=\"./src/img/icons.svg#icon-spinner3\"></use>\n      </svg>\n    </div>";
+      this._parentEl.innerHTML = "";
+
+      this._parentEl.insertAdjacentHTML("afterbegin", spinnerMarkup);
+    }
+  }]);
+
+  return View;
+}();
+
+
 
 /***/ }),
 
@@ -1450,27 +1544,30 @@ var controlrecipeView = /*#__PURE__*/function () {
         switch (_context2.prev = _context2.next) {
           case 0:
             _context2.prev = 0;
-            _context2.next = 3;
+            //1. render spinner
+            _view_recipeView__WEBPACK_IMPORTED_MODULE_1__.default.renderSpinner(); //2. Load recipe
+
+            _context2.next = 4;
             return _model__WEBPACK_IMPORTED_MODULE_0__.loadRecipe(url);
 
-          case 3:
+          case 4:
             recipe = _context2.sent;
-            //2. render recipe view
+            //3. render recipe view
             _view_recipeView__WEBPACK_IMPORTED_MODULE_1__.default.renderView(recipe);
-            _context2.next = 10;
+            _context2.next = 11;
             break;
 
-          case 7:
-            _context2.prev = 7;
+          case 8:
+            _context2.prev = 8;
             _context2.t0 = _context2["catch"](0);
             console.log(_context2.t0);
 
-          case 10:
+          case 11:
           case "end":
             return _context2.stop();
         }
       }
-    }, _callee2, null, [[0, 7]]);
+    }, _callee2, null, [[0, 8]]);
   }));
 
   return function controlrecipeView(_x3) {
@@ -1487,29 +1584,32 @@ var controlSearchRecipe = /*#__PURE__*/function () {
         switch (_context3.prev = _context3.next) {
           case 0:
             _context3.prev = 0;
-            _context3.next = 3;
+            //1. render spinner
+            _view_searchRecipesView__WEBPACK_IMPORTED_MODULE_3__.default.renderSpinner(); //2. look for all the recipes with the given keyword
+
+            _context3.next = 4;
             return _model__WEBPACK_IMPORTED_MODULE_0__.searchRecipe("".concat(_config_js__WEBPACK_IMPORTED_MODULE_5__.URL, "/search?q=").concat(query));
 
-          case 3:
+          case 4:
             searchResults = _context3.sent;
-            //2. render the recipe cards with pagination
+            //3. render the recipe cards with pagination
             // if (searchResults.length === 0)
             //   throw new Error(`There are no results for your search!`);
             _view_searchRecipesView__WEBPACK_IMPORTED_MODULE_3__.default.renderSearchView(searchResults);
-            _context3.next = 10;
+            _context3.next = 11;
             break;
 
-          case 7:
-            _context3.prev = 7;
+          case 8:
+            _context3.prev = 8;
             _context3.t0 = _context3["catch"](0);
             console.error(_context3.t0);
 
-          case 10:
+          case 11:
           case "end":
             return _context3.stop();
         }
       }
-    }, _callee3, null, [[0, 7]]);
+    }, _callee3, null, [[0, 8]]);
   }));
 
   return function controlSearchRecipe(_x4) {
