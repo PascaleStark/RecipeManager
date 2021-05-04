@@ -64,6 +64,7 @@ export const searchRecipe = async function (url) {
     //console.log(resp);
     const data = await resp.json();
     console.log(data);
+    // if (!data) throw new Error(`No recipe is found`);
 
     //refactoring the recipe object
     const recipes = data.map((res) => ({
