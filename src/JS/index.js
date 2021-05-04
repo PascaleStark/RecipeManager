@@ -60,12 +60,14 @@ const controlSearchRecipe = async function (query) {
      <button class="btn recipe__card--btn hidden" ><span class="underline">View Recipe &rarr;</span></button>
    </div>
    </div>`;
-      console.log(markup);
       document
         .querySelector(".recipe__container")
         .insertAdjacentHTML("afterbegin", markup);
     });
     document.querySelector(".results__heading").textContent = "Search Results";
+    document
+      .querySelector(".results__heading")
+      .scrollIntoView({ behavior: "smooth" });
   } catch (err) {
     console.error(err);
   }
