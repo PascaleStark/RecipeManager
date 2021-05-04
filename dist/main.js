@@ -409,10 +409,18 @@ var RecipeView = /*#__PURE__*/function () {
         if (e.target && e.target.id === "closeModal") ///////the this_.parent will point to the btn. CHANGE IT
           document.querySelector(".recipe-view").style.display = "none";
       });
-    }
+    } // _renderSpinner() {
+    //   return `<div class="spinner">
+    //   <svg class="spinner__icon">
+    //     <use xlink:href="./src/img/icons.svg#icon-spinner3"></use>
+    //   </svg>
+    // </div>`;
+    // }
+
   }, {
     key: "renderView",
     value: function renderView(data) {
+      // this._parentEl.insertAdjacentHTML("beforeend", this._renderSpinner());
       this._parentEl.innerHTML = "";
       this._data = data;
 
@@ -485,7 +493,6 @@ var SearchRecipeView = /*#__PURE__*/function () {
         var searchEl = document.querySelector(".search__input");
         e.preventDefault();
         var query = searchEl.value;
-        console.log(query);
         handler(query);
         searchEl.value = "";
       });

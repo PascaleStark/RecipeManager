@@ -13,7 +13,6 @@ const SearchRecipeView = class {
       const searchEl = document.querySelector(".search__input");
       e.preventDefault();
       const query = searchEl.value;
-      console.log(query);
       handler(query);
       searchEl.value = "";
     });
