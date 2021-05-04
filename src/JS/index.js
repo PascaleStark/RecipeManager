@@ -2,6 +2,7 @@
 import * as model from "./model";
 import recipeView from "./view/recipeView";
 import addRecipeView from "./view/addRecipeView";
+import searchRecipeView from "./view/searchRecipesView";
 import regeneratorRuntime, { mark } from "regenerator-runtime";
 import { URL } from "./config.js";
 
@@ -41,59 +42,13 @@ const controlSearchRecipe = async function (query) {
     //1. look for all the recipes with the given keyword
     const searchResults = await model.searchRecipe(`${URL}/search?q=${query}`);
     //2. render the recipe cards with pagination
-    document.querySelector(".recipe__container").innerHTML = "";
     // if (searchResults.length === 0)
     //   throw new Error(`There are no results for your search!`);
-    searchResults.forEach((result) => {
-      const markup = `<div class="recipe__card">
-   <img
-     src="./src/img/pizza.jpg"
-     class="recipe__card--img"
-     alt="recipe img"
-   />
-   <svg class="icon icon-heart recipe__card--icon">
-     <use xlink:href="./src/img/icons.svg#icon-heart"></use>
-   </svg>
-   <h3 class="recipe__card--title heading--tertiary">${result.title}</h3>
-   <div class="recipe__card--back" id="btn-view" data-id="${result.id}">
-     <button class="btn recipe__card--btn hidden" ><span class="underline">View Recipe &rarr;</span></button>
-   </div>
-   </div>`;
-      document
-        .querySelector(".recipe__container")
-        .insertAdjacentHTML("afterbegin", markup);
-    });
-    document.querySelector(".results__heading").textContent = "Search Results";
-    document
-      .querySelector(".results__heading")
-      .scrollIntoView({ behavior: "smooth" });
+    searchRecipeView.renderSearchView(searchResults);
   } catch (err) {
     console.error(err);
   }
 };
-
-const searchForm = document.querySelector(".search");
-console.log(searchForm);
-searchForm.addEventListener("submit", function (e) {
-  const searchEl = document.querySelector(".search__input");
-  e.preventDefault();
-  const query = searchEl.value;
-  console.log(query);
-  controlSearchRecipe(query);
-  searchEl.value = "";
-});
-
-//view any result
-const body = document.getElementsByTagName("body")[0];
-body.addEventListener("click", function (e) {
-  const targetEl = e.target.closest("#btn-view");
-  console.log(targetEl);
-  if (targetEl) {
-    const id = targetEl.dataset.id;
-    document.querySelector(".recipe-view").style.display = "block";
-    controlrecipeView(`${URL}/where?id=${id}`);
-  }
-});
 //////////////////////////////////////////////////
 //Event handlers using Publisher-Subscriber pattern
 const init = function () {
@@ -104,6 +59,8 @@ const init = function () {
   addRecipeView.closeAddRecipeView();
   addRecipeView.openAddRecipeMenu();
   addRecipeView.closeAddRecipeMenu();
+  searchRecipeView.openSearchRecipeView(controlSearchRecipe);
+  searchRecipeView.openSearchResultView(controlrecipeView);
 };
 
 init();
