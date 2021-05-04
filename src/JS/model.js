@@ -38,6 +38,7 @@ export const loadRecipe = async function (url) {
     const recipeObject = data[0];
     console.log(recipeObject);
     const recipe = {
+      id: recipeObject.id,
       title: recipeObject.name,
       publisher: recipeObject.addedBy,
       category: recipeObject.category,
@@ -68,6 +69,7 @@ export const searchRecipe = async function (url) {
 
     //refactoring the recipe object
     const recipes = data.map((res) => ({
+      id: res.id,
       title: res.name,
       publisher: res.addedBy,
       category: res.category,

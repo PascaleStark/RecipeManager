@@ -143,6 +143,7 @@ var loadRecipe = /*#__PURE__*/function () {
             recipeObject = data[0];
             console.log(recipeObject);
             recipe = {
+              id: recipeObject.id,
               title: recipeObject.name,
               publisher: recipeObject.addedBy,
               category: recipeObject.category,
@@ -199,6 +200,7 @@ var searchRecipe = /*#__PURE__*/function () {
 
             recipes = data.map(function (res) {
               return {
+                id: res.id,
                 title: res.name,
                 publisher: res.addedBy,
                 category: res.category,
@@ -1388,7 +1390,8 @@ var controlSearchRecipe = /*#__PURE__*/function () {
             //   throw new Error(`There are no results for your search!`);
 
             searchResults.forEach(function (result) {
-              var markup = "<div class=\"recipe__card\">\n   <img\n     src=\"./src/img/pizza.jpg\"\n     class=\"recipe__card--img\"\n     alt=\"recipe img\"\n   />\n   <svg class=\"icon icon-heart recipe__card--icon\">\n     <use xlink:href=\"./src/img/icons.svg#icon-heart\"></use>\n   </svg>\n   <h3 class=\"recipe__card--title heading--tertiary\">".concat(result.title, "</h3>\n   <div class='recipe__card--back'>\n     <button class=\"btn recipe__card--btn hidden\"><span class=\"underline\">View Recipe &rarr;</span></button>\n   </div>\n   </div>");
+              var markup = "<div class=\"recipe__card\">\n   <img\n     src=\"./src/img/pizza.jpg\"\n     class=\"recipe__card--img\"\n     alt=\"recipe img\"\n   />\n   <svg class=\"icon icon-heart recipe__card--icon\">\n     <use xlink:href=\"./src/img/icons.svg#icon-heart\"></use>\n   </svg>\n   <h3 class=\"recipe__card--title heading--tertiary\">".concat(result.title, "</h3>\n   <div class=\"recipe__card--back\" id=\"btn-view\" data-id=\"").concat(result.id, "\">\n     <button class=\"btn recipe__card--btn hidden\" ><span class=\"underline\">View Recipe &rarr;</span></button>\n   </div>\n   </div>");
+              console.log(markup);
               document.querySelector(".recipe__container").insertAdjacentHTML("afterbegin", markup);
             });
             document.querySelector(".results__heading").textContent = "Search Results";
@@ -1422,6 +1425,18 @@ searchForm.addEventListener("submit", function (e) {
   console.log(query);
   controlSearchRecipe(query);
   searchEl.value = "";
+}); //view any result
+
+var body = document.getElementsByTagName("body")[0];
+body.addEventListener("click", function (e) {
+  var targetEl = e.target.closest("#btn-view");
+  console.log(targetEl);
+
+  if (targetEl) {
+    var id = targetEl.dataset.id;
+    document.querySelector(".recipe-view").style.display = "block";
+    controlrecipeView("".concat(_config_js__WEBPACK_IMPORTED_MODULE_4__.URL, "/where?id=").concat(id));
+  }
 }); //////////////////////////////////////////////////
 //Event handlers using Publisher-Subscriber pattern
 
