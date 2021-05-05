@@ -294,27 +294,29 @@ var AddRecipeView = /*#__PURE__*/function (_View) {
 
     _classCallCheck(this, AddRecipeView);
 
-    _this = _super.call(this); //this._openAddRecipeView();
-
-    _defineProperty(_assertThisInitialized(_this), "_parentEl", document.querySelector(".add-recipe-view"));
+    _this = _super.call(this);
 
     _defineProperty(_assertThisInitialized(_this), "_body", document.getElementsByTagName("body")[0]);
 
-    _defineProperty(_assertThisInitialized(_this), "_viewMenu", document.querySelector(".menu-section"));
-
     _defineProperty(_assertThisInitialized(_this), "_addRecipeBtn", document.querySelector(".nav__add-recipe--btn"));
-
-    _defineProperty(_assertThisInitialized(_this), "_addRecipeMenuBtn", document.querySelector(".addrecipe"));
-
-    _defineProperty(_assertThisInitialized(_this), "_form", document.querySelector(".add-recipe-view__form"));
-
-    _defineProperty(_assertThisInitialized(_this), "_closeMenu", document.querySelector(".menu-view__icon"));
-
-    _defineProperty(_assertThisInitialized(_this), "_closeForm", document.querySelector(".icon__close-form"));
 
     _defineProperty(_assertThisInitialized(_this), "_modal", document.querySelector(".modal-view"));
 
+    _defineProperty(_assertThisInitialized(_this), "_parentEl", document.querySelector(".add-recipe-view"));
+
+    _defineProperty(_assertThisInitialized(_this), "_form", document.querySelector(".add-recipe-view__form"));
+
+    _defineProperty(_assertThisInitialized(_this), "_closeForm", document.querySelector(".icon__close-form"));
+
     _defineProperty(_assertThisInitialized(_this), "_menuBtn", document.querySelector(".hamburger-menu"));
+
+    _defineProperty(_assertThisInitialized(_this), "_viewMenu", document.querySelector(".menu-section"));
+
+    _defineProperty(_assertThisInitialized(_this), "_addRecipeMenuBtn", document.querySelector(".addrecipe"));
+
+    _defineProperty(_assertThisInitialized(_this), "_closeMenu", document.querySelector(".menu-view__icon"));
+
+    _this._openAddRecipeView();
 
     _this._closeAddRecipeView();
 
@@ -323,37 +325,22 @@ var AddRecipeView = /*#__PURE__*/function (_View) {
     _this._closeAddRecipeMenu();
 
     return _this;
-  } // _displayForm(e) {
-  //   if (
-  //     e.target !== this._addRecipeBtn &&
-  //     e.target !== this._addRecipeMenuBtn
-  //   ) {
-  //     return;
-  //   }
-  //   this._viewMenu.style.display = "none";
-  //   this._parentEl.style.display = "block";
-  // }
-  // _openAddRecipeView() {
-  //   this._body.addEventListener("click", this._displayForm().bind(this));
-  // }
-
+  }
 
   _createClass(AddRecipeView, [{
-    key: "openAddRecipeView",
-    value: function openAddRecipeView() {
-      var body = document.getElementsByTagName("body")[0];
-      var viewMenu = document.querySelector(".menu-section");
-      body.addEventListener("click", function (event) {
-        var addRecipe = document.querySelector(".nav__add-recipe--btn");
-        var menuAddRecipe = document.querySelector(".addrecipe");
+    key: "showForm",
+    value: function showForm(e) {
+      if (e.target !== this._addRecipeBtn && e.target !== this._addRecipeMenuBtn) {
+        return;
+      }
 
-        if (event.target !== addRecipe && event.target !== menuAddRecipe) {
-          return;
-        }
-
-        viewMenu.style.display = "none";
-        document.querySelector(".add-recipe-view").style.display = "block";
-      });
+      this._viewMenu.style.display = "none";
+      this._parentEl.style.display = "block";
+    }
+  }, {
+    key: "_openAddRecipeView",
+    value: function _openAddRecipeView() {
+      this._body.addEventListener("click", this.showForm.bind(this));
     }
   }, {
     key: "hideAddRecipeView",
@@ -479,34 +466,44 @@ var RecipeView = /*#__PURE__*/function (_View) {
 
     _classCallCheck(this, RecipeView);
 
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    _this = _super.call.apply(_super, [this].concat(args));
+    _this = _super.call(this);
 
     _defineProperty(_assertThisInitialized(_this), "_parentEl", document.querySelector(".recipe-view"));
 
     _defineProperty(_assertThisInitialized(_this), "_viewRecipeBtn", document.querySelector(".recipe__card--btn"));
 
+    _this._closeRecipeView();
+
     return _this;
   }
 
   _createClass(RecipeView, [{
+    key: "showRecipeView",
+    value: function showRecipeView() {
+      this._parentEl.style.display = "block";
+    }
+  }, {
+    key: "hideRecipeView",
+    value: function hideRecipeView() {
+      this._parentEl.style.display = "none";
+    }
+  }, {
     key: "addOpenRecipeHandler",
     value: function addOpenRecipeHandler(handler) {
+      var self = this;
+
       this._viewRecipeBtn.addEventListener("click", function () {
-        ///////the this_.parent will point to the btn. CHANGE IT
-        document.querySelector(".recipe-view").style.display = "block";
+        self.showRecipeView();
         handler("http://192.168.4.10:8300/recipes/where?id=57");
       });
     }
   }, {
-    key: "closeRecipeView",
-    value: function closeRecipeView() {
+    key: "_closeRecipeView",
+    value: function _closeRecipeView() {
+      var self = this;
+
       this._parentEl.addEventListener("click", function (e) {
-        if (e.target && e.target.id === "closeModal") ///////the this_.parent will point to the btn. CHANGE IT
-          document.querySelector(".recipe-view").style.display = "none";
+        if (e.target && e.target.id === "closeModal") self.hideRecipeView();
       });
     }
   }, {
@@ -604,6 +601,8 @@ var SearchRecipeView = /*#__PURE__*/function (_View) {
 
     _defineProperty(_assertThisInitialized(_this), "_body", document.getElementsByTagName("body")[0]);
 
+    _defineProperty(_assertThisInitialized(_this), "_searchEl", document.querySelector(".search__input"));
+
     return _this;
   }
 
@@ -630,7 +629,6 @@ var SearchRecipeView = /*#__PURE__*/function (_View) {
 
         if (targetEl) {
           var id = targetEl.dataset.id;
-          console.log(id);
           document.querySelector(".recipe-view").style.display = "block";
           handler("".concat(_config_js__WEBPACK_IMPORTED_MODULE_1__.URL, "/where?id=").concat(id));
         }
@@ -1693,9 +1691,7 @@ var controlSearchRecipe = /*#__PURE__*/function () {
 
 var init = function init() {
   _view_recipeView__WEBPACK_IMPORTED_MODULE_1__.default.addOpenRecipeHandler(controlrecipeView);
-  _view_recipeView__WEBPACK_IMPORTED_MODULE_1__.default.closeRecipeView();
   _view_addRecipeView__WEBPACK_IMPORTED_MODULE_2__.default.addFormEventHandler(controlAddRecipe);
-  _view_addRecipeView__WEBPACK_IMPORTED_MODULE_2__.default.openAddRecipeView();
   _view_searchRecipesView__WEBPACK_IMPORTED_MODULE_3__.default.openSearchRecipeView(controlSearchRecipe);
   _view_searchRecipesView__WEBPACK_IMPORTED_MODULE_3__.default.openSearchResultView(controlrecipeView);
 };

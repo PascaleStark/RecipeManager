@@ -5,19 +5,31 @@ class RecipeView extends View {
   _parentEl = document.querySelector(".recipe-view");
   _viewRecipeBtn = document.querySelector(".recipe__card--btn");
 
+  constructor() {
+    super();
+    this._closeRecipeView();
+  }
+
+  showRecipeView() {
+    this._parentEl.style.display = "block";
+  }
+
+  hideRecipeView() {
+    this._parentEl.style.display = "none";
+  }
+
   addOpenRecipeHandler(handler) {
+    const self = this;
     this._viewRecipeBtn.addEventListener("click", function () {
-      ///////the this_.parent will point to the btn. CHANGE IT
-      document.querySelector(".recipe-view").style.display = "block";
+      self.showRecipeView();
       handler("http://192.168.4.10:8300/recipes/where?id=57");
     });
   }
 
-  closeRecipeView() {
+  _closeRecipeView() {
+    const self = this;
     this._parentEl.addEventListener("click", function (e) {
-      if (e.target && e.target.id === "closeModal")
-        ///////the this_.parent will point to the btn. CHANGE IT
-        document.querySelector(".recipe-view").style.display = "none";
+      if (e.target && e.target.id === "closeModal") self.hideRecipeView();
     });
   }
 

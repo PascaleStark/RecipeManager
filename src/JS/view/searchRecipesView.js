@@ -7,6 +7,7 @@ class SearchRecipeView extends View {
   _resultsHeading = document.querySelector(".results__heading");
   _searchForm = document.querySelector(".search");
   _body = document.getElementsByTagName("body")[0];
+  _searchEl = document.querySelector(".search__input");
 
   openSearchRecipeView(handler) {
     this._searchForm.addEventListener("submit", function (e) {
@@ -27,7 +28,6 @@ class SearchRecipeView extends View {
       console.log(targetEl);
       if (targetEl) {
         const id = targetEl.dataset.id;
-        console.log(id);
         document.querySelector(".recipe-view").style.display = "block";
         handler(`${URL}/where?id=${id}`);
       }
