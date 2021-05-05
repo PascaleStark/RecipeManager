@@ -16,6 +16,8 @@ btnFilter.addEventListener("click", function () {
 //Add a recipe
 const controlAddRecipe = async function (url, uploadData) {
   try {
+    //1. render spinner
+    addRecipeView.renderSpinner();
     //1. Add Recipe
     const result = await model.addRecipe(url, uploadData);
     console.log(result);

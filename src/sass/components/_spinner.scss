@@ -1,10 +1,9 @@
 .spinner {
-  display: flex;
   height: 100vh;
-  padding: 12rem;
-  justify-items: center;
-  align-content: center;
-  margin: 0 auto;
+  padding-top: 12rem;
+  margin-left: 50%;
+  grid-column: 2 / 3;
+
   &__icon {
     height: 6rem;
     width: 6rem;

@@ -108,7 +108,7 @@ body {
   margin-right: 1rem;
   fill: #ecac8c; }
   .icon:hover {
-    fill: #5c646c; }
+    fill: #ecac8c; }
 
 .text-bolder {
   font-weight: bolder; }
@@ -160,7 +160,7 @@ body {
   display: grid;
   grid-template-rows: repeat(2, minmax(min-content, 15rem));
   grid-template-columns: repeat(3, 1fr);
-  gap: 3.5rem; }
+  gap: 10rem 3.5rem; }
   @media (max-width: 37.5em) {
     .recipe__container {
       grid-template-columns: repeat(2, 1fr); } }
@@ -189,14 +189,11 @@ body {
   .recipe__card--title {
     position: absolute;
     background-color: white;
-    top: 80%;
-    right: 0;
-    padding: 0.5rem; }
-    @media (max-width: 75em) {
-      .recipe__card--title {
-        top: 100%;
-        min-width: 100%;
-        text-align: center; } }
+    bottom: 0;
+    width: 100%;
+    padding: 0.5rem;
+    text-align: center;
+    box-shadow: 0.5rem 0.5rem 1.5rem 3px rgba(0, 0, 0, 0.4); }
   .recipe__card--back {
     position: absolute;
     top: 0;
@@ -234,7 +231,7 @@ body {
     border: 2px solid transparent;
     border-radius: 5rem;
     background-color: white;
-    padding: 1.5rem 5.5rem;
+    padding: 1.5rem 7.5rem;
     outline: none;
     font-family: inherit;
     font-size: 2rem;
@@ -262,20 +259,19 @@ body {
     cursor: pointer;
     position: absolute;
     top: 30%;
-    left: 2%; }
+    left: 4%; }
   .search__icon {
-    height: 1.8rem;
-    width: 1.8rem; }
+    height: 1.9rem;
+    width: 1.9rem; }
 
 .spinner {
-  display: flex;
   height: 100vh;
-  padding: 12rem;
-  justify-items: center;
-  align-content: center; }
+  padding-top: 12rem;
+  margin-left: 50%;
+  grid-column: 2 / 3; }
   .spinner__icon {
-    height: 8rem;
-    width: 8rem;
+    height: 6rem;
+    width: 6rem;
     fill: #ecac8c;
     animation: spin 2s infinite linear; }
 
