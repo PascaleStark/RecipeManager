@@ -1,4 +1,6 @@
-const AddRecipeView = class {
+import View from "./view.js";
+
+class AddRecipeView extends View {
   _parentEl = document.querySelector(".add-recipe-view");
 
   openAddRecipeView() {
@@ -82,6 +84,6 @@ const AddRecipeView = class {
     </div>
   </div>`;
   }
-};
+}
 
 export default new AddRecipeView();

@@ -8,6 +8,6 @@ export default class View {
       </svg>
     </div>`;
     this._parentEl.innerHTML = "";
-    this._parentEl.insertAdjacentHTML("afterbegin", spinnerMarkup);
+    this._parentEl.insertAdjacentHTML("beforeend", spinnerMarkup);
   }
 }
