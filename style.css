@@ -156,6 +156,23 @@ body {
     top: 2rem;
     left: 2rem; }
 
+.pagination {
+  margin-top: 5rem; }
+  .pagination__link {
+    display: inline-block;
+    font-family: inherit;
+    font-size: 1.6rem;
+    color: #5c646c;
+    text-decoration: none;
+    margin-right: 1.5rem;
+    padding: 1.5rem; }
+    .pagination__link:active {
+      background-color: #ecac8c; }
+    .pagination__link:hover {
+      background-color: #e1dada; }
+  .pagination__icon {
+    transform: translateY(0.5rem); }
+
 .recipe__container {
   display: grid;
   grid-template-rows: repeat(2, minmax(min-content, 15rem));
