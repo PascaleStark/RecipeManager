@@ -1,50 +1,37 @@
 import View from "./view.js";
 
 class AddRecipeView extends View {
-  _parentEl = document.querySelector(".add-recipe-view");
   _body = document.getElementsByTagName("body")[0];
-  _viewMenu = document.querySelector(".menu-section");
   _addRecipeBtn = document.querySelector(".nav__add-recipe--btn");
-  _addRecipeMenuBtn = document.querySelector(".addrecipe");
-  _form = document.querySelector(".add-recipe-view__form");
-  _closeMenu = document.querySelector(".menu-view__icon");
-  _closeForm = document.querySelector(".icon__close-form");
   _modal = document.querySelector(".modal-view");
+  _parentEl = document.querySelector(".add-recipe-view");
+  _form = document.querySelector(".add-recipe-view__form");
+  _closeForm = document.querySelector(".icon__close-form");
   _menuBtn = document.querySelector(".hamburger-menu");
+  _viewMenu = document.querySelector(".menu-section");
+  _addRecipeMenuBtn = document.querySelector(".addrecipe");
+  _closeMenu = document.querySelector(".menu-view__icon");
 
   constructor() {
     super();
-    //this._openAddRecipeView();
+    this._openAddRecipeView();
     this._closeAddRecipeView();
     this._openAddRecipeMenu();
     this._closeAddRecipeMenu();
   }
 
-  // _displayForm(e) {
-  //   if (
-  //     e.target !== this._addRecipeBtn &&
-  //     e.target !== this._addRecipeMenuBtn
-  //   ) {
-  //     return;
-  //   }
-  //   this._viewMenu.style.display = "none";
-  //   this._parentEl.style.display = "block";
-  // }
-  // _openAddRecipeView() {
-  //   this._body.addEventListener("click", this._displayForm().bind(this));
-  // }
-  openAddRecipeView() {
-    const body = document.getElementsByTagName("body")[0];
-    const viewMenu = document.querySelector(".menu-section");
-    body.addEventListener("click", (event) => {
-      const addRecipe = document.querySelector(".nav__add-recipe--btn");
-      const menuAddRecipe = document.querySelector(".addrecipe");
-      if (event.target !== addRecipe && event.target !== menuAddRecipe) {
-        return;
-      }
-      viewMenu.style.display = "none";
-      document.querySelector(".add-recipe-view").style.display = "block";
-    });
+  showForm(e) {
+    if (
+      e.target !== this._addRecipeBtn &&
+      e.target !== this._addRecipeMenuBtn
+    ) {
+      return;
+    }
+    this._viewMenu.style.display = "none";
+    this._parentEl.style.display = "block";
+  }
+  _openAddRecipeView() {
+    this._body.addEventListener("click", this.showForm.bind(this));
   }
 
   hideAddRecipeView() {
