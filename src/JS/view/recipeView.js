@@ -6,7 +6,7 @@ class RecipeView extends View {
   _viewRecipeBtn = document.querySelector(".recipe__card--btn");
 
   addOpenRecipeHandler(handler) {
-    this._viewRecipeBtn.addEventListener("click", function (e) {
+    this._viewRecipeBtn.addEventListener("click", function () {
       ///////the this_.parent will point to the btn. CHANGE IT
       document.querySelector(".recipe-view").style.display = "block";
       handler("http://192.168.4.10:8300/recipes/where?id=57");
