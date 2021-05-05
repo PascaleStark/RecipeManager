@@ -2,7 +2,37 @@ import View from "./view.js";
 
 class AddRecipeView extends View {
   _parentEl = document.querySelector(".add-recipe-view");
+  _body = document.getElementsByTagName("body")[0];
+  _viewMenu = document.querySelector(".menu-section");
+  _addRecipeBtn = document.querySelector(".nav__add-recipe--btn");
+  _addRecipeMenuBtn = document.querySelector(".addrecipe");
+  _form = document.querySelector(".add-recipe-view__form");
+  _closeMenu = document.querySelector(".menu-view__icon");
+  _closeForm = document.querySelector(".icon__close-form");
+  _modal = document.querySelector(".modal-view");
+  _menuBtn = document.querySelector(".hamburger-menu");
 
+  constructor() {
+    super();
+    //this._openAddRecipeView();
+    this._closeAddRecipeView();
+    this._openAddRecipeMenu();
+    this._closeAddRecipeMenu();
+  }
+
+  // _displayForm(e) {
+  //   if (
+  //     e.target !== this._addRecipeBtn &&
+  //     e.target !== this._addRecipeMenuBtn
+  //   ) {
+  //     return;
+  //   }
+  //   this._viewMenu.style.display = "none";
+  //   this._parentEl.style.display = "block";
+  // }
+  // _openAddRecipeView() {
+  //   this._body.addEventListener("click", this._displayForm().bind(this));
+  // }
   openAddRecipeView() {
     const body = document.getElementsByTagName("body")[0];
     const viewMenu = document.querySelector(".menu-section");
@@ -17,40 +47,38 @@ class AddRecipeView extends View {
     });
   }
 
-  closeAddRecipeView() {
-    const body = document.getElementsByTagName("body")[0];
-    const closeForm = document.querySelector(".icon__close-form");
-    closeForm.addEventListener("click", function () {
-      document.querySelector(".add-recipe-view").style.display = "none";
-      body.classList.remove("my-body-noscroll-class");
-    });
+  hideAddRecipeView() {
+    this._parentEl.style.display = "none";
+    this._body.classList.remove("my-body-noscroll-class");
   }
 
-  openAddRecipeMenu() {
-    const body = document.getElementsByTagName("body")[0];
-    const btnMenu = document.querySelector(".hamburger-menu");
-    const viewMenu = document.querySelector(".menu-section");
-    btnMenu.addEventListener("click", function () {
-      viewMenu.style.display = "block";
-      body.classList.add("my-body-noscroll-class");
-    });
+  _closeAddRecipeView() {
+    this._closeForm.addEventListener(
+      "click",
+      this.hideAddRecipeView.bind(this)
+    );
   }
 
-  closeAddRecipeMenu() {
-    const body = document.getElementsByTagName("body")[0];
-    const viewMenu = document.querySelector(".menu-section");
-    const closeMenu = document.querySelector(".menu-view__icon");
-    closeMenu.addEventListener("click", function () {
-      viewMenu.style.display = "none";
-      body.classList.remove("my-body-noscroll-class");
-    });
+  showMenuView() {
+    this._viewMenu.style.display = "block";
+    this._body.classList.remove("my-body-noscroll-class");
+  }
+  _openAddRecipeMenu() {
+    this._menuBtn.addEventListener("click", this.showMenuView.bind(this));
+  }
+
+  hideMenuView() {
+    this._viewMenu.style.display = "none";
+    this._body.classList.remove("my-body-noscroll-class");
+  }
+  _closeAddRecipeMenu() {
+    this._closeMenu.addEventListener("click", this.hideMenuView.bind(this));
   }
 
   addFormEventHandler(handler) {
-    const form = document.querySelector(".add-recipe-view__form");
-    form.addEventListener("submit", function (e) {
+    this._form.addEventListener("submit", function (e) {
       e.preventDefault();
-      const dataArr = [...new FormData(form)];
+      const dataArr = [...new FormData(this)];
       const data = Object.fromEntries(dataArr);
       console.log(data);
       this.reset();

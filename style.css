@@ -169,7 +169,8 @@ body {
     .pagination__link:active {
       background-color: #ecac8c; }
     .pagination__link:hover {
-      background-color: #e1dada; }
+      background-color: #e1dada;
+      box-shadow: 0rem 0rem 0.5rem rgba(0, 0, 0, 0.2); }
   .pagination__icon {
     transform: translateY(0.5rem); }
 

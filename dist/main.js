@@ -294,16 +294,49 @@ var AddRecipeView = /*#__PURE__*/function (_View) {
 
     _classCallCheck(this, AddRecipeView);
 
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    _this = _super.call.apply(_super, [this].concat(args));
+    _this = _super.call(this); //this._openAddRecipeView();
 
     _defineProperty(_assertThisInitialized(_this), "_parentEl", document.querySelector(".add-recipe-view"));
 
+    _defineProperty(_assertThisInitialized(_this), "_body", document.getElementsByTagName("body")[0]);
+
+    _defineProperty(_assertThisInitialized(_this), "_viewMenu", document.querySelector(".menu-section"));
+
+    _defineProperty(_assertThisInitialized(_this), "_addRecipeBtn", document.querySelector(".nav__add-recipe--btn"));
+
+    _defineProperty(_assertThisInitialized(_this), "_addRecipeMenuBtn", document.querySelector(".addrecipe"));
+
+    _defineProperty(_assertThisInitialized(_this), "_form", document.querySelector(".add-recipe-view__form"));
+
+    _defineProperty(_assertThisInitialized(_this), "_closeMenu", document.querySelector(".menu-view__icon"));
+
+    _defineProperty(_assertThisInitialized(_this), "_closeForm", document.querySelector(".icon__close-form"));
+
+    _defineProperty(_assertThisInitialized(_this), "_modal", document.querySelector(".modal-view"));
+
+    _defineProperty(_assertThisInitialized(_this), "_menuBtn", document.querySelector(".hamburger-menu"));
+
+    _this._closeAddRecipeView();
+
+    _this._openAddRecipeMenu();
+
+    _this._closeAddRecipeMenu();
+
     return _this;
-  }
+  } // _displayForm(e) {
+  //   if (
+  //     e.target !== this._addRecipeBtn &&
+  //     e.target !== this._addRecipeMenuBtn
+  //   ) {
+  //     return;
+  //   }
+  //   this._viewMenu.style.display = "none";
+  //   this._parentEl.style.display = "block";
+  // }
+  // _openAddRecipeView() {
+  //   this._body.addEventListener("click", this._displayForm().bind(this));
+  // }
+
 
   _createClass(AddRecipeView, [{
     key: "openAddRecipeView",
@@ -323,45 +356,48 @@ var AddRecipeView = /*#__PURE__*/function (_View) {
       });
     }
   }, {
-    key: "closeAddRecipeView",
-    value: function closeAddRecipeView() {
-      var body = document.getElementsByTagName("body")[0];
-      var closeForm = document.querySelector(".icon__close-form");
-      closeForm.addEventListener("click", function () {
-        document.querySelector(".add-recipe-view").style.display = "none";
-        body.classList.remove("my-body-noscroll-class");
-      });
+    key: "hideAddRecipeView",
+    value: function hideAddRecipeView() {
+      this._parentEl.style.display = "none";
+
+      this._body.classList.remove("my-body-noscroll-class");
     }
   }, {
-    key: "openAddRecipeMenu",
-    value: function openAddRecipeMenu() {
-      var body = document.getElementsByTagName("body")[0];
-      var btnMenu = document.querySelector(".hamburger-menu");
-      var viewMenu = document.querySelector(".menu-section");
-      btnMenu.addEventListener("click", function () {
-        viewMenu.style.display = "block";
-        body.classList.add("my-body-noscroll-class");
-      });
+    key: "_closeAddRecipeView",
+    value: function _closeAddRecipeView() {
+      this._closeForm.addEventListener("click", this.hideAddRecipeView.bind(this));
     }
   }, {
-    key: "closeAddRecipeMenu",
-    value: function closeAddRecipeMenu() {
-      var body = document.getElementsByTagName("body")[0];
-      var viewMenu = document.querySelector(".menu-section");
-      var closeMenu = document.querySelector(".menu-view__icon");
-      closeMenu.addEventListener("click", function () {
-        viewMenu.style.display = "none";
-        body.classList.remove("my-body-noscroll-class");
-      });
+    key: "showMenuView",
+    value: function showMenuView() {
+      this._viewMenu.style.display = "block";
+
+      this._body.classList.remove("my-body-noscroll-class");
+    }
+  }, {
+    key: "_openAddRecipeMenu",
+    value: function _openAddRecipeMenu() {
+      this._menuBtn.addEventListener("click", this.showMenuView.bind(this));
+    }
+  }, {
+    key: "hideMenuView",
+    value: function hideMenuView() {
+      this._viewMenu.style.display = "none";
+
+      this._body.classList.remove("my-body-noscroll-class");
+    }
+  }, {
+    key: "_closeAddRecipeMenu",
+    value: function _closeAddRecipeMenu() {
+      this._closeMenu.addEventListener("click", this.hideMenuView.bind(this));
     }
   }, {
     key: "addFormEventHandler",
     value: function addFormEventHandler(handler) {
-      var form = document.querySelector(".add-recipe-view__form");
-      form.addEventListener("submit", function (e) {
+      this._form.addEventListener("submit", function (e) {
         e.preventDefault();
 
-        var dataArr = _toConsumableArray(new FormData(form));
+        var dataArr = _toConsumableArray(new FormData(this));
 
         var data = Object.fromEntries(dataArr);
         console.log(data);
@@ -459,7 +495,7 @@ var RecipeView = /*#__PURE__*/function (_View) {
   _createClass(RecipeView, [{
     key: "addOpenRecipeHandler",
     value: function addOpenRecipeHandler(handler) {
-      this._viewRecipeBtn.addEventListener("click", function (e) {
+      this._viewRecipeBtn.addEventListener("click", function () {
         ///////the this_.parent will point to the btn. CHANGE IT
         document.querySelector(".recipe-view").style.display = "block";
         handler("http://192.168.4.10:8300/recipes/where?id=57");
@@ -1660,9 +1696,6 @@ var init = function init() {
   _view_recipeView__WEBPACK_IMPORTED_MODULE_1__.default.closeRecipeView();
   _view_addRecipeView__WEBPACK_IMPORTED_MODULE_2__.default.addFormEventHandler(controlAddRecipe);
   _view_addRecipeView__WEBPACK_IMPORTED_MODULE_2__.default.openAddRecipeView();
-  _view_addRecipeView__WEBPACK_IMPORTED_MODULE_2__.default.closeAddRecipeView();
-  _view_addRecipeView__WEBPACK_IMPORTED_MODULE_2__.default.openAddRecipeMenu();
-  _view_addRecipeView__WEBPACK_IMPORTED_MODULE_2__.default.closeAddRecipeMenu();
   _view_searchRecipesView__WEBPACK_IMPORTED_MODULE_3__.default.openSearchRecipeView(controlSearchRecipe);
   _view_searchRecipesView__WEBPACK_IMPORTED_MODULE_3__.default.openSearchResultView(controlrecipeView);
 };
