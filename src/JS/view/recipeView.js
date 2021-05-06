@@ -1,21 +1,39 @@
 import regeneratorRuntime from "regenerator-runtime";
 import View from "./view.js";
+import { URL } from "../config.js";
 
 class RecipeView extends View {
   _parentEl = document.querySelector(".recipe-view");
   _viewRecipeBtn = document.querySelector(".recipe__card--btn");
+  _body = document.getElementsByTagName("body")[0];
 
   constructor() {
     super();
     this._closeRecipeView();
   }
 
-  // showRecipeView() {
-  //   this._parentEl.style.display = "block";
-  //   //prevent body scroll
-  //   document.body.style.overflow = "hidden";
-  //   document.body.style.height = "100%";
-  // }
+  openRecipeView(handler) {
+    this._body.addEventListener(
+      "click",
+      this._attachRecipeView.bind(this, handler)
+    );
+  }
+  _attachRecipeView(handler, e) {
+    const targetEl = e.target.closest("#btn-view");
+    console.log(targetEl);
+    if (targetEl) {
+      const id = targetEl.dataset.id;
+      this.showRecipeView();
+      handler(`${URL}/where?id=${id}`);
+    }
+  }
+
+  showRecipeView() {
+    this._parentEl.style.display = "block";
+    //prevent body scroll
+    document.body.style.overflow = "hidden";
+    document.body.style.height = "100%";
+  }
 
   hideRecipeView() {
     this._parentEl.style.display = "none";
@@ -23,14 +41,6 @@ class RecipeView extends View {
     document.body.style.overflow = "auto";
     document.body.style.height = "auto";
   }
-  //--> /////////////////STATIC///////////TO REMOVE/////////////////-->//
-  // addOpenRecipeHandler(handler) {
-  //   const self = this;
-  //   this._viewRecipeBtn.addEventListener("click", function () {
-  //     self.showRecipeView();
-  //     handler("http://192.168.4.10:8300/recipes/where?id=57");
-  //   });
-  // }
 
   _closeRecipeView() {
     const self = this;

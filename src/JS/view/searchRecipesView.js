@@ -1,13 +1,10 @@
 import regeneratorRuntime from "regenerator-runtime";
-import { URL } from "../config.js";
 import View from "./view.js";
 
 class SearchRecipeView extends View {
   _parentEl = document.querySelector(".recipe__container");
   _resultsHeading = document.querySelector(".results__heading");
   _searchForm = document.querySelector(".search");
-  _body = document.getElementsByTagName("body")[0];
-  _searchEl = document.querySelector(".search__input");
 
   openSearchRecipeView(handler) {
     this._searchForm.addEventListener("submit", function (e) {
@@ -19,21 +16,6 @@ class SearchRecipeView extends View {
       const query = searchEl.value;
       handler(query);
       searchEl.value = "";
-    });
-  }
-
-  openSearchResultView(handler) {
-    this._body.addEventListener("click", function (e) {
-      const targetEl = e.target.closest("#btn-view");
-      console.log(targetEl);
-      if (targetEl) {
-        const id = targetEl.dataset.id;
-        document.querySelector(".recipe-view").style.display = "block";
-        //prevent body scroll
-        document.body.style.overflow = "hidden";
-        document.body.style.height = "100%";
-        handler(`${URL}/where?id=${id}`);
-      }
     });
   }
 

@@ -433,6 +433,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var regenerator_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! regenerator-runtime */ "./node_modules/regenerator-runtime/runtime.js");
 /* harmony import */ var regenerator_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(regenerator_runtime__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _view_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./view.js */ "./src/JS/view/view.js");
+/* harmony import */ var _config_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../config.js */ "./src/JS/config.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -460,6 +461,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 var RecipeView = /*#__PURE__*/function (_View) {
   _inherits(RecipeView, _View);
 
@@ -476,33 +478,46 @@ var RecipeView = /*#__PURE__*/function (_View) {
 
     _defineProperty(_assertThisInitialized(_this), "_viewRecipeBtn", document.querySelector(".recipe__card--btn"));
 
+    _defineProperty(_assertThisInitialized(_this), "_body", document.getElementsByTagName("body")[0]);
+
     _this._closeRecipeView();
 
     return _this;
-  } // showRecipeView() {
-  //   this._parentEl.style.display = "block";
-  //   //prevent body scroll
-  //   document.body.style.overflow = "hidden";
-  //   document.body.style.height = "100%";
-  // }
-
+  }
 
   _createClass(RecipeView, [{
+    key: "openRecipeView",
+    value: function openRecipeView(handler) {
+      this._body.addEventListener("click", this._attachRecipeView.bind(this, handler));
+    }
+  }, {
+    key: "_attachRecipeView",
+    value: function _attachRecipeView(handler, e) {
+      var targetEl = e.target.closest("#btn-view");
+      console.log(targetEl);
+
+      if (targetEl) {
+        var id = targetEl.dataset.id;
+        this.showRecipeView();
+        handler("".concat(_config_js__WEBPACK_IMPORTED_MODULE_2__.URL, "/where?id=").concat(id));
+      }
+    }
+  }, {
+    key: "showRecipeView",
+    value: function showRecipeView() {
+      this._parentEl.style.display = "block"; //prevent body scroll
+
+      document.body.style.overflow = "hidden";
+      document.body.style.height = "100%";
+    }
+  }, {
     key: "hideRecipeView",
     value: function hideRecipeView() {
       this._parentEl.style.display = "none"; //reactivate body scroll
 
       document.body.style.overflow = "auto";
       document.body.style.height = "auto";
-    } //--> /////////////////STATIC///////////TO REMOVE/////////////////-->//
-    // addOpenRecipeHandler(handler) {
-    //   const self = this;
-    //   this._viewRecipeBtn.addEventListener("click", function () {
-    //     self.showRecipeView();
-    //     handler("http://192.168.4.10:8300/recipes/where?id=57");
-    //   });
-    // }
-
+    }
   }, {
     key: "_closeRecipeView",
     value: function _closeRecipeView() {
@@ -553,8 +568,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var regenerator_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! regenerator-runtime */ "./node_modules/regenerator-runtime/runtime.js");
 /* harmony import */ var regenerator_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(regenerator_runtime__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _config_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../config.js */ "./src/JS/config.js");
-/* harmony import */ var _view_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./view.js */ "./src/JS/view/view.js");
+/* harmony import */ var _view_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./view.js */ "./src/JS/view/view.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -582,7 +596,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-
 var SearchRecipeView = /*#__PURE__*/function (_View) {
   _inherits(SearchRecipeView, _View);
 
@@ -605,10 +618,6 @@ var SearchRecipeView = /*#__PURE__*/function (_View) {
 
     _defineProperty(_assertThisInitialized(_this), "_searchForm", document.querySelector(".search"));
 
-    _defineProperty(_assertThisInitialized(_this), "_body", document.getElementsByTagName("body")[0]);
-
-    _defineProperty(_assertThisInitialized(_this), "_searchEl", document.querySelector(".search__input"));
-
     return _this;
   }
 
@@ -624,23 +633,6 @@ var SearchRecipeView = /*#__PURE__*/function (_View) {
         var query = searchEl.value;
         handler(query);
         searchEl.value = "";
-      });
-    }
-  }, {
-    key: "openSearchResultView",
-    value: function openSearchResultView(handler) {
-      this._body.addEventListener("click", function (e) {
-        var targetEl = e.target.closest("#btn-view");
-        console.log(targetEl);
-
-        if (targetEl) {
-          var id = targetEl.dataset.id;
-          document.querySelector(".recipe-view").style.display = "block"; //prevent body scroll
-
-          document.body.style.overflow = "hidden";
-          document.body.style.height = "100%";
-          handler("".concat(_config_js__WEBPACK_IMPORTED_MODULE_1__.URL, "/where?id=").concat(id));
-        }
       });
     }
   }, {
@@ -665,7 +657,7 @@ var SearchRecipeView = /*#__PURE__*/function (_View) {
   }]);
 
   return SearchRecipeView;
-}(_view_js__WEBPACK_IMPORTED_MODULE_2__.default);
+}(_view_js__WEBPACK_IMPORTED_MODULE_1__.default);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (new SearchRecipeView());
 
@@ -1699,10 +1691,9 @@ var controlSearchRecipe = /*#__PURE__*/function () {
 
 
 var init = function init() {
-  //recipeView.addOpenRecipeHandler(controlrecipeView);
+  _view_recipeView__WEBPACK_IMPORTED_MODULE_1__.default.openRecipeView(controlrecipeView);
   _view_addRecipeView__WEBPACK_IMPORTED_MODULE_2__.default.addFormEventHandler(controlAddRecipe);
-  _view_searchRecipesView__WEBPACK_IMPORTED_MODULE_3__.default.openSearchRecipeView(controlSearchRecipe);
-  _view_searchRecipesView__WEBPACK_IMPORTED_MODULE_3__.default.openSearchResultView(controlrecipeView);
+  _view_searchRecipesView__WEBPACK_IMPORTED_MODULE_3__.default.openSearchRecipeView(controlSearchRecipe); // searchRecipeView.openSearchResultView(controlrecipeView);
 };
 
 init();
