@@ -335,10 +335,7 @@ var AddRecipeView = /*#__PURE__*/function (_View) {
       }
 
       this._viewMenu.style.display = "none";
-      this._parentEl.style.display = "block"; //prevent body scroll
-
-      document.body.style.overflow = "hidden";
-      document.body.style.height = "100%";
+      this.showModalView();
     }
   }, {
     key: "_openAddRecipeView",
@@ -346,17 +343,9 @@ var AddRecipeView = /*#__PURE__*/function (_View) {
       this._body.addEventListener("click", this.showForm.bind(this));
     }
   }, {
-    key: "hideAddRecipeView",
-    value: function hideAddRecipeView() {
-      this._parentEl.style.display = "none"; //reactivate body scroll
-
-      document.body.style.overflow = "auto";
-      document.body.style.height = "auto%";
-    }
-  }, {
     key: "_closeAddRecipeView",
     value: function _closeAddRecipeView() {
-      this._closeForm.addEventListener("click", this.hideAddRecipeView.bind(this));
+      this._closeForm.addEventListener("click", this.hideModalView.bind(this));
     }
   }, {
     key: "showMenuView",
@@ -488,35 +477,19 @@ var RecipeView = /*#__PURE__*/function (_View) {
   _createClass(RecipeView, [{
     key: "openRecipeView",
     value: function openRecipeView(handler) {
-      this._body.addEventListener("click", this._attachRecipeView.bind(this, handler));
+      this._body.addEventListener("click", this._setRecipeID.bind(this, handler));
     }
   }, {
-    key: "_attachRecipeView",
-    value: function _attachRecipeView(handler, e) {
+    key: "_setRecipeID",
+    value: function _setRecipeID(handler, e) {
       var targetEl = e.target.closest("#btn-view");
       console.log(targetEl);
 
       if (targetEl) {
         var id = targetEl.dataset.id;
-        this.showRecipeView();
+        this.showModalView();
         handler("".concat(_config_js__WEBPACK_IMPORTED_MODULE_2__.URL, "/where?id=").concat(id));
       }
-    }
-  }, {
-    key: "showRecipeView",
-    value: function showRecipeView() {
-      this._parentEl.style.display = "block"; //prevent body scroll
-
-      document.body.style.overflow = "hidden";
-      document.body.style.height = "100%";
-    }
-  }, {
-    key: "hideRecipeView",
-    value: function hideRecipeView() {
-      this._parentEl.style.display = "none"; //reactivate body scroll
-
-      document.body.style.overflow = "auto";
-      document.body.style.height = "auto";
     }
   }, {
     key: "_closeRecipeView",
@@ -524,7 +497,7 @@ var RecipeView = /*#__PURE__*/function (_View) {
       var self = this;
 
       this._parentEl.addEventListener("click", function (e) {
-        if (e.target && e.target.id === "closeModal") self.hideRecipeView();
+        if (e.target && e.target.id === "closeModal") self.hideModalView();
       });
     }
   }, {
@@ -696,6 +669,22 @@ var View = /*#__PURE__*/function () {
       this._parentEl.innerHTML = "";
 
       this._parentEl.insertAdjacentHTML("beforeend", spinnerMarkup);
+    }
+  }, {
+    key: "hideModalView",
+    value: function hideModalView() {
+      this._parentEl.style.display = "none"; //reactivate body scroll
+
+      document.body.style.overflow = "auto";
+      document.body.style.height = "auto";
+    }
+  }, {
+    key: "showModalView",
+    value: function showModalView() {
+      this._parentEl.style.display = "block"; //prevent body scroll
+
+      document.body.style.overflow = "hidden";
+      document.body.style.height = "100%";
     }
   }]);
 
@@ -1693,7 +1682,7 @@ var controlSearchRecipe = /*#__PURE__*/function () {
 var init = function init() {
   _view_recipeView__WEBPACK_IMPORTED_MODULE_1__.default.openRecipeView(controlrecipeView);
   _view_addRecipeView__WEBPACK_IMPORTED_MODULE_2__.default.addFormEventHandler(controlAddRecipe);
-  _view_searchRecipesView__WEBPACK_IMPORTED_MODULE_3__.default.openSearchRecipeView(controlSearchRecipe); // searchRecipeView.openSearchResultView(controlrecipeView);
+  _view_searchRecipesView__WEBPACK_IMPORTED_MODULE_3__.default.openSearchRecipeView(controlSearchRecipe);
 };
 
 init();

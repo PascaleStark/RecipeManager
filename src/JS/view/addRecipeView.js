@@ -28,27 +28,14 @@ class AddRecipeView extends View {
       return;
     }
     this._viewMenu.style.display = "none";
-    this._parentEl.style.display = "block";
-    //prevent body scroll
-    document.body.style.overflow = "hidden";
-    document.body.style.height = "100%";
+    this.showModalView();
   }
   _openAddRecipeView() {
     this._body.addEventListener("click", this.showForm.bind(this));
   }
 
-  hideAddRecipeView() {
-    this._parentEl.style.display = "none";
-    //reactivate body scroll
-    document.body.style.overflow = "auto";
-    document.body.style.height = "auto%";
-  }
-
   _closeAddRecipeView() {
-    this._closeForm.addEventListener(
-      "click",
-      this.hideAddRecipeView.bind(this)
-    );
+    this._closeForm.addEventListener("click", this.hideModalView.bind(this));
   }
 
   showMenuView() {

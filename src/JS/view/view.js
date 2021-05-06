@@ -10,4 +10,18 @@ export default class View {
     this._parentEl.innerHTML = "";
     this._parentEl.insertAdjacentHTML("beforeend", spinnerMarkup);
   }
+
+  hideModalView() {
+    this._parentEl.style.display = "none";
+    //reactivate body scroll
+    document.body.style.overflow = "auto";
+    document.body.style.height = "auto";
+  }
+
+  showModalView() {
+    this._parentEl.style.display = "block";
+    //prevent body scroll
+    document.body.style.overflow = "hidden";
+    document.body.style.height = "100%";
+  }
 }

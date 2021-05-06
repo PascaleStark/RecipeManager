@@ -13,39 +13,23 @@ class RecipeView extends View {
   }
 
   openRecipeView(handler) {
-    this._body.addEventListener(
-      "click",
-      this._attachRecipeView.bind(this, handler)
-    );
+    this._body.addEventListener("click", this._setRecipeID.bind(this, handler));
   }
-  _attachRecipeView(handler, e) {
+
+  _setRecipeID(handler, e) {
     const targetEl = e.target.closest("#btn-view");
     console.log(targetEl);
     if (targetEl) {
       const id = targetEl.dataset.id;
-      this.showRecipeView();
+      this.showModalView();
       handler(`${URL}/where?id=${id}`);
     }
-  }
-
-  showRecipeView() {
-    this._parentEl.style.display = "block";
-    //prevent body scroll
-    document.body.style.overflow = "hidden";
-    document.body.style.height = "100%";
-  }
-
-  hideRecipeView() {
-    this._parentEl.style.display = "none";
-    //reactivate body scroll
-    document.body.style.overflow = "auto";
-    document.body.style.height = "auto";
   }
 
   _closeRecipeView() {
     const self = this;
     this._parentEl.addEventListener("click", function (e) {
-      if (e.target && e.target.id === "closeModal") self.hideRecipeView();
+      if (e.target && e.target.id === "closeModal") self.hideModalView();
     });
   }
 
