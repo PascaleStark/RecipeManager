@@ -61,7 +61,6 @@ const init = function () {
   recipeView.openRecipeView(controlrecipeView);
   addRecipeView.addFormEventHandler(controlAddRecipe);
   searchRecipeView.openSearchRecipeView(controlSearchRecipe);
-  // searchRecipeView.openSearchResultView(controlrecipeView);
 };
 
 init();
