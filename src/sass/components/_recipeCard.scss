@@ -33,7 +33,11 @@
       position: absolute;
       top: 1rem;
       left: 1rem;
-      fill: white;
+      z-index: 1;
+      height: 2.2rem;
+      width: 2.2rem;
+      margin-right: 1rem;
+      cursor: pointer;
     }
     &--title {
       position: absolute;

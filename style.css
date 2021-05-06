@@ -47,6 +47,12 @@ body {
 .hidden {
   display: none; }
 
+.empty-heart {
+  fill: rgba(225, 218, 218, 0.6); }
+
+.filled-heart {
+  fill: #ecac8c; }
+
 .heading--primary {
   font-size: 3.5rem;
   font-weight: bolder;
@@ -107,8 +113,6 @@ body {
   width: 2.2rem;
   margin-right: 1rem;
   fill: #ecac8c; }
-  .icon:hover {
-    fill: #ecac8c; }
 
 .text-bolder {
   font-weight: bolder; }
@@ -203,7 +207,11 @@ body {
     position: absolute;
     top: 1rem;
     left: 1rem;
-    fill: white; }
+    z-index: 1;
+    height: 2.2rem;
+    width: 2.2rem;
+    margin-right: 1rem;
+    cursor: pointer; }
   .recipe__card--title {
     position: absolute;
     background-color: white;

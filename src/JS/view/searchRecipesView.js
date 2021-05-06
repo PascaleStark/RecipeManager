@@ -38,7 +38,9 @@ class SearchRecipeView extends View {
       class="recipe__card--img"
       alt="recipe img"
     />
-    <svg class="icon icon-heart recipe__card--icon">
+    <svg class="icon-heart recipe__card--icon  ${
+      result.favourites === 1 ? "filled-heart" : "empty-heart"
+    }" data-id="${result.id}">
       <use xlink:href="./src/img/icons.svg#icon-heart"></use>
     </svg>
     <h3 class="recipe__card--title heading--tertiary">${result.title}</h3>
