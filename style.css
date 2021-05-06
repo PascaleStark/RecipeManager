@@ -190,7 +190,7 @@ body {
     display: block;
     content: "";
     /* 3:2 aspect ratio */
-    padding-bottom: 66.66%; }
+    padding-bottom: 60%; }
   .recipe__card--img {
     position: absolute;
     left: 0;
@@ -452,7 +452,7 @@ body {
   .footer__text {
     color: #f9f9f9;
     text-align: center;
-    padding: 0.5rem 4rem;
+    padding: 4rem 4rem;
     font-size: 1.6rem; }
 
 .header {
@@ -471,7 +471,7 @@ body {
     @media (max-width: 56.25em) {
       .header__logo {
         width: 10rem;
-        height: 8rem;
+        height: 6.5rem;
         margin-left: 2rem; } }
     @media (max-width: 37.5em) {
       .header__logo {

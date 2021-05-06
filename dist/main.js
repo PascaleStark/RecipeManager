@@ -335,7 +335,10 @@ var AddRecipeView = /*#__PURE__*/function (_View) {
       }
 
       this._viewMenu.style.display = "none";
-      this._parentEl.style.display = "block";
+      this._parentEl.style.display = "block"; //prevent body scroll
+
+      document.body.style.overflow = "hidden";
+      document.body.style.height = "100%";
     }
   }, {
     key: "_openAddRecipeView",
@@ -345,9 +348,10 @@ var AddRecipeView = /*#__PURE__*/function (_View) {
   }, {
     key: "hideAddRecipeView",
     value: function hideAddRecipeView() {
-      this._parentEl.style.display = "none";
+      this._parentEl.style.display = "none"; //reactivate body scroll
 
-      this._body.classList.remove("my-body-noscroll-class");
+      document.body.style.overflow = "auto";
+      document.body.style.height = "auto%";
     }
   }, {
     key: "_closeAddRecipeView",
@@ -475,28 +479,30 @@ var RecipeView = /*#__PURE__*/function (_View) {
     _this._closeRecipeView();
 
     return _this;
-  }
+  } // showRecipeView() {
+  //   this._parentEl.style.display = "block";
+  //   //prevent body scroll
+  //   document.body.style.overflow = "hidden";
+  //   document.body.style.height = "100%";
+  // }
+
 
   _createClass(RecipeView, [{
-    key: "showRecipeView",
-    value: function showRecipeView() {
-      this._parentEl.style.display = "block";
-    }
-  }, {
     key: "hideRecipeView",
     value: function hideRecipeView() {
-      this._parentEl.style.display = "none";
-    }
-  }, {
-    key: "addOpenRecipeHandler",
-    value: function addOpenRecipeHandler(handler) {
-      var self = this;
+      this._parentEl.style.display = "none"; //reactivate body scroll
 
-      this._viewRecipeBtn.addEventListener("click", function () {
-        self.showRecipeView();
-        handler("http://192.168.4.10:8300/recipes/where?id=57");
-      });
-    }
+      document.body.style.overflow = "auto";
+      document.body.style.height = "auto";
+    } //--> /////////////////STATIC///////////TO REMOVE/////////////////-->//
+    // addOpenRecipeHandler(handler) {
+    //   const self = this;
+    //   this._viewRecipeBtn.addEventListener("click", function () {
+    //     self.showRecipeView();
+    //     handler("http://192.168.4.10:8300/recipes/where?id=57");
+    //   });
+    // }
+
   }, {
     key: "_closeRecipeView",
     value: function _closeRecipeView() {
@@ -629,7 +635,10 @@ var SearchRecipeView = /*#__PURE__*/function (_View) {
 
         if (targetEl) {
           var id = targetEl.dataset.id;
-          document.querySelector(".recipe-view").style.display = "block";
+          document.querySelector(".recipe-view").style.display = "block"; //prevent body scroll
+
+          document.body.style.overflow = "hidden";
+          document.body.style.height = "100%";
           handler("".concat(_config_js__WEBPACK_IMPORTED_MODULE_1__.URL, "/where?id=").concat(id));
         }
       });
@@ -1690,7 +1699,7 @@ var controlSearchRecipe = /*#__PURE__*/function () {
 
 
 var init = function init() {
-  _view_recipeView__WEBPACK_IMPORTED_MODULE_1__.default.addOpenRecipeHandler(controlrecipeView);
+  //recipeView.addOpenRecipeHandler(controlrecipeView);
   _view_addRecipeView__WEBPACK_IMPORTED_MODULE_2__.default.addFormEventHandler(controlAddRecipe);
   _view_searchRecipesView__WEBPACK_IMPORTED_MODULE_3__.default.openSearchRecipeView(controlSearchRecipe);
   _view_searchRecipesView__WEBPACK_IMPORTED_MODULE_3__.default.openSearchResultView(controlrecipeView);

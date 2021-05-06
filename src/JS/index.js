@@ -58,7 +58,7 @@ const controlSearchRecipe = async function (query) {
 //////////////////////////////////////////////////
 //Event handlers using Publisher-Subscriber pattern
 const init = function () {
-  recipeView.addOpenRecipeHandler(controlrecipeView);
+  //recipeView.addOpenRecipeHandler(controlrecipeView);
   addRecipeView.addFormEventHandler(controlAddRecipe);
   searchRecipeView.openSearchRecipeView(controlSearchRecipe);
   searchRecipeView.openSearchResultView(controlrecipeView);
