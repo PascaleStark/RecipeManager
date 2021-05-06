@@ -29,6 +29,9 @@ class SearchRecipeView extends View {
       if (targetEl) {
         const id = targetEl.dataset.id;
         document.querySelector(".recipe-view").style.display = "block";
+        //prevent body scroll
+        document.body.style.overflow = "hidden";
+        document.body.style.height = "100%";
         handler(`${URL}/where?id=${id}`);
       }
     });

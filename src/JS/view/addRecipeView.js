@@ -29,6 +29,9 @@ class AddRecipeView extends View {
     }
     this._viewMenu.style.display = "none";
     this._parentEl.style.display = "block";
+    //prevent body scroll
+    document.body.style.overflow = "hidden";
+    document.body.style.height = "100%";
   }
   _openAddRecipeView() {
     this._body.addEventListener("click", this.showForm.bind(this));
@@ -36,7 +39,9 @@ class AddRecipeView extends View {
 
   hideAddRecipeView() {
     this._parentEl.style.display = "none";
-    this._body.classList.remove("my-body-noscroll-class");
+    //reactivate body scroll
+    document.body.style.overflow = "auto";
+    document.body.style.height = "auto%";
   }
 
   _closeAddRecipeView() {

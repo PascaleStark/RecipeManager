@@ -10,21 +10,27 @@ class RecipeView extends View {
     this._closeRecipeView();
   }
 
-  showRecipeView() {
-    this._parentEl.style.display = "block";
-  }
+  // showRecipeView() {
+  //   this._parentEl.style.display = "block";
+  //   //prevent body scroll
+  //   document.body.style.overflow = "hidden";
+  //   document.body.style.height = "100%";
+  // }
 
   hideRecipeView() {
     this._parentEl.style.display = "none";
+    //reactivate body scroll
+    document.body.style.overflow = "auto";
+    document.body.style.height = "auto";
   }
-
-  addOpenRecipeHandler(handler) {
-    const self = this;
-    this._viewRecipeBtn.addEventListener("click", function () {
-      self.showRecipeView();
-      handler("http://192.168.4.10:8300/recipes/where?id=57");
-    });
-  }
+  //--> /////////////////STATIC///////////TO REMOVE/////////////////-->//
+  // addOpenRecipeHandler(handler) {
+  //   const self = this;
+  //   this._viewRecipeBtn.addEventListener("click", function () {
+  //     self.showRecipeView();
+  //     handler("http://192.168.4.10:8300/recipes/where?id=57");
+  //   });
+  // }
 
   _closeRecipeView() {
     const self = this;
