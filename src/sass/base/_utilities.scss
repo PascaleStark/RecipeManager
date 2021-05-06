@@ -13,3 +13,11 @@
 .hidden {
   display: none;
 }
+
+.empty-heart {
+  fill: $color-transparent-grey;
+}
+
+.filled-heart {
+  fill: $color-salmon-primary;
+}

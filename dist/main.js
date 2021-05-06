@@ -48,7 +48,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "addRecipe": () => (/* binding */ addRecipe),
 /* harmony export */   "loadRecipe": () => (/* binding */ loadRecipe),
-/* harmony export */   "searchRecipe": () => (/* binding */ searchRecipe)
+/* harmony export */   "searchRecipe": () => (/* binding */ searchRecipe),
+/* harmony export */   "editFavourites": () => (/* binding */ editFavourites)
 /* harmony export */ });
 /* harmony import */ var _helper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./helper */ "./src/JS/helper.js");
 /* harmony import */ var regenerator_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! regenerator-runtime */ "./node_modules/regenerator-runtime/runtime.js");
@@ -152,7 +153,8 @@ var loadRecipe = /*#__PURE__*/function () {
               servings: recipeObject.servings,
               url: recipeObject.url,
               ingredients: recipeObject.ingredients,
-              directions: recipeObject.directions
+              directions: recipeObject.directions,
+              favourites: recipeObject.favourites
             };
             return _context2.abrupt("return", recipe);
 
@@ -209,7 +211,8 @@ var searchRecipe = /*#__PURE__*/function () {
                 servings: res.servings,
                 url: res.url,
                 ingredients: res.ingredients,
-                directions: res.directions
+                directions: res.directions,
+                favourites: res.favourites
               };
             });
             return _context3.abrupt("return", recipes);
@@ -229,6 +232,61 @@ var searchRecipe = /*#__PURE__*/function () {
 
   return function searchRecipe(_x4) {
     return _ref3.apply(this, arguments);
+  };
+}();
+var editFavourites = /*#__PURE__*/function () {
+  var _ref4 = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee4(url) {
+    var fetchPro, resp, data;
+    return regenerator_runtime__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee4$(_context4) {
+      while (1) {
+        switch (_context4.prev = _context4.next) {
+          case 0:
+            _context4.prev = 0;
+            console.log(url);
+            fetchPro = fetch(url, {
+              method: "PATCH",
+              headers: {
+                "Content-type": "application/json"
+              }
+            });
+            _context4.next = 5;
+            return Promise.race([fetchPro, (0,_helper__WEBPACK_IMPORTED_MODULE_0__.timeout)(10)]);
+
+          case 5:
+            resp = _context4.sent;
+            console.log(resp);
+            _context4.next = 9;
+            return resp.json();
+
+          case 9:
+            data = _context4.sent;
+            console.log(data);
+
+            if (resp.ok) {
+              _context4.next = 13;
+              break;
+            }
+
+            throw new Error("".concat(data.message, " (").concat(resp.status, ")"));
+
+          case 13:
+            return _context4.abrupt("return", data);
+
+          case 16:
+            _context4.prev = 16;
+            _context4.t0 = _context4["catch"](0);
+            throw new Error("Something went wrong, please try again later! ".concat(_context4.t0));
+
+          case 19:
+          case "end":
+            return _context4.stop();
+        }
+      }
+    }, _callee4, null, [[0, 16]]);
+  }));
+
+  return function editFavourites(_x5) {
+    return _ref4.apply(this, arguments);
   };
 }();
 
@@ -405,6 +463,187 @@ var AddRecipeView = /*#__PURE__*/function (_View) {
 }(_view_js__WEBPACK_IMPORTED_MODULE_0__.default);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (new AddRecipeView());
+
+/***/ }),
+
+/***/ "./src/JS/view/favouritesView.js":
+/*!***************************************!*\
+  !*** ./src/JS/view/favouritesView.js ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var regenerator_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! regenerator-runtime */ "./node_modules/regenerator-runtime/runtime.js");
+/* harmony import */ var regenerator_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(regenerator_runtime__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _view_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./view.js */ "./src/JS/view/view.js");
+/* harmony import */ var _config_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../config.js */ "./src/JS/config.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+var FavouritesView = /*#__PURE__*/function (_View) {
+  _inherits(FavouritesView, _View);
+
+  var _super = _createSuper(FavouritesView);
+
+  function FavouritesView() {
+    var _this;
+
+    _classCallCheck(this, FavouritesView);
+
+    _this = _super.call(this);
+
+    _defineProperty(_assertThisInitialized(_this), "_parentEl", document.querySelector(".recipe-view"));
+
+    _defineProperty(_assertThisInitialized(_this), "_favouriteRecipeBtn", document.querySelector(".icon-heart"));
+
+    _defineProperty(_assertThisInitialized(_this), "_body", document.getElementsByTagName("body")[0]);
+
+    _defineProperty(_assertThisInitialized(_this), "_iconWrapper", document.querySelector(".icon-wrapper"));
+
+    _this.setFavouriteIcon();
+
+    return _this;
+  }
+
+  _createClass(FavouritesView, [{
+    key: "_setRecipeID",
+    value: function _setRecipeID(handler, e) {
+      var targetEl = e.target.closest(".icon-heart");
+      console.log(targetEl);
+
+      if (targetEl) {
+        var id = targetEl.dataset.id;
+        handler("".concat(_config_js__WEBPACK_IMPORTED_MODULE_2__.URL, "/favourites/").concat(id));
+      }
+    }
+  }, {
+    key: "toggleFavourites",
+    value: function toggleFavourites(handler) {
+      this._body.addEventListener("click", this._setRecipeID.bind(this, handler));
+    }
+  }, {
+    key: "_toggleHeartIcon",
+    value: function _toggleHeartIcon(e) {
+      var targetEl = e.target.closest(".icon-heart");
+      console.log(targetEl);
+
+      if (targetEl) {
+        targetEl.classList.toggle("empty-heart");
+        targetEl.classList.toggle("filled-heart");
+      }
+    }
+  }, {
+    key: "setFavouriteIcon",
+    value: function setFavouriteIcon() {
+      this._body.addEventListener("click", this._toggleHeartIcon.bind(this));
+    } //   _closeRecipeView() {
+    //     const self = this;
+    //     this._parentEl.addEventListener("click", function (e) {
+    //       if (e.target && e.target.id === "closeModal") self.hideModalView();
+    //     });
+    //   }
+    //   renderView(data) {
+    //     this._parentEl.innerHTML = "";
+    //     this._data = data;
+    //     this._generateMarkup();
+    //     this._parentEl.insertAdjacentHTML("beforeend", this._generateMarkup());
+    //   }
+    //   _generateMarkup() {
+    //     return `<svg class="icon icon__close-view icon__close-outline" id="closeModal">
+    //     <use
+    //       xlink:href="./src/img/icons.svg#icon-close-outline"
+    //     ></use></svg>
+    // <h1 class=" heading--secondary">${this._data.title}</h1>
+    // <div class="recipe-view__info">
+    // <div class="recipe-view__ingredients">
+    //   <h2 class="heading--tertiary">Ingredients</h2>
+    //   <div class="recipe-view__ingredients--details">
+    //     <ul class="list-style">
+    //     ${this._data.ingredients
+    //       .map((ing) => {
+    //         return `<li><svg class="icon icon__cheveron-right">
+    //       <use
+    //         xlink:href="./src/img/icons.svg#icon-cheveron-right"
+    //       ></use></svg
+    //     ><span class="recipe-view__element--text">${ing}</span></li>`;
+    //       })
+    //       .join("")}
+    //     </ul>
+    //   </div>
+    // </div>
+    // <div class="recipe-view__info--details">
+    //   <svg class="icon icon__file--text">
+    //     <use
+    //       xlink:href="./src/img/icons.svg#icon-file-text"
+    //     ></use></svg
+    //   >
+    //   <ul class="list-style">
+    //     <li><span class="text-bolder">Preparation time:</span> ${
+    //       this._data.prepartionTime
+    //     }</li>
+    //     <li><span class="text-bolder">Cooking time:</span> ${
+    //       this._data.cookingTime
+    //     }</li>
+    //     <li><span class="text-bolder">Servings:</span> ${this._data.servings}</li>
+    //     <li><span class="text-bolder">Category:</span> ${this._data.category}</li>
+    //     <li><span class="text-bolder">Publisher:</span> ${this._data.publisher}</li>
+    //   </ul>
+    // </div>
+    // </div>
+    // <div class="recipe-view__directions">
+    // <h2 class="heading--tertiary">Directions</h2>
+    // <div class="recipe-view__directions--details">
+    //   <ul class="list-style">
+    //     ${this._data.directions
+    //       .map((direc, i) => {
+    //         return `<li class="recipe-view__directions--element"><svg class="icon icon__checkmark-outline">
+    //       <use
+    //         xlink:href="./src/img/icons.svg#icon-checkmark-outline"
+    //       ></use></svg
+    //     ><span class="text-bolder">Step ${i + 1}:&nbsp;</span>${direc}</li>`;
+    //       })
+    //       .join("")}
+    //   </ul>
+    // </div>
+    // </div>`;
+    //   }
+    // }
+
+  }]);
+
+  return FavouritesView;
+}(_view_js__WEBPACK_IMPORTED_MODULE_1__.default);
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (new FavouritesView());
 
 /***/ }),
 
@@ -625,7 +864,7 @@ var SearchRecipeView = /*#__PURE__*/function (_View) {
   }, {
     key: "_generateMarkup",
     value: function _generateMarkup(result) {
-      return "<div class=\"recipe__card\">\n    <img\n      src=\"./src/img/pizza.jpg\"\n      class=\"recipe__card--img\"\n      alt=\"recipe img\"\n    />\n    <svg class=\"icon icon-heart recipe__card--icon\">\n      <use xlink:href=\"./src/img/icons.svg#icon-heart\"></use>\n    </svg>\n    <h3 class=\"recipe__card--title heading--tertiary\">".concat(result.title, "</h3>\n    <div class=\"recipe__card--back\" id=\"btn-view\" data-id=\"").concat(result.id, "\">\n      <button class=\"btn recipe__card--btn hidden\" ><span class=\"underline\">View Recipe &rarr;</span></button>\n    </div>\n    </div>");
+      return "<div class=\"recipe__card\">\n    <img\n      src=\"./src/img/pizza.jpg\"\n      class=\"recipe__card--img\"\n      alt=\"recipe img\"\n    />\n    <svg class=\"icon-heart recipe__card--icon  ".concat(result.favourites === 1 ? "filled-heart" : "empty-heart", "\" data-id=\"").concat(result.id, "\">\n      <use xlink:href=\"./src/img/icons.svg#icon-heart\"></use>\n    </svg>\n    <h3 class=\"recipe__card--title heading--tertiary\">").concat(result.title, "</h3>\n    <div class=\"recipe__card--back\" id=\"btn-view\" data-id=\"").concat(result.id, "\">\n      <button class=\"btn recipe__card--btn hidden\" ><span class=\"underline\">View Recipe &rarr;</span></button>\n    </div>\n    </div>");
     }
   }]);
 
@@ -1533,14 +1772,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _view_recipeView__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./view/recipeView */ "./src/JS/view/recipeView.js");
 /* harmony import */ var _view_addRecipeView__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./view/addRecipeView */ "./src/JS/view/addRecipeView.js");
 /* harmony import */ var _view_searchRecipesView__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./view/searchRecipesView */ "./src/JS/view/searchRecipesView.js");
-/* harmony import */ var regenerator_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! regenerator-runtime */ "./node_modules/regenerator-runtime/runtime.js");
-/* harmony import */ var regenerator_runtime__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(regenerator_runtime__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _config_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./config.js */ "./src/JS/config.js");
+/* harmony import */ var _view_favouritesView__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./view/favouritesView */ "./src/JS/view/favouritesView.js");
+/* harmony import */ var regenerator_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! regenerator-runtime */ "./node_modules/regenerator-runtime/runtime.js");
+/* harmony import */ var regenerator_runtime__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(regenerator_runtime__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _config_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./config.js */ "./src/JS/config.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 
 
 
@@ -1556,9 +1797,9 @@ btnFilter.addEventListener("click", function () {
 //Add a recipe
 
 var controlAddRecipe = /*#__PURE__*/function () {
-  var _ref = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_4___default().mark(function _callee(url, uploadData) {
+  var _ref = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_5___default().mark(function _callee(url, uploadData) {
     var result;
-    return regenerator_runtime__WEBPACK_IMPORTED_MODULE_4___default().wrap(function _callee$(_context) {
+    return regenerator_runtime__WEBPACK_IMPORTED_MODULE_5___default().wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
@@ -1597,9 +1838,9 @@ var controlAddRecipe = /*#__PURE__*/function () {
 
 
 var controlrecipeView = /*#__PURE__*/function () {
-  var _ref2 = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_4___default().mark(function _callee2(url) {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_5___default().mark(function _callee2(url) {
     var recipe;
-    return regenerator_runtime__WEBPACK_IMPORTED_MODULE_4___default().wrap(function _callee2$(_context2) {
+    return regenerator_runtime__WEBPACK_IMPORTED_MODULE_5___default().wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
@@ -1637,9 +1878,9 @@ var controlrecipeView = /*#__PURE__*/function () {
 
 
 var controlSearchRecipe = /*#__PURE__*/function () {
-  var _ref3 = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_4___default().mark(function _callee3(query) {
+  var _ref3 = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_5___default().mark(function _callee3(query) {
     var searchResults;
-    return regenerator_runtime__WEBPACK_IMPORTED_MODULE_4___default().wrap(function _callee3$(_context3) {
+    return regenerator_runtime__WEBPACK_IMPORTED_MODULE_5___default().wrap(function _callee3$(_context3) {
       while (1) {
         switch (_context3.prev = _context3.next) {
           case 0:
@@ -1648,7 +1889,7 @@ var controlSearchRecipe = /*#__PURE__*/function () {
             _view_searchRecipesView__WEBPACK_IMPORTED_MODULE_3__.default.renderSpinner(); //2. look for all the recipes with the given keyword
 
             _context3.next = 4;
-            return _model__WEBPACK_IMPORTED_MODULE_0__.searchRecipe("".concat(_config_js__WEBPACK_IMPORTED_MODULE_5__.URL, "/search?q=").concat(query));
+            return _model__WEBPACK_IMPORTED_MODULE_0__.searchRecipe("".concat(_config_js__WEBPACK_IMPORTED_MODULE_6__.URL, "/search?q=").concat(query));
 
           case 4:
             searchResults = _context3.sent;
@@ -1676,6 +1917,45 @@ var controlSearchRecipe = /*#__PURE__*/function () {
     return _ref3.apply(this, arguments);
   };
 }(); //////////////////////////////////////////////////
+//on heart click --> send a patch request with recipe id -->endpoint: URL/favourites/{id} //PATCH
+//on favourites click --> render all favourites in results container with h1 FAVOURITES -->endpoint: URL/where?favourites=1 //GET
+
+
+var controlFavouriteRecipes = /*#__PURE__*/function () {
+  var _ref4 = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_5___default().mark(function _callee4(url) {
+    var favouriteRec;
+    return regenerator_runtime__WEBPACK_IMPORTED_MODULE_5___default().wrap(function _callee4$(_context4) {
+      while (1) {
+        switch (_context4.prev = _context4.next) {
+          case 0:
+            _context4.prev = 0;
+            _context4.next = 3;
+            return _model__WEBPACK_IMPORTED_MODULE_0__.editFavourites(url);
+
+          case 3:
+            favouriteRec = _context4.sent;
+            console.log(favouriteRec); //2. toggle heart icon fill
+
+            _context4.next = 10;
+            break;
+
+          case 7:
+            _context4.prev = 7;
+            _context4.t0 = _context4["catch"](0);
+            console.error(_context4.t0);
+
+          case 10:
+          case "end":
+            return _context4.stop();
+        }
+      }
+    }, _callee4, null, [[0, 7]]);
+  }));
+
+  return function controlFavouriteRecipes(_x5) {
+    return _ref4.apply(this, arguments);
+  };
+}(); //////////////////////////////////////////////////
 //Event handlers using Publisher-Subscriber pattern
 
 
@@ -1683,6 +1963,7 @@ var init = function init() {
   _view_recipeView__WEBPACK_IMPORTED_MODULE_1__.default.openRecipeView(controlrecipeView);
   _view_addRecipeView__WEBPACK_IMPORTED_MODULE_2__.default.addFormEventHandler(controlAddRecipe);
   _view_searchRecipesView__WEBPACK_IMPORTED_MODULE_3__.default.openSearchRecipeView(controlSearchRecipe);
+  _view_favouritesView__WEBPACK_IMPORTED_MODULE_4__.default.toggleFavourites(controlFavouriteRecipes);
 };
 
 init();

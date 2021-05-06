@@ -1,5 +1,5 @@
 import { timeout } from "./helper";
-import regeneratorRuntime from "regenerator-runtime";
+import regeneratorRuntime, { async } from "regenerator-runtime";
 
 export const addRecipe = async function (url, uploadData) {
   try {
@@ -48,6 +48,7 @@ export const loadRecipe = async function (url) {
       url: recipeObject.url,
       ingredients: recipeObject.ingredients,
       directions: recipeObject.directions,
+      favourites: recipeObject.favourites,
     };
     return recipe;
   } catch (err) {
@@ -79,9 +80,30 @@ export const searchRecipe = async function (url) {
       url: res.url,
       ingredients: res.ingredients,
       directions: res.directions,
+      favourites: res.favourites,
     }));
     return recipes;
   } catch (err) {
     console.log(err);
+  }
+};
+
+export const editFavourites = async function (url) {
+  try {
+    console.log(url);
+    const fetchPro = fetch(url, {
+      method: "PATCH",
+      headers: {
+        "Content-type": "application/json",
+      },
+    });
+    const resp = await Promise.race([fetchPro, timeout(10)]);
+    console.log(resp);
+    const data = await resp.json();
+    console.log(data);
+    if (!resp.ok) throw new Error(`${data.message} (${resp.status})`);
+    return data;
+  } catch (err) {
+    throw new Error(`Something went wrong, please try again later! ${err}`);
   }
 };
