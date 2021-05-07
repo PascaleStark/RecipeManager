@@ -47,10 +47,10 @@ body {
 .hidden {
   display: none; }
 
-.empty-heart {
+.empty-icon {
   fill: rgba(225, 218, 218, 0.6); }
 
-.filled-heart {
+.filled-icon {
   fill: #ecac8c; }
 
 .heading--primary {
@@ -207,6 +207,15 @@ body {
     position: absolute;
     top: 1rem;
     left: 1rem;
+    z-index: 1;
+    height: 2.2rem;
+    width: 2.2rem;
+    margin-left: 1rem;
+    cursor: pointer; }
+  .recipe__card--icon-star {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
     z-index: 1;
     height: 2.2rem;
     width: 2.2rem;

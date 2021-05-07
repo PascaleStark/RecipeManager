@@ -101,6 +101,17 @@ const controlLoadFeatured = async function () {
     console.error(err);
   }
 };
+
+const controlFeaturedRecipes = async function (url) {
+  try {
+    //1. look for all the recipes with the given keyword
+    const featuredRec = await model.editFavourites(url);
+    console.log(featuredRec);
+    //2. toggle star icon fill
+  } catch (err) {
+    console.error(err);
+  }
+};
 controlLoadFeatured();
 //////////////////////////////////////////////////
 //Event handlers using Publisher-Subscriber pattern
@@ -110,6 +121,7 @@ const init = function () {
   searchRecipeView.openSearchRecipeView(controlSearchRecipe);
   favouritesView.toggleFavourites(controlFavouriteRecipes);
   favouritesView.openFavouritesView(controlLoadFavourites);
+  featuredView.toggleFeatured(controlFeaturedRecipes);
 };
 
 init();
