@@ -71,6 +71,23 @@ const controlFavouriteRecipes = async function (url) {
   }
 };
 
+const controlLoadFavourites = async function () {
+  try {
+    //1. render spinner
+    favouritesView.renderSpinner();
+    //2. look for all the recipes with the given keyword
+    const favouritesResults = await model.searchRecipe(
+      `${URL}/where?favourites=1`
+    );
+    //3. render the recipe cards with pagination
+    // if (searchResults.length === 0)
+    //   throw new Error(`There are no results for your search!`);
+    favouritesView.renderFavouritesView(favouritesResults);
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 //////////////////////////////////////////////////
 //Event handlers using Publisher-Subscriber pattern
 const init = function () {
@@ -78,6 +95,7 @@ const init = function () {
   addRecipeView.addFormEventHandler(controlAddRecipe);
   searchRecipeView.openSearchRecipeView(controlSearchRecipe);
   favouritesView.toggleFavourites(controlFavouriteRecipes);
+  favouritesView.openFavouritesView(controlLoadFavourites);
 };
 
 init();

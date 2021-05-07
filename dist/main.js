@@ -521,13 +521,17 @@ var FavouritesView = /*#__PURE__*/function (_View) {
 
     _this = _super.call(this);
 
-    _defineProperty(_assertThisInitialized(_this), "_parentEl", document.querySelector(".recipe-view"));
+    _defineProperty(_assertThisInitialized(_this), "_parentEl", document.querySelector(".recipe__container"));
 
     _defineProperty(_assertThisInitialized(_this), "_favouriteRecipeBtn", document.querySelector(".icon-heart"));
 
     _defineProperty(_assertThisInitialized(_this), "_body", document.getElementsByTagName("body")[0]);
 
-    _defineProperty(_assertThisInitialized(_this), "_iconWrapper", document.querySelector(".icon-wrapper"));
+    _defineProperty(_assertThisInitialized(_this), "_titleView", "Favourites");
+
+    _defineProperty(_assertThisInitialized(_this), "_allFavouritesBtn", document.querySelector(".nav__favorites--btn"));
+
+    _defineProperty(_assertThisInitialized(_this), "_resultsHeading", document.querySelector(".results__heading"));
 
     _this.setFavouriteIcon();
 
@@ -565,79 +569,39 @@ var FavouritesView = /*#__PURE__*/function (_View) {
     key: "setFavouriteIcon",
     value: function setFavouriteIcon() {
       this._body.addEventListener("click", this._toggleHeartIcon.bind(this));
-    } //   _closeRecipeView() {
-    //     const self = this;
-    //     this._parentEl.addEventListener("click", function (e) {
-    //       if (e.target && e.target.id === "closeModal") self.hideModalView();
-    //     });
-    //   }
-    //   renderView(data) {
-    //     this._parentEl.innerHTML = "";
-    //     this._data = data;
-    //     this._generateMarkup();
-    //     this._parentEl.insertAdjacentHTML("beforeend", this._generateMarkup());
-    //   }
-    //   _generateMarkup() {
-    //     return `<svg class="icon icon__close-view icon__close-outline" id="closeModal">
-    //     <use
-    //       xlink:href="./src/img/icons.svg#icon-close-outline"
-    //     ></use></svg>
-    // <h1 class=" heading--secondary">${this._data.title}</h1>
-    // <div class="recipe-view__info">
-    // <div class="recipe-view__ingredients">
-    //   <h2 class="heading--tertiary">Ingredients</h2>
-    //   <div class="recipe-view__ingredients--details">
-    //     <ul class="list-style">
-    //     ${this._data.ingredients
-    //       .map((ing) => {
-    //         return `<li><svg class="icon icon__cheveron-right">
-    //       <use
-    //         xlink:href="./src/img/icons.svg#icon-cheveron-right"
-    //       ></use></svg
-    //     ><span class="recipe-view__element--text">${ing}</span></li>`;
-    //       })
-    //       .join("")}
-    //     </ul>
-    //   </div>
-    // </div>
-    // <div class="recipe-view__info--details">
-    //   <svg class="icon icon__file--text">
-    //     <use
-    //       xlink:href="./src/img/icons.svg#icon-file-text"
-    //     ></use></svg
-    //   >
-    //   <ul class="list-style">
-    //     <li><span class="text-bolder">Preparation time:</span> ${
-    //       this._data.prepartionTime
-    //     }</li>
-    //     <li><span class="text-bolder">Cooking time:</span> ${
-    //       this._data.cookingTime
-    //     }</li>
-    //     <li><span class="text-bolder">Servings:</span> ${this._data.servings}</li>
-    //     <li><span class="text-bolder">Category:</span> ${this._data.category}</li>
-    //     <li><span class="text-bolder">Publisher:</span> ${this._data.publisher}</li>
-    //   </ul>
-    // </div>
-    // </div>
-    // <div class="recipe-view__directions">
-    // <h2 class="heading--tertiary">Directions</h2>
-    // <div class="recipe-view__directions--details">
-    //   <ul class="list-style">
-    //     ${this._data.directions
-    //       .map((direc, i) => {
-    //         return `<li class="recipe-view__directions--element"><svg class="icon icon__checkmark-outline">
-    //       <use
-    //         xlink:href="./src/img/icons.svg#icon-checkmark-outline"
-    //       ></use></svg
-    //     ><span class="text-bolder">Step ${i + 1}:&nbsp;</span>${direc}</li>`;
-    //       })
-    //       .join("")}
-    //   </ul>
-    // </div>
-    // </div>`;
-    //   }
-    // }
+    }
+  }, {
+    key: "openFavouritesView",
+    value: function openFavouritesView(handler) {
+      this._allFavouritesBtn.addEventListener("click", function () {
+        document.querySelector(".results__heading").scrollIntoView({
+          behavior: "smooth"
+        });
+        handler();
+      });
+    }
+  }, {
+    key: "renderFavouritesView",
+    value: function renderFavouritesView(data) {
+      var _this2 = this;
 
+      this._parentEl.innerHTML = "";
+      this._data = data;
+      console.log(data);
+
+      this._data.forEach(function (result) {
+        console.log(result);
+
+        _this2._parentEl.insertAdjacentHTML("afterbegin", _this2._generateMarkup(result));
+      });
+
+      this._resultsHeading.textContent = "".concat(this._titleView);
+    }
+  }, {
+    key: "_generateMarkup",
+    value: function _generateMarkup(result) {
+      return "<div class=\"recipe__card\">\n    <img\n      src=\"./src/img/pizza.jpg\"\n      class=\"recipe__card--img\"\n      alt=\"recipe img\"\n    />\n    <svg class=\"icon-heart recipe__card--icon  ".concat(result.favourites === 1 ? "filled-heart" : "empty-heart", "\" data-id=\"").concat(result.id, "\">\n      <use xlink:href=\"./src/img/icons.svg#icon-heart\"></use>\n    </svg>\n    <h3 class=\"recipe__card--title heading--tertiary\">").concat(result.title, "</h3>\n    <div class=\"recipe__card--back\" id=\"btn-view\" data-id=\"").concat(result.id, "\">\n      <button class=\"btn recipe__card--btn hidden\" ><span class=\"underline\">View Recipe &rarr;</span></button>\n    </div>\n    </div>");
+    }
   }]);
 
   return FavouritesView;
@@ -830,6 +794,8 @@ var SearchRecipeView = /*#__PURE__*/function (_View) {
 
     _defineProperty(_assertThisInitialized(_this), "_searchForm", document.querySelector(".search"));
 
+    _defineProperty(_assertThisInitialized(_this), "_titleView", "Search results");
+
     return _this;
   }
 
@@ -859,7 +825,7 @@ var SearchRecipeView = /*#__PURE__*/function (_View) {
         _this2._parentEl.insertAdjacentHTML("afterbegin", _this2._generateMarkup(result));
       });
 
-      this._resultsHeading.textContent = "Search Results";
+      this._resultsHeading.textContent = "".concat(this._titleView);
     }
   }, {
     key: "_generateMarkup",
@@ -1955,6 +1921,47 @@ var controlFavouriteRecipes = /*#__PURE__*/function () {
   return function controlFavouriteRecipes(_x5) {
     return _ref4.apply(this, arguments);
   };
+}();
+
+var controlLoadFavourites = /*#__PURE__*/function () {
+  var _ref5 = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_5___default().mark(function _callee5() {
+    var favouritesResults;
+    return regenerator_runtime__WEBPACK_IMPORTED_MODULE_5___default().wrap(function _callee5$(_context5) {
+      while (1) {
+        switch (_context5.prev = _context5.next) {
+          case 0:
+            _context5.prev = 0;
+            //1. render spinner
+            _view_favouritesView__WEBPACK_IMPORTED_MODULE_4__.default.renderSpinner(); //2. look for all the recipes with the given keyword
+
+            _context5.next = 4;
+            return _model__WEBPACK_IMPORTED_MODULE_0__.searchRecipe("".concat(_config_js__WEBPACK_IMPORTED_MODULE_6__.URL, "/where?favourites=1"));
+
+          case 4:
+            favouritesResults = _context5.sent;
+            //3. render the recipe cards with pagination
+            // if (searchResults.length === 0)
+            //   throw new Error(`There are no results for your search!`);
+            _view_favouritesView__WEBPACK_IMPORTED_MODULE_4__.default.renderFavouritesView(favouritesResults);
+            _context5.next = 11;
+            break;
+
+          case 8:
+            _context5.prev = 8;
+            _context5.t0 = _context5["catch"](0);
+            console.error(_context5.t0);
+
+          case 11:
+          case "end":
+            return _context5.stop();
+        }
+      }
+    }, _callee5, null, [[0, 8]]);
+  }));
+
+  return function controlLoadFavourites() {
+    return _ref5.apply(this, arguments);
+  };
 }(); //////////////////////////////////////////////////
 //Event handlers using Publisher-Subscriber pattern
 
@@ -1964,6 +1971,7 @@ var init = function init() {
   _view_addRecipeView__WEBPACK_IMPORTED_MODULE_2__.default.addFormEventHandler(controlAddRecipe);
   _view_searchRecipesView__WEBPACK_IMPORTED_MODULE_3__.default.openSearchRecipeView(controlSearchRecipe);
   _view_favouritesView__WEBPACK_IMPORTED_MODULE_4__.default.toggleFavourites(controlFavouriteRecipes);
+  _view_favouritesView__WEBPACK_IMPORTED_MODULE_4__.default.openFavouritesView(controlLoadFavourites);
 };
 
 init();

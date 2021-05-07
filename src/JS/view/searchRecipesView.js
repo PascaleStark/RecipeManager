@@ -5,6 +5,7 @@ class SearchRecipeView extends View {
   _parentEl = document.querySelector(".recipe__container");
   _resultsHeading = document.querySelector(".results__heading");
   _searchForm = document.querySelector(".search");
+  _titleView = "Search results";
 
   openSearchRecipeView(handler) {
     this._searchForm.addEventListener("submit", function (e) {
@@ -28,7 +29,7 @@ class SearchRecipeView extends View {
         this._generateMarkup(result)
       );
     });
-    this._resultsHeading.textContent = "Search Results";
+    this._resultsHeading.textContent = `${this._titleView}`;
   }
 
   _generateMarkup(result) {
