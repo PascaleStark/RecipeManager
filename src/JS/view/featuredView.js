@@ -2,7 +2,7 @@ import regeneratorRuntime from "regenerator-runtime";
 import View from "./view";
 import { URL } from "../config.js";
 
-class FavouritesView extends View {
+class FeaturedView extends View {
   _parentEl = document.querySelector(".recipe__container");
   _favouriteRecipeBtn = document.querySelector(".icon-heart");
   _body = document.getElementsByTagName("body")[0];
@@ -40,14 +40,6 @@ class FavouritesView extends View {
   setFavouriteIcon() {
     this._body.addEventListener("click", this._toggleHeartIcon.bind(this));
   }
-
-  openFavouritesView(handler) {
-    this._allFavouritesBtn.addEventListener("click", function () {
-      document
-        .querySelector(".results__heading")
-        .scrollIntoView({ behavior: "smooth" });
-      handler();
-    });
-  }
 }
-export default new FavouritesView();
+
+export default new FeaturedView();
