@@ -563,8 +563,8 @@ var FavouritesView = /*#__PURE__*/function (_View) {
       console.log(targetEl);
 
       if (targetEl) {
-        targetEl.classList.toggle("empty-heart");
-        targetEl.classList.toggle("filled-heart");
+        targetEl.classList.toggle("empty-icon");
+        targetEl.classList.toggle("filled-icon");
       }
     }
   }, {
@@ -648,17 +648,17 @@ var FeaturedView = /*#__PURE__*/function (_View) {
 
     _defineProperty(_assertThisInitialized(_this), "_parentEl", document.querySelector(".recipe__container"));
 
-    _defineProperty(_assertThisInitialized(_this), "_favouriteRecipeBtn", document.querySelector(".icon-heart"));
+    _defineProperty(_assertThisInitialized(_this), "_featuredRecipeBtn", document.querySelector(".icon-star"));
 
     _defineProperty(_assertThisInitialized(_this), "_body", document.getElementsByTagName("body")[0]);
 
-    _defineProperty(_assertThisInitialized(_this), "_titleView", "Favourites");
+    _defineProperty(_assertThisInitialized(_this), "_titleView", "Featured");
 
     _defineProperty(_assertThisInitialized(_this), "_allFavouritesBtn", document.querySelector(".nav__favorites--btn"));
 
     _defineProperty(_assertThisInitialized(_this), "_resultsHeading", document.querySelector(".results__heading"));
 
-    _this.setFavouriteIcon();
+    _this.setFeaturedIcon();
 
     return _this;
   }
@@ -666,34 +666,34 @@ var FeaturedView = /*#__PURE__*/function (_View) {
   _createClass(FeaturedView, [{
     key: "_setRecipeID",
     value: function _setRecipeID(handler, e) {
-      var targetEl = e.target.closest(".icon-heart");
+      var targetEl = e.target.closest(".icon-star");
       console.log(targetEl);
 
       if (targetEl) {
         var id = targetEl.dataset.id;
-        handler("".concat(_config_js__WEBPACK_IMPORTED_MODULE_2__.URL, "/favourites/").concat(id));
+        handler("".concat(_config_js__WEBPACK_IMPORTED_MODULE_2__.URL, "/featured/").concat(id));
       }
     }
   }, {
-    key: "toggleFavourites",
-    value: function toggleFavourites(handler) {
+    key: "toggleFeatured",
+    value: function toggleFeatured(handler) {
       this._body.addEventListener("click", this._setRecipeID.bind(this, handler));
     }
   }, {
-    key: "_toggleHeartIcon",
-    value: function _toggleHeartIcon(e) {
-      var targetEl = e.target.closest(".icon-heart");
+    key: "_toggleStarIcon",
+    value: function _toggleStarIcon(e) {
+      var targetEl = e.target.closest(".icon-star");
       console.log(targetEl);
 
       if (targetEl) {
-        targetEl.classList.toggle("empty-heart");
-        targetEl.classList.toggle("filled-heart");
+        targetEl.classList.toggle("empty-icon");
+        targetEl.classList.toggle("filled-icon");
       }
     }
   }, {
-    key: "setFavouriteIcon",
-    value: function setFavouriteIcon() {
-      this._body.addEventListener("click", this._toggleHeartIcon.bind(this));
+    key: "setFeaturedIcon",
+    value: function setFeaturedIcon() {
+      this._body.addEventListener("click", this._toggleStarIcon.bind(this));
     }
   }]);
 
@@ -982,7 +982,7 @@ var View = /*#__PURE__*/function () {
   }, {
     key: "_generateMarkup",
     value: function _generateMarkup(result) {
-      return "<div class=\"recipe__card\">\n    <img\n      src=\"./src/img/pizza.jpg\"\n      class=\"recipe__card--img\"\n      alt=\"recipe img\"\n    />\n    <svg class=\"icon-heart recipe__card--icon  ".concat(result.favourites === 1 ? "filled-heart" : "empty-heart", "\" data-id=\"").concat(result.id, "\">\n      <use xlink:href=\"./src/img/icons.svg#icon-heart\"></use>\n    </svg>\n    <h3 class=\"recipe__card--title heading--tertiary\">").concat(result.title, "</h3>\n    <div class=\"recipe__card--back\" id=\"btn-view\" data-id=\"").concat(result.id, "\">\n      <button class=\"btn recipe__card--btn hidden\" ><span class=\"underline\">View Recipe &rarr;</span></button>\n    </div>\n    </div>");
+      return "<div class=\"recipe__card\">\n    <img\n      src=\"./src/img/pizza.jpg\"\n      class=\"recipe__card--img\"\n      alt=\"recipe img\"\n    />\n    <svg class=\"icon-heart recipe__card--icon  ".concat(result.favourites === 1 ? "filled-icon" : "empty-icon", "\" data-id=\"").concat(result.id, "\">\n      <use xlink:href=\"./src/img/icons.svg#icon-heart\"></use>\n    </svg>\n    <svg class=\"icon-star recipe__card--icon-star  ").concat(result.featured === 1 ? "filled-icon" : "empty-icon", "\" data-id=\"").concat(result.id, "\">\n      <use xlink:href=\"./src/img/icons.svg#icon-star-full\"></use>\n    </svg>\n    <h3 class=\"recipe__card--title heading--tertiary\">").concat(result.title, "</h3>\n    <div class=\"recipe__card--back\" id=\"btn-view\" data-id=\"").concat(result.id, "\">\n      <button class=\"btn recipe__card--btn hidden\" ><span class=\"underline\">View Recipe &rarr;</span></button>\n    </div>\n    </div>");
     }
   }]);
 
@@ -2100,6 +2100,42 @@ var controlLoadFeatured = /*#__PURE__*/function () {
   };
 }();
 
+var controlFeaturedRecipes = /*#__PURE__*/function () {
+  var _ref7 = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_6___default().mark(function _callee7(url) {
+    var featuredRec;
+    return regenerator_runtime__WEBPACK_IMPORTED_MODULE_6___default().wrap(function _callee7$(_context7) {
+      while (1) {
+        switch (_context7.prev = _context7.next) {
+          case 0:
+            _context7.prev = 0;
+            _context7.next = 3;
+            return _model__WEBPACK_IMPORTED_MODULE_0__.editFavourites(url);
+
+          case 3:
+            featuredRec = _context7.sent;
+            console.log(featuredRec); //2. toggle star icon fill
+
+            _context7.next = 10;
+            break;
+
+          case 7:
+            _context7.prev = 7;
+            _context7.t0 = _context7["catch"](0);
+            console.error(_context7.t0);
+
+          case 10:
+          case "end":
+            return _context7.stop();
+        }
+      }
+    }, _callee7, null, [[0, 7]]);
+  }));
+
+  return function controlFeaturedRecipes(_x6) {
+    return _ref7.apply(this, arguments);
+  };
+}();
+
 controlLoadFeatured(); //////////////////////////////////////////////////
 //Event handlers using Publisher-Subscriber pattern
 
@@ -2109,6 +2145,7 @@ var init = function init() {
   _view_searchRecipesView__WEBPACK_IMPORTED_MODULE_3__.default.openSearchRecipeView(controlSearchRecipe);
   _view_favouritesView__WEBPACK_IMPORTED_MODULE_4__.default.toggleFavourites(controlFavouriteRecipes);
   _view_favouritesView__WEBPACK_IMPORTED_MODULE_4__.default.openFavouritesView(controlLoadFavourites);
+  _view_featuredView__WEBPACK_IMPORTED_MODULE_5__.default.toggleFeatured(controlFeaturedRecipes);
 };
 
 init();

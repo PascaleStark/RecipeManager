@@ -36,6 +36,16 @@
       z-index: 1;
       height: 2.2rem;
       width: 2.2rem;
+      margin-left: 1rem;
+      cursor: pointer;
+    }
+    &--icon-star {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      z-index: 1;
+      height: 2.2rem;
+      width: 2.2rem;
       margin-right: 1rem;
       cursor: pointer;
     }

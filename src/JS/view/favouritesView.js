@@ -32,8 +32,8 @@ class FavouritesView extends View {
     const targetEl = e.target.closest(".icon-heart");
     console.log(targetEl);
     if (targetEl) {
-      targetEl.classList.toggle("empty-heart");
-      targetEl.classList.toggle("filled-heart");
+      targetEl.classList.toggle("empty-icon");
+      targetEl.classList.toggle("filled-icon");
     }
   }
 
