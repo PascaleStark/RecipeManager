@@ -49,6 +49,7 @@ export const loadRecipe = async function (url) {
       ingredients: recipeObject.ingredients,
       directions: recipeObject.directions,
       favourites: recipeObject.favourites,
+      featured: recipeObject.featured,
     };
     return recipe;
   } catch (err) {
@@ -81,6 +82,7 @@ export const searchRecipe = async function (url) {
       ingredients: res.ingredients,
       directions: res.directions,
       favourites: res.favourites,
+      featured: res.featured,
     }));
     return recipes;
   } catch (err) {
