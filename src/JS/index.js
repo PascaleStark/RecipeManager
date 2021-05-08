@@ -4,10 +4,11 @@ import recipeView from "./view/recipeView";
 import addRecipeView from "./view/addRecipeView";
 import searchRecipeView from "./view/searchRecipesView";
 import favouritesView from "./view/favouritesView";
-import featured from "./view/featuredView";
+import filter from "./view/filterView";
 import regeneratorRuntime, { mark } from "regenerator-runtime";
 import { URL } from "./config.js";
 import featuredView from "./view/featuredView";
+import filterView from "./view/filterView";
 
 const btnFilter = document.querySelector(".dropdown__btn");
 const dropdownFilter = document.querySelector(".dropdown__filters");
@@ -113,7 +114,25 @@ const controlFeaturedRecipes = async function (url) {
   }
 };
 controlLoadFeatured();
-//////////////////////////////////////////////////
+////////////////////FILTERED//////////////////////////////
+const controlfilterSearch = async function (searchQuery, filterQuery) {
+  try {
+    //1. render spinner
+    filterView.renderSpinner();
+    //2. look for all the recipes with the given keyword
+    const filteredResults = await model.searchRecipe(
+      `${URL}/search?q=${searchQuery}&filter=category&category=${filterQuery}`
+    );
+    //3. render the recipe cards with pagination
+    // if (searchResults.length === 0)
+    //   throw new Error(`There are no results for your search!`);
+    console.log(filteredResults);
+    filterView.renderResultsView(filteredResults);
+    filterView.toggleDropdownFilters();
+  } catch (err) {
+    console.error(err);
+  }
+};
 //Event handlers using Publisher-Subscriber pattern
 const init = function () {
   recipeView.openRecipeView(controlrecipeView);
@@ -122,6 +141,7 @@ const init = function () {
   favouritesView.toggleFavourites(controlFavouriteRecipes);
   favouritesView.openFavouritesView(controlLoadFavourites);
   featuredView.toggleFeatured(controlFeaturedRecipes);
+  filterView.openFilterSearchView(controlfilterSearch);
 };
 
 init();

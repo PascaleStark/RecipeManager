@@ -16,7 +16,7 @@ class SearchRecipeView extends View {
         .scrollIntoView({ behavior: "smooth" });
       const query = searchEl.value;
       handler(query);
-      searchEl.value = "";
+      // searchEl.value = "";
     });
   }
 }

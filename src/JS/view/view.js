@@ -45,12 +45,12 @@ export default class View {
       alt="recipe img"
     />
     <svg class="icon-heart recipe__card--icon  ${
-      result.favourites === 1 ? "filled-icon" : "empty-icon"
+      result.favourites ? "filled-icon" : "empty-icon"
     }" data-id="${result.id}">
       <use xlink:href="./src/img/icons.svg#icon-heart"></use>
     </svg>
     <svg class="icon-star recipe__card--icon-star  ${
-      result.featured === 1 ? "filled-icon" : "empty-icon"
+      result.featured ? "filled-icon" : "empty-icon"
     }" data-id="${result.id}">
       <use xlink:href="./src/img/icons.svg#icon-star-full"></use>
     </svg>
