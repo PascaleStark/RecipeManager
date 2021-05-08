@@ -53,6 +53,9 @@ body {
 .filled-icon {
   fill: #ecac8c; }
 
+.scale-filters {
+  transform: scale(0); }
+
 .heading--primary {
   font-size: 3.5rem;
   font-weight: bolder;
@@ -612,7 +615,6 @@ body {
   .dropdown ul {
     list-style-type: none; }
   .dropdown__filters {
-    transform: scale(0);
     position: absolute;
     width: 13rem;
     display: flex;
@@ -624,17 +626,16 @@ body {
     opacity: 0.9;
     cursor: pointer;
     z-index: 2; }
-    .dropdown__filters a {
+    .dropdown__filters button {
       align-self: stretch;
       text-transform: uppercase;
-      text-decoration: none;
+      border: none;
       color: #5c646c;
-      padding: 1.5rem; }
-      .dropdown__filters a:hover {
+      padding: 1.5rem;
+      cursor: pointer; }
+      .dropdown__filters button:hover {
         background-color: #e1dada;
         box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.2); }
-  .dropdown:hover .dropdown__filters {
-    transform: scale(1); }
 
 .recipe-view {
   display: none;
