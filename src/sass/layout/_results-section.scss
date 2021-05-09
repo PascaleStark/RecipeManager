@@ -23,7 +23,6 @@
     list-style-type: none;
   }
   &__filters {
-    //transform: scale(0);
     position: absolute;
     width: 13rem;
     display: flex;
@@ -47,10 +46,8 @@
       &:hover {
         background-color: $color-grey-light;
         box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.2);
+        border-bottom: 1px solid $color-font-primary;
       }
     }
   }
-  // &:hover &__filters {
-  //   transform: scale(1);
-  // }
 }
