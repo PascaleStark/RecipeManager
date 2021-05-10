@@ -49,11 +49,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "addRecipe": () => (/* binding */ addRecipe),
 /* harmony export */   "loadRecipe": () => (/* binding */ loadRecipe),
 /* harmony export */   "searchRecipe": () => (/* binding */ searchRecipe),
-/* harmony export */   "editFavourites": () => (/* binding */ editFavourites)
+/* harmony export */   "editFavourites": () => (/* binding */ editFavourites),
+/* harmony export */   "getHeaders": () => (/* binding */ getHeaders)
 /* harmony export */ });
 /* harmony import */ var _helper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./helper */ "./src/JS/helper.js");
 /* harmony import */ var regenerator_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! regenerator-runtime */ "./node_modules/regenerator-runtime/runtime.js");
 /* harmony import */ var regenerator_runtime__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(regenerator_runtime__WEBPACK_IMPORTED_MODULE_1__);
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
@@ -190,20 +197,21 @@ var searchRecipe = /*#__PURE__*/function () {
             _context3.prev = 0;
             //load recipe object
             fetchPro = fetch(url, {
-              method: "GET",
-              headers: {
-                "Content-type": "application/json"
-              }
+              method: "GET"
             });
             _context3.next = 4;
             return Promise.race([fetchPro, (0,_helper__WEBPACK_IMPORTED_MODULE_0__.timeout)(30)]);
 
           case 4:
             resp = _context3.sent;
-            _context3.next = 7;
+            console.log(resp); // const headersRead = resp.headers;
+            // headersRead.forEach((header) => console.log(header));
+            // console.log(headers);
+
+            _context3.next = 8;
             return resp.json();
 
-          case 7:
+          case 8:
             data = _context3.sent;
             console.log(data); // if (!data) throw new Error(`No recipe is found`);
             //refactoring the recipe object
@@ -226,17 +234,17 @@ var searchRecipe = /*#__PURE__*/function () {
             });
             return _context3.abrupt("return", recipes);
 
-          case 13:
-            _context3.prev = 13;
+          case 14:
+            _context3.prev = 14;
             _context3.t0 = _context3["catch"](0);
             console.log(_context3.t0);
 
-          case 16:
+          case 17:
           case "end":
             return _context3.stop();
         }
       }
-    }, _callee3, null, [[0, 13]]);
+    }, _callee3, null, [[0, 14]]);
   }));
 
   return function searchRecipe(_x4) {
@@ -296,6 +304,80 @@ var editFavourites = /*#__PURE__*/function () {
 
   return function editFavourites(_x5) {
     return _ref4.apply(this, arguments);
+  };
+}(); /////FETCH HEADERS FOR PAGINATION//////
+
+var getHeaders = /*#__PURE__*/function () {
+  var _ref5 = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee5(url) {
+    var fetchPro, resp, headersObj, _iterator, _step, pair, pagesCount, totalItems, paginationInfo;
+
+    return regenerator_runtime__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee5$(_context5) {
+      while (1) {
+        switch (_context5.prev = _context5.next) {
+          case 0:
+            _context5.prev = 0;
+            //get response
+            fetchPro = fetch(url, {
+              method: "GET"
+            });
+            _context5.next = 4;
+            return Promise.race([fetchPro, (0,_helper__WEBPACK_IMPORTED_MODULE_0__.timeout)(30)]);
+
+          case 4:
+            resp = _context5.sent;
+            //const data = await resp.json();
+            //get headers
+            //Retrieve a Headers object
+            // const headersRead = resp.headers;
+            // const headersObject4 =
+            //   headersRead.forEach((header) => console.log(header)),;
+            // //const headersInfo = Object.entries(headersRead);
+            // //console.log(headersObject);
+            // console.log(headersObject4);
+            //return headersRead;
+            // const headersArr = [];
+            // for (let pair of resp.headers.entries()) {
+            //   console.log(pair[0] + ": " + pair[1]);
+            // }
+            // const headersArr = [];
+            // for (var pair of resp.headers.entries()) {
+            //   headersArr.push(pair[0] + ": " + pair[1]);
+            // }
+            // console.log(headersArr);
+            headersObj = {};
+            _iterator = _createForOfIteratorHelper(resp.headers.entries());
+
+            try {
+              for (_iterator.s(); !(_step = _iterator.n()).done;) {
+                pair = _step.value;
+                headersObj[pair[0]] = pair[1];
+              }
+            } catch (err) {
+              _iterator.e(err);
+            } finally {
+              _iterator.f();
+            }
+
+            pagesCount = headersObj["recipes-pagescount"];
+            totalItems = headersObj["recipes-totalitems"];
+            paginationInfo = [pagesCount, totalItems];
+            return _context5.abrupt("return", paginationInfo);
+
+          case 14:
+            _context5.prev = 14;
+            _context5.t0 = _context5["catch"](0);
+            console.log(_context5.t0);
+
+          case 17:
+          case "end":
+            return _context5.stop();
+        }
+      }
+    }, _callee5, null, [[0, 14]]);
+  }));
+
+  return function getHeaders(_x6) {
+    return _ref5.apply(this, arguments);
   };
 }();
 
@@ -2158,7 +2240,7 @@ var controlrecipeView = /*#__PURE__*/function () {
 
 var controlSearchRecipe = /*#__PURE__*/function () {
   var _ref3 = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().mark(function _callee3(query) {
-    var searchResults;
+    var searchResults, pagInfo;
     return regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().wrap(function _callee3$(_context3) {
       while (1) {
         switch (_context3.prev = _context3.next) {
@@ -2175,21 +2257,28 @@ var controlSearchRecipe = /*#__PURE__*/function () {
             //3. render the recipe cards with pagination
             // if (searchResults.length === 0)
             //   throw new Error(`There are no results for your search!`);
-            _view_searchRecipesView__WEBPACK_IMPORTED_MODULE_3__.default.renderResultsView(searchResults);
-            _context3.next = 11;
-            break;
+            _view_searchRecipesView__WEBPACK_IMPORTED_MODULE_3__.default.renderResultsView(searchResults); ///////////FETCHING HEADER INFORMATION//////////
+
+            _context3.next = 8;
+            return _model__WEBPACK_IMPORTED_MODULE_0__.getHeaders("".concat(_config_js__WEBPACK_IMPORTED_MODULE_8__.URL, "/search?q=").concat(query));
 
           case 8:
-            _context3.prev = 8;
+            pagInfo = _context3.sent;
+            console.log(pagInfo);
+            _context3.next = 15;
+            break;
+
+          case 12:
+            _context3.prev = 12;
             _context3.t0 = _context3["catch"](0);
             console.error(_context3.t0);
 
-          case 11:
+          case 15:
           case "end":
             return _context3.stop();
         }
       }
-    }, _callee3, null, [[0, 8]]);
+    }, _callee3, null, [[0, 12]]);
   }));
 
   return function controlSearchRecipe(_x4) {
@@ -2236,7 +2325,7 @@ var controlFavouriteRecipes = /*#__PURE__*/function () {
 
 var controlLoadFavourites = /*#__PURE__*/function () {
   var _ref5 = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().mark(function _callee5() {
-    var favouritesResults;
+    var favouritesResults, pagInfo;
     return regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().wrap(function _callee5$(_context5) {
       while (1) {
         switch (_context5.prev = _context5.next) {
@@ -2253,21 +2342,28 @@ var controlLoadFavourites = /*#__PURE__*/function () {
             //3. render the recipe cards with pagination
             // if (searchResults.length === 0)
             //   throw new Error(`There are no results for your search!`);
-            _view_favouritesView__WEBPACK_IMPORTED_MODULE_4__.default.renderResultsView(favouritesResults);
-            _context5.next = 11;
-            break;
+            _view_favouritesView__WEBPACK_IMPORTED_MODULE_4__.default.renderResultsView(favouritesResults); ///////////FETCHING HEADER INFORMATION//////////
+
+            _context5.next = 8;
+            return _model__WEBPACK_IMPORTED_MODULE_0__.getHeaders("".concat(_config_js__WEBPACK_IMPORTED_MODULE_8__.URL, "/where?favourites=1"));
 
           case 8:
-            _context5.prev = 8;
+            pagInfo = _context5.sent;
+            console.log(pagInfo);
+            _context5.next = 15;
+            break;
+
+          case 12:
+            _context5.prev = 12;
             _context5.t0 = _context5["catch"](0);
             console.error(_context5.t0);
 
-          case 11:
+          case 15:
           case "end":
             return _context5.stop();
         }
       }
-    }, _callee5, null, [[0, 8]]);
+    }, _callee5, null, [[0, 12]]);
   }));
 
   return function controlLoadFavourites() {
@@ -2278,7 +2374,7 @@ var controlLoadFavourites = /*#__PURE__*/function () {
 
 var controlLoadFeatured = /*#__PURE__*/function () {
   var _ref6 = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().mark(function _callee6() {
-    var featuredResults;
+    var featuredResults, pagInfo;
     return regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().wrap(function _callee6$(_context6) {
       while (1) {
         switch (_context6.prev = _context6.next) {
@@ -2295,21 +2391,28 @@ var controlLoadFeatured = /*#__PURE__*/function () {
             //3. render the recipe cards with pagination
             // if (searchResults.length === 0)
             //   throw new Error(`There are no results for your search!`);
-            _view_featuredView__WEBPACK_IMPORTED_MODULE_9__.default.renderResultsView(featuredResults);
-            _context6.next = 11;
-            break;
+            _view_featuredView__WEBPACK_IMPORTED_MODULE_9__.default.renderResultsView(featuredResults); ///////////FETCHING HEADER INFORMATION//////////
+
+            _context6.next = 8;
+            return _model__WEBPACK_IMPORTED_MODULE_0__.getHeaders("".concat(_config_js__WEBPACK_IMPORTED_MODULE_8__.URL, "/where?featured=1"));
 
           case 8:
-            _context6.prev = 8;
+            pagInfo = _context6.sent;
+            console.log(pagInfo);
+            _context6.next = 15;
+            break;
+
+          case 12:
+            _context6.prev = 12;
             _context6.t0 = _context6["catch"](0);
             console.error(_context6.t0);
 
-          case 11:
+          case 15:
           case "end":
             return _context6.stop();
         }
       }
-    }, _callee6, null, [[0, 8]]);
+    }, _callee6, null, [[0, 12]]);
   }));
 
   return function controlLoadFeatured() {
