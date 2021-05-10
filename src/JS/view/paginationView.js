@@ -19,31 +19,34 @@ class PaginationView extends View {
   renderView(data) {
     this._parentEl.innerHTML = "";
     this._data = data;
+    console.log(data);
     this._generateMarkup();
     this._parentEl.insertAdjacentHTML("beforeend", this._generateMarkup());
   }
 
+  generatePageMarkup(markup) {
+    return markup;
+  }
   _generateMarkup() {
-    return `<div class="pagination">
+    return `
     <a href="#" class="pagination__link"
       ><svg class="icon pagination__icon">
         <use
           xlink:href="./src/img/icons.svg#icon-arrow-thin-left"
         ></use></svg
     ></a>
-    <a href="#" class="pagination__link">1</a>
-    <a href="#" class="pagination__link">2</a>
-    <a href="#" class="pagination__link">3</a>
-    <a href="#" class="pagination__link">4</a>
-    <a href="#" class="pagination__link">5</a>
-    <a href="#" class="pagination__link">6</a>
+    ${this._data
+      .map((pagEl) => {
+        return pagEl;
+      })
+      .join("")}
     <a href="#" class="pagination__link"
       ><svg class="icon pagination__icon">
         <use
           xlink:href="./src/img/icons.svg#icon-arrow-thin-right"
         ></use></svg
     ></a>
-  </div>`;
+`;
   }
 }
 

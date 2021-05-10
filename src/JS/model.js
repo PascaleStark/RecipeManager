@@ -125,25 +125,6 @@ export const getHeaders = async function (url) {
       method: "GET",
     });
     const resp = await Promise.race([fetchPro, timeout(30)]);
-    //const data = await resp.json();
-    //get headers
-    //Retrieve a Headers object
-    // const headersRead = resp.headers;
-    // const headersObject4 =
-    //   headersRead.forEach((header) => console.log(header)),;
-    // //const headersInfo = Object.entries(headersRead);
-    // //console.log(headersObject);
-    // console.log(headersObject4);
-    //return headersRead;
-    // const headersArr = [];
-    // for (let pair of resp.headers.entries()) {
-    //   console.log(pair[0] + ": " + pair[1]);
-    // }
-    // const headersArr = [];
-    // for (var pair of resp.headers.entries()) {
-    //   headersArr.push(pair[0] + ": " + pair[1]);
-    // }
-    // console.log(headersArr);
     const headersObj = {};
     for (let pair of resp.headers.entries()) {
       headersObj[pair[0]] = pair[1];
