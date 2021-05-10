@@ -91,4 +91,16 @@
       }
     }
   }
+  &__url {
+    font-size: 1.3rem;
+    color: $color-font-primary;
+    text-align: center;
+    cursor: pointer;
+    a:active,
+    a:visited,
+    a:link {
+      text-decoration: none;
+      color: $color-font-primary;
+    }
+  }
 }

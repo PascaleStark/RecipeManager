@@ -127,20 +127,24 @@ var loadRecipe = /*#__PURE__*/function () {
             _context2.prev = 0;
             //load recipe object
             fetchPro = fetch(url, {
-              method: "GET"
+              method: "GET",
+              headers: {
+                "Content-type": "application/json"
+              }
             });
             _context2.next = 4;
             return Promise.race([fetchPro, (0,_helper__WEBPACK_IMPORTED_MODULE_0__.timeout)(30)]);
 
           case 4:
             resp = _context2.sent;
-            _context2.next = 7;
+            console.log(resp);
+            _context2.next = 8;
             return resp.json();
 
-          case 7:
+          case 8:
             data = _context2.sent;
-            //console.log(data);
-            //refactoring the recipe object
+            console.log(data); //refactoring the recipe object
+
             recipeObject = data[0];
             console.log(recipeObject);
             recipe = {
@@ -159,17 +163,17 @@ var loadRecipe = /*#__PURE__*/function () {
             };
             return _context2.abrupt("return", recipe);
 
-          case 14:
-            _context2.prev = 14;
+          case 16:
+            _context2.prev = 16;
             _context2.t0 = _context2["catch"](0);
             console.log(_context2.t0);
 
-          case 17:
+          case 19:
           case "end":
             return _context2.stop();
         }
       }
-    }, _callee2, null, [[0, 14]]);
+    }, _callee2, null, [[0, 16]]);
   }));
 
   return function loadRecipe(_x3) {
@@ -186,7 +190,10 @@ var searchRecipe = /*#__PURE__*/function () {
             _context3.prev = 0;
             //load recipe object
             fetchPro = fetch(url, {
-              method: "GET"
+              method: "GET",
+              headers: {
+                "Content-type": "application/json"
+              }
             });
             _context3.next = 4;
             return Promise.race([fetchPro, (0,_helper__WEBPACK_IMPORTED_MODULE_0__.timeout)(30)]);
@@ -808,6 +815,109 @@ var FilterView = /*#__PURE__*/function (_View) {
 
 /***/ }),
 
+/***/ "./src/JS/view/paginationView.js":
+/*!***************************************!*\
+  !*** ./src/JS/view/paginationView.js ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var regenerator_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! regenerator-runtime */ "./node_modules/regenerator-runtime/runtime.js");
+/* harmony import */ var regenerator_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(regenerator_runtime__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _view_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./view.js */ "./src/JS/view/view.js");
+/* harmony import */ var _config_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../config.js */ "./src/JS/config.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+var PaginationView = /*#__PURE__*/function (_View) {
+  _inherits(PaginationView, _View);
+
+  var _super = _createSuper(PaginationView);
+
+  function PaginationView() {
+    var _this;
+
+    _classCallCheck(this, PaginationView);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _super.call.apply(_super, [this].concat(args));
+
+    _defineProperty(_assertThisInitialized(_this), "_parentEl", document.querySelector(".pagination"));
+
+    _defineProperty(_assertThisInitialized(_this), "_paginationViewBtn", document.querySelector(".pagination__link"));
+
+    _defineProperty(_assertThisInitialized(_this), "_body", document.getElementsByTagName("body")[0]);
+
+    return _this;
+  }
+
+  _createClass(PaginationView, [{
+    key: "_setRecipeID",
+    value: function _setRecipeID(handler, e) {
+      var targetEl = e.target.closest(".pagination__link");
+      console.log(targetEl);
+
+      if (targetEl) {
+        var page = targetEl.dataset.id;
+        handler("".concat(_config_js__WEBPACK_IMPORTED_MODULE_2__.URL, "/where?id=").concat(id));
+      }
+    }
+  }, {
+    key: "renderView",
+    value: function renderView(data) {
+      this._parentEl.innerHTML = "";
+      this._data = data;
+
+      this._generateMarkup();
+
+      this._parentEl.insertAdjacentHTML("beforeend", this._generateMarkup());
+    }
+  }, {
+    key: "_generateMarkup",
+    value: function _generateMarkup() {
+      return "<div class=\"pagination\">\n    <a href=\"#\" class=\"pagination__link\"\n      ><svg class=\"icon pagination__icon\">\n        <use\n          xlink:href=\"./src/img/icons.svg#icon-arrow-thin-left\"\n        ></use></svg\n    ></a>\n    <a href=\"#\" class=\"pagination__link\">1</a>\n    <a href=\"#\" class=\"pagination__link\">2</a>\n    <a href=\"#\" class=\"pagination__link\">3</a>\n    <a href=\"#\" class=\"pagination__link\">4</a>\n    <a href=\"#\" class=\"pagination__link\">5</a>\n    <a href=\"#\" class=\"pagination__link\">6</a>\n    <a href=\"#\" class=\"pagination__link\"\n      ><svg class=\"icon pagination__icon\">\n        <use\n          xlink:href=\"./src/img/icons.svg#icon-arrow-thin-right\"\n        ></use></svg\n    ></a>\n  </div>";
+    }
+  }]);
+
+  return PaginationView;
+}(_view_js__WEBPACK_IMPORTED_MODULE_1__.default);
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (new PaginationView());
+
+/***/ }),
+
 /***/ "./src/JS/view/recipeView.js":
 /*!***********************************!*\
   !*** ./src/JS/view/recipeView.js ***!
@@ -917,7 +1027,7 @@ var RecipeView = /*#__PURE__*/function (_View) {
         return "<li><svg class=\"icon icon__cheveron-right\">\n      <use\n        xlink:href=\"./src/img/icons.svg#icon-cheveron-right\"\n      ></use></svg\n    ><span class=\"recipe-view__element--text\">".concat(ing, "</span></li>");
       }).join(""), "\n    </ul>\n  </div>\n</div>\n\n<div class=\"recipe-view__info--details\">\n  <svg class=\"icon icon__file--text\">\n    <use\n      xlink:href=\"./src/img/icons.svg#icon-file-text\"\n    ></use></svg\n  >\n  <ul class=\"list-style\">\n    <li><span class=\"text-bolder\">Preparation time:</span> ").concat(this._data.prepartionTime, "</li>\n    <li><span class=\"text-bolder\">Cooking time:</span> ").concat(this._data.cookingTime, "</li>\n    <li><span class=\"text-bolder\">Servings:</span> ").concat(this._data.servings, "</li>\n    <li><span class=\"text-bolder\">Category:</span> ").concat(this._data.category, "</li>\n    <li><span class=\"text-bolder\">Publisher:</span> ").concat(this._data.publisher, "</li>\n  </ul>\n</div>\n</div>\n\n<div class=\"recipe-view__directions\">\n<h2 class=\"heading--tertiary\">Directions</h2>\n<div class=\"recipe-view__directions--details\">\n  <ul class=\"list-style\">\n    ").concat(this._data.directions.map(function (direc, i) {
         return "<li class=\"recipe-view__directions--element\"><svg class=\"icon icon__checkmark-outline\">\n      <use\n        xlink:href=\"./src/img/icons.svg#icon-checkmark-outline\"\n      ></use></svg\n    ><span class=\"text-bolder\">Step ".concat(i + 1, ":&nbsp;</span>").concat(direc, "</li>");
-      }).join(""), "\n  </ul>\n</div>\n</div>");
+      }).join(""), "\n  </ul>\n</div>\n</div>\n<div class=\"recipe-view__url\">\n      Source: <a href=\"").concat(this._data.url, "\" target=\"_blank\">").concat(this._data.url, " </a>\n</div>");
     }
   }]);
 
@@ -1053,20 +1163,20 @@ var View = /*#__PURE__*/function () {
       this._parentEl.insertAdjacentHTML("beforeend", spinnerMarkup);
     }
   }, {
-    key: "hideModalView",
-    value: function hideModalView() {
-      this._parentEl.style.display = "none"; //reactivate body scroll
-
-      document.body.style.overflow = "auto";
-      document.body.style.height = "auto";
-    }
-  }, {
     key: "showModalView",
     value: function showModalView() {
       this._parentEl.style.display = "block"; //prevent body scroll
 
       document.body.style.overflow = "hidden";
       document.body.style.height = "100%";
+    }
+  }, {
+    key: "hideModalView",
+    value: function hideModalView() {
+      this._parentEl.style.display = "none"; //reactivate body scroll
+
+      document.body.style.overflow = "auto";
+      document.body.style.height = "auto";
     }
   }, {
     key: "renderResultsView",
@@ -1935,16 +2045,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _view_addRecipeView__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./view/addRecipeView */ "./src/JS/view/addRecipeView.js");
 /* harmony import */ var _view_searchRecipesView__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./view/searchRecipesView */ "./src/JS/view/searchRecipesView.js");
 /* harmony import */ var _view_favouritesView__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./view/favouritesView */ "./src/JS/view/favouritesView.js");
-/* harmony import */ var _view_filterView__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./view/filterView */ "./src/JS/view/filterView.js");
-/* harmony import */ var regenerator_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! regenerator-runtime */ "./node_modules/regenerator-runtime/runtime.js");
-/* harmony import */ var regenerator_runtime__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(regenerator_runtime__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _config_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./config.js */ "./src/JS/config.js");
-/* harmony import */ var _view_featuredView__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./view/featuredView */ "./src/JS/view/featuredView.js");
+/* harmony import */ var _view_paginationView__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./view/paginationView */ "./src/JS/view/paginationView.js");
+/* harmony import */ var _view_filterView__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./view/filterView */ "./src/JS/view/filterView.js");
+/* harmony import */ var regenerator_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! regenerator-runtime */ "./node_modules/regenerator-runtime/runtime.js");
+/* harmony import */ var regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(regenerator_runtime__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _config_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./config.js */ "./src/JS/config.js");
+/* harmony import */ var _view_featuredView__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./view/featuredView */ "./src/JS/view/featuredView.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 
 
 
@@ -1964,9 +2076,9 @@ btnFilter.addEventListener("click", function () {
 //Add a recipe
 
 var controlAddRecipe = /*#__PURE__*/function () {
-  var _ref = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_6___default().mark(function _callee(url, uploadData) {
+  var _ref = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().mark(function _callee(url, uploadData) {
     var result;
-    return regenerator_runtime__WEBPACK_IMPORTED_MODULE_6___default().wrap(function _callee$(_context) {
+    return regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
@@ -2005,9 +2117,9 @@ var controlAddRecipe = /*#__PURE__*/function () {
 
 
 var controlrecipeView = /*#__PURE__*/function () {
-  var _ref2 = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_6___default().mark(function _callee2(url) {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().mark(function _callee2(url) {
     var recipe;
-    return regenerator_runtime__WEBPACK_IMPORTED_MODULE_6___default().wrap(function _callee2$(_context2) {
+    return regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
@@ -2045,9 +2157,9 @@ var controlrecipeView = /*#__PURE__*/function () {
 
 
 var controlSearchRecipe = /*#__PURE__*/function () {
-  var _ref3 = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_6___default().mark(function _callee3(query) {
+  var _ref3 = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().mark(function _callee3(query) {
     var searchResults;
-    return regenerator_runtime__WEBPACK_IMPORTED_MODULE_6___default().wrap(function _callee3$(_context3) {
+    return regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().wrap(function _callee3$(_context3) {
       while (1) {
         switch (_context3.prev = _context3.next) {
           case 0:
@@ -2056,7 +2168,7 @@ var controlSearchRecipe = /*#__PURE__*/function () {
             _view_searchRecipesView__WEBPACK_IMPORTED_MODULE_3__.default.renderSpinner(); //2. look for all the recipes with the given keyword
 
             _context3.next = 4;
-            return _model__WEBPACK_IMPORTED_MODULE_0__.searchRecipe("".concat(_config_js__WEBPACK_IMPORTED_MODULE_7__.URL, "/search?q=").concat(query));
+            return _model__WEBPACK_IMPORTED_MODULE_0__.searchRecipe("".concat(_config_js__WEBPACK_IMPORTED_MODULE_8__.URL, "/search?q=").concat(query));
 
           case 4:
             searchResults = _context3.sent;
@@ -2087,9 +2199,9 @@ var controlSearchRecipe = /*#__PURE__*/function () {
 
 
 var controlFavouriteRecipes = /*#__PURE__*/function () {
-  var _ref4 = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_6___default().mark(function _callee4(url) {
+  var _ref4 = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().mark(function _callee4(url) {
     var favouriteRec;
-    return regenerator_runtime__WEBPACK_IMPORTED_MODULE_6___default().wrap(function _callee4$(_context4) {
+    return regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().wrap(function _callee4$(_context4) {
       while (1) {
         switch (_context4.prev = _context4.next) {
           case 0:
@@ -2123,9 +2235,9 @@ var controlFavouriteRecipes = /*#__PURE__*/function () {
 }();
 
 var controlLoadFavourites = /*#__PURE__*/function () {
-  var _ref5 = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_6___default().mark(function _callee5() {
+  var _ref5 = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().mark(function _callee5() {
     var favouritesResults;
-    return regenerator_runtime__WEBPACK_IMPORTED_MODULE_6___default().wrap(function _callee5$(_context5) {
+    return regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().wrap(function _callee5$(_context5) {
       while (1) {
         switch (_context5.prev = _context5.next) {
           case 0:
@@ -2134,7 +2246,7 @@ var controlLoadFavourites = /*#__PURE__*/function () {
             _view_favouritesView__WEBPACK_IMPORTED_MODULE_4__.default.renderSpinner(); //2. look for all the recipes with the given keyword
 
             _context5.next = 4;
-            return _model__WEBPACK_IMPORTED_MODULE_0__.searchRecipe("".concat(_config_js__WEBPACK_IMPORTED_MODULE_7__.URL, "/where?favourites=1"));
+            return _model__WEBPACK_IMPORTED_MODULE_0__.searchRecipe("".concat(_config_js__WEBPACK_IMPORTED_MODULE_8__.URL, "/where?favourites=1"));
 
           case 4:
             favouritesResults = _context5.sent;
@@ -2165,25 +2277,25 @@ var controlLoadFavourites = /*#__PURE__*/function () {
 
 
 var controlLoadFeatured = /*#__PURE__*/function () {
-  var _ref6 = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_6___default().mark(function _callee6() {
+  var _ref6 = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().mark(function _callee6() {
     var featuredResults;
-    return regenerator_runtime__WEBPACK_IMPORTED_MODULE_6___default().wrap(function _callee6$(_context6) {
+    return regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().wrap(function _callee6$(_context6) {
       while (1) {
         switch (_context6.prev = _context6.next) {
           case 0:
             _context6.prev = 0;
             //1. render spinner
-            _view_featuredView__WEBPACK_IMPORTED_MODULE_8__.default.renderSpinner(); //2. look for all the recipes with the given keyword
+            _view_featuredView__WEBPACK_IMPORTED_MODULE_9__.default.renderSpinner(); //2. look for all the recipes with the given keyword
 
             _context6.next = 4;
-            return _model__WEBPACK_IMPORTED_MODULE_0__.searchRecipe("".concat(_config_js__WEBPACK_IMPORTED_MODULE_7__.URL, "/where?featured=1"));
+            return _model__WEBPACK_IMPORTED_MODULE_0__.searchRecipe("".concat(_config_js__WEBPACK_IMPORTED_MODULE_8__.URL, "/where?featured=1"));
 
           case 4:
             featuredResults = _context6.sent;
             //3. render the recipe cards with pagination
             // if (searchResults.length === 0)
             //   throw new Error(`There are no results for your search!`);
-            _view_featuredView__WEBPACK_IMPORTED_MODULE_8__.default.renderResultsView(featuredResults);
+            _view_featuredView__WEBPACK_IMPORTED_MODULE_9__.default.renderResultsView(featuredResults);
             _context6.next = 11;
             break;
 
@@ -2206,9 +2318,9 @@ var controlLoadFeatured = /*#__PURE__*/function () {
 }();
 
 var controlFeaturedRecipes = /*#__PURE__*/function () {
-  var _ref7 = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_6___default().mark(function _callee7(url) {
+  var _ref7 = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().mark(function _callee7(url) {
     var featuredRec;
-    return regenerator_runtime__WEBPACK_IMPORTED_MODULE_6___default().wrap(function _callee7$(_context7) {
+    return regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().wrap(function _callee7$(_context7) {
       while (1) {
         switch (_context7.prev = _context7.next) {
           case 0:
@@ -2244,18 +2356,18 @@ var controlFeaturedRecipes = /*#__PURE__*/function () {
 controlLoadFeatured(); ////////////////////FILTERED//////////////////////////////
 
 var controlfilterSearch = /*#__PURE__*/function () {
-  var _ref8 = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_6___default().mark(function _callee8(searchQuery, filterQuery) {
+  var _ref8 = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().mark(function _callee8(searchQuery, filterQuery) {
     var filteredResults;
-    return regenerator_runtime__WEBPACK_IMPORTED_MODULE_6___default().wrap(function _callee8$(_context8) {
+    return regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().wrap(function _callee8$(_context8) {
       while (1) {
         switch (_context8.prev = _context8.next) {
           case 0:
             _context8.prev = 0;
             //1. render spinner
-            _view_filterView__WEBPACK_IMPORTED_MODULE_5__.default.renderSpinner(); //2. look for all the recipes with the given keyword
+            _view_filterView__WEBPACK_IMPORTED_MODULE_6__.default.renderSpinner(); //2. look for all the recipes with the given keyword
 
             _context8.next = 4;
-            return _model__WEBPACK_IMPORTED_MODULE_0__.searchRecipe("".concat(_config_js__WEBPACK_IMPORTED_MODULE_7__.URL, "/search?q=").concat(searchQuery, "&filter=category&category=").concat(filterQuery));
+            return _model__WEBPACK_IMPORTED_MODULE_0__.searchRecipe("".concat(_config_js__WEBPACK_IMPORTED_MODULE_8__.URL, "/search?q=").concat(searchQuery, "&filter=category&category=").concat(filterQuery));
 
           case 4:
             filteredResults = _context8.sent;
@@ -2263,8 +2375,8 @@ var controlfilterSearch = /*#__PURE__*/function () {
             // if (searchResults.length === 0)
             //   throw new Error(`There are no results for your search!`);
             console.log(filteredResults);
-            _view_filterView__WEBPACK_IMPORTED_MODULE_5__.default.renderResultsView(filteredResults);
-            _view_filterView__WEBPACK_IMPORTED_MODULE_5__.default.toggleDropdownFilters();
+            _view_filterView__WEBPACK_IMPORTED_MODULE_6__.default.renderResultsView(filteredResults);
+            _view_filterView__WEBPACK_IMPORTED_MODULE_6__.default.toggleDropdownFilters();
             _context8.next = 13;
             break;
 
@@ -2293,8 +2405,8 @@ var init = function init() {
   _view_searchRecipesView__WEBPACK_IMPORTED_MODULE_3__.default.openSearchRecipeView(controlSearchRecipe);
   _view_favouritesView__WEBPACK_IMPORTED_MODULE_4__.default.toggleFavourites(controlFavouriteRecipes);
   _view_favouritesView__WEBPACK_IMPORTED_MODULE_4__.default.openFavouritesView(controlLoadFavourites);
-  _view_featuredView__WEBPACK_IMPORTED_MODULE_8__.default.toggleFeatured(controlFeaturedRecipes);
-  _view_filterView__WEBPACK_IMPORTED_MODULE_5__.default.openFilterSearchView(controlfilterSearch);
+  _view_featuredView__WEBPACK_IMPORTED_MODULE_9__.default.toggleFeatured(controlFeaturedRecipes);
+  _view_filterView__WEBPACK_IMPORTED_MODULE_6__.default.openFilterSearchView(controlfilterSearch);
 };
 
 init();

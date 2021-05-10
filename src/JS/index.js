@@ -4,6 +4,7 @@ import recipeView from "./view/recipeView";
 import addRecipeView from "./view/addRecipeView";
 import searchRecipeView from "./view/searchRecipesView";
 import favouritesView from "./view/favouritesView";
+import paginationView from "./view/paginationView";
 import filter from "./view/filterView";
 import regeneratorRuntime, { mark } from "regenerator-runtime";
 import { URL } from "./config.js";

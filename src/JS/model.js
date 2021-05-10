@@ -28,11 +28,14 @@ export const loadRecipe = async function (url) {
     //load recipe object
     const fetchPro = fetch(url, {
       method: "GET",
+      headers: {
+        "Content-type": "application/json",
+      },
     });
     const resp = await Promise.race([fetchPro, timeout(30)]);
-    //console.log(resp);
+    console.log(resp);
     const data = await resp.json();
-    //console.log(data);
+    console.log(data);
 
     //refactoring the recipe object
     const recipeObject = data[0];
@@ -62,6 +65,9 @@ export const searchRecipe = async function (url) {
     //load recipe object
     const fetchPro = fetch(url, {
       method: "GET",
+      headers: {
+        "Content-type": "application/json",
+      },
     });
     const resp = await Promise.race([fetchPro, timeout(30)]);
     //console.log(resp);

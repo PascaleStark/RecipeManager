@@ -100,6 +100,9 @@ class RecipeView extends View {
       .join("")}
   </ul>
 </div>
+</div>
+<div class="recipe-view__url">
+      Source: <a href="${this._data.url}" target="_blank">${this._data.url} </a>
 </div>`;
   }
 }
