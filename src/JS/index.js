@@ -108,6 +108,14 @@ const controlLoadFeatured = async function () {
     ///////////FETCHING HEADER INFORMATION//////////
     const pagInfo = await model.getHeaders(`${URL}/where?featured=1`);
     console.log(pagInfo);
+    const paginationArr = [];
+    for (let i = 0; i < +pagInfo[0]; i++) {
+      const markupPage = `<a href="#" class="pagination__link">${i + 1}</a>`;
+      paginationArr.push(markupPage);
+    }
+    console.log(paginationArr);
+    //paginationView.generatePageMarkup(markupPage);
+    paginationView.renderView(paginationArr);
   } catch (err) {
     console.error(err);
   }

@@ -325,25 +325,6 @@ var getHeaders = /*#__PURE__*/function () {
 
           case 4:
             resp = _context5.sent;
-            //const data = await resp.json();
-            //get headers
-            //Retrieve a Headers object
-            // const headersRead = resp.headers;
-            // const headersObject4 =
-            //   headersRead.forEach((header) => console.log(header)),;
-            // //const headersInfo = Object.entries(headersRead);
-            // //console.log(headersObject);
-            // console.log(headersObject4);
-            //return headersRead;
-            // const headersArr = [];
-            // for (let pair of resp.headers.entries()) {
-            //   console.log(pair[0] + ": " + pair[1]);
-            // }
-            // const headersArr = [];
-            // for (var pair of resp.headers.entries()) {
-            //   headersArr.push(pair[0] + ": " + pair[1]);
-            // }
-            // console.log(headersArr);
             headersObj = {};
             _iterator = _createForOfIteratorHelper(resp.headers.entries());
 
@@ -981,15 +962,23 @@ var PaginationView = /*#__PURE__*/function (_View) {
     value: function renderView(data) {
       this._parentEl.innerHTML = "";
       this._data = data;
+      console.log(data);
 
       this._generateMarkup();
 
       this._parentEl.insertAdjacentHTML("beforeend", this._generateMarkup());
     }
   }, {
+    key: "generatePageMarkup",
+    value: function generatePageMarkup(markup) {
+      return markup;
+    }
+  }, {
     key: "_generateMarkup",
     value: function _generateMarkup() {
-      return "<div class=\"pagination\">\n    <a href=\"#\" class=\"pagination__link\"\n      ><svg class=\"icon pagination__icon\">\n        <use\n          xlink:href=\"./src/img/icons.svg#icon-arrow-thin-left\"\n        ></use></svg\n    ></a>\n    <a href=\"#\" class=\"pagination__link\">1</a>\n    <a href=\"#\" class=\"pagination__link\">2</a>\n    <a href=\"#\" class=\"pagination__link\">3</a>\n    <a href=\"#\" class=\"pagination__link\">4</a>\n    <a href=\"#\" class=\"pagination__link\">5</a>\n    <a href=\"#\" class=\"pagination__link\">6</a>\n    <a href=\"#\" class=\"pagination__link\"\n      ><svg class=\"icon pagination__icon\">\n        <use\n          xlink:href=\"./src/img/icons.svg#icon-arrow-thin-right\"\n        ></use></svg\n    ></a>\n  </div>";
+      return "\n    <a href=\"#\" class=\"pagination__link\"\n      ><svg class=\"icon pagination__icon\">\n        <use\n          xlink:href=\"./src/img/icons.svg#icon-arrow-thin-left\"\n        ></use></svg\n    ></a>\n    ".concat(this._data.map(function (pagEl) {
+        return pagEl;
+      }).join(""), "\n    <a href=\"#\" class=\"pagination__link\"\n      ><svg class=\"icon pagination__icon\">\n        <use\n          xlink:href=\"./src/img/icons.svg#icon-arrow-thin-right\"\n        ></use></svg\n    ></a>\n");
     }
   }]);
 
@@ -2374,7 +2363,7 @@ var controlLoadFavourites = /*#__PURE__*/function () {
 
 var controlLoadFeatured = /*#__PURE__*/function () {
   var _ref6 = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().mark(function _callee6() {
-    var featuredResults, pagInfo;
+    var featuredResults, pagInfo, paginationArr, i, markupPage;
     return regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().wrap(function _callee6$(_context6) {
       while (1) {
         switch (_context6.prev = _context6.next) {
@@ -2399,20 +2388,30 @@ var controlLoadFeatured = /*#__PURE__*/function () {
           case 8:
             pagInfo = _context6.sent;
             console.log(pagInfo);
-            _context6.next = 15;
+            paginationArr = [];
+
+            for (i = 0; i < +pagInfo[0]; i++) {
+              markupPage = "<a href=\"#\" class=\"pagination__link\">".concat(i + 1, "</a>");
+              paginationArr.push(markupPage);
+            }
+
+            console.log(paginationArr); //paginationView.generatePageMarkup(markupPage);
+
+            _view_paginationView__WEBPACK_IMPORTED_MODULE_5__.default.renderView(paginationArr);
+            _context6.next = 19;
             break;
 
-          case 12:
-            _context6.prev = 12;
+          case 16:
+            _context6.prev = 16;
             _context6.t0 = _context6["catch"](0);
             console.error(_context6.t0);
 
-          case 15:
+          case 19:
           case "end":
             return _context6.stop();
         }
       }
-    }, _callee6, null, [[0, 12]]);
+    }, _callee6, null, [[0, 16]]);
   }));
 
   return function controlLoadFeatured() {
