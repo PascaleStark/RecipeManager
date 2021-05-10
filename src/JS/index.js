@@ -56,6 +56,9 @@ const controlSearchRecipe = async function (query) {
     // if (searchResults.length === 0)
     //   throw new Error(`There are no results for your search!`);
     searchRecipeView.renderResultsView(searchResults);
+    ///////////FETCHING HEADER INFORMATION//////////
+    const pagInfo = await model.getHeaders(`${URL}/search?q=${query}`);
+    console.log(pagInfo);
   } catch (err) {
     console.error(err);
   }
@@ -84,6 +87,9 @@ const controlLoadFavourites = async function () {
     // if (searchResults.length === 0)
     //   throw new Error(`There are no results for your search!`);
     favouritesView.renderResultsView(favouritesResults);
+    ///////////FETCHING HEADER INFORMATION//////////
+    const pagInfo = await model.getHeaders(`${URL}/where?favourites=1`);
+    console.log(pagInfo);
   } catch (err) {
     console.error(err);
   }
@@ -99,6 +105,9 @@ const controlLoadFeatured = async function () {
     // if (searchResults.length === 0)
     //   throw new Error(`There are no results for your search!`);
     featuredView.renderResultsView(featuredResults);
+    ///////////FETCHING HEADER INFORMATION//////////
+    const pagInfo = await model.getHeaders(`${URL}/where?featured=1`);
+    console.log(pagInfo);
   } catch (err) {
     console.error(err);
   }

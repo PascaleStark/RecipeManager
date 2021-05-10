@@ -65,14 +65,15 @@ export const searchRecipe = async function (url) {
     //load recipe object
     const fetchPro = fetch(url, {
       method: "GET",
-      headers: {
-        "Content-type": "application/json",
-      },
     });
     const resp = await Promise.race([fetchPro, timeout(30)]);
-    //console.log(resp);
+    console.log(resp);
+    // const headersRead = resp.headers;
+    // headersRead.forEach((header) => console.log(header));
+    // console.log(headers);
     const data = await resp.json();
     console.log(data);
+
     // if (!data) throw new Error(`No recipe is found`);
 
     //refactoring the recipe object
@@ -113,5 +114,45 @@ export const editFavourites = async function (url) {
     return data;
   } catch (err) {
     throw new Error(`Something went wrong, please try again later! ${err}`);
+  }
+};
+
+/////FETCH HEADERS FOR PAGINATION//////
+export const getHeaders = async function (url) {
+  try {
+    //get response
+    const fetchPro = fetch(url, {
+      method: "GET",
+    });
+    const resp = await Promise.race([fetchPro, timeout(30)]);
+    //const data = await resp.json();
+    //get headers
+    //Retrieve a Headers object
+    // const headersRead = resp.headers;
+    // const headersObject4 =
+    //   headersRead.forEach((header) => console.log(header)),;
+    // //const headersInfo = Object.entries(headersRead);
+    // //console.log(headersObject);
+    // console.log(headersObject4);
+    //return headersRead;
+    // const headersArr = [];
+    // for (let pair of resp.headers.entries()) {
+    //   console.log(pair[0] + ": " + pair[1]);
+    // }
+    // const headersArr = [];
+    // for (var pair of resp.headers.entries()) {
+    //   headersArr.push(pair[0] + ": " + pair[1]);
+    // }
+    // console.log(headersArr);
+    const headersObj = {};
+    for (let pair of resp.headers.entries()) {
+      headersObj[pair[0]] = pair[1];
+    }
+    const pagesCount = headersObj["recipes-pagescount"];
+    const totalItems = headersObj["recipes-totalitems"];
+    const paginationInfo = [pagesCount, totalItems];
+    return paginationInfo;
+  } catch (err) {
+    console.log(err);
   }
 };
