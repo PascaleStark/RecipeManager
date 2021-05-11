@@ -8,6 +8,8 @@
     text-decoration: none;
     margin-right: 1.5rem;
     padding: 1.5rem;
+    border: none;
+    cursor: pointer;
 
     &:active {
       background-color: $color-salmon-primary;

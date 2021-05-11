@@ -172,7 +172,9 @@ body {
     color: #5c646c;
     text-decoration: none;
     margin-right: 1.5rem;
-    padding: 1.5rem; }
+    padding: 1.5rem;
+    border: none;
+    cursor: pointer; }
     .pagination__link:active {
       background-color: #ecac8c; }
     .pagination__link:hover {

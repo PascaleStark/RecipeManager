@@ -1,4 +1,5 @@
 import View from "./view.js";
+import { URL } from "../config.js";
 
 class AddRecipeView extends View {
   _body = document.getElementsByTagName("body")[0];
@@ -61,7 +62,7 @@ class AddRecipeView extends View {
       const data = Object.fromEntries(dataArr);
       console.log(data);
       this.reset();
-      handler("http://192.168.4.10:8300/recipes", data);
+      handler(URL, data);
     });
   }
 

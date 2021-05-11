@@ -67,13 +67,7 @@ export const searchRecipe = async function (url) {
       method: "GET",
     });
     const resp = await Promise.race([fetchPro, timeout(30)]);
-    console.log(resp);
-    // const headersRead = resp.headers;
-    // headersRead.forEach((header) => console.log(header));
-    // console.log(headers);
     const data = await resp.json();
-    console.log(data);
-
     // if (!data) throw new Error(`No recipe is found`);
 
     //refactoring the recipe object
