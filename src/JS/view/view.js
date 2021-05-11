@@ -1,6 +1,5 @@
 export default class View {
   _data;
-  _url;
 
   renderSpinner() {
     const spinnerMarkup = `<div class="spinner">
@@ -44,12 +43,12 @@ export default class View {
     if (targetEl) {
       const pageNum = targetEl.dataset.pg;
       console.log(pageNum);
-      handler(`${this._url}${pageNum}`);
+      handler(pageNum);
     }
   }
 
   togglePageView(handler) {
-    this._body.addEventListener(
+    this._parentEl.addEventListener(
       "click",
       this._setRecipePageID.bind(this, handler)
     );

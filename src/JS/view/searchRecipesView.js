@@ -7,16 +7,17 @@ class SearchRecipeView extends View {
   _body = document.getElementsByTagName("body")[0];
   _resultsHeading = document.querySelector(".results__heading");
   _searchForm = document.querySelector(".search");
+  _searchEl = document.querySelector(".search__input");
   _titleView = "Search results";
+  //_url = `${URL}/search?q=${query}&page=`;
 
   _showSearchRecipeView(handler, e) {
-    const searchEl = document.querySelector(".search__input");
     e.preventDefault();
     document
       .querySelector(".results__heading")
       .scrollIntoView({ behavior: "smooth" });
-    const query = searchEl.value;
-    handler(`${URL}/search?q=${query}`);
+    const query = this._searchEl.value;
+    handler(query);
     // searchEl.value = "";
   }
 

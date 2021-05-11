@@ -1,5 +1,15 @@
 import { timeout } from "./helper";
 import regeneratorRuntime, { async } from "regenerator-runtime";
+import { URL } from "./config";
+
+export const state = {
+  recipe: {},
+  search: {
+    query: "",
+  },
+  url: "",
+  pageNum: 1,
+};
 
 export const addRecipe = async function (url, uploadData) {
   try {
@@ -60,7 +70,25 @@ export const loadRecipe = async function (url) {
   }
 };
 
-export const searchRecipe = async function (url) {
+const renderRecipeObj = function (data) {
+  const results = data.map((res) => ({
+    id: res.id,
+    title: res.name,
+    publisher: res.addedBy,
+    category: res.category,
+    prepartionTime: res.prepTime,
+    cookingTime: res.cookingTime,
+    servings: res.servings,
+    url: res.url,
+    ingredients: res.ingredients,
+    directions: res.directions,
+    favourites: res.favourites,
+    featured: res.featured,
+  }));
+  return results;
+};
+
+export const searchRecipes = async function (url, query) {
   try {
     //load recipe object
     const fetchPro = fetch(url, {
@@ -70,22 +98,18 @@ export const searchRecipe = async function (url) {
     const data = await resp.json();
     // if (!data) throw new Error(`No recipe is found`);
 
+    //catch url
+    this.state.url = url;
+    //update query
+    this.state.search.query = query;
     //refactoring the recipe object
-    const recipes = data.map((res) => ({
-      id: res.id,
-      title: res.name,
-      publisher: res.addedBy,
-      category: res.category,
-      prepartionTime: res.prepTime,
-      cookingTime: res.cookingTime,
-      servings: res.servings,
-      url: res.url,
-      ingredients: res.ingredients,
-      directions: res.directions,
-      favourites: res.favourites,
-      featured: res.featured,
-    }));
-    return recipes;
+    this.state.recipe = renderRecipeObj(data);
+    console.log(this.state.recipe);
+    return {
+      recipes: this.state.recipe,
+      query: this.state.search.query,
+      url: this.state.url,
+    };
   } catch (err) {
     console.log(err);
   }
@@ -111,11 +135,31 @@ export const editFavourites = async function (url) {
   }
 };
 
+export const searchRecipesByPage = async function (pageNum) {
+  try {
+    //load recipe object
+    const fetchPro = fetch(`${this.state.url}&page=${pageNum}`, {
+      method: "GET",
+    });
+    const resp = await Promise.race([fetchPro, timeout(30)]);
+    const data = await resp.json();
+    // if (!data) throw new Error(`No recipe is found`);
+    // //refactoring the recipe object
+    this.state.recipe = renderRecipeObj(data);
+    console.log(this.state.recipe);
+    return {
+      recipes: this.state.recipe,
+    };
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 /////FETCH HEADERS FOR PAGINATION//////
-export const getHeaders = async function (url) {
+export const getHeaders = async function () {
   try {
     //get response
-    const fetchPro = fetch(url, {
+    const fetchPro = fetch(`${this.state.url}&page=${this.state.pageNum}`, {
       method: "GET",
     });
     const resp = await Promise.race([fetchPro, timeout(30)]);

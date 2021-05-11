@@ -46,7 +46,7 @@ class FavouritesView extends View {
       document
         .querySelector(".results__heading")
         .scrollIntoView({ behavior: "smooth" });
-      handler(`${URL}/where?favourites=1`);
+      handler();
     });
   }
 }

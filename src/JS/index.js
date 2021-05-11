@@ -40,21 +40,21 @@ const controlrecipeView = async function (url) {
   }
 };
 ////////////////////SEARCH//////////////////////////////
-const controlSearchRecipe = async function (url) {
+const controlSearchRecipe = async function (query) {
   try {
     //1. render spinner
     searchRecipeView.renderSpinner();
     //2. look for all the recipes with the given keyword
-    const searchResults = await model.searchRecipe(url);
+    const searchResults = await model.searchRecipes(
+      `${URL}/search?q=${query}`,
+      query
+    );
     //3. render the recipe cards with pagination
     // if (searchResults.length === 0)
     //   throw new Error(`There are no results for your search!`);
-    searchRecipeView.renderResultsView(searchResults);
+    searchRecipeView.renderResultsView(searchResults.recipes);
     ///////////FETCHING HEADER INFORMATION//////////
-    const pagInfo = await model.getHeaders(url);
-    console.log(pagInfo);
-    controlPagination(pagInfo);
-    searchRecipeView.togglePageView(controlSearchRecipe);
+    fetchHeaderInfo();
   } catch (err) {
     console.error(err);
   }
@@ -71,22 +71,20 @@ const controlFavouriteRecipes = async function (url) {
   }
 };
 
-const controlLoadFavourites = async function (url) {
+const controlLoadFavourites = async function () {
   try {
     //1. render spinner
     favouritesView.renderSpinner();
     //2. look for all the recipes with the given keyword
-    const favouritesResults = await model.searchRecipe(url);
+    const favouritesResults = await model.searchRecipes(
+      `${URL}/where?favourites=1`
+    );
     //3. render the recipe cards with pagination
     // if (searchResults.length === 0)
     //   throw new Error(`There are no results for your search!`);
-    favouritesView.renderResultsView(favouritesResults);
+    favouritesView.renderResultsView(favouritesResults.recipes);
     ///////////FETCHING HEADER INFORMATION//////////
-    const pagInfo = await model.getHeaders(url);
-    console.log(pagInfo);
-    controlPagination(pagInfo);
-    // showPageNumInfo(`${URL}/where?favourites=1`);
-    paginationView.togglePageView(controlLoadFavourites);
+    fetchHeaderInfo();
   } catch (err) {
     console.error(err);
   }
@@ -97,15 +95,15 @@ const controlLoadFeatured = async function () {
     //1. render spinner
     featuredView.renderSpinner();
     //2. look for all the recipes with the given keyword
-    const featuredResults = await model.searchRecipe(`${URL}/where?featured=1`);
+    const featuredResults = await model.searchRecipes(
+      `${URL}/where?featured=1`
+    );
     //3. render the recipe cards with pagination
     // if (searchResults.length === 0)
     //   throw new Error(`There are no results for your search!`);
-    featuredView.renderResultsView(featuredResults);
+    featuredView.renderResultsView(featuredResults.recipes);
     ///////////FETCHING HEADER INFORMATION//////////
-    const pagInfo = await model.getHeaders(`${URL}/where?featured=1`);
-    console.log(pagInfo);
-    controlPagination(pagInfo);
+    fetchHeaderInfo();
   } catch (err) {
     console.error(err);
   }
@@ -128,24 +126,42 @@ const controlfilterSearch = async function (searchQuery, filterQuery) {
     //1. render spinner
     filterView.renderSpinner();
     //2. look for all the recipes with the given keyword
-    const filteredResults = await model.searchRecipe(
+    const filteredResults = await model.searchRecipes(
       `${URL}/search?q=${searchQuery}&filter=category&category=${filterQuery}`
     );
     //3. render the recipe cards with pagination
     // if (searchResults.length === 0)
     //   throw new Error(`There are no results for your search!`);
-    console.log(filteredResults);
-    filterView.renderResultsView(filteredResults);
+    console.log(filteredResults.recipes);
+    filterView.renderResultsView(filteredResults.recipes);
     ///////////FETCHING HEADER INFORMATION//////////
-    const pagInfo = await model.getHeaders(
-      `${URL}/search?q=${searchQuery}&filter=category&category=${filterQuery}`
-    );
-    console.log(pagInfo);
+    fetchHeaderInfo();
     filterView.toggleDropdownFilters();
   } catch (err) {
     console.error(err);
   }
 };
+
+// const controlfilterFavourites = async function (filterQuery) {
+//   try {
+//     //1. render spinner
+//     filterView.renderSpinner();
+//     //2. look for all the recipes with the given keyword
+//     const filteredResults = await model.searchRecipes(
+//       `${URL}/favourites=1&filter=category&category=${filterQuery}`
+//     );
+//     //3. render the recipe cards with pagination
+//     // if (searchResults.length === 0)
+//     //   throw new Error(`There are no results for your search!`);
+//     console.log(filteredResults.recipes);
+//     filterView.renderResultsView(filteredResults.recipes);
+//     ///////////FETCHING HEADER INFORMATION//////////
+//     fetchHeaderInfo();
+//     filterView.toggleDropdownFilters();
+//   } catch (err) {
+//     console.error(err);
+//   }
+// };
 ////////////////////PAGINATION//////////////////////////////
 const controlPagination = function (pagInfo) {
   const paginationArr = [];
@@ -160,9 +176,21 @@ const controlPagination = function (pagInfo) {
   paginationView.renderView(paginationArr);
 };
 
-// const showPageNumInfo = function (url) {
-//   paginationView.togglePageView(url);
-// };
+const controlPaginationNumber = async function (pageNum) {
+  try {
+    const pageResults = await model.searchRecipesByPage(pageNum);
+    searchRecipeView.renderResultsView(pageResults.recipes);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+const fetchHeaderInfo = async function () {
+  const pagInfo = await model.getHeaders();
+  console.log(pagInfo);
+  controlPagination(pagInfo);
+};
+
 //Event handlers using Publisher-Subscriber pattern
 const init = function () {
   recipeView.openRecipeView(controlrecipeView);
@@ -172,8 +200,7 @@ const init = function () {
   favouritesView.openFavouritesView(controlLoadFavourites);
   featuredView.toggleFeatured(controlFeaturedRecipes);
   filterView.openFilterSearchView(controlfilterSearch);
-  // paginationView.togglePageView(controlLoadFavourites);
-  // paginationView.togglePageView(controlSearchRecipe);
+  paginationView.togglePageView(controlPaginationNumber);
 };
 
 init();
