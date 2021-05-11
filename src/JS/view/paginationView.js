@@ -4,26 +4,6 @@ import { URL } from "../config.js";
 
 class PaginationView extends View {
   _parentEl = document.querySelector(".pagination");
-  _paginationViewBtn = document.querySelector(".pagination__link");
-  _body = document.getElementsByTagName("body")[0];
-  _url = `${URL}/where?favourites=1&page=`;
-
-  //   _setRecipePageID(handler, e) {
-  //     const targetEl = e.target.closest(".pagination__link");
-  //     console.log(targetEl);
-  //     if (targetEl) {
-  //       const pageNum = targetEl.dataset.pg;
-  //       console.log(pageNum);
-  //       handler(`${this._url}${pageNum}`);
-  //     }
-  //   }
-
-  //   togglePageView(handler) {
-  //     this._body.addEventListener(
-  //       "click",
-  //       this._setRecipePageID.bind(this, handler)
-  //     );
-  //   }
 
   renderView(data) {
     this._parentEl.innerHTML = "";
