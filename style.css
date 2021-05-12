@@ -211,21 +211,16 @@ body {
   .recipe__card--icon {
     position: absolute;
     top: 1rem;
-    left: 1rem;
-    z-index: 1;
     height: 2.2rem;
     width: 2.2rem;
-    margin-left: 1rem;
-    cursor: pointer; }
+    cursor: pointer;
+    z-index: 2; }
+  .recipe__card--icon-heart {
+    left: 1rem; }
   .recipe__card--icon-star {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    z-index: 1;
-    height: 2.2rem;
-    width: 2.2rem;
-    margin-right: 1rem;
-    cursor: pointer; }
+    right: 50%; }
+  .recipe__card--icon-delete {
+    right: 1rem; }
   .recipe__card--title {
     position: absolute;
     background-color: white;
@@ -250,6 +245,21 @@ body {
     top: 40%;
     right: 50%;
     transform: translateX(50%); }
+  .recipe__card--btn-delete {
+    position: absolute;
+    top: 4rem;
+    right: 2rem;
+    background-color: white;
+    color: #5c646c;
+    border: none;
+    border-radius: 2px;
+    padding: 0.5rem;
+    font-family: inherit;
+    font-size: 1.6;
+    cursor: pointer; }
+    .recipe__card--btn-delete:hover {
+      background-color: #f9f9f9;
+      box-shadow: 0.5rem 0.5rem 1.5rem 3px rgba(250, 250, 250, 0.4); }
   .recipe__card:hover > .recipe__card--img,
   .recipe__card:hover > .recipe__card--title {
     filter: opacity(50%); }

@@ -1342,7 +1342,7 @@ var View = /*#__PURE__*/function () {
   }, {
     key: "_generateMarkup",
     value: function _generateMarkup(result) {
-      return "<div class=\"recipe__card\">\n    <img\n      src=\"./src/img/pizza.jpg\"\n      class=\"recipe__card--img\"\n      alt=\"recipe img\"\n    />\n    <svg class=\"icon-heart recipe__card--icon  ".concat(result.favourites ? "filled-icon" : "empty-icon", "\" data-id=\"").concat(result.id, "\">\n      <use xlink:href=\"./src/img/icons.svg#icon-heart\"></use>\n    </svg>\n    <svg class=\"icon-star recipe__card--icon-star  ").concat(result.featured ? "filled-icon" : "empty-icon", "\" data-id=\"").concat(result.id, "\">\n      <use xlink:href=\"./src/img/icons.svg#icon-star-full\"></use>\n    </svg>\n    <h3 class=\"recipe__card--title heading--tertiary\">").concat(result.title, "</h3>\n    <div class=\"recipe__card--back\" id=\"btn-view\" data-id=\"").concat(result.id, "\">\n      <button class=\"btn recipe__card--btn hidden\" ><span class=\"underline\">View Recipe &rarr;</span></button>\n    </div>\n    </div>");
+      return "<div class=\"recipe__card\">\n    <img\n      src=\"./src/img/pizza.jpg\"\n      class=\"recipe__card--img\"\n      alt=\"recipe img\"\n    />\n    <div class=\"recipe__card--icons\">\n    <svg class=\"icon-heart recipe__card--icon recipe__card--icon-heart ".concat(result.favourites ? "filled-icon" : "empty-icon", "\" data-id=\"").concat(result.id, "\">\n      <use xlink:href=\"./src/img/icons.svg#icon-heart\"></use>\n    </svg>\n    <svg class=\"icon-star recipe__card--icon recipe__card--icon-star  ").concat(result.featured ? "filled-icon" : "empty-icon", "\" data-id=\"").concat(result.id, "\">\n      <use xlink:href=\"./src/img/icons.svg#icon-star-full\"></use>\n    </svg>\n    </div>\n    <svg class=\"icon icon-delete recipe__card--icon recipe__card--icon-delete\">\n      <use xlink:href=\"./src/img/icons.svg#icon-dots-three-horizontal\"></use>\n    </svg>\n    \n    <h3 class=\"recipe__card--title heading--tertiary\">").concat(result.title, "</h3>\n    <div class=\"recipe__card--back\" id=\"btn-view\" data-id=\"").concat(result.id, "\">\n    <button class=\"recipe__card--btn-delete\">DELETE RECIPE</button>\n      <button class=\"btn recipe__card--btn hidden\" ><span class=\"underline\">View Recipe &rarr;</span></button>\n    </div>\n    </div>");
     }
   }]);
 
@@ -2546,27 +2546,52 @@ var controlfilterSearch = /*#__PURE__*/function () {
   return function controlfilterSearch(_x7, _x8) {
     return _ref8.apply(this, arguments);
   };
-}(); // const controlfilterFavourites = async function (filterQuery) {
-//   try {
-//     //1. render spinner
-//     filterView.renderSpinner();
-//     //2. look for all the recipes with the given keyword
-//     const filteredResults = await model.searchRecipes(
-//       `${URL}/favourites=1&filter=category&category=${filterQuery}`
-//     );
-//     //3. render the recipe cards with pagination
-//     // if (searchResults.length === 0)
-//     //   throw new Error(`There are no results for your search!`);
-//     console.log(filteredResults.recipes);
-//     filterView.renderResultsView(filteredResults.recipes);
-//     ///////////FETCHING HEADER INFORMATION//////////
-//     fetchHeaderInfo();
-//     filterView.toggleDropdownFilters();
-//   } catch (err) {
-//     console.error(err);
-//   }
-// };
-////////////////////PAGINATION//////////////////////////////
+}();
+
+var controlfilterFavourites = /*#__PURE__*/function () {
+  var _ref9 = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().mark(function _callee9(filterQuery) {
+    var filteredResults;
+    return regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().wrap(function _callee9$(_context9) {
+      while (1) {
+        switch (_context9.prev = _context9.next) {
+          case 0:
+            _context9.prev = 0;
+            //1. render spinner
+            _view_filterView__WEBPACK_IMPORTED_MODULE_6__.default.renderSpinner(); //2. look for all the recipes with the given keyword
+
+            _context9.next = 4;
+            return _model__WEBPACK_IMPORTED_MODULE_0__.searchRecipes("".concat(_config_js__WEBPACK_IMPORTED_MODULE_8__.URL, "/favourites=1&filter=category&category=").concat(filterQuery));
+
+          case 4:
+            filteredResults = _context9.sent;
+            //3. render the recipe cards with pagination
+            // if (searchResults.length === 0)
+            //   throw new Error(`There are no results for your search!`);
+            console.log(filteredResults.recipes);
+            _view_filterView__WEBPACK_IMPORTED_MODULE_6__.default.renderResultsView(filteredResults.recipes); ///////////FETCHING HEADER INFORMATION//////////
+
+            fetchHeaderInfo();
+            _view_filterView__WEBPACK_IMPORTED_MODULE_6__.default.toggleDropdownFilters();
+            _context9.next = 14;
+            break;
+
+          case 11:
+            _context9.prev = 11;
+            _context9.t0 = _context9["catch"](0);
+            console.error(_context9.t0);
+
+          case 14:
+          case "end":
+            return _context9.stop();
+        }
+      }
+    }, _callee9, null, [[0, 11]]);
+  }));
+
+  return function controlfilterFavourites(_x9) {
+    return _ref9.apply(this, arguments);
+  };
+}(); ////////////////////PAGINATION//////////////////////////////
 
 
 var controlPagination = function controlPagination(pagInfo) {
@@ -2582,65 +2607,65 @@ var controlPagination = function controlPagination(pagInfo) {
 };
 
 var controlPaginationNumber = /*#__PURE__*/function () {
-  var _ref9 = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().mark(function _callee9(pageNum) {
+  var _ref10 = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().mark(function _callee10(pageNum) {
     var pageResults;
-    return regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().wrap(function _callee9$(_context9) {
-      while (1) {
-        switch (_context9.prev = _context9.next) {
-          case 0:
-            _context9.prev = 0;
-            _context9.next = 3;
-            return _model__WEBPACK_IMPORTED_MODULE_0__.searchRecipesByPage(pageNum);
-
-          case 3:
-            pageResults = _context9.sent;
-            _view_searchRecipesView__WEBPACK_IMPORTED_MODULE_3__.default.renderResultsView(pageResults.recipes);
-            _context9.next = 10;
-            break;
-
-          case 7:
-            _context9.prev = 7;
-            _context9.t0 = _context9["catch"](0);
-            console.log(_context9.t0);
-
-          case 10:
-          case "end":
-            return _context9.stop();
-        }
-      }
-    }, _callee9, null, [[0, 7]]);
-  }));
-
-  return function controlPaginationNumber(_x9) {
-    return _ref9.apply(this, arguments);
-  };
-}();
-
-var fetchHeaderInfo = /*#__PURE__*/function () {
-  var _ref10 = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().mark(function _callee10() {
-    var pagInfo;
     return regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().wrap(function _callee10$(_context10) {
       while (1) {
         switch (_context10.prev = _context10.next) {
           case 0:
-            _context10.next = 2;
+            _context10.prev = 0;
+            _context10.next = 3;
+            return _model__WEBPACK_IMPORTED_MODULE_0__.searchRecipesByPage(pageNum);
+
+          case 3:
+            pageResults = _context10.sent;
+            _view_searchRecipesView__WEBPACK_IMPORTED_MODULE_3__.default.renderResultsView(pageResults.recipes);
+            _context10.next = 10;
+            break;
+
+          case 7:
+            _context10.prev = 7;
+            _context10.t0 = _context10["catch"](0);
+            console.log(_context10.t0);
+
+          case 10:
+          case "end":
+            return _context10.stop();
+        }
+      }
+    }, _callee10, null, [[0, 7]]);
+  }));
+
+  return function controlPaginationNumber(_x10) {
+    return _ref10.apply(this, arguments);
+  };
+}();
+
+var fetchHeaderInfo = /*#__PURE__*/function () {
+  var _ref11 = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().mark(function _callee11() {
+    var pagInfo;
+    return regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().wrap(function _callee11$(_context11) {
+      while (1) {
+        switch (_context11.prev = _context11.next) {
+          case 0:
+            _context11.next = 2;
             return _model__WEBPACK_IMPORTED_MODULE_0__.getHeaders();
 
           case 2:
-            pagInfo = _context10.sent;
+            pagInfo = _context11.sent;
             console.log(pagInfo);
             controlPagination(pagInfo);
 
           case 5:
           case "end":
-            return _context10.stop();
+            return _context11.stop();
         }
       }
-    }, _callee10);
+    }, _callee11);
   }));
 
   return function fetchHeaderInfo() {
-    return _ref10.apply(this, arguments);
+    return _ref11.apply(this, arguments);
   };
 }(); //Event handlers using Publisher-Subscriber pattern
 
