@@ -61,18 +61,25 @@ export default class View {
       class="recipe__card--img"
       alt="recipe img"
     />
-    <svg class="icon-heart recipe__card--icon  ${
+    <div class="recipe__card--icons">
+    <svg class="icon-heart recipe__card--icon recipe__card--icon-heart ${
       result.favourites ? "filled-icon" : "empty-icon"
     }" data-id="${result.id}">
       <use xlink:href="./src/img/icons.svg#icon-heart"></use>
     </svg>
-    <svg class="icon-star recipe__card--icon-star  ${
+    <svg class="icon-star recipe__card--icon recipe__card--icon-star  ${
       result.featured ? "filled-icon" : "empty-icon"
     }" data-id="${result.id}">
       <use xlink:href="./src/img/icons.svg#icon-star-full"></use>
     </svg>
+    </div>
+    <svg class="icon icon-delete recipe__card--icon recipe__card--icon-delete">
+      <use xlink:href="./src/img/icons.svg#icon-dots-three-horizontal"></use>
+    </svg>
+    
     <h3 class="recipe__card--title heading--tertiary">${result.title}</h3>
     <div class="recipe__card--back" id="btn-view" data-id="${result.id}">
+    <button class="recipe__card--btn-delete">DELETE RECIPE</button>
       <button class="btn recipe__card--btn hidden" ><span class="underline">View Recipe &rarr;</span></button>
     </div>
     </div>`;

@@ -142,26 +142,26 @@ const controlfilterSearch = async function (searchQuery, filterQuery) {
   }
 };
 
-// const controlfilterFavourites = async function (filterQuery) {
-//   try {
-//     //1. render spinner
-//     filterView.renderSpinner();
-//     //2. look for all the recipes with the given keyword
-//     const filteredResults = await model.searchRecipes(
-//       `${URL}/favourites=1&filter=category&category=${filterQuery}`
-//     );
-//     //3. render the recipe cards with pagination
-//     // if (searchResults.length === 0)
-//     //   throw new Error(`There are no results for your search!`);
-//     console.log(filteredResults.recipes);
-//     filterView.renderResultsView(filteredResults.recipes);
-//     ///////////FETCHING HEADER INFORMATION//////////
-//     fetchHeaderInfo();
-//     filterView.toggleDropdownFilters();
-//   } catch (err) {
-//     console.error(err);
-//   }
-// };
+const controlfilterFavourites = async function (filterQuery) {
+  try {
+    //1. render spinner
+    filterView.renderSpinner();
+    //2. look for all the recipes with the given keyword
+    const filteredResults = await model.searchRecipes(
+      `${URL}/favourites=1&filter=category&category=${filterQuery}`
+    );
+    //3. render the recipe cards with pagination
+    // if (searchResults.length === 0)
+    //   throw new Error(`There are no results for your search!`);
+    console.log(filteredResults.recipes);
+    filterView.renderResultsView(filteredResults.recipes);
+    ///////////FETCHING HEADER INFORMATION//////////
+    fetchHeaderInfo();
+    filterView.toggleDropdownFilters();
+  } catch (err) {
+    console.error(err);
+  }
+};
 ////////////////////PAGINATION//////////////////////////////
 const controlPagination = function (pagInfo) {
   const paginationArr = [];
