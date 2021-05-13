@@ -74,7 +74,7 @@ export default class View {
     </svg>
     </div>
     <svg class="icon icon-delete recipe__card--icon recipe__card--icon-delete">
-      <use xlink:href="./src/img/icons.svg#icon-dots-three-horizontal"></use>
+      <use xlink:href="./src/img/icons.svg#icon-dots-three-vertical"></use>
     </svg>
     
     <h3 class="recipe__card--title heading--tertiary">${result.title}</h3>
