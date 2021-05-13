@@ -218,9 +218,9 @@ body {
   .recipe__card--icon-heart {
     left: 1rem; }
   .recipe__card--icon-star {
-    right: 50%; }
+    right: 4rem; }
   .recipe__card--icon-delete {
-    right: 1rem; }
+    right: 0.1rem; }
   .recipe__card--title {
     position: absolute;
     background-color: white;
