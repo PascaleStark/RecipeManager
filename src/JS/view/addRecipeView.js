@@ -41,7 +41,7 @@ class AddRecipeView extends View {
 
   showMenuView() {
     this._viewMenu.style.display = "block";
-    this._body.classList.remove("my-body-noscroll-class");
+    this._body.classList.add("my-body-noscroll-class");
   }
   _openAddRecipeMenu() {
     this._menuBtn.addEventListener("click", this.showMenuView.bind(this));

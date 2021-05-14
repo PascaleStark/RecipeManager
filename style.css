@@ -47,6 +47,9 @@ body {
 .hidden {
   display: none; }
 
+.blur-back {
+  backdrop-filter: blur(20px); }
+
 .empty-icon {
   fill: rgba(225, 218, 218, 0.6); }
 
@@ -128,6 +131,35 @@ body {
   .list-style li {
     padding: 0.5rem;
     color: #5c646c; }
+
+.modal-alert {
+  position: fixed;
+  top: 20rem;
+  right: 20rem;
+  background-color: #f9f9f9;
+  color: #5c646c;
+  padding: 10rem;
+  font-family: inherit;
+  font-size: 3rem;
+  box-shadow: 0.5rem 0.5rem 1.5rem 3px rgba(0, 0, 0, 0.4);
+  z-index: 8; }
+  .modal-alert__container-btn {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10rem; }
+    .modal-alert__container-btn--btn {
+      font-family: inherit;
+      font-size: 1.6rem;
+      font-weight: bold;
+      color: #5c646c;
+      background-color: #ecac8c;
+      text-transform: uppercase;
+      padding: 1.5rem 1.5rem;
+      border: none;
+      outline: none;
+      cursor: pointer; }
+      .modal-alert__container-btn--btn:hover {
+        box-shadow: 0rem 0rem 0.5rem rgba(0, 0, 0, 0.4); }
 
 .btn {
   display: flex;
@@ -242,22 +274,26 @@ body {
     transition: all 0.1s; }
   .recipe__card--btn {
     position: absolute;
-    top: 40%;
+    top: 60%;
     right: 50%;
     transform: translateX(50%); }
-  .recipe__card--btn-delete {
+  .recipe__card--options {
     position: absolute;
     top: 4rem;
     right: 2rem;
+    list-style-type: none;
+    z-index: 3; }
+  .recipe__card--btn-options {
     background-color: white;
     color: #5c646c;
     border: none;
     border-radius: 2px;
     padding: 0.5rem;
     font-family: inherit;
-    font-size: 1.6;
+    font-size: 1.6rem;
+    border-bottom: 1px solid #5c646c;
     cursor: pointer; }
-    .recipe__card--btn-delete:hover {
+    .recipe__card--btn-options:hover {
       background-color: #f9f9f9;
       box-shadow: 0.5rem 0.5rem 1.5rem 3px rgba(250, 250, 250, 0.4); }
   .recipe__card:hover > .recipe__card--img,
@@ -637,7 +673,7 @@ body {
     font-size: 1.6rem;
     opacity: 0.9;
     cursor: pointer;
-    z-index: 2; }
+    z-index: 10; }
     .dropdown__filters button {
       align-self: stretch;
       text-transform: uppercase;

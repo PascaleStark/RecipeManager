@@ -79,7 +79,10 @@ export default class View {
     
     <h3 class="recipe__card--title heading--tertiary">${result.title}</h3>
     <div class="recipe__card--back" id="btn-view" data-id="${result.id}">
-    <button class="recipe__card--btn-delete">DELETE RECIPE</button>
+    <ul class="recipe__card--options">
+    <li class="recipe__card--btn-options recipe__card--btn-options-delete" id="btn-delete">Delete Recipe</li>
+    <li class="recipe__card--btn-options recipe__card--btn-edit">Edit Recipe</li>
+    </ul>
       <button class="btn recipe__card--btn hidden" ><span class="underline">View Recipe &rarr;</span></button>
     </div>
     </div>`;

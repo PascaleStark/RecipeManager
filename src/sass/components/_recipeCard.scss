@@ -77,22 +77,26 @@
     }
     &--btn {
       position: absolute;
-      top: 40%;
+      top: 60%;
       right: 50%;
       transform: translateX(50%);
     }
-
-    &--btn-delete {
+    &--options {
       position: absolute;
       top: 4rem;
       right: 2rem;
+      list-style-type: none;
+      z-index: 3;
+    }
+    &--btn-options {
       background-color: white;
       color: $color-font-primary;
       border: none;
       border-radius: 2px;
       padding: 0.5rem;
       font-family: inherit;
-      font-size: 1.6;
+      font-size: 1.6rem;
+      border-bottom: 1px solid $color-font-primary;
       cursor: pointer;
 
       &:hover {
