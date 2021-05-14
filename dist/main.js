@@ -1512,7 +1512,7 @@ var View = /*#__PURE__*/function () {
   }, {
     key: "_generateSuccessMarkup",
     value: function _generateSuccessMarkup() {
-      return "<div class=\"sub-message\">\n    <svg class=\"icon icon__close-outline icon__close-form\">\n      <use xlink:href=\"./src/img/icons.svg#icon-close-outline\"></use>\n    </svg>\n\n    <p class=\"sub-message__msg\">\n      <svg class=\"icon sub-message__icon\">\n        <use\n          xlink:href=\"./src/img/icons.svg#icon-checkmark-outline\"\n        ></use>\n      </svg>\n      ".concat(this._successMessage, "\n    </p>\n    <div class=\"sub-message__img\">\n    <!-- https://images.app.goo.gl/csVNcPY99rLkdkKZ8 -->\n      <img src=\"./src/img/balloon.gif\" alt=\"hot-air-balloon\" />\n    </div>\n  </div>");
+      return "\n    <div class=\"sub-message\">\n    <p class=\"sub-message__msg\">\n      <svg class=\"icon sub-message__icon\">\n        <use\n          xlink:href=\"./src/img/icons.svg#icon-checkmark-outline\"\n        ></use>\n      </svg>\n      ".concat(this._successMessage, "\n    </p>\n  </div>\n    </div>\n    ");
     }
   }, {
     key: "_generateMarkup",

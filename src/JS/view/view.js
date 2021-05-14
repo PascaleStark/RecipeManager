@@ -63,11 +63,8 @@ export default class View {
   }
 
   _generateSuccessMarkup() {
-    return `<div class="sub-message">
-    <svg class="icon icon__close-outline icon__close-form">
-      <use xlink:href="./src/img/icons.svg#icon-close-outline"></use>
-    </svg>
-
+    return `
+    <div class="sub-message">
     <p class="sub-message__msg">
       <svg class="icon sub-message__icon">
         <use
@@ -76,11 +73,9 @@ export default class View {
       </svg>
       ${this._successMessage}
     </p>
-    <div class="sub-message__img">
-    <!-- https://images.app.goo.gl/csVNcPY99rLkdkKZ8 -->
-      <img src="./src/img/balloon.gif" alt="hot-air-balloon" />
+  </div>
     </div>
-  </div>`;
+    `;
   }
 
   _generateMarkup(result) {
