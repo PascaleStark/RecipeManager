@@ -3,81 +3,52 @@ import View from "./view.js";
 import { URL } from "../config.js";
 
 class AlertView extends View {
-  _parentEl = document.querySelector(".modal-alert");
+  _parentEl = document.querySelector(".modal-view__msg");
   _deleteRecipeBtn = document.querySelector(
     ".recipe__card--btn-options-delete"
   );
   _viewRecipeBtn = document.querySelector(".recipe__card--btn");
   _body = document.getElementsByTagName("body")[0];
   _recipeContainer = document.querySelector(".recipe__container");
-  _recipeView = document.querySelector(".recipe-view");
+  _cancelBtn = document.querySelector(".modal-view__container-btn--btn-cancel");
+  _yesBtn = document.querySelector(".modal-view__container-btn--btn-yes");
+  _successMessage = "Your recipe has been deleted successfully!";
 
   constructor() {
     super();
-    this.showAlertMsg();
+    // this.showAlertMsg();
+    this.hideAlertMsg();
   }
 
-  showAlertMsg() {
+  showAlertMsg(handler) {
     this._recipeContainer.addEventListener(
       "click",
-      this._openAlertMsg.bind(this)
+      this._openAlertMsg.bind(this, handler)
     );
   }
 
-  _openAlertMsg(e) {
+  _openAlertMsg(handler, e) {
     const targetEl = e.target.closest("#btn-delete");
     if (targetEl && targetEl.id === "btn-delete") {
-      this._parentEl.classList.remove("hidden");
-      this._parentEl.classList.add("blur-back");
-      this._body.classList.add("my-body-noscroll-class");
+      this.showModalView();
+      const deleteID = targetEl.dataset.id;
+      //   console.log(deleteID);
+      handler(deleteID);
     }
   }
-  //   openRecipeView(handler) {
-  //     this._body.addEventListener("click", this._setRecipeID.bind(this, handler));
-  //   }
 
-  //FOR THE YES BUTTON CLICK
-  // _setRecipeID(handler, e) {
-  //   const targetEl = e.target.closest("#btn-delete");
-  //   console.log(targetEl);
-  //   if (targetEl) {
-  //     const id = targetEl.dataset.id;
-  //     this.openAlertMsg();
-  //     handler(`${URL}/where?id=${id}`);
-  //   }
-  // }
+  hideAlertMsg() {
+    this._cancelBtn.addEventListener("click", this._closeAlertMsg.bind(this));
+  }
 
-  //   _closeRecipeView() {
-  //     const self = this;
-  //     this._parentEl.addEventListener("click", function (e) {
-  //       if (e.target && e.target.id === "closeModal") self.hideModalView();
-  //     });
-  //   }
+  _closeAlertMsg() {
+    this.hideModalView();
+  }
 
-  _generateMarkup() {
-    return `<div class="modal-alert">
-    <div class="modal-alert__msg">
-      <p>Are you sure you want to delete this recipe?</p>
-      <div class="modal-alert__container-btn">
-        <button
-          class="
-            modal-alert__container-btn--btn
-            modal-alert__container-btn--btn-cancel
-          "
-        >
-          Cancel
-        </button>
-        <button
-          class="
-            modal-alert__container-btn--btn
-            modal-alert__container-btn--btn-yes
-          "
-        >
-          yes
-        </button>
-      </div>
-    </div>
-  </div>`;
+  deleteRecipeHandler(handler) {
+    this._yesBtn.addEventListener("click", function () {
+      handler();
+    });
   }
 }
 

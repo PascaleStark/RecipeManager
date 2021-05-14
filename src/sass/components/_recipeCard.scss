@@ -86,22 +86,24 @@
       top: 4rem;
       right: 2rem;
       list-style-type: none;
+      background-color: $color-grey-lighter;
+      border-radius: 2px;
       z-index: 3;
     }
     &--btn-options {
-      background-color: white;
       color: $color-font-primary;
       border: none;
-      border-radius: 2px;
+
       padding: 0.5rem;
       font-family: inherit;
       font-size: 1.6rem;
-      border-bottom: 1px solid $color-font-primary;
+
       cursor: pointer;
 
       &:hover {
         background-color: $color-grey-lighter;
         box-shadow: 0.5rem 0.5rem 1.5rem 3px rgba(250, 250, 250, 0.4);
+        border-bottom: 1px solid $color-font-primary;
       }
     }
 

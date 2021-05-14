@@ -12,6 +12,7 @@ class AddRecipeView extends View {
   _viewMenu = document.querySelector(".menu-section");
   _addRecipeMenuBtn = document.querySelector(".addrecipe");
   _closeMenu = document.querySelector(".menu-view__icon");
+  _successMessage = "Your recipe has been posted successfully!";
 
   constructor() {
     super();
@@ -64,33 +65,6 @@ class AddRecipeView extends View {
       this.reset();
       handler(URL, data);
     });
-  }
-
-  renderView() {
-    this._parentEl.innerHTML = "";
-    this._generateMarkup();
-    this._parentEl.insertAdjacentHTML("beforeend", this._generateMarkup());
-  }
-
-  _generateMarkup() {
-    return `<div class="sub-message">
-    <svg class="icon icon__close-outline icon__close-form">
-      <use xlink:href="./src/img/icons.svg#icon-close-outline"></use>
-    </svg>
-
-    <p class="sub-message__msg">
-      <svg class="icon sub-message__icon">
-        <use
-          xlink:href="./src/img/icons.svg#icon-checkmark-outline"
-        ></use>
-      </svg>
-      Your recipe has been posted successfully!
-    </p>
-    <div class="sub-message__img">
-    <!-- https://images.app.goo.gl/csVNcPY99rLkdkKZ8 -->
-      <img src="./src/img/balloon.gif" alt="hot-air-balloon" />
-    </div>
-  </div>`;
   }
 }
 

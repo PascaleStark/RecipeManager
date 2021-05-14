@@ -360,23 +360,27 @@
       </svg>
     </div> -->
 
-    <div class="modal-alert hidden">
-      <div class="modal-alert__msg">
-        <p>Are you sure you want to delete this recipe?</p>
-        <div class="modal-alert__container-btn">
+    <div class="modal-view">
+      <div class="modal-view__msg  hidden">
+        <p></p>
+          <svg class="icon">
+            <use xlink:href="./src/img/icons.svg#icon-warning"></use></svg
+          >Are you sure you want to delete this recipe?
+        </p>
+        <div class="modal-view__container-btn">
           <button
             class="
-              modal-alert__container-btn--btn
-              modal-alert__container-btn--btn-cancel
+              modal-view__container-btn--btn
+              modal-view__container-btn--btn-cancel
             "
           >
             Cancel
           </button>
           <button
             class="
-              modal-alert__container-btn--btn
-              modal-alert__container-btn--btn-yes
-            "
+              modal-view__container-btn--btn
+              modal-view__container-btn--btn-yes
+            " id = "btn-confirm" data-id = ""
           >
             yes
           </button>

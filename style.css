@@ -47,9 +47,6 @@ body {
 .hidden {
   display: none; }
 
-.blur-back {
-  backdrop-filter: blur(20px); }
-
 .empty-icon {
   fill: rgba(225, 218, 218, 0.6); }
 
@@ -132,22 +129,32 @@ body {
     padding: 0.5rem;
     color: #5c646c; }
 
-.modal-alert {
-  position: fixed;
-  top: 20rem;
-  right: 20rem;
-  background-color: #f9f9f9;
-  color: #5c646c;
-  padding: 10rem;
-  font-family: inherit;
-  font-size: 3rem;
-  box-shadow: 0.5rem 0.5rem 1.5rem 3px rgba(0, 0, 0, 0.4);
+.modal-view {
   z-index: 8; }
-  .modal-alert__container-btn {
+  .modal-view__msg {
+    display: none;
+    position: relative;
+    background-color: #f9f9f9;
+    margin: 12rem 0;
+    width: 75vw;
+    padding: 3rem 4rem;
+    border-radius: 3px;
+    box-shadow: 0.5rem 0.5rem 1.5rem 3px rgba(0, 0, 0, 0.4);
+    height: 100%;
+    top: 10rem;
+    width: 50%;
+    font-size: 3rem;
+    margin-bottom: 50rem; }
+    .modal-view__msg svg {
+      height: 3.5rem;
+      width: 3.5rem;
+      margin-right: 2rem;
+      transform: translateY(0.5rem); }
+  .modal-view__container-btn {
     display: flex;
     justify-content: space-around;
     margin-top: 10rem; }
-    .modal-alert__container-btn--btn {
+    .modal-view__container-btn--btn {
       font-family: inherit;
       font-size: 1.6rem;
       font-weight: bold;
@@ -158,7 +165,7 @@ body {
       border: none;
       outline: none;
       cursor: pointer; }
-      .modal-alert__container-btn--btn:hover {
+      .modal-view__container-btn--btn:hover {
         box-shadow: 0rem 0rem 0.5rem rgba(0, 0, 0, 0.4); }
 
 .btn {
@@ -282,20 +289,20 @@ body {
     top: 4rem;
     right: 2rem;
     list-style-type: none;
+    background-color: #f9f9f9;
+    border-radius: 2px;
     z-index: 3; }
   .recipe__card--btn-options {
-    background-color: white;
     color: #5c646c;
     border: none;
-    border-radius: 2px;
     padding: 0.5rem;
     font-family: inherit;
     font-size: 1.6rem;
-    border-bottom: 1px solid #5c646c;
     cursor: pointer; }
     .recipe__card--btn-options:hover {
       background-color: #f9f9f9;
-      box-shadow: 0.5rem 0.5rem 1.5rem 3px rgba(250, 250, 250, 0.4); }
+      box-shadow: 0.5rem 0.5rem 1.5rem 3px rgba(250, 250, 250, 0.4);
+      border-bottom: 1px solid #5c646c; }
   .recipe__card:hover > .recipe__card--img,
   .recipe__card:hover > .recipe__card--title {
     filter: opacity(50%); }
