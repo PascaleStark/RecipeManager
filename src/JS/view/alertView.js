@@ -28,7 +28,7 @@ class AlertView extends View {
     const targetEl = e.target.closest("#btn-delete");
     if (targetEl && targetEl.id === "btn-delete") {
       this._parentEl.classList.remove("hidden");
-      this._body.classList.add("blur-back");
+      this._parentEl.classList.add("blur-back");
       this._body.classList.add("my-body-noscroll-class");
     }
   }

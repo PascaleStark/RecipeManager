@@ -29,8 +29,7 @@ class RecipeView extends View {
     if (
       targetEl &&
       targetEl.id === "btn-view" &&
-      targetEl.id !== "btn-delete" &&
-      targetEl === this._viewRecipeBtn
+      targetEl.id !== "btn-delete"
     ) {
       const id = targetEl.dataset.id;
       this.showModalView();

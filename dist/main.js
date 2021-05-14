@@ -694,7 +694,7 @@ var AlertView = /*#__PURE__*/function (_View) {
       if (targetEl && targetEl.id === "btn-delete") {
         this._parentEl.classList.remove("hidden");
 
-        this._body.classList.add("blur-back");
+        this._parentEl.classList.add("blur-back");
 
         this._body.classList.add("my-body-noscroll-class");
       }
@@ -1243,7 +1243,7 @@ var RecipeView = /*#__PURE__*/function (_View) {
       var targetEl = e.target.closest("#btn-view");
       console.log(targetEl);
 
-      if (targetEl && targetEl.id === "btn-view" && targetEl.id !== "btn-delete" && targetEl === this._viewRecipeBtn) {
+      if (targetEl && targetEl.id === "btn-view" && targetEl.id !== "btn-delete") {
         var id = targetEl.dataset.id;
         this.showModalView();
         handler("".concat(_config_js__WEBPACK_IMPORTED_MODULE_2__.URL, "/where?id=").concat(id));
