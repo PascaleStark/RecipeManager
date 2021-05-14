@@ -22,7 +22,7 @@ const controlAddRecipe = async function (url, uploadData) {
     const result = await model.addRecipe(url, uploadData);
     console.log(result);
     //2. Render Success Message
-    addRecipeView.renderView();
+    addRecipeView.renderSuccessMessage();
   } catch (err) {
     console.log(err);
   }
@@ -191,7 +191,21 @@ const fetchHeaderInfo = async function () {
   console.log(pagInfo);
   controlPagination(pagInfo);
 };
+////////////////////DELETE RECIPE//////////////////////////////
+const controlDeleteRecipe = async function () {
+  try {
+    const deleteRec = await model.deleteRecipe();
+    console.log(deleteRec);
+    //render success message
+    alertView.renderSuccessMessage();
+  } catch (err) {
+    console.log(err);
+  }
+};
 
+const controlSetDeleteID = function (id) {
+  model.setDeleteID(id);
+};
 //Event handlers using Publisher-Subscriber pattern
 const init = function () {
   recipeView.openRecipeView(controlrecipeView);
@@ -202,6 +216,8 @@ const init = function () {
   featuredView.toggleFeatured(controlFeaturedRecipes);
   filterView.openFilterSearchView(controlfilterSearch);
   paginationView.togglePageView(controlPaginationNumber);
+  alertView.showAlertMsg(controlSetDeleteID);
+  alertView.deleteRecipeHandler(controlDeleteRecipe);
 };
 
 init();

@@ -52,7 +52,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "searchRecipes": () => (/* binding */ searchRecipes),
 /* harmony export */   "editFavourites": () => (/* binding */ editFavourites),
 /* harmony export */   "searchRecipesByPage": () => (/* binding */ searchRecipesByPage),
-/* harmony export */   "getHeaders": () => (/* binding */ getHeaders)
+/* harmony export */   "getHeaders": () => (/* binding */ getHeaders),
+/* harmony export */   "setDeleteID": () => (/* binding */ setDeleteID),
+/* harmony export */   "deleteRecipe": () => (/* binding */ deleteRecipe)
 /* harmony export */ });
 /* harmony import */ var _helper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./helper */ "./src/JS/helper.js");
 /* harmony import */ var regenerator_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! regenerator-runtime */ "./node_modules/regenerator-runtime/runtime.js");
@@ -77,7 +79,8 @@ var state = {
     query: ""
   },
   url: "",
-  pageNum: 1
+  pageNum: 1,
+  deleteID: ""
 };
 var addRecipe = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee(url, uploadData) {
@@ -430,6 +433,55 @@ var getHeaders = /*#__PURE__*/function () {
     return _ref6.apply(this, arguments);
   };
 }();
+var setDeleteID = function setDeleteID(id) {
+  this.state.deleteID = id;
+};
+var deleteRecipe = /*#__PURE__*/function () {
+  var _ref7 = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee7() {
+    var fetchPro, resp;
+    return regenerator_runtime__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee7$(_context7) {
+      while (1) {
+        switch (_context7.prev = _context7.next) {
+          case 0:
+            _context7.prev = 0;
+            //send delete request
+            fetchPro = fetch("".concat(_config__WEBPACK_IMPORTED_MODULE_2__.URL, "/delete/").concat(this.state.deleteID), {
+              method: "DELETE"
+            });
+            _context7.next = 4;
+            return Promise.race([fetchPro, (0,_helper__WEBPACK_IMPORTED_MODULE_0__.timeout)(30)]);
+
+          case 4:
+            resp = _context7.sent;
+
+            if (resp.ok) {
+              _context7.next = 7;
+              break;
+            }
+
+            throw new Error("Could not delete this recipe, please try again later! ".concat(resp.status));
+
+          case 7:
+            console.log(resp);
+            return _context7.abrupt("return", resp);
+
+          case 11:
+            _context7.prev = 11;
+            _context7.t0 = _context7["catch"](0);
+            console.log(_context7.t0);
+
+          case 14:
+          case "end":
+            return _context7.stop();
+        }
+      }
+    }, _callee7, this, [[0, 11]]);
+  }));
+
+  return function deleteRecipe() {
+    return _ref7.apply(this, arguments);
+  };
+}();
 
 /***/ }),
 
@@ -517,6 +569,8 @@ var AddRecipeView = /*#__PURE__*/function (_View) {
 
     _defineProperty(_assertThisInitialized(_this), "_closeMenu", document.querySelector(".menu-view__icon"));
 
+    _defineProperty(_assertThisInitialized(_this), "_successMessage", "Your recipe has been posted successfully!");
+
     _this._openAddRecipeView();
 
     _this._closeAddRecipeView();
@@ -586,20 +640,6 @@ var AddRecipeView = /*#__PURE__*/function (_View) {
         handler(_config_js__WEBPACK_IMPORTED_MODULE_1__.URL, data);
       });
     }
-  }, {
-    key: "renderView",
-    value: function renderView() {
-      this._parentEl.innerHTML = "";
-
-      this._generateMarkup();
-
-      this._parentEl.insertAdjacentHTML("beforeend", this._generateMarkup());
-    }
-  }, {
-    key: "_generateMarkup",
-    value: function _generateMarkup() {
-      return "<div class=\"sub-message\">\n    <svg class=\"icon icon__close-outline icon__close-form\">\n      <use xlink:href=\"./src/img/icons.svg#icon-close-outline\"></use>\n    </svg>\n\n    <p class=\"sub-message__msg\">\n      <svg class=\"icon sub-message__icon\">\n        <use\n          xlink:href=\"./src/img/icons.svg#icon-checkmark-outline\"\n        ></use>\n      </svg>\n      Your recipe has been posted successfully!\n    </p>\n    <div class=\"sub-message__img\">\n    <!-- https://images.app.goo.gl/csVNcPY99rLkdkKZ8 -->\n      <img src=\"./src/img/balloon.gif\" alt=\"hot-air-balloon\" />\n    </div>\n  </div>";
-    }
   }]);
 
   return AddRecipeView;
@@ -662,9 +702,9 @@ var AlertView = /*#__PURE__*/function (_View) {
 
     _classCallCheck(this, AlertView);
 
-    _this = _super.call(this);
+    _this = _super.call(this); // this.showAlertMsg();
 
-    _defineProperty(_assertThisInitialized(_this), "_parentEl", document.querySelector(".modal-alert"));
+    _defineProperty(_assertThisInitialized(_this), "_parentEl", document.querySelector(".modal-view__msg"));
 
     _defineProperty(_assertThisInitialized(_this), "_deleteRecipeBtn", document.querySelector(".recipe__card--btn-options-delete"));
 
@@ -674,54 +714,50 @@ var AlertView = /*#__PURE__*/function (_View) {
 
     _defineProperty(_assertThisInitialized(_this), "_recipeContainer", document.querySelector(".recipe__container"));
 
-    _defineProperty(_assertThisInitialized(_this), "_recipeView", document.querySelector(".recipe-view"));
+    _defineProperty(_assertThisInitialized(_this), "_cancelBtn", document.querySelector(".modal-view__container-btn--btn-cancel"));
 
-    _this.showAlertMsg();
+    _defineProperty(_assertThisInitialized(_this), "_yesBtn", document.querySelector(".modal-view__container-btn--btn-yes"));
+
+    _defineProperty(_assertThisInitialized(_this), "_successMessage", "Your recipe has been deleted successfully!");
+
+    _this.hideAlertMsg();
 
     return _this;
   }
 
   _createClass(AlertView, [{
     key: "showAlertMsg",
-    value: function showAlertMsg() {
-      this._recipeContainer.addEventListener("click", this._openAlertMsg.bind(this));
+    value: function showAlertMsg(handler) {
+      this._recipeContainer.addEventListener("click", this._openAlertMsg.bind(this, handler));
     }
   }, {
     key: "_openAlertMsg",
-    value: function _openAlertMsg(e) {
+    value: function _openAlertMsg(handler, e) {
       var targetEl = e.target.closest("#btn-delete");
 
       if (targetEl && targetEl.id === "btn-delete") {
-        this._parentEl.classList.remove("hidden");
+        this.showModalView();
+        var deleteID = targetEl.dataset.id; //   console.log(deleteID);
 
-        this._parentEl.classList.add("blur-back");
-
-        this._body.classList.add("my-body-noscroll-class");
+        handler(deleteID);
       }
-    } //   openRecipeView(handler) {
-    //     this._body.addEventListener("click", this._setRecipeID.bind(this, handler));
-    //   }
-    //FOR THE YES BUTTON CLICK
-    // _setRecipeID(handler, e) {
-    //   const targetEl = e.target.closest("#btn-delete");
-    //   console.log(targetEl);
-    //   if (targetEl) {
-    //     const id = targetEl.dataset.id;
-    //     this.openAlertMsg();
-    //     handler(`${URL}/where?id=${id}`);
-    //   }
-    // }
-    //   _closeRecipeView() {
-    //     const self = this;
-    //     this._parentEl.addEventListener("click", function (e) {
-    //       if (e.target && e.target.id === "closeModal") self.hideModalView();
-    //     });
-    //   }
-
+    }
   }, {
-    key: "_generateMarkup",
-    value: function _generateMarkup() {
-      return "<div class=\"modal-alert\">\n    <div class=\"modal-alert__msg\">\n      <p>Are you sure you want to delete this recipe?</p>\n      <div class=\"modal-alert__container-btn\">\n        <button\n          class=\"\n            modal-alert__container-btn--btn\n            modal-alert__container-btn--btn-cancel\n          \"\n        >\n          Cancel\n        </button>\n        <button\n          class=\"\n            modal-alert__container-btn--btn\n            modal-alert__container-btn--btn-yes\n          \"\n        >\n          yes\n        </button>\n      </div>\n    </div>\n  </div>";
+    key: "hideAlertMsg",
+    value: function hideAlertMsg() {
+      this._cancelBtn.addEventListener("click", this._closeAlertMsg.bind(this));
+    }
+  }, {
+    key: "_closeAlertMsg",
+    value: function _closeAlertMsg() {
+      this.hideModalView();
+    }
+  }, {
+    key: "deleteRecipeHandler",
+    value: function deleteRecipeHandler(handler) {
+      this._yesBtn.addEventListener("click", function () {
+        handler();
+      });
     }
   }]);
 
@@ -1467,9 +1503,21 @@ var View = /*#__PURE__*/function () {
       this._parentEl.addEventListener("click", this._setRecipePageID.bind(this, handler));
     }
   }, {
+    key: "renderSuccessMessage",
+    value: function renderSuccessMessage() {
+      this._parentEl.innerHTML = "";
+
+      this._parentEl.insertAdjacentHTML("beforeend", this._generateSuccessMarkup());
+    }
+  }, {
+    key: "_generateSuccessMarkup",
+    value: function _generateSuccessMarkup() {
+      return "<div class=\"sub-message\">\n    <svg class=\"icon icon__close-outline icon__close-form\">\n      <use xlink:href=\"./src/img/icons.svg#icon-close-outline\"></use>\n    </svg>\n\n    <p class=\"sub-message__msg\">\n      <svg class=\"icon sub-message__icon\">\n        <use\n          xlink:href=\"./src/img/icons.svg#icon-checkmark-outline\"\n        ></use>\n      </svg>\n      ".concat(this._successMessage, "\n    </p>\n    <div class=\"sub-message__img\">\n    <!-- https://images.app.goo.gl/csVNcPY99rLkdkKZ8 -->\n      <img src=\"./src/img/balloon.gif\" alt=\"hot-air-balloon\" />\n    </div>\n  </div>");
+    }
+  }, {
     key: "_generateMarkup",
     value: function _generateMarkup(result) {
-      return "<div class=\"recipe__card\">\n    <img\n      src=\"./src/img/pizza.jpg\"\n      class=\"recipe__card--img\"\n      alt=\"recipe img\"\n    />\n    <div class=\"recipe__card--icons\">\n    <svg class=\"icon-heart recipe__card--icon recipe__card--icon-heart ".concat(result.favourites ? "filled-icon" : "empty-icon", "\" data-id=\"").concat(result.id, "\">\n      <use xlink:href=\"./src/img/icons.svg#icon-heart\"></use>\n    </svg>\n    <svg class=\"icon-star recipe__card--icon recipe__card--icon-star  ").concat(result.featured ? "filled-icon" : "empty-icon", "\" data-id=\"").concat(result.id, "\">\n      <use xlink:href=\"./src/img/icons.svg#icon-star-full\"></use>\n    </svg>\n    </div>\n    <svg class=\"icon icon-delete recipe__card--icon recipe__card--icon-delete\">\n      <use xlink:href=\"./src/img/icons.svg#icon-dots-three-vertical\"></use>\n    </svg>\n    \n    <h3 class=\"recipe__card--title heading--tertiary\">").concat(result.title, "</h3>\n    <div class=\"recipe__card--back\" id=\"btn-view\" data-id=\"").concat(result.id, "\">\n    <ul class=\"recipe__card--options\">\n    <li class=\"recipe__card--btn-options recipe__card--btn-options-delete\" id=\"btn-delete\">Delete Recipe</li>\n    <li class=\"recipe__card--btn-options recipe__card--btn-edit\">Edit Recipe</li>\n    </ul>\n      <button class=\"btn recipe__card--btn hidden\" ><span class=\"underline\">View Recipe &rarr;</span></button>\n    </div>\n    </div>");
+      return "<div class=\"recipe__card\">\n    <img\n      src=\"./src/img/pizza.jpg\"\n      class=\"recipe__card--img\"\n      alt=\"recipe img\"\n    />\n    <div class=\"recipe__card--icons\">\n    <svg class=\"icon-heart recipe__card--icon recipe__card--icon-heart ".concat(result.favourites ? "filled-icon" : "empty-icon", "\" data-id=\"").concat(result.id, "\">\n      <use xlink:href=\"./src/img/icons.svg#icon-heart\"></use>\n    </svg>\n    <svg class=\"icon-star recipe__card--icon recipe__card--icon-star  ").concat(result.featured ? "filled-icon" : "empty-icon", "\" data-id=\"").concat(result.id, "\">\n      <use xlink:href=\"./src/img/icons.svg#icon-star-full\"></use>\n    </svg>\n    </div>\n    <svg class=\"icon icon-delete recipe__card--icon recipe__card--icon-delete\">\n      <use xlink:href=\"./src/img/icons.svg#icon-dots-three-vertical\"></use>\n    </svg>\n    \n    <h3 class=\"recipe__card--title heading--tertiary\">").concat(result.title, "</h3>\n    <div class=\"recipe__card--back\">\n    <ul class=\"recipe__card--options\">\n    <li class=\"recipe__card--btn-options recipe__card--btn-options-delete\" id=\"btn-delete\" data-id=\"").concat(result.id, "\">Delete Recipe</li>\n    <li class=\"recipe__card--btn-options recipe__card--btn-edit\">Edit Recipe</li>\n    </ul>\n    <div id=\"btn-view\" data-id=\"").concat(result.id, "\">\n    <button class=\"btn recipe__card--btn hidden\"><span class=\"underline\">View Recipe &rarr;</span></button>\n    </div>\n      \n    </div>\n    </div>");
     }
   }]);
 
@@ -2364,7 +2412,7 @@ var controlAddRecipe = /*#__PURE__*/function () {
             result = _context.sent;
             console.log(result); //2. Render Success Message
 
-            _view_addRecipeView__WEBPACK_IMPORTED_MODULE_2__.default.renderView();
+            _view_addRecipeView__WEBPACK_IMPORTED_MODULE_2__.default.renderSuccessMessage();
             _context.next = 12;
             break;
 
@@ -2771,7 +2819,49 @@ var fetchHeaderInfo = /*#__PURE__*/function () {
   return function fetchHeaderInfo() {
     return _ref10.apply(this, arguments);
   };
-}(); //Event handlers using Publisher-Subscriber pattern
+}(); ////////////////////DELETE RECIPE//////////////////////////////
+
+
+var controlDeleteRecipe = /*#__PURE__*/function () {
+  var _ref11 = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_8___default().mark(function _callee11() {
+    var deleteRec;
+    return regenerator_runtime__WEBPACK_IMPORTED_MODULE_8___default().wrap(function _callee11$(_context11) {
+      while (1) {
+        switch (_context11.prev = _context11.next) {
+          case 0:
+            _context11.prev = 0;
+            _context11.next = 3;
+            return _model__WEBPACK_IMPORTED_MODULE_0__.deleteRecipe();
+
+          case 3:
+            deleteRec = _context11.sent;
+            console.log(deleteRec); //render success message
+
+            _view_alertView__WEBPACK_IMPORTED_MODULE_6__.default.renderSuccessMessage();
+            _context11.next = 11;
+            break;
+
+          case 8:
+            _context11.prev = 8;
+            _context11.t0 = _context11["catch"](0);
+            console.log(_context11.t0);
+
+          case 11:
+          case "end":
+            return _context11.stop();
+        }
+      }
+    }, _callee11, null, [[0, 8]]);
+  }));
+
+  return function controlDeleteRecipe() {
+    return _ref11.apply(this, arguments);
+  };
+}();
+
+var controlSetDeleteID = function controlSetDeleteID(id) {
+  _model__WEBPACK_IMPORTED_MODULE_0__.setDeleteID(id);
+}; //Event handlers using Publisher-Subscriber pattern
 
 
 var init = function init() {
@@ -2783,6 +2873,8 @@ var init = function init() {
   _view_featuredView__WEBPACK_IMPORTED_MODULE_10__.default.toggleFeatured(controlFeaturedRecipes);
   _view_filterView__WEBPACK_IMPORTED_MODULE_7__.default.openFilterSearchView(controlfilterSearch);
   _view_paginationView__WEBPACK_IMPORTED_MODULE_5__.default.togglePageView(controlPaginationNumber);
+  _view_alertView__WEBPACK_IMPORTED_MODULE_6__.default.showAlertMsg(controlSetDeleteID);
+  _view_alertView__WEBPACK_IMPORTED_MODULE_6__.default.deleteRecipeHandler(controlDeleteRecipe);
 };
 
 init();

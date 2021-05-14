@@ -9,6 +9,7 @@ export const state = {
   },
   url: "",
   pageNum: 1,
+  deleteID: "",
 };
 
 export const addRecipe = async function (url, uploadData) {
@@ -171,6 +172,28 @@ export const getHeaders = async function () {
     const totalItems = headersObj["recipes-totalitems"];
     const paginationInfo = [pagesCount, totalItems];
     return paginationInfo;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const setDeleteID = function (id) {
+  this.state.deleteID = id;
+};
+
+export const deleteRecipe = async function () {
+  try {
+    //send delete request
+    const fetchPro = fetch(`${URL}/delete/${this.state.deleteID}`, {
+      method: "DELETE",
+    });
+    const resp = await Promise.race([fetchPro, timeout(30)]);
+    if (!resp.ok)
+      throw new Error(
+        `Could not delete this recipe, please try again later! ${resp.status}`
+      );
+    console.log(resp);
+    return resp;
   } catch (err) {
     console.log(err);
   }

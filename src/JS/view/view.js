@@ -54,6 +54,35 @@ export default class View {
     );
   }
 
+  renderSuccessMessage() {
+    this._parentEl.innerHTML = "";
+    this._parentEl.insertAdjacentHTML(
+      "beforeend",
+      this._generateSuccessMarkup()
+    );
+  }
+
+  _generateSuccessMarkup() {
+    return `<div class="sub-message">
+    <svg class="icon icon__close-outline icon__close-form">
+      <use xlink:href="./src/img/icons.svg#icon-close-outline"></use>
+    </svg>
+
+    <p class="sub-message__msg">
+      <svg class="icon sub-message__icon">
+        <use
+          xlink:href="./src/img/icons.svg#icon-checkmark-outline"
+        ></use>
+      </svg>
+      ${this._successMessage}
+    </p>
+    <div class="sub-message__img">
+    <!-- https://images.app.goo.gl/csVNcPY99rLkdkKZ8 -->
+      <img src="./src/img/balloon.gif" alt="hot-air-balloon" />
+    </div>
+  </div>`;
+  }
+
   _generateMarkup(result) {
     return `<div class="recipe__card">
     <img
@@ -78,12 +107,17 @@ export default class View {
     </svg>
     
     <h3 class="recipe__card--title heading--tertiary">${result.title}</h3>
-    <div class="recipe__card--back" id="btn-view" data-id="${result.id}">
+    <div class="recipe__card--back">
     <ul class="recipe__card--options">
-    <li class="recipe__card--btn-options recipe__card--btn-options-delete" id="btn-delete">Delete Recipe</li>
+    <li class="recipe__card--btn-options recipe__card--btn-options-delete" id="btn-delete" data-id="${
+      result.id
+    }">Delete Recipe</li>
     <li class="recipe__card--btn-options recipe__card--btn-edit">Edit Recipe</li>
     </ul>
-      <button class="btn recipe__card--btn hidden" ><span class="underline">View Recipe &rarr;</span></button>
+    <div id="btn-view" data-id="${result.id}">
+    <button class="btn recipe__card--btn hidden"><span class="underline">View Recipe &rarr;</span></button>
+    </div>
+      
     </div>
     </div>`;
   }
