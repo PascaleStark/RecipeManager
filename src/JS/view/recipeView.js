@@ -6,6 +6,10 @@ class RecipeView extends View {
   _parentEl = document.querySelector(".recipe-view");
   _viewRecipeBtn = document.querySelector(".recipe__card--btn");
   _body = document.getElementsByTagName("body")[0];
+  _recipeContainer = document.querySelector(".recipe__container");
+  _deleteRecipeBtn = document.querySelector(
+    ".recipe__card--btn-options-delete"
+  );
 
   constructor() {
     super();
@@ -13,13 +17,21 @@ class RecipeView extends View {
   }
 
   openRecipeView(handler) {
-    this._body.addEventListener("click", this._setRecipeID.bind(this, handler));
+    this._recipeContainer.addEventListener(
+      "click",
+      this._setRecipeID.bind(this, handler)
+    );
   }
 
   _setRecipeID(handler, e) {
     const targetEl = e.target.closest("#btn-view");
     console.log(targetEl);
-    if (targetEl) {
+    if (
+      targetEl &&
+      targetEl.id === "btn-view" &&
+      targetEl.id !== "btn-delete" &&
+      targetEl === this._viewRecipeBtn
+    ) {
       const id = targetEl.dataset.id;
       this.showModalView();
       handler(`${URL}/where?id=${id}`);

@@ -1,0 +1,35 @@
+.modal-alert {
+  position: fixed;
+  top: 20rem;
+  right: 20rem;
+  background-color: $color-grey-lighter;
+  color: $color-font-primary;
+  padding: 10rem;
+  font-family: inherit;
+  font-size: 3rem;
+  box-shadow: 0.5rem 0.5rem 1.5rem 3px rgba(0, 0, 0, 0.4);
+  z-index: 8;
+
+  &__container-btn {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10rem;
+
+    &--btn {
+      font-family: inherit;
+      font-size: $font-size-primary;
+      font-weight: bold;
+      color: $color-font-primary;
+      background-color: $color-salmon-primary;
+      text-transform: uppercase;
+      padding: 1.5rem 1.5rem;
+      border: none;
+      outline: none;
+      cursor: pointer;
+
+      &:hover {
+        box-shadow: 0rem 0rem 0.5rem rgba(0, 0, 0, 0.4);
+      }
+    }
+  }
+}
