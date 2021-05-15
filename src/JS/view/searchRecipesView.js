@@ -9,7 +9,6 @@ class SearchRecipeView extends View {
   _searchForm = document.querySelector(".search");
   _searchEl = document.querySelector(".search__input");
   _titleView = "Search results";
-  //_url = `${URL}/search?q=${query}&page=`;
 
   _showSearchRecipeView(handler, e) {
     e.preventDefault();

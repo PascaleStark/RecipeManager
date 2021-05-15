@@ -10,9 +10,11 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "URL": () => (/* binding */ URL)
+/* harmony export */   "URL": () => (/* binding */ URL),
+/* harmony export */   "TIMEOUT": () => (/* binding */ TIMEOUT)
 /* harmony export */ });
 var URL = "http://192.168.4.10:8300/recipes";
+var TIMEOUT = 2000;
 
 /***/ }),
 
@@ -702,7 +704,7 @@ var AlertView = /*#__PURE__*/function (_View) {
 
     _classCallCheck(this, AlertView);
 
-    _this = _super.call(this); // this.showAlertMsg();
+    _this = _super.call(this); //this.showRecipeOptions();
 
     _defineProperty(_assertThisInitialized(_this), "_parentEl", document.querySelector(".modal-view__msg"));
 
@@ -720,10 +722,27 @@ var AlertView = /*#__PURE__*/function (_View) {
 
     _defineProperty(_assertThisInitialized(_this), "_successMessage", "Your recipe has been deleted successfully!");
 
+    _defineProperty(_assertThisInitialized(_this), "_recipeOptions", document.querySelector(".recipe__card--icon-delete"));
+
+    _defineProperty(_assertThisInitialized(_this), "_recipeOptionsView", document.querySelector(".recipe__card--options"));
+
     _this.hideAlertMsg();
 
     return _this;
-  }
+  } // showRecipeOptions() {
+  //   this._recipeContainer.addEventListener(
+  //     "click",
+  //     this._showOptionsList.bind(this)
+  //   );
+  // }
+  // _showOptionsList(e) {
+  //   const targetEl = e.target.closest("#three-dots");
+  //   console.log(targetEl);
+  //   if (targetEl) {
+  //     this._recipeOptionsView.classList.toggle("hidden");
+  //   }
+  // }
+
 
   _createClass(AlertView, [{
     key: "showAlertMsg",
@@ -1398,8 +1417,7 @@ var SearchRecipeView = /*#__PURE__*/function (_View) {
 
   _createClass(SearchRecipeView, [{
     key: "_showSearchRecipeView",
-    value: //_url = `${URL}/search?q=${query}&page=`;
-    function _showSearchRecipeView(handler, e) {
+    value: function _showSearchRecipeView(handler, e) {
       e.preventDefault();
       document.querySelector(".results__heading").scrollIntoView({
         behavior: "smooth"
@@ -1510,6 +1528,11 @@ var View = /*#__PURE__*/function () {
       this._parentEl.insertAdjacentHTML("beforeend", this._generateSuccessMarkup());
     }
   }, {
+    key: "closeSuccessMessage",
+    value: function closeSuccessMessage() {
+      this._parentEl.style.display = "none";
+    }
+  }, {
     key: "_generateSuccessMarkup",
     value: function _generateSuccessMarkup() {
       return "\n    <div class=\"sub-message\">\n    <p class=\"sub-message__msg\">\n      <svg class=\"icon sub-message__icon\">\n        <use\n          xlink:href=\"./src/img/icons.svg#icon-checkmark-outline\"\n        ></use>\n      </svg>\n      ".concat(this._successMessage, "\n    </p>\n  </div>\n    </div>\n    ");
@@ -1517,7 +1540,7 @@ var View = /*#__PURE__*/function () {
   }, {
     key: "_generateMarkup",
     value: function _generateMarkup(result) {
-      return "<div class=\"recipe__card\">\n    <img\n      src=\"./src/img/pizza.jpg\"\n      class=\"recipe__card--img\"\n      alt=\"recipe img\"\n    />\n    <div class=\"recipe__card--icons\">\n    <svg class=\"icon-heart recipe__card--icon recipe__card--icon-heart ".concat(result.favourites ? "filled-icon" : "empty-icon", "\" data-id=\"").concat(result.id, "\">\n      <use xlink:href=\"./src/img/icons.svg#icon-heart\"></use>\n    </svg>\n    <svg class=\"icon-star recipe__card--icon recipe__card--icon-star  ").concat(result.featured ? "filled-icon" : "empty-icon", "\" data-id=\"").concat(result.id, "\">\n      <use xlink:href=\"./src/img/icons.svg#icon-star-full\"></use>\n    </svg>\n    </div>\n    <svg class=\"icon icon-delete recipe__card--icon recipe__card--icon-delete\">\n      <use xlink:href=\"./src/img/icons.svg#icon-dots-three-vertical\"></use>\n    </svg>\n    \n    <h3 class=\"recipe__card--title heading--tertiary\">").concat(result.title, "</h3>\n    <div class=\"recipe__card--back\">\n    <ul class=\"recipe__card--options\">\n    <li class=\"recipe__card--btn-options recipe__card--btn-options-delete\" id=\"btn-delete\" data-id=\"").concat(result.id, "\">Delete Recipe</li>\n    <li class=\"recipe__card--btn-options recipe__card--btn-edit\">Edit Recipe</li>\n    </ul>\n    <div id=\"btn-view\" data-id=\"").concat(result.id, "\">\n    <button class=\"btn recipe__card--btn hidden\"><span class=\"underline\">View Recipe &rarr;</span></button>\n    </div>\n      \n    </div>\n    </div>");
+      return "<div class=\"recipe__card\">\n    <img\n      src=\"./src/img/pizza.jpg\"\n      class=\"recipe__card--img\"\n      alt=\"recipe img\"\n    />\n    <div class=\"recipe__card--icons\">\n    <svg class=\"icon-heart recipe__card--icon recipe__card--icon-heart ".concat(result.favourites ? "filled-icon" : "empty-icon", "\" data-id=\"").concat(result.id, "\">\n      <use xlink:href=\"./src/img/icons.svg#icon-heart\"></use>\n    </svg>\n    <svg class=\"icon-star recipe__card--icon recipe__card--icon-star  ").concat(result.featured ? "filled-icon" : "empty-icon", "\" data-id=\"").concat(result.id, "\">\n      <use xlink:href=\"./src/img/icons.svg#icon-star-full\"></use>\n    </svg>\n    </div>\n    <svg class=\"icon icon-delete recipe__card--icon recipe__card--icon-delete\" id=\"three-dots\">\n      <use xlink:href=\"./src/img/icons.svg#icon-dots-three-vertical\"></use>\n    </svg>\n    \n    <h3 class=\"recipe__card--title heading--tertiary\">").concat(result.title, "</h3>\n    <div class=\"recipe__card--back\">\n    <ul class=\"recipe__card--options\">\n    <li class=\"recipe__card--btn-options recipe__card--btn-options-delete\" id=\"btn-delete\" data-id=\"").concat(result.id, "\">Delete Recipe</li>\n    <li class=\"recipe__card--btn-options recipe__card--btn-edit\">Edit Recipe</li>\n    </ul>\n    <div id=\"btn-view\" data-id=\"").concat(result.id, "\">\n    <button class=\"btn recipe__card--btn hidden\"><span class=\"underline\">View Recipe &rarr;</span></button>\n    </div>\n      \n    </div>\n    </div>");
     }
   }]);
 
@@ -2412,21 +2435,25 @@ var controlAddRecipe = /*#__PURE__*/function () {
             result = _context.sent;
             console.log(result); //2. Render Success Message
 
-            _view_addRecipeView__WEBPACK_IMPORTED_MODULE_2__.default.renderSuccessMessage();
-            _context.next = 12;
+            _view_addRecipeView__WEBPACK_IMPORTED_MODULE_2__.default.renderSuccessMessage(); //3. close Success Message
+
+            setTimeout(function () {
+              _view_alertView__WEBPACK_IMPORTED_MODULE_6__.default.closeSuccessMessage();
+            }, _config_js__WEBPACK_IMPORTED_MODULE_9__.TIMEOUT);
+            _context.next = 13;
             break;
 
-          case 9:
-            _context.prev = 9;
+          case 10:
+            _context.prev = 10;
             _context.t0 = _context["catch"](0);
             console.log(_context.t0);
 
-          case 12:
+          case 13:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 9]]);
+    }, _callee, null, [[0, 10]]);
   }));
 
   return function controlAddRecipe(_x, _x2) {
@@ -2837,21 +2864,25 @@ var controlDeleteRecipe = /*#__PURE__*/function () {
             deleteRec = _context11.sent;
             console.log(deleteRec); //render success message
 
-            _view_alertView__WEBPACK_IMPORTED_MODULE_6__.default.renderSuccessMessage();
-            _context11.next = 11;
+            _view_alertView__WEBPACK_IMPORTED_MODULE_6__.default.renderSuccessMessage(); //close success message after 3s
+
+            setTimeout(function () {
+              _view_alertView__WEBPACK_IMPORTED_MODULE_6__.default.closeSuccessMessage();
+            }, _config_js__WEBPACK_IMPORTED_MODULE_9__.TIMEOUT);
+            _context11.next = 12;
             break;
 
-          case 8:
-            _context11.prev = 8;
+          case 9:
+            _context11.prev = 9;
             _context11.t0 = _context11["catch"](0);
             console.log(_context11.t0);
 
-          case 11:
+          case 12:
           case "end":
             return _context11.stop();
         }
       }
-    }, _callee11, null, [[0, 8]]);
+    }, _callee11, null, [[0, 9]]);
   }));
 
   return function controlDeleteRecipe() {
