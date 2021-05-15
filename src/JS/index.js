@@ -8,7 +8,7 @@ import paginationView from "./view/paginationView";
 import alertView from "./view/alertView";
 import filter from "./view/filterView";
 import regeneratorRuntime, { mark } from "regenerator-runtime";
-import { URL } from "./config.js";
+import { URL, TIMEOUT } from "./config.js";
 import featuredView from "./view/featuredView";
 import filterView from "./view/filterView";
 
@@ -23,6 +23,10 @@ const controlAddRecipe = async function (url, uploadData) {
     console.log(result);
     //2. Render Success Message
     addRecipeView.renderSuccessMessage();
+    //3. close Success Message
+    setTimeout(function () {
+      alertView.closeSuccessMessage();
+    }, TIMEOUT);
   } catch (err) {
     console.log(err);
   }
@@ -198,6 +202,10 @@ const controlDeleteRecipe = async function () {
     console.log(deleteRec);
     //render success message
     alertView.renderSuccessMessage();
+    //close success message after 3s
+    setTimeout(function () {
+      alertView.closeSuccessMessage();
+    }, TIMEOUT);
   } catch (err) {
     console.log(err);
   }

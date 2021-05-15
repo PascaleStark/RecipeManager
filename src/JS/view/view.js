@@ -62,6 +62,10 @@ export default class View {
     );
   }
 
+  closeSuccessMessage() {
+    this._parentEl.style.display = "none";
+  }
+
   _generateSuccessMarkup() {
     return `
     <div class="sub-message">
@@ -97,7 +101,7 @@ export default class View {
       <use xlink:href="./src/img/icons.svg#icon-star-full"></use>
     </svg>
     </div>
-    <svg class="icon icon-delete recipe__card--icon recipe__card--icon-delete">
+    <svg class="icon icon-delete recipe__card--icon recipe__card--icon-delete" id="three-dots">
       <use xlink:href="./src/img/icons.svg#icon-dots-three-vertical"></use>
     </svg>
     

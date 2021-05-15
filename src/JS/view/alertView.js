@@ -13,12 +13,29 @@ class AlertView extends View {
   _cancelBtn = document.querySelector(".modal-view__container-btn--btn-cancel");
   _yesBtn = document.querySelector(".modal-view__container-btn--btn-yes");
   _successMessage = "Your recipe has been deleted successfully!";
+  _recipeOptions = document.querySelector(".recipe__card--icon-delete");
+  _recipeOptionsView = document.querySelector(".recipe__card--options");
 
   constructor() {
     super();
-    // this.showAlertMsg();
+    //this.showRecipeOptions();
     this.hideAlertMsg();
   }
+
+  // showRecipeOptions() {
+  //   this._recipeContainer.addEventListener(
+  //     "click",
+  //     this._showOptionsList.bind(this)
+  //   );
+  // }
+
+  // _showOptionsList(e) {
+  //   const targetEl = e.target.closest("#three-dots");
+  //   console.log(targetEl);
+  //   if (targetEl) {
+  //     this._recipeOptionsView.classList.toggle("hidden");
+  //   }
+  // }
 
   showAlertMsg(handler) {
     this._recipeContainer.addEventListener(
