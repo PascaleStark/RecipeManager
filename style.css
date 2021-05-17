@@ -56,6 +56,9 @@ body {
 .scale-filters {
   transform: scale(0); }
 
+.scale-back {
+  transform: scale(1); }
+
 .heading--primary {
   font-size: 3.5rem;
   font-weight: bolder;

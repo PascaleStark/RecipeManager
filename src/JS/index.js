@@ -70,7 +70,6 @@ const controlFavouriteRecipes = async function (url) {
     //1. look for all the recipes with the given keyword
     const favouriteRec = await model.editFavourites(url);
     console.log(favouriteRec);
-    //2. toggle heart icon fill
   } catch (err) {
     console.error(err);
   }

@@ -101,18 +101,21 @@ export default class View {
       <use xlink:href="./src/img/icons.svg#icon-star-full"></use>
     </svg>
     </div>
-    <svg class="icon icon-delete recipe__card--icon recipe__card--icon-delete" id="three-dots">
+    <svg id="three-dots" class="icon icon-delete recipe__card--icon recipe__card--icon-delete">
       <use xlink:href="./src/img/icons.svg#icon-dots-three-vertical"></use>
     </svg>
     
     <h3 class="recipe__card--title heading--tertiary">${result.title}</h3>
     <div class="recipe__card--back">
+    <div id="options-list" class="hidden">
     <ul class="recipe__card--options">
     <li class="recipe__card--btn-options recipe__card--btn-options-delete" id="btn-delete" data-id="${
       result.id
     }">Delete Recipe</li>
     <li class="recipe__card--btn-options recipe__card--btn-edit">Edit Recipe</li>
     </ul>
+    </div>
+    
     <div id="btn-view" data-id="${result.id}">
     <button class="btn recipe__card--btn hidden"><span class="underline">View Recipe &rarr;</span></button>
     </div>

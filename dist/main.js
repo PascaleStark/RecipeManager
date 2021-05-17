@@ -86,7 +86,7 @@ var state = {
 };
 var addRecipe = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee(url, uploadData) {
-    var fetchPro, resp, data;
+    var fetchOptions, resp, data;
     return regenerator_runtime__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
@@ -94,7 +94,7 @@ var addRecipe = /*#__PURE__*/function () {
             _context.prev = 0;
             console.log(url);
             console.log(uploadData);
-            fetchPro = fetch(url, {
+            fetchOptions = fetch(url, {
               method: "POST",
               headers: {
                 "Content-type": "application/json"
@@ -102,7 +102,7 @@ var addRecipe = /*#__PURE__*/function () {
               body: JSON.stringify(uploadData)
             });
             _context.next = 6;
-            return Promise.race([fetchPro, (0,_helper__WEBPACK_IMPORTED_MODULE_0__.timeout)(10)]);
+            return Promise.race([fetchOptions, (0,_helper__WEBPACK_IMPORTED_MODULE_0__.timeout)(10)]);
 
           case 6:
             resp = _context.sent;
@@ -143,21 +143,21 @@ var addRecipe = /*#__PURE__*/function () {
 }();
 var loadRecipe = /*#__PURE__*/function () {
   var _ref2 = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee2(url) {
-    var fetchPro, resp, data, recipeObject, recipe;
+    var fetchOptions, resp, data, recipeObject, recipe;
     return regenerator_runtime__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
             _context2.prev = 0;
             //load recipe object
-            fetchPro = fetch(url, {
+            fetchOptions = fetch(url, {
               method: "GET",
               headers: {
                 "Content-type": "application/json"
               }
             });
             _context2.next = 4;
-            return Promise.race([fetchPro, (0,_helper__WEBPACK_IMPORTED_MODULE_0__.timeout)(30)]);
+            return Promise.race([fetchOptions, (0,_helper__WEBPACK_IMPORTED_MODULE_0__.timeout)(30)]);
 
           case 4:
             resp = _context2.sent;
@@ -227,18 +227,18 @@ var renderRecipeObj = function renderRecipeObj(data) {
 
 var searchRecipes = /*#__PURE__*/function () {
   var _ref3 = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee3(url, query) {
-    var fetchPro, resp, data;
+    var fetchOptions, resp, data;
     return regenerator_runtime__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee3$(_context3) {
       while (1) {
         switch (_context3.prev = _context3.next) {
           case 0:
             _context3.prev = 0;
             //load recipe object
-            fetchPro = fetch(url, {
+            fetchOptions = fetch(url, {
               method: "GET"
             });
             _context3.next = 4;
-            return Promise.race([fetchPro, (0,_helper__WEBPACK_IMPORTED_MODULE_0__.timeout)(30)]);
+            return Promise.race([fetchOptions, (0,_helper__WEBPACK_IMPORTED_MODULE_0__.timeout)(30)]);
 
           case 4:
             resp = _context3.sent;
@@ -280,21 +280,21 @@ var searchRecipes = /*#__PURE__*/function () {
 }();
 var editFavourites = /*#__PURE__*/function () {
   var _ref4 = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee4(url) {
-    var fetchPro, resp, data;
+    var fetchOptions, resp, data;
     return regenerator_runtime__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee4$(_context4) {
       while (1) {
         switch (_context4.prev = _context4.next) {
           case 0:
             _context4.prev = 0;
             console.log(url);
-            fetchPro = fetch(url, {
+            fetchOptions = fetch(url, {
               method: "PATCH",
               headers: {
                 "Content-type": "application/json"
               }
             });
             _context4.next = 5;
-            return Promise.race([fetchPro, (0,_helper__WEBPACK_IMPORTED_MODULE_0__.timeout)(10)]);
+            return Promise.race([fetchOptions, (0,_helper__WEBPACK_IMPORTED_MODULE_0__.timeout)(10)]);
 
           case 5:
             resp = _context4.sent;
@@ -335,18 +335,18 @@ var editFavourites = /*#__PURE__*/function () {
 }();
 var searchRecipesByPage = /*#__PURE__*/function () {
   var _ref5 = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee5(pageNum) {
-    var fetchPro, resp, data;
+    var fetchOptions, resp, data;
     return regenerator_runtime__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee5$(_context5) {
       while (1) {
         switch (_context5.prev = _context5.next) {
           case 0:
             _context5.prev = 0;
             //load recipe object
-            fetchPro = fetch("".concat(this.state.url, "&page=").concat(pageNum), {
+            fetchOptions = fetch("".concat(this.state.url, "&page=").concat(pageNum), {
               method: "GET"
             });
             _context5.next = 4;
-            return Promise.race([fetchPro, (0,_helper__WEBPACK_IMPORTED_MODULE_0__.timeout)(30)]);
+            return Promise.race([fetchOptions, (0,_helper__WEBPACK_IMPORTED_MODULE_0__.timeout)(30)]);
 
           case 4:
             resp = _context5.sent;
@@ -383,7 +383,7 @@ var searchRecipesByPage = /*#__PURE__*/function () {
 
 var getHeaders = /*#__PURE__*/function () {
   var _ref6 = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee6() {
-    var fetchPro, resp, headersObj, _iterator, _step, pair, pagesCount, totalItems, paginationInfo;
+    var fetchOptions, resp, headersObj, _iterator, _step, pair, pagesCount, totalItems, paginationInfo;
 
     return regenerator_runtime__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee6$(_context6) {
       while (1) {
@@ -391,11 +391,11 @@ var getHeaders = /*#__PURE__*/function () {
           case 0:
             _context6.prev = 0;
             //get response
-            fetchPro = fetch("".concat(this.state.url, "&page=").concat(this.state.pageNum), {
+            fetchOptions = fetch("".concat(this.state.url, "&page=").concat(this.state.pageNum), {
               method: "GET"
             });
             _context6.next = 4;
-            return Promise.race([fetchPro, (0,_helper__WEBPACK_IMPORTED_MODULE_0__.timeout)(30)]);
+            return Promise.race([fetchOptions, (0,_helper__WEBPACK_IMPORTED_MODULE_0__.timeout)(30)]);
 
           case 4:
             resp = _context6.sent;
@@ -440,18 +440,18 @@ var setDeleteID = function setDeleteID(id) {
 };
 var deleteRecipe = /*#__PURE__*/function () {
   var _ref7 = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee7() {
-    var fetchPro, resp;
+    var fetchOptions, resp;
     return regenerator_runtime__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee7$(_context7) {
       while (1) {
         switch (_context7.prev = _context7.next) {
           case 0:
             _context7.prev = 0;
             //send delete request
-            fetchPro = fetch("".concat(_config__WEBPACK_IMPORTED_MODULE_2__.URL, "/delete/").concat(this.state.deleteID), {
+            fetchOptions = fetch("".concat(_config__WEBPACK_IMPORTED_MODULE_2__.URL, "/delete/").concat(this.state.deleteID), {
               method: "DELETE"
             });
             _context7.next = 4;
-            return Promise.race([fetchPro, (0,_helper__WEBPACK_IMPORTED_MODULE_0__.timeout)(30)]);
+            return Promise.race([fetchOptions, (0,_helper__WEBPACK_IMPORTED_MODULE_0__.timeout)(30)]);
 
           case 4:
             resp = _context7.sent;
@@ -704,7 +704,7 @@ var AlertView = /*#__PURE__*/function (_View) {
 
     _classCallCheck(this, AlertView);
 
-    _this = _super.call(this); //this.showRecipeOptions();
+    _this = _super.call(this);
 
     _defineProperty(_assertThisInitialized(_this), "_parentEl", document.querySelector(".modal-view__msg"));
 
@@ -720,31 +720,43 @@ var AlertView = /*#__PURE__*/function (_View) {
 
     _defineProperty(_assertThisInitialized(_this), "_yesBtn", document.querySelector(".modal-view__container-btn--btn-yes"));
 
-    _defineProperty(_assertThisInitialized(_this), "_successMessage", "Your recipe has been deleted successfully!");
-
     _defineProperty(_assertThisInitialized(_this), "_recipeOptions", document.querySelector(".recipe__card--icon-delete"));
 
     _defineProperty(_assertThisInitialized(_this), "_recipeOptionsView", document.querySelector(".recipe__card--options"));
 
+    _defineProperty(_assertThisInitialized(_this), "_successMessage", "Your recipe has been deleted successfully!");
+
+    _defineProperty(_assertThisInitialized(_this), "_listOptions", document.getElementById("options-list"));
+
+    _this.showRecipeOptions();
+
     _this.hideAlertMsg();
 
     return _this;
-  } // showRecipeOptions() {
-  //   this._recipeContainer.addEventListener(
-  //     "click",
-  //     this._showOptionsList.bind(this)
-  //   );
-  // }
-  // _showOptionsList(e) {
-  //   const targetEl = e.target.closest("#three-dots");
-  //   console.log(targetEl);
-  //   if (targetEl) {
-  //     this._recipeOptionsView.classList.toggle("hidden");
-  //   }
-  // }
-
+  }
 
   _createClass(AlertView, [{
+    key: "showRecipeOptions",
+    value: function showRecipeOptions() {
+      this._body.addEventListener("click", this._showOptionsList.bind(this));
+    }
+  }, {
+    key: "_showOptionsList",
+    value: function _showOptionsList(e) {
+      var targetEl = e.target.closest("#three-dots");
+
+      var listOptions = this._body.querySelectorAll("#options-list");
+
+      console.log(targetEl);
+      console.log(listOptions);
+
+      if (targetEl) {
+        listOptions.forEach(function (element) {
+          return element.classList.toggle("hidden");
+        });
+      }
+    }
+  }, {
     key: "showAlertMsg",
     value: function showAlertMsg(handler) {
       this._recipeContainer.addEventListener("click", this._openAlertMsg.bind(this, handler));
@@ -1540,7 +1552,7 @@ var View = /*#__PURE__*/function () {
   }, {
     key: "_generateMarkup",
     value: function _generateMarkup(result) {
-      return "<div class=\"recipe__card\">\n    <img\n      src=\"./src/img/pizza.jpg\"\n      class=\"recipe__card--img\"\n      alt=\"recipe img\"\n    />\n    <div class=\"recipe__card--icons\">\n    <svg class=\"icon-heart recipe__card--icon recipe__card--icon-heart ".concat(result.favourites ? "filled-icon" : "empty-icon", "\" data-id=\"").concat(result.id, "\">\n      <use xlink:href=\"./src/img/icons.svg#icon-heart\"></use>\n    </svg>\n    <svg class=\"icon-star recipe__card--icon recipe__card--icon-star  ").concat(result.featured ? "filled-icon" : "empty-icon", "\" data-id=\"").concat(result.id, "\">\n      <use xlink:href=\"./src/img/icons.svg#icon-star-full\"></use>\n    </svg>\n    </div>\n    <svg class=\"icon icon-delete recipe__card--icon recipe__card--icon-delete\" id=\"three-dots\">\n      <use xlink:href=\"./src/img/icons.svg#icon-dots-three-vertical\"></use>\n    </svg>\n    \n    <h3 class=\"recipe__card--title heading--tertiary\">").concat(result.title, "</h3>\n    <div class=\"recipe__card--back\">\n    <ul class=\"recipe__card--options\">\n    <li class=\"recipe__card--btn-options recipe__card--btn-options-delete\" id=\"btn-delete\" data-id=\"").concat(result.id, "\">Delete Recipe</li>\n    <li class=\"recipe__card--btn-options recipe__card--btn-edit\">Edit Recipe</li>\n    </ul>\n    <div id=\"btn-view\" data-id=\"").concat(result.id, "\">\n    <button class=\"btn recipe__card--btn hidden\"><span class=\"underline\">View Recipe &rarr;</span></button>\n    </div>\n      \n    </div>\n    </div>");
+      return "<div class=\"recipe__card\">\n    <img\n      src=\"./src/img/pizza.jpg\"\n      class=\"recipe__card--img\"\n      alt=\"recipe img\"\n    />\n    <div class=\"recipe__card--icons\">\n    <svg class=\"icon-heart recipe__card--icon recipe__card--icon-heart ".concat(result.favourites ? "filled-icon" : "empty-icon", "\" data-id=\"").concat(result.id, "\">\n      <use xlink:href=\"./src/img/icons.svg#icon-heart\"></use>\n    </svg>\n    <svg class=\"icon-star recipe__card--icon recipe__card--icon-star  ").concat(result.featured ? "filled-icon" : "empty-icon", "\" data-id=\"").concat(result.id, "\">\n      <use xlink:href=\"./src/img/icons.svg#icon-star-full\"></use>\n    </svg>\n    </div>\n    <svg id=\"three-dots\" class=\"icon icon-delete recipe__card--icon recipe__card--icon-delete\">\n      <use xlink:href=\"./src/img/icons.svg#icon-dots-three-vertical\"></use>\n    </svg>\n    \n    <h3 class=\"recipe__card--title heading--tertiary\">").concat(result.title, "</h3>\n    <div class=\"recipe__card--back\">\n    <div id=\"options-list\" class=\"hidden\">\n    <ul class=\"recipe__card--options\">\n    <li class=\"recipe__card--btn-options recipe__card--btn-options-delete\" id=\"btn-delete\" data-id=\"").concat(result.id, "\">Delete Recipe</li>\n    <li class=\"recipe__card--btn-options recipe__card--btn-edit\">Edit Recipe</li>\n    </ul>\n    </div>\n    \n    <div id=\"btn-view\" data-id=\"").concat(result.id, "\">\n    <button class=\"btn recipe__card--btn hidden\"><span class=\"underline\">View Recipe &rarr;</span></button>\n    </div>\n      \n    </div>\n    </div>");
     }
   }]);
 
@@ -2559,8 +2571,7 @@ var controlFavouriteRecipes = /*#__PURE__*/function () {
 
           case 3:
             favouriteRec = _context4.sent;
-            console.log(favouriteRec); //2. toggle heart icon fill
-
+            console.log(favouriteRec);
             _context4.next = 10;
             break;
 
