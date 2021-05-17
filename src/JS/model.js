@@ -16,14 +16,14 @@ export const addRecipe = async function (url, uploadData) {
   try {
     console.log(url);
     console.log(uploadData);
-    const fetchPro = fetch(url, {
+    const fetchOptions = fetch(url, {
       method: "POST",
       headers: {
         "Content-type": "application/json",
       },
       body: JSON.stringify(uploadData),
     });
-    const resp = await Promise.race([fetchPro, timeout(10)]);
+    const resp = await Promise.race([fetchOptions, timeout(10)]);
     console.log(resp);
     const data = await resp.json();
     console.log(data);
@@ -37,13 +37,13 @@ export const addRecipe = async function (url, uploadData) {
 export const loadRecipe = async function (url) {
   try {
     //load recipe object
-    const fetchPro = fetch(url, {
+    const fetchOptions = fetch(url, {
       method: "GET",
       headers: {
         "Content-type": "application/json",
       },
     });
-    const resp = await Promise.race([fetchPro, timeout(30)]);
+    const resp = await Promise.race([fetchOptions, timeout(30)]);
     console.log(resp);
     const data = await resp.json();
     console.log(data);
@@ -92,10 +92,10 @@ const renderRecipeObj = function (data) {
 export const searchRecipes = async function (url, query) {
   try {
     //load recipe object
-    const fetchPro = fetch(url, {
+    const fetchOptions = fetch(url, {
       method: "GET",
     });
-    const resp = await Promise.race([fetchPro, timeout(30)]);
+    const resp = await Promise.race([fetchOptions, timeout(30)]);
     const data = await resp.json();
     // if (!data) throw new Error(`No recipe is found`);
 
@@ -119,13 +119,13 @@ export const searchRecipes = async function (url, query) {
 export const editFavourites = async function (url) {
   try {
     console.log(url);
-    const fetchPro = fetch(url, {
+    const fetchOptions = fetch(url, {
       method: "PATCH",
       headers: {
         "Content-type": "application/json",
       },
     });
-    const resp = await Promise.race([fetchPro, timeout(10)]);
+    const resp = await Promise.race([fetchOptions, timeout(10)]);
     console.log(resp);
     const data = await resp.json();
     console.log(data);
@@ -139,10 +139,10 @@ export const editFavourites = async function (url) {
 export const searchRecipesByPage = async function (pageNum) {
   try {
     //load recipe object
-    const fetchPro = fetch(`${this.state.url}&page=${pageNum}`, {
+    const fetchOptions = fetch(`${this.state.url}&page=${pageNum}`, {
       method: "GET",
     });
-    const resp = await Promise.race([fetchPro, timeout(30)]);
+    const resp = await Promise.race([fetchOptions, timeout(30)]);
     const data = await resp.json();
     // if (!data) throw new Error(`No recipe is found`);
     // //refactoring the recipe object
@@ -160,10 +160,10 @@ export const searchRecipesByPage = async function (pageNum) {
 export const getHeaders = async function () {
   try {
     //get response
-    const fetchPro = fetch(`${this.state.url}&page=${this.state.pageNum}`, {
+    const fetchOptions = fetch(`${this.state.url}&page=${this.state.pageNum}`, {
       method: "GET",
     });
-    const resp = await Promise.race([fetchPro, timeout(30)]);
+    const resp = await Promise.race([fetchOptions, timeout(30)]);
     const headersObj = {};
     for (let pair of resp.headers.entries()) {
       headersObj[pair[0]] = pair[1];
@@ -184,10 +184,10 @@ export const setDeleteID = function (id) {
 export const deleteRecipe = async function () {
   try {
     //send delete request
-    const fetchPro = fetch(`${URL}/delete/${this.state.deleteID}`, {
+    const fetchOptions = fetch(`${URL}/delete/${this.state.deleteID}`, {
       method: "DELETE",
     });
-    const resp = await Promise.race([fetchPro, timeout(30)]);
+    const resp = await Promise.race([fetchOptions, timeout(30)]);
     if (!resp.ok)
       throw new Error(
         `Could not delete this recipe, please try again later! ${resp.status}`
