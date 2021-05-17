@@ -745,14 +745,15 @@ var AlertView = /*#__PURE__*/function (_View) {
     value: function _showOptionsList(e) {
       var targetEl = e.target.closest("#three-dots");
 
-      var listOptions = this._body.querySelector("#options-list");
+      var listOptions = this._body.querySelectorAll("#options-list");
 
       console.log(targetEl);
+      console.log(listOptions);
 
       if (targetEl) {
-        // this._recipeOptionsView.classList.toggle("hidden");
-        listOptions.classList.toggle("hidden");
-        console.log(listOptions);
+        listOptions.forEach(function (element) {
+          return element.classList.toggle("hidden");
+        });
       }
     }
   }, {

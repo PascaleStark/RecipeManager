@@ -29,13 +29,12 @@ class AlertView extends View {
 
   _showOptionsList(e) {
     const targetEl = e.target.closest("#three-dots");
-    const listOptions = this._body.querySelector("#options-list");
+    const listOptions = this._body.querySelectorAll("#options-list");
     console.log(targetEl);
+    console.log(listOptions);
 
     if (targetEl) {
-      // this._recipeOptionsView.classList.toggle("hidden");
-      listOptions.classList.toggle("hidden");
-      console.log(listOptions);
+      listOptions.forEach((element) => element.classList.toggle("hidden"));
     }
   }
 
