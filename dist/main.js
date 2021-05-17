@@ -747,9 +747,6 @@ var AlertView = /*#__PURE__*/function (_View) {
 
       var listOptions = this._body.querySelectorAll("#options-list");
 
-      console.log(targetEl);
-      console.log(listOptions);
-
       if (targetEl) {
         listOptions.forEach(function (element) {
           return element.classList.toggle("hidden");
@@ -2450,7 +2447,7 @@ var controlAddRecipe = /*#__PURE__*/function () {
             _view_addRecipeView__WEBPACK_IMPORTED_MODULE_2__.default.renderSuccessMessage(); //3. close Success Message
 
             setTimeout(function () {
-              _view_alertView__WEBPACK_IMPORTED_MODULE_6__.default.closeSuccessMessage();
+              _view_addRecipeView__WEBPACK_IMPORTED_MODULE_2__.default.closeSuccessMessage();
             }, _config_js__WEBPACK_IMPORTED_MODULE_9__.TIMEOUT);
             _context.next = 13;
             break;
@@ -2798,7 +2795,7 @@ var controlPagination = function controlPagination(pagInfo) {
 
 var controlPaginationNumber = /*#__PURE__*/function () {
   var _ref9 = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_8___default().mark(function _callee9(pageNum) {
-    var pageResults;
+    var pageResults, checkTitleView;
     return regenerator_runtime__WEBPACK_IMPORTED_MODULE_8___default().wrap(function _callee9$(_context9) {
       while (1) {
         switch (_context9.prev = _context9.next) {
@@ -2809,21 +2806,26 @@ var controlPaginationNumber = /*#__PURE__*/function () {
 
           case 3:
             pageResults = _context9.sent;
-            _view_searchRecipesView__WEBPACK_IMPORTED_MODULE_3__.default.renderResultsView(pageResults.recipes);
-            _context9.next = 10;
+            //2. Choose title View
+            checkTitleView = pageResults.recipes.every(function (el) {
+              return el.favourites === true;
+            }); //3. render page results with title View
+
+            checkTitleView ? "".concat(_view_favouritesView__WEBPACK_IMPORTED_MODULE_4__.default.renderResultsView(pageResults.recipes)) : "".concat(_view_searchRecipesView__WEBPACK_IMPORTED_MODULE_3__.default.renderResultsView(pageResults.recipes));
+            _context9.next = 11;
             break;
 
-          case 7:
-            _context9.prev = 7;
+          case 8:
+            _context9.prev = 8;
             _context9.t0 = _context9["catch"](0);
             console.log(_context9.t0);
 
-          case 10:
+          case 11:
           case "end":
             return _context9.stop();
         }
       }
-    }, _callee9, null, [[0, 7]]);
+    }, _callee9, null, [[0, 8]]);
   }));
 
   return function controlPaginationNumber(_x9) {
@@ -2879,6 +2881,7 @@ var controlDeleteRecipe = /*#__PURE__*/function () {
 
             setTimeout(function () {
               _view_alertView__WEBPACK_IMPORTED_MODULE_6__.default.closeSuccessMessage();
+              location.reload();
             }, _config_js__WEBPACK_IMPORTED_MODULE_9__.TIMEOUT);
             _context11.next = 12;
             break;

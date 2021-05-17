@@ -25,7 +25,7 @@ const controlAddRecipe = async function (url, uploadData) {
     addRecipeView.renderSuccessMessage();
     //3. close Success Message
     setTimeout(function () {
-      alertView.closeSuccessMessage();
+      addRecipeView.closeSuccessMessage();
     }, TIMEOUT);
   } catch (err) {
     console.log(err);
@@ -182,8 +182,16 @@ const controlPagination = function (pagInfo) {
 
 const controlPaginationNumber = async function (pageNum) {
   try {
+    //1. load page results
     const pageResults = await model.searchRecipesByPage(pageNum);
-    searchRecipeView.renderResultsView(pageResults.recipes);
+    //2. Choose title View
+    const checkTitleView = pageResults.recipes.every(
+      (el) => el.favourites === true
+    );
+    //3. render page results with title View
+    checkTitleView
+      ? `${favouritesView.renderResultsView(pageResults.recipes)}`
+      : `${searchRecipeView.renderResultsView(pageResults.recipes)}`;
   } catch (err) {
     console.log(err);
   }
@@ -204,6 +212,7 @@ const controlDeleteRecipe = async function () {
     //close success message after 3s
     setTimeout(function () {
       alertView.closeSuccessMessage();
+      location.reload();
     }, TIMEOUT);
   } catch (err) {
     console.log(err);
