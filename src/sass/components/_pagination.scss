@@ -11,10 +11,6 @@
     border: none;
     cursor: pointer;
 
-    &:active {
-      background-color: $color-salmon-primary;
-    }
-
     &:hover {
       background-color: $color-grey-light;
       box-shadow: 0rem 0rem 0.5rem rgba(0, 0, 0, 0.2);

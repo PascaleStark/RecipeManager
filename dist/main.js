@@ -1197,18 +1197,30 @@ var PaginationView = /*#__PURE__*/function (_View) {
 
     _defineProperty(_assertThisInitialized(_this), "_parentEl", document.querySelector(".pagination"));
 
+    _defineProperty(_assertThisInitialized(_this), "_paginationBox", document.querySelector(".pagination__number"));
+
+    _defineProperty(_assertThisInitialized(_this), "_body", document.getElementsByTagName("body")[0]);
+
     return _this;
   }
 
   _createClass(PaginationView, [{
     key: "renderView",
-    value: function renderView(data) {
+    value: // renderActive() {
+    //   const allPageBoxes = this._body.querySelectorAll("#pagination-number");
+    //   console.log(allPageBoxes);
+    //   allPageBoxes.forEach((el) => {
+    //     el.classList.add("active");
+    //   });
+    // }
+    function renderView(data) {
       this._parentEl.innerHTML = "";
       this._data = data;
 
       this._generateMarkup();
 
-      this._parentEl.insertAdjacentHTML("beforeend", this._generateMarkup());
+      this._parentEl.insertAdjacentHTML("beforeend", this._generateMarkup()); //this.renderActive();
+
     }
   }, {
     key: "_generateMarkup",
@@ -1500,7 +1512,7 @@ var View = /*#__PURE__*/function () {
     }
   }, {
     key: "renderResultsView",
-    value: function renderResultsView(data) {
+    value: function renderResultsView(data, pageNum) {
       var _this = this;
 
       this._parentEl.innerHTML = "";
@@ -1511,6 +1523,20 @@ var View = /*#__PURE__*/function () {
       });
 
       this._resultsHeading.textContent = "".concat(this._titleView);
+
+      if (pageNum) {
+        this._toggleActivePage(pageNum);
+      }
+    }
+  }, {
+    key: "_toggleActivePage",
+    value: function _toggleActivePage(pageNum) {
+      var allPageBoxes = document.querySelectorAll("#pagination-number");
+      allPageBoxes.forEach(function (el) {
+        el.classList.remove("active");
+      });
+      var pageNumBox = document.querySelector("[data-pg=\"".concat(pageNum, "\"]"));
+      pageNumBox.classList.add("active");
     }
   }, {
     key: "_setRecipePageID",
@@ -2785,7 +2811,7 @@ var controlPagination = function controlPagination(pagInfo) {
   var paginationArr = []; //pagInfo[0] --> pageCount
 
   for (var i = 0; i < +pagInfo[0]; i++) {
-    var markupPage = "<button data-pg=\"".concat(i + 1, "\" class=\"pagination__link\">").concat(i + 1, "</button>");
+    var markupPage = "<button data-pg=\"".concat(i + 1, "\" class=\"pagination__link\" id=\"pagination-number\">").concat(i + 1, "</button>");
     paginationArr.push(markupPage);
     console.log(paginationArr);
   }
@@ -2811,7 +2837,7 @@ var controlPaginationNumber = /*#__PURE__*/function () {
               return el.favourites === true;
             }); //3. render page results with title View
 
-            checkTitleView ? "".concat(_view_favouritesView__WEBPACK_IMPORTED_MODULE_4__.default.renderResultsView(pageResults.recipes)) : "".concat(_view_searchRecipesView__WEBPACK_IMPORTED_MODULE_3__.default.renderResultsView(pageResults.recipes));
+            checkTitleView ? "".concat(_view_favouritesView__WEBPACK_IMPORTED_MODULE_4__.default.renderResultsView(pageResults.recipes, pageNum)) : "".concat(_view_searchRecipesView__WEBPACK_IMPORTED_MODULE_3__.default.renderResultsView(pageResults.recipes, pageNum));
             _context9.next = 11;
             break;
 

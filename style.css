@@ -59,6 +59,9 @@ body {
 .scale-back {
   transform: scale(1); }
 
+.active {
+  background-color: #ecac8c; }
+
 .heading--primary {
   font-size: 3.5rem;
   font-weight: bolder;
@@ -217,8 +220,6 @@ body {
     padding: 1.5rem;
     border: none;
     cursor: pointer; }
-    .pagination__link:active {
-      background-color: #ecac8c; }
     .pagination__link:hover {
       background-color: #e1dada;
       box-shadow: 0rem 0rem 0.5rem rgba(0, 0, 0, 0.2); }
