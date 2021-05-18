@@ -29,3 +29,7 @@
 .scale-back {
   transform: scale(1);
 }
+
+.active {
+  background-color: $color-salmon-primary;
+}

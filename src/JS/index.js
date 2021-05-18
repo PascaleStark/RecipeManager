@@ -171,9 +171,9 @@ const controlPagination = function (pagInfo) {
   const paginationArr = [];
   //pagInfo[0] --> pageCount
   for (let i = 0; i < +pagInfo[0]; i++) {
-    const markupPage = `<button data-pg="${i + 1}" class="pagination__link">${
+    const markupPage = `<button data-pg="${
       i + 1
-    }</button>`;
+    }" class="pagination__link" id="pagination-number">${i + 1}</button>`;
     paginationArr.push(markupPage);
     console.log(paginationArr);
   }
@@ -190,8 +190,8 @@ const controlPaginationNumber = async function (pageNum) {
     );
     //3. render page results with title View
     checkTitleView
-      ? `${favouritesView.renderResultsView(pageResults.recipes)}`
-      : `${searchRecipeView.renderResultsView(pageResults.recipes)}`;
+      ? `${favouritesView.renderResultsView(pageResults.recipes, pageNum)}`
+      : `${searchRecipeView.renderResultsView(pageResults.recipes, pageNum)}`;
   } catch (err) {
     console.log(err);
   }

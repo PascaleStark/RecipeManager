@@ -25,7 +25,7 @@ export default class View {
     document.body.style.height = "auto";
   }
 
-  renderResultsView(data) {
+  renderResultsView(data, pageNum) {
     this._parentEl.innerHTML = "";
     this._data = data;
     this._data.forEach((result) => {
@@ -35,6 +35,18 @@ export default class View {
       );
     });
     this._resultsHeading.textContent = `${this._titleView}`;
+    if (pageNum) {
+      this._toggleActivePage(pageNum);
+    }
+  }
+
+  _toggleActivePage(pageNum) {
+    const allPageBoxes = document.querySelectorAll("#pagination-number");
+    allPageBoxes.forEach((el) => {
+      el.classList.remove("active");
+    });
+    const pageNumBox = document.querySelector(`[data-pg="${pageNum}"]`);
+    pageNumBox.classList.add("active");
   }
 
   _setRecipePageID(handler, e) {

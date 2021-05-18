@@ -4,12 +4,23 @@ import { URL } from "../config.js";
 
 class PaginationView extends View {
   _parentEl = document.querySelector(".pagination");
+  _paginationBox = document.querySelector(".pagination__number");
+  _body = document.getElementsByTagName("body")[0];
+
+  // renderActive() {
+  //   const allPageBoxes = this._body.querySelectorAll("#pagination-number");
+  //   console.log(allPageBoxes);
+  //   allPageBoxes.forEach((el) => {
+  //     el.classList.add("active");
+  //   });
+  // }
 
   renderView(data) {
     this._parentEl.innerHTML = "";
     this._data = data;
     this._generateMarkup();
     this._parentEl.insertAdjacentHTML("beforeend", this._generateMarkup());
+    //this.renderActive();
   }
 
   _generateMarkup() {
