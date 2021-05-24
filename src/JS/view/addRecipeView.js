@@ -8,18 +8,14 @@ class AddRecipeView extends View {
   _parentEl = document.querySelector(".add-recipe-view");
   _form = document.querySelector(".add-recipe-view__form");
   _closeForm = document.querySelector(".icon__close-form");
-  _menuBtn = document.querySelector(".hamburger-menu");
-  _viewMenu = document.querySelector(".menu-section");
   _addRecipeMenuBtn = document.querySelector(".addrecipe");
-  _closeMenu = document.querySelector(".menu-view__icon");
+  _viewMenu = document.querySelector(".menu-section");
   _successMessage = "Your recipe has been posted successfully!";
 
   constructor() {
     super();
     this._openAddRecipeView();
     this._closeAddRecipeView();
-    this._openAddRecipeMenu();
-    this._closeAddRecipeMenu();
   }
 
   showForm(e) {
@@ -32,28 +28,21 @@ class AddRecipeView extends View {
     this._viewMenu.style.display = "none";
     this.showModalView();
   }
+
   _openAddRecipeView() {
     this._body.addEventListener("click", this.showForm.bind(this));
   }
 
   _closeAddRecipeView() {
-    this._closeForm.addEventListener("click", this.hideModalView.bind(this));
-  }
-
-  showMenuView() {
-    this._viewMenu.style.display = "block";
-    this._body.classList.add("my-body-noscroll-class");
-  }
-  _openAddRecipeMenu() {
-    this._menuBtn.addEventListener("click", this.showMenuView.bind(this));
-  }
-
-  hideMenuView() {
-    this._viewMenu.style.display = "none";
-    this._body.classList.remove("my-body-noscroll-class");
-  }
-  _closeAddRecipeMenu() {
-    this._closeMenu.addEventListener("click", this.hideMenuView.bind(this));
+    [this._closeForm, this._modal].forEach((item) => {
+      item.addEventListener(
+        "click",
+        function () {
+          console.log(item);
+          this.hideModalView();
+        }.bind(this)
+      );
+    });
   }
 
   addFormEventHandler(handler) {

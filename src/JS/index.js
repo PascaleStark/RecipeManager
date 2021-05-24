@@ -11,6 +11,7 @@ import regeneratorRuntime, { mark } from "regenerator-runtime";
 import { URL, TIMEOUT } from "./config.js";
 import featuredView from "./view/featuredView";
 import filterView from "./view/filterView";
+import menuView from "./view/menuView";
 
 ////////////////////ADD RECIPE//////////////////////////////
 //Add a recipe
@@ -229,6 +230,7 @@ const init = function () {
   searchRecipeView.openSearchRecipeView(controlSearchRecipe);
   favouritesView.toggleFavourites(controlFavouriteRecipes);
   favouritesView.openFavouritesView(controlLoadFavourites);
+  menuView.openFavouritesMenuView(controlLoadFavourites);
   featuredView.toggleFeatured(controlFeaturedRecipes);
   filterView.openFilterSearchView(controlfilterSearch);
   paginationView.togglePageView(controlPaginationNumber);

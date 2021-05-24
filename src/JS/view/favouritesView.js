@@ -8,7 +8,12 @@ class FavouritesView extends View {
   _body = document.getElementsByTagName("body")[0];
   _titleView = "Favourites";
   _allFavouritesBtn = document.querySelector(".nav__favorites--btn");
+  _allfavouritesMenuBtn = document.querySelector(
+    ".menu-view__list--favourites"
+  );
   _resultsHeading = document.querySelector(".results__heading");
+  _viewMenu = document.querySelector(".menu-section");
+  _closeMenu = document.querySelector(".menu-view__icon");
 
   constructor() {
     super();
