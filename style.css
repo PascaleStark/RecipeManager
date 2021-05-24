@@ -408,6 +408,8 @@ body {
     position: absolute;
     top: 0.8rem;
     right: 0.5rem;
+    height: 3rem;
+    width: 3rem;
     cursor: pointer; }
   .add-recipe-view__form {
     margin-top: 5rem;
@@ -472,14 +474,14 @@ body {
           .add-recipe-view__form textarea[type="url"],
           .add-recipe-view__form select[type="text"],
           .add-recipe-view__form select[type="url"] {
-            min-width: 35rem; } }
-        @media (max-width: 21.87em) {
+            min-width: 55rem; } }
+        @media (max-width: 29.68em) {
           .add-recipe-view__form input[type="text"], .add-recipe-view__form input[type="url"],
           .add-recipe-view__form textarea[type="text"],
           .add-recipe-view__form textarea[type="url"],
           .add-recipe-view__form select[type="text"],
           .add-recipe-view__form select[type="url"] {
-            min-width: 28rem; } }
+            min-width: 40rem; } }
       .add-recipe-view__form input::placeholder,
       .add-recipe-view__form textarea::placeholder,
       .add-recipe-view__form select::placeholder {
@@ -505,7 +507,7 @@ body {
           .add-recipe-view__form textarea#ingredients, .add-recipe-view__form textarea#directions {
             width: 35rem;
             height: 10rem; } }
-        @media (max-width: 21.87em) {
+        @media (max-width: 29.68em) {
           .add-recipe-view__form textarea#ingredients, .add-recipe-view__form textarea#directions {
             width: 25rem;
             height: 20rem; } }
@@ -724,6 +726,8 @@ body {
     position: absolute;
     top: 0.8rem;
     right: 0.5rem;
+    height: 3rem;
+    width: 3rem;
     cursor: pointer; }
   .recipe-view__info {
     display: grid;
@@ -758,10 +762,9 @@ body {
     align-self: end; }
     @media (max-width: 37.5em) {
       .recipe-view__ingredients {
-        margin: 2.5rem 1rem 5rem 1rem; } }
-    @media (max-width: 37.5em) {
-      .recipe-view__ingredients {
-        grid-row: 2/ 3; } }
+        grid-row: 2 / 3;
+        margin: 2.5rem 0rem 2.5rem 0rem;
+        line-height: 200%; } }
     .recipe-view__ingredients--details ul {
       border: none; }
     .recipe-view__ingredients--details li svg {
@@ -770,7 +773,8 @@ body {
     margin: 2rem 4rem 5rem 4rem; }
     @media (max-width: 37.5em) {
       .recipe-view__directions {
-        margin: 1.5rem 0.5rem 1.5rem 0.5rem; } }
+        margin: 1.5rem 0rem 1.5rem 0rem;
+        line-height: 200%; } }
     .recipe-view__directions--details ul {
       border: none; }
       @media (max-width: 37.5em) {

@@ -563,23 +563,15 @@ var AddRecipeView = /*#__PURE__*/function (_View) {
 
     _defineProperty(_assertThisInitialized(_this), "_closeForm", document.querySelector(".icon__close-form"));
 
-    _defineProperty(_assertThisInitialized(_this), "_menuBtn", document.querySelector(".hamburger-menu"));
-
-    _defineProperty(_assertThisInitialized(_this), "_viewMenu", document.querySelector(".menu-section"));
-
     _defineProperty(_assertThisInitialized(_this), "_addRecipeMenuBtn", document.querySelector(".addrecipe"));
 
-    _defineProperty(_assertThisInitialized(_this), "_closeMenu", document.querySelector(".menu-view__icon"));
+    _defineProperty(_assertThisInitialized(_this), "_viewMenu", document.querySelector(".menu-section"));
 
     _defineProperty(_assertThisInitialized(_this), "_successMessage", "Your recipe has been posted successfully!");
 
     _this._openAddRecipeView();
 
     _this._closeAddRecipeView();
-
-    _this._openAddRecipeMenu();
-
-    _this._closeAddRecipeMenu();
 
     return _this;
   }
@@ -602,31 +594,14 @@ var AddRecipeView = /*#__PURE__*/function (_View) {
   }, {
     key: "_closeAddRecipeView",
     value: function _closeAddRecipeView() {
-      this._closeForm.addEventListener("click", this.hideModalView.bind(this));
-    }
-  }, {
-    key: "showMenuView",
-    value: function showMenuView() {
-      this._viewMenu.style.display = "block";
+      var _this2 = this;
 
-      this._body.classList.add("my-body-noscroll-class");
-    }
-  }, {
-    key: "_openAddRecipeMenu",
-    value: function _openAddRecipeMenu() {
-      this._menuBtn.addEventListener("click", this.showMenuView.bind(this));
-    }
-  }, {
-    key: "hideMenuView",
-    value: function hideMenuView() {
-      this._viewMenu.style.display = "none";
-
-      this._body.classList.remove("my-body-noscroll-class");
-    }
-  }, {
-    key: "_closeAddRecipeMenu",
-    value: function _closeAddRecipeMenu() {
-      this._closeMenu.addEventListener("click", this.hideMenuView.bind(this));
+      [this._closeForm, this._modal].forEach(function (item) {
+        item.addEventListener("click", function () {
+          console.log(item);
+          this.hideModalView();
+        }.bind(_this2));
+      });
     }
   }, {
     key: "addFormEventHandler",
@@ -861,7 +836,13 @@ var FavouritesView = /*#__PURE__*/function (_View) {
 
     _defineProperty(_assertThisInitialized(_this), "_allFavouritesBtn", document.querySelector(".nav__favorites--btn"));
 
+    _defineProperty(_assertThisInitialized(_this), "_allfavouritesMenuBtn", document.querySelector(".menu-view__list--favourites"));
+
     _defineProperty(_assertThisInitialized(_this), "_resultsHeading", document.querySelector(".results__heading"));
+
+    _defineProperty(_assertThisInitialized(_this), "_viewMenu", document.querySelector(".menu-section"));
+
+    _defineProperty(_assertThisInitialized(_this), "_closeMenu", document.querySelector(".menu-view__icon"));
 
     _this.setFavouriteIcon();
 
@@ -1133,6 +1114,132 @@ var FilterView = /*#__PURE__*/function (_View) {
 }(_view_js__WEBPACK_IMPORTED_MODULE_1__.default);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (new FilterView());
+
+/***/ }),
+
+/***/ "./src/JS/view/menuView.js":
+/*!*********************************!*\
+  !*** ./src/JS/view/menuView.js ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var regenerator_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! regenerator-runtime */ "./node_modules/regenerator-runtime/runtime.js");
+/* harmony import */ var regenerator_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(regenerator_runtime__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _view__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./view */ "./src/JS/view/view.js");
+/* harmony import */ var _config_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../config.js */ "./src/JS/config.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+var MenuView = /*#__PURE__*/function (_View) {
+  _inherits(MenuView, _View);
+
+  var _super = _createSuper(MenuView);
+
+  function MenuView() {
+    var _this;
+
+    _classCallCheck(this, MenuView);
+
+    _this = _super.call(this);
+
+    _defineProperty(_assertThisInitialized(_this), "_parentEl", document.querySelector(".recipe__container"));
+
+    _defineProperty(_assertThisInitialized(_this), "_favouriteRecipeBtn", document.querySelector(".icon-heart"));
+
+    _defineProperty(_assertThisInitialized(_this), "_body", document.getElementsByTagName("body")[0]);
+
+    _defineProperty(_assertThisInitialized(_this), "_titleView", "Favourites");
+
+    _defineProperty(_assertThisInitialized(_this), "_allFavouritesBtn", document.querySelector(".nav__favorites--btn"));
+
+    _defineProperty(_assertThisInitialized(_this), "_allfavouritesMenuBtn", document.querySelector(".menu-view__list--favourites"));
+
+    _defineProperty(_assertThisInitialized(_this), "_resultsHeading", document.querySelector(".results__heading"));
+
+    _defineProperty(_assertThisInitialized(_this), "_viewMenu", document.querySelector(".menu-section"));
+
+    _defineProperty(_assertThisInitialized(_this), "_closeMenu", document.querySelector(".menu-view__icon"));
+
+    _defineProperty(_assertThisInitialized(_this), "_menuBtn", document.querySelector(".hamburger-menu"));
+
+    _this._openAddRecipeMenu();
+
+    _this._closeAddRecipeMenu();
+
+    return _this;
+  }
+
+  _createClass(MenuView, [{
+    key: "showMenuView",
+    value: function showMenuView() {
+      this._viewMenu.style.display = "block";
+
+      this._body.classList.add("my-body-noscroll-class");
+    }
+  }, {
+    key: "_openAddRecipeMenu",
+    value: function _openAddRecipeMenu() {
+      this._menuBtn.addEventListener("click", this.showMenuView.bind(this));
+    }
+  }, {
+    key: "hideMenuView",
+    value: function hideMenuView() {
+      this._viewMenu.style.display = "none";
+
+      this._body.classList.remove("my-body-noscroll-class");
+    }
+  }, {
+    key: "_closeAddRecipeMenu",
+    value: function _closeAddRecipeMenu() {
+      this._closeMenu.addEventListener("click", this.hideMenuView.bind(this));
+    }
+  }, {
+    key: "openFavouritesMenuView",
+    value: function openFavouritesMenuView(handler) {
+      this._allfavouritesMenuBtn.addEventListener("click", function () {
+        this.hideMenuView();
+        document.querySelector(".results__heading").scrollIntoView({
+          behavior: "smooth"
+        });
+        handler();
+      }.bind(this));
+    }
+  }]);
+
+  return MenuView;
+}(_view__WEBPACK_IMPORTED_MODULE_1__.default);
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (new MenuView());
 
 /***/ }),
 
@@ -1580,7 +1687,17 @@ var View = /*#__PURE__*/function () {
   }]);
 
   return View;
-}();
+}(); // hideForm(e) {
+//   if (
+//     e.target.matches(".icon__close-form") ||
+//     !e.target.closest(".modal-view")
+//   )
+//     this.hideModalView();
+// }
+// _closeAddRecipeView() {
+//   this._body.addEventListener("click", this.hideForm.bind(this));
+// }
+
 
 
 
@@ -2432,11 +2549,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var regenerator_runtime__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(regenerator_runtime__WEBPACK_IMPORTED_MODULE_8__);
 /* harmony import */ var _config_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./config.js */ "./src/JS/config.js");
 /* harmony import */ var _view_featuredView__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./view/featuredView */ "./src/JS/view/featuredView.js");
+/* harmony import */ var _view_menuView__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./view/menuView */ "./src/JS/view/menuView.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 
 
 
@@ -2941,6 +3060,7 @@ var init = function init() {
   _view_searchRecipesView__WEBPACK_IMPORTED_MODULE_3__.default.openSearchRecipeView(controlSearchRecipe);
   _view_favouritesView__WEBPACK_IMPORTED_MODULE_4__.default.toggleFavourites(controlFavouriteRecipes);
   _view_favouritesView__WEBPACK_IMPORTED_MODULE_4__.default.openFavouritesView(controlLoadFavourites);
+  _view_menuView__WEBPACK_IMPORTED_MODULE_11__.default.openFavouritesMenuView(controlLoadFavourites);
   _view_featuredView__WEBPACK_IMPORTED_MODULE_10__.default.toggleFeatured(controlFeaturedRecipes);
   _view_filterView__WEBPACK_IMPORTED_MODULE_7__.default.openFilterSearchView(controlfilterSearch);
   _view_paginationView__WEBPACK_IMPORTED_MODULE_5__.default.togglePageView(controlPaginationNumber);

@@ -9,10 +9,7 @@
   }
 
   .icon__close-outline {
-    position: absolute;
-    top: 0.8rem;
-    right: 0.5rem;
-    cursor: pointer;
+    @include icon-close-position;
   }
 
   &__form {
@@ -74,11 +71,11 @@
         }
 
         @include respond(phone) {
-          min-width: 35rem;
+          min-width: 55rem;
         }
 
         @include respond(phone-small) {
-          min-width: 28rem;
+          min-width: 40rem;
         }
       }
 

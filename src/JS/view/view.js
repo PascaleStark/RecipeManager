@@ -136,3 +136,15 @@ export default class View {
     </div>`;
   }
 }
+
+// hideForm(e) {
+//   if (
+//     e.target.matches(".icon__close-form") ||
+//     !e.target.closest(".modal-view")
+//   )
+//     this.hideModalView();
+// }
+
+// _closeAddRecipeView() {
+//   this._body.addEventListener("click", this.hideForm.bind(this));
+// }
