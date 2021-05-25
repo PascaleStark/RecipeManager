@@ -25,12 +25,13 @@ export const addRecipe = async function (url, uploadData) {
     });
     const resp = await Promise.race([fetchOptions, timeout(10)]);
     console.log(resp);
+    if (!resp.ok)
+      throw new Error(`Server responded with a status (${resp.status})`);
     const data = await resp.json();
     console.log(data);
-    if (!resp.ok) throw new Error(`${data.message} (${resp.status})`);
     return data;
   } catch (err) {
-    throw new Error(`Something went wrong, please try again later! ${err}`);
+    throw new Error(`${err}`);
   }
 };
 
@@ -45,6 +46,8 @@ export const loadRecipe = async function (url) {
     });
     const resp = await Promise.race([fetchOptions, timeout(30)]);
     console.log(resp);
+    if (!resp.ok)
+      throw new Error(`Server responded with a status (${resp.status})`);
     const data = await resp.json();
     console.log(data);
 
@@ -67,7 +70,7 @@ export const loadRecipe = async function (url) {
     };
     return recipe;
   } catch (err) {
-    console.log(err);
+    throw new Error(`${err}`);
   }
 };
 
