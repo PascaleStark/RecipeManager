@@ -10,6 +10,7 @@ class RecipeView extends View {
   _deleteRecipeBtn = document.querySelector(
     ".recipe__card--btn-options-delete"
   );
+  _failMessage = "Something went wrong, please try again later!";
 
   constructor() {
     super();

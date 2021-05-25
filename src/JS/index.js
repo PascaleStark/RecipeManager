@@ -26,10 +26,12 @@ const controlAddRecipe = async function (url, uploadData) {
     addRecipeView.renderSuccessMessage();
     //3. close Success Message
     setTimeout(function () {
-      addRecipeView.closeSuccessMessage();
+      addRecipeView.closeMessage();
     }, TIMEOUT);
   } catch (err) {
+    //Render fail message
     console.log(err);
+    addRecipeView.renderFailMessage(err);
   }
 };
 ////////////////////RECIPE VIEW//////////////////////////////
@@ -43,6 +45,7 @@ const controlrecipeView = async function (url) {
     recipeView.renderView(recipe);
   } catch (err) {
     console.log(err);
+    recipeView.renderFailMessage(err);
   }
 };
 ////////////////////SEARCH//////////////////////////////
@@ -212,7 +215,7 @@ const controlDeleteRecipe = async function () {
     alertView.renderSuccessMessage();
     //close success message after 3s
     setTimeout(function () {
-      alertView.closeSuccessMessage();
+      alertView.closeMessage();
       location.reload();
     }, TIMEOUT);
   } catch (err) {

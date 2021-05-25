@@ -11,6 +11,7 @@ class AddRecipeView extends View {
   _addRecipeMenuBtn = document.querySelector(".addrecipe");
   _viewMenu = document.querySelector(".menu-section");
   _successMessage = "Your recipe has been posted successfully!";
+  _failMessage = "Something went wrong, please try again later!";
 
   constructor() {
     super();

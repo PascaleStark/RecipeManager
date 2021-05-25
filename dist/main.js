@@ -14,7 +14,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "TIMEOUT": () => (/* binding */ TIMEOUT)
 /* harmony export */ });
 var URL = "http://192.168.4.10:8300/recipes";
-var TIMEOUT = 2000;
+var TIMEOUT = 1500;
 
 /***/ }),
 
@@ -107,27 +107,27 @@ var addRecipe = /*#__PURE__*/function () {
           case 6:
             resp = _context.sent;
             console.log(resp);
-            _context.next = 10;
-            return resp.json();
-
-          case 10:
-            data = _context.sent;
-            console.log(data);
 
             if (resp.ok) {
-              _context.next = 14;
+              _context.next = 10;
               break;
             }
 
-            throw new Error("".concat(data.message, " (").concat(resp.status, ")"));
+            throw new Error("Server responded with a status (".concat(resp.status, ")"));
 
-          case 14:
+          case 10:
+            _context.next = 12;
+            return resp.json();
+
+          case 12:
+            data = _context.sent;
+            console.log(data);
             return _context.abrupt("return", data);
 
           case 17:
             _context.prev = 17;
             _context.t0 = _context["catch"](0);
-            throw new Error("Something went wrong, please try again later! ".concat(_context.t0));
+            throw new Error("".concat(_context.t0));
 
           case 20:
           case "end":
@@ -162,10 +162,19 @@ var loadRecipe = /*#__PURE__*/function () {
           case 4:
             resp = _context2.sent;
             console.log(resp);
-            _context2.next = 8;
-            return resp.json();
+
+            if (resp.ok) {
+              _context2.next = 8;
+              break;
+            }
+
+            throw new Error("Server responded with a status (".concat(resp.status, ")"));
 
           case 8:
+            _context2.next = 10;
+            return resp.json();
+
+          case 10:
             data = _context2.sent;
             console.log(data); //refactoring the recipe object
 
@@ -187,17 +196,17 @@ var loadRecipe = /*#__PURE__*/function () {
             };
             return _context2.abrupt("return", recipe);
 
-          case 16:
-            _context2.prev = 16;
+          case 18:
+            _context2.prev = 18;
             _context2.t0 = _context2["catch"](0);
-            console.log(_context2.t0);
+            throw new Error("".concat(_context2.t0));
 
-          case 19:
+          case 21:
           case "end":
             return _context2.stop();
         }
       }
-    }, _callee2, null, [[0, 16]]);
+    }, _callee2, null, [[0, 18]]);
   }));
 
   return function loadRecipe(_x3) {
@@ -568,6 +577,8 @@ var AddRecipeView = /*#__PURE__*/function (_View) {
     _defineProperty(_assertThisInitialized(_this), "_viewMenu", document.querySelector(".menu-section"));
 
     _defineProperty(_assertThisInitialized(_this), "_successMessage", "Your recipe has been posted successfully!");
+
+    _defineProperty(_assertThisInitialized(_this), "_failMessage", "Something went wrong, please try again later!");
 
     _this._openAddRecipeView();
 
@@ -1410,6 +1421,8 @@ var RecipeView = /*#__PURE__*/function (_View) {
 
     _defineProperty(_assertThisInitialized(_this), "_deleteRecipeBtn", document.querySelector(".recipe__card--btn-options-delete"));
 
+    _defineProperty(_assertThisInitialized(_this), "_failMessage", "Something went wrong, please try again later!");
+
     _this._closeRecipeView();
 
     return _this;
@@ -1670,14 +1683,26 @@ var View = /*#__PURE__*/function () {
       this._parentEl.insertAdjacentHTML("beforeend", this._generateSuccessMarkup());
     }
   }, {
-    key: "closeSuccessMessage",
-    value: function closeSuccessMessage() {
+    key: "closeMessage",
+    value: function closeMessage() {
       this._parentEl.style.display = "none";
+    }
+  }, {
+    key: "renderFailMessage",
+    value: function renderFailMessage(err) {
+      this._parentEl.innerHTML = "";
+
+      this._parentEl.insertAdjacentHTML("beforeend", this._generateFailMarkup(err));
     }
   }, {
     key: "_generateSuccessMarkup",
     value: function _generateSuccessMarkup() {
       return "\n    <div class=\"sub-message\">\n    <p class=\"sub-message__msg\">\n      <svg class=\"icon sub-message__icon\">\n        <use\n          xlink:href=\"./src/img/icons.svg#icon-checkmark-outline\"\n        ></use>\n      </svg>\n      ".concat(this._successMessage, "\n    </p>\n  </div>\n    </div>\n    ");
+    }
+  }, {
+    key: "_generateFailMarkup",
+    value: function _generateFailMarkup(err) {
+      return "\n    <div class=\"sub-message\">\n    <p class=\"sub-message__msg\">\n      <svg class=\"icon sub-message__icon\">\n        <use\n          xlink:href=\"./src/img/icons.svg#icon-warning\"\n        ></use>\n      </svg>\n      ".concat(this._failMessage, " ").concat(err, "\n    </p>\n  </div>\n    </div>\n    ");
     }
   }, {
     key: "_generateMarkup",
@@ -2592,17 +2617,19 @@ var controlAddRecipe = /*#__PURE__*/function () {
             _view_addRecipeView__WEBPACK_IMPORTED_MODULE_2__.default.renderSuccessMessage(); //3. close Success Message
 
             setTimeout(function () {
-              _view_addRecipeView__WEBPACK_IMPORTED_MODULE_2__.default.closeSuccessMessage();
+              _view_addRecipeView__WEBPACK_IMPORTED_MODULE_2__.default.closeMessage();
             }, _config_js__WEBPACK_IMPORTED_MODULE_9__.TIMEOUT);
-            _context.next = 13;
+            _context.next = 14;
             break;
 
           case 10:
             _context.prev = 10;
             _context.t0 = _context["catch"](0);
+            //Render fail message
             console.log(_context.t0);
+            _view_addRecipeView__WEBPACK_IMPORTED_MODULE_2__.default.renderFailMessage(_context.t0);
 
-          case 13:
+          case 14:
           case "end":
             return _context.stop();
         }
@@ -2634,15 +2661,16 @@ var controlrecipeView = /*#__PURE__*/function () {
             recipe = _context2.sent;
             //3. render recipe view
             _view_recipeView__WEBPACK_IMPORTED_MODULE_1__.default.renderView(recipe);
-            _context2.next = 11;
+            _context2.next = 12;
             break;
 
           case 8:
             _context2.prev = 8;
             _context2.t0 = _context2["catch"](0);
             console.log(_context2.t0);
+            _view_recipeView__WEBPACK_IMPORTED_MODULE_1__.default.renderFailMessage(_context2.t0);
 
-          case 11:
+          case 12:
           case "end":
             return _context2.stop();
         }
@@ -3025,7 +3053,7 @@ var controlDeleteRecipe = /*#__PURE__*/function () {
             _view_alertView__WEBPACK_IMPORTED_MODULE_6__.default.renderSuccessMessage(); //close success message after 3s
 
             setTimeout(function () {
-              _view_alertView__WEBPACK_IMPORTED_MODULE_6__.default.closeSuccessMessage();
+              _view_alertView__WEBPACK_IMPORTED_MODULE_6__.default.closeMessage();
               location.reload();
             }, _config_js__WEBPACK_IMPORTED_MODULE_9__.TIMEOUT);
             _context11.next = 12;

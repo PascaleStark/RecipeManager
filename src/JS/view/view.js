@@ -74,8 +74,16 @@ export default class View {
     );
   }
 
-  closeSuccessMessage() {
+  closeMessage() {
     this._parentEl.style.display = "none";
+  }
+
+  renderFailMessage(err) {
+    this._parentEl.innerHTML = "";
+    this._parentEl.insertAdjacentHTML(
+      "beforeend",
+      this._generateFailMarkup(err)
+    );
   }
 
   _generateSuccessMarkup() {
@@ -88,6 +96,22 @@ export default class View {
         ></use>
       </svg>
       ${this._successMessage}
+    </p>
+  </div>
+    </div>
+    `;
+  }
+
+  _generateFailMarkup(err) {
+    return `
+    <div class="sub-message">
+    <p class="sub-message__msg">
+      <svg class="icon sub-message__icon">
+        <use
+          xlink:href="./src/img/icons.svg#icon-warning"
+        ></use>
+      </svg>
+      ${this._failMessage} ${err}
     </p>
   </div>
     </div>
