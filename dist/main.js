@@ -127,7 +127,7 @@ var addRecipe = /*#__PURE__*/function () {
           case 17:
             _context.prev = 17;
             _context.t0 = _context["catch"](0);
-            throw new Error("".concat(_context.t0));
+            throw _context.t0;
 
           case 20:
           case "end":
@@ -199,7 +199,7 @@ var loadRecipe = /*#__PURE__*/function () {
           case 18:
             _context2.prev = 18;
             _context2.t0 = _context2["catch"](0);
-            throw new Error("".concat(_context2.t0));
+            throw _context2.t0;
 
           case 21:
           case "end":
@@ -251,12 +251,30 @@ var searchRecipes = /*#__PURE__*/function () {
 
           case 4:
             resp = _context3.sent;
-            _context3.next = 7;
-            return resp.json();
+
+            if (resp.ok) {
+              _context3.next = 7;
+              break;
+            }
+
+            throw new Error("We couldn't find a recipe that matches your search. Server responded with a status (".concat(resp.status, ")"));
 
           case 7:
+            _context3.next = 9;
+            return resp.json();
+
+          case 9:
             data = _context3.sent;
-            // if (!data) throw new Error(`No recipe is found`);
+            console.log(data);
+
+            if (!(!data || data.length === 0)) {
+              _context3.next = 13;
+              break;
+            }
+
+            throw new Error("We couldn't find a recipe that matches your search");
+
+          case 13:
             //catch url
             this.state.url = url; //update query
 
@@ -270,17 +288,17 @@ var searchRecipes = /*#__PURE__*/function () {
               url: this.state.url
             });
 
-          case 15:
-            _context3.prev = 15;
+          case 20:
+            _context3.prev = 20;
             _context3.t0 = _context3["catch"](0);
-            console.log(_context3.t0);
+            throw _context3.t0;
 
-          case 18:
+          case 23:
           case "end":
             return _context3.stop();
         }
       }
-    }, _callee3, this, [[0, 15]]);
+    }, _callee3, this, [[0, 20]]);
   }));
 
   return function searchRecipes(_x4, _x5) {
@@ -308,27 +326,27 @@ var editFavourites = /*#__PURE__*/function () {
           case 5:
             resp = _context4.sent;
             console.log(resp);
-            _context4.next = 9;
-            return resp.json();
-
-          case 9:
-            data = _context4.sent;
-            console.log(data);
 
             if (resp.ok) {
-              _context4.next = 13;
+              _context4.next = 9;
               break;
             }
 
-            throw new Error("".concat(data.message, " (").concat(resp.status, ")"));
+            throw new Error("Recipe could not be added to your favourites list, please try again later! Server responded with status (".concat(resp.status, ")"));
 
-          case 13:
+          case 9:
+            _context4.next = 11;
+            return resp.json();
+
+          case 11:
+            data = _context4.sent;
+            console.log(data);
             return _context4.abrupt("return", data);
 
           case 16:
             _context4.prev = 16;
             _context4.t0 = _context4["catch"](0);
-            throw new Error("Something went wrong, please try again later! ".concat(_context4.t0));
+            throw _context4.t0;
 
           case 19:
           case "end":
@@ -779,6 +797,122 @@ var AlertView = /*#__PURE__*/function (_View) {
 }(_view_js__WEBPACK_IMPORTED_MODULE_1__.default);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (new AlertView());
+
+/***/ }),
+
+/***/ "./src/JS/view/errorView.js":
+/*!**********************************!*\
+  !*** ./src/JS/view/errorView.js ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var regenerator_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! regenerator-runtime */ "./node_modules/regenerator-runtime/runtime.js");
+/* harmony import */ var regenerator_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(regenerator_runtime__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _view_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./view.js */ "./src/JS/view/view.js");
+/* harmony import */ var _config_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../config.js */ "./src/JS/config.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+var ErrorView = /*#__PURE__*/function (_View) {
+  _inherits(ErrorView, _View);
+
+  var _super = _createSuper(ErrorView);
+
+  function ErrorView() {
+    var _this;
+
+    _classCallCheck(this, ErrorView);
+
+    _this = _super.call(this);
+
+    _defineProperty(_assertThisInitialized(_this), "_parentEl", document.querySelector(".error-modal"));
+
+    _defineProperty(_assertThisInitialized(_this), "_errorModalBtn", document.querySelector(".error-modal__btn"));
+
+    _defineProperty(_assertThisInitialized(_this), "_body", document.getElementsByTagName("body")[0]);
+
+    _defineProperty(_assertThisInitialized(_this), "_recipeView", document.querySelector(".recipe-view"));
+
+    _defineProperty(_assertThisInitialized(_this), "_blurEl", document.querySelectorAll("body > *:not(.error-modal)"));
+
+    _this.closeErrorView();
+
+    return _this;
+  }
+
+  _createClass(ErrorView, [{
+    key: "showErrorView",
+    value: function showErrorView(err) {
+      this._recipeView.innerHTML = "";
+
+      this._parentEl.insertAdjacentHTML("afterbegin", this._generateErrorMarkup(err));
+
+      this._parentEl.classList.remove("hidden");
+
+      console.log(this._blurEl);
+
+      this._blurEl.forEach(function (el) {
+        return el.classList.add("blur");
+      });
+    }
+  }, {
+    key: "_hideErrorView",
+    value: function _hideErrorView(e) {
+      var targetEl = e.target.closest(".error-modal__btn");
+      console.log(targetEl);
+
+      if (targetEl) {
+        this._parentEl.classList.add("hidden");
+
+        location.reload();
+      }
+    }
+  }, {
+    key: "closeErrorView",
+    value: function closeErrorView() {
+      this._body.addEventListener("click", this._hideErrorView.bind(this));
+    }
+  }, {
+    key: "_generateErrorMarkup",
+    value: function _generateErrorMarkup(err) {
+      return "\n    <div class=\"error-modal__container\">\n      <h1>\n        <svg class=\"icon error-modal__icon\">\n          <use xlink:href=\"./src/img/icons.svg#icon-warning\"></use></svg\n        >ERROR\n      </h1>\n      <p class=\"error-modal__msg\">".concat(err, "</p>\n      <button class=\"error-modal__btn\">OK</button>\n    </div>");
+    }
+  }]);
+
+  return ErrorView;
+}(_view_js__WEBPACK_IMPORTED_MODULE_1__.default);
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (new ErrorView());
 
 /***/ }),
 
@@ -2616,11 +2750,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _config_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./config.js */ "./src/JS/config.js");
 /* harmony import */ var _view_featuredView__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./view/featuredView */ "./src/JS/view/featuredView.js");
 /* harmony import */ var _view_menuView__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./view/menuView */ "./src/JS/view/menuView.js");
+/* harmony import */ var _view_errorView__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./view/errorView */ "./src/JS/view/errorView.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 
 
 
@@ -2734,34 +2870,41 @@ var controlSearchRecipe = /*#__PURE__*/function () {
         switch (_context3.prev = _context3.next) {
           case 0:
             _context3.prev = 0;
-            //1. render spinner
-            _view_searchRecipesView__WEBPACK_IMPORTED_MODULE_3__.default.renderSpinner(); //2. look for all the recipes with the given keyword
-
-            _context3.next = 4;
+            _context3.next = 3;
             return _model__WEBPACK_IMPORTED_MODULE_0__.searchRecipes("".concat(_config_js__WEBPACK_IMPORTED_MODULE_9__.URL, "/search?q=").concat(query), query);
 
-          case 4:
+          case 3:
             searchResults = _context3.sent;
-            //3. render the recipe cards with pagination
-            // if (searchResults.length === 0)
-            //   throw new Error(`There are no results for your search!`);
+
+            if (searchResults) {
+              _context3.next = 6;
+              break;
+            }
+
+            throw error;
+
+          case 6:
+            //1. render spinner
+            _view_searchRecipesView__WEBPACK_IMPORTED_MODULE_3__.default.renderSpinner(); //3. render the recipe cards with pagination
+
             _view_searchRecipesView__WEBPACK_IMPORTED_MODULE_3__.default.renderResultsView(searchResults.recipes); ///////////FETCHING HEADER INFORMATION//////////
 
             fetchHeaderInfo();
-            _context3.next = 12;
+            _context3.next = 15;
             break;
 
-          case 9:
-            _context3.prev = 9;
+          case 11:
+            _context3.prev = 11;
             _context3.t0 = _context3["catch"](0);
             console.error(_context3.t0);
+            _view_errorView__WEBPACK_IMPORTED_MODULE_12__.default.showErrorView(_context3.t0);
 
-          case 12:
+          case 15:
           case "end":
             return _context3.stop();
         }
       }
-    }, _callee3, null, [[0, 9]]);
+    }, _callee3, null, [[0, 11]]);
   }));
 
   return function controlSearchRecipe(_x4) {
