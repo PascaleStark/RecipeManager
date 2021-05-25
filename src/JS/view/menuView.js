@@ -7,7 +7,7 @@ class MenuView extends View {
   _favouriteRecipeBtn = document.querySelector(".icon-heart");
   _body = document.getElementsByTagName("body")[0];
   _titleView = "Favourites";
-  _allFavouritesBtn = document.querySelector(".nav__favorites--btn");
+  _allFavouritesBtn = document.querySelector(".nav__favourites--btn");
   _allfavouritesMenuBtn = document.querySelector(
     ".menu-view__list--favourites"
   );

@@ -1,5 +1,6 @@
 .recipe-view {
   @include position-modal-element;
+  //margin-bottom: 70rem;
 
   @include respond(phone) {
     margin: 5rem 0;

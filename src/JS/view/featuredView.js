@@ -7,8 +7,10 @@ class FeaturedView extends View {
   _featuredRecipeBtn = document.querySelector(".icon-star");
   _body = document.getElementsByTagName("body")[0];
   _titleView = "Featured";
-  _allFavouritesBtn = document.querySelector(".nav__favorites--btn");
+  _allFavouritesBtn = document.querySelector(".nav__favourites--btn");
   _resultsHeading = document.querySelector(".results__heading");
+  _dropdownFilterEl = document.querySelector(".dropdown");
+  _titleView = "Featured";
 
   constructor() {
     super();

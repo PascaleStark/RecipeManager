@@ -35,8 +35,21 @@ export default class View {
       );
     });
     this._resultsHeading.textContent = `${this._titleView}`;
+    this._hideFiltersView();
     if (pageNum) {
       this._toggleActivePage(pageNum);
+    }
+  }
+
+  _hideFiltersView() {
+    if (
+      this._resultsHeading.textContent === "Favourites" ||
+      this._resultsHeading.textContent === "Featured"
+    ) {
+      this._dropdownFilterEl.style.display = "none";
+      this._resultsHeading.style.marginBottom = "3rem";
+    } else {
+      this._dropdownFilterEl.style.display = "block";
     }
   }
 
@@ -68,10 +81,12 @@ export default class View {
 
   renderSuccessMessage() {
     this._parentEl.innerHTML = "";
+    this._parentEl.style.marginBottom = "70rem";
     this._parentEl.insertAdjacentHTML(
       "beforeend",
       this._generateSuccessMarkup()
     );
+    this._parentEl.scrollIntoView({ behavior: "smooth" });
   }
 
   closeMessage() {
@@ -80,10 +95,12 @@ export default class View {
 
   renderFailMessage(err) {
     this._parentEl.innerHTML = "";
+    this._parentEl.style.marginBottom = "70rem";
     this._parentEl.insertAdjacentHTML(
       "beforeend",
       this._generateFailMarkup(err)
     );
+    this._parentEl.scrollIntoView({ behavior: "smooth" });
   }
 
   _generateSuccessMarkup() {

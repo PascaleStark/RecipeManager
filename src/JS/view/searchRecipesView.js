@@ -8,7 +8,8 @@ class SearchRecipeView extends View {
   _resultsHeading = document.querySelector(".results__heading");
   _searchForm = document.querySelector(".search");
   _searchEl = document.querySelector(".search__input");
-  _titleView = "Search results";
+  _titleView = "Search Results";
+  _dropdownFilterEl = document.querySelector(".dropdown");
 
   _showSearchRecipeView(handler, e) {
     e.preventDefault();

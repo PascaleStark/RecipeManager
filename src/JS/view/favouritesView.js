@@ -1,24 +1,36 @@
 import regeneratorRuntime from "regenerator-runtime";
 import View from "./view";
 import { URL } from "../config.js";
+import { hideFilters } from "../helper";
 
 class FavouritesView extends View {
   _parentEl = document.querySelector(".recipe__container");
   _favouriteRecipeBtn = document.querySelector(".icon-heart");
   _body = document.getElementsByTagName("body")[0];
   _titleView = "Favourites";
-  _allFavouritesBtn = document.querySelector(".nav__favorites--btn");
+  _allFavouritesBtn = document.querySelector(".nav__favourites--btn");
   _allfavouritesMenuBtn = document.querySelector(
     ".menu-view__list--favourites"
   );
   _resultsHeading = document.querySelector(".results__heading");
   _viewMenu = document.querySelector(".menu-section");
   _closeMenu = document.querySelector(".menu-view__icon");
+  _dropdownFilterEl = document.querySelector(".dropdown");
 
   constructor() {
     super();
     this.setFavouriteIcon();
   }
+
+  // hideFiltersView() {
+  //   if (
+  //     this._resultsHeading.textContent === "Favourites" ||
+  //     this._resultsHeading.textContent === "Featured"
+  //   ) {
+  //     this._dropdownFilterEl.style.display = "none";
+  //     this._resultsHeading.style.marginBottom = "3rem";
+  //   }
+  // }
 
   _setRecipeID(handler, e) {
     const targetEl = e.target.closest(".icon-heart");
