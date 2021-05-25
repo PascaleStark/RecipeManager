@@ -336,7 +336,11 @@
               <a href="#" class="menu-view__list--link addrecipe">Add recipe</a>
             </li>
             <li class="menu-view__list--item">
-              <a href="#" class="menu-view__list--link menu-view__list--favourites">Favourites</a>
+              <a
+                href="#"
+                class="menu-view__list--link menu-view__list--favourites"
+                >Favourites</a
+              >
             </li>
             <!-- <li class="menu-view__list--item"><a href="#" class="menu-view__list--link filter-link">Filter <svg class="icon icon__cheveron-down link__chevron-down">
               <use
@@ -361,8 +365,8 @@
     </div> -->
 
     <div class="modal-view">
-      <div class="modal-view__msg  hidden">
-        <p></p>
+      <div class="modal-view__msg hidden">
+        <p>
           <svg class="icon">
             <use xlink:href="./src/img/icons.svg#icon-warning"></use></svg
           >Are you sure you want to delete this recipe?
@@ -378,14 +382,27 @@
           </button>
           <button
             class="
-              modal-view__container-btn--btn
-              modal-view__container-btn--btn-yes
-            " id = "btn-confirm" data-id = ""
+              modal-view__container-btn--btn modal-view__container-btn--btn-yes
+            "
+            id="btn-confirm"
+            data-id=""
           >
             yes
           </button>
         </div>
       </div>
+    </div>
+
+    <div class="error-modal hidden">
+      <!-- <div class="error-modal__container">
+        <h1>
+          <svg class="icon error-modal__icon">
+            <use xlink:href="./src/img/icons.svg#icon-warning"></use></svg
+          >ERROR
+        </h1>
+        <p class="error-modal__msg">THIS IS FOR TESTING. WILL BE DYNAMIC</p>
+        <button class="error-modal__btn">OK</button>
+      </div> -->
     </div>
 
     <footer class="footer">

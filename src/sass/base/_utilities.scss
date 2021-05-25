@@ -33,3 +33,8 @@
 .active {
   background-color: $color-salmon-primary;
 }
+
+.blur {
+  -webkit-filter: blur(5px);
+  filter: blur(5px);
+}

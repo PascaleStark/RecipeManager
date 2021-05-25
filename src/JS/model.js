@@ -31,7 +31,7 @@ export const addRecipe = async function (url, uploadData) {
     console.log(data);
     return data;
   } catch (err) {
-    throw new Error(`${err}`);
+    throw err;
   }
 };
 
@@ -70,7 +70,7 @@ export const loadRecipe = async function (url) {
     };
     return recipe;
   } catch (err) {
-    throw new Error(`${err}`);
+    throw err;
   }
 };
 
@@ -99,9 +99,14 @@ export const searchRecipes = async function (url, query) {
       method: "GET",
     });
     const resp = await Promise.race([fetchOptions, timeout(30)]);
+    if (!resp.ok)
+      throw new Error(
+        `We couldn't find a recipe that matches your search. Server responded with a status (${resp.status})`
+      );
     const data = await resp.json();
-    // if (!data) throw new Error(`No recipe is found`);
-
+    console.log(data);
+    if (!data || data.length === 0)
+      throw new Error(`We couldn't find a recipe that matches your search`);
     //catch url
     this.state.url = url;
     //update query
@@ -115,7 +120,7 @@ export const searchRecipes = async function (url, query) {
       url: this.state.url,
     };
   } catch (err) {
-    console.log(err);
+    throw err;
   }
 };
 
@@ -130,12 +135,16 @@ export const editFavourites = async function (url) {
     });
     const resp = await Promise.race([fetchOptions, timeout(10)]);
     console.log(resp);
+    if (!resp.ok)
+      throw new Error(
+        `Recipe could not be added to your favourites list, please try again later! Server responded with status (${resp.status})`
+      );
     const data = await resp.json();
     console.log(data);
-    if (!resp.ok) throw new Error(`${data.message} (${resp.status})`);
+
     return data;
   } catch (err) {
-    throw new Error(`Something went wrong, please try again later! ${err}`);
+    throw err;
   }
 };
 

@@ -12,6 +12,7 @@ import { URL, TIMEOUT } from "./config.js";
 import featuredView from "./view/featuredView";
 import filterView from "./view/filterView";
 import menuView from "./view/menuView";
+import errorView from "./view/errorView";
 
 ////////////////////ADD RECIPE//////////////////////////////
 //Add a recipe
@@ -52,21 +53,21 @@ const controlrecipeView = async function (url) {
 ////////////////////SEARCH//////////////////////////////
 const controlSearchRecipe = async function (query) {
   try {
-    //1. render spinner
-    searchRecipeView.renderSpinner();
     //2. look for all the recipes with the given keyword
     const searchResults = await model.searchRecipes(
       `${URL}/search?q=${query}`,
       query
     );
+    if (!searchResults) throw error;
+    //1. render spinner
+    searchRecipeView.renderSpinner();
     //3. render the recipe cards with pagination
-    // if (searchResults.length === 0)
-    //   throw new Error(`There are no results for your search!`);
     searchRecipeView.renderResultsView(searchResults.recipes);
     ///////////FETCHING HEADER INFORMATION//////////
     fetchHeaderInfo();
   } catch (err) {
     console.error(err);
+    errorView.showErrorView(err);
   }
 };
 ////////////////////FAVOURITES//////////////////////////////
