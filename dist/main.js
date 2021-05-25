@@ -797,6 +797,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var regenerator_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(regenerator_runtime__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _view__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./view */ "./src/JS/view/view.js");
 /* harmony import */ var _config_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../config.js */ "./src/JS/config.js");
+/* harmony import */ var _helper__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../helper */ "./src/JS/helper.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -825,6 +826,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 var FavouritesView = /*#__PURE__*/function (_View) {
   _inherits(FavouritesView, _View);
 
@@ -845,7 +847,7 @@ var FavouritesView = /*#__PURE__*/function (_View) {
 
     _defineProperty(_assertThisInitialized(_this), "_titleView", "Favourites");
 
-    _defineProperty(_assertThisInitialized(_this), "_allFavouritesBtn", document.querySelector(".nav__favorites--btn"));
+    _defineProperty(_assertThisInitialized(_this), "_allFavouritesBtn", document.querySelector(".nav__favourites--btn"));
 
     _defineProperty(_assertThisInitialized(_this), "_allfavouritesMenuBtn", document.querySelector(".menu-view__list--favourites"));
 
@@ -855,10 +857,21 @@ var FavouritesView = /*#__PURE__*/function (_View) {
 
     _defineProperty(_assertThisInitialized(_this), "_closeMenu", document.querySelector(".menu-view__icon"));
 
+    _defineProperty(_assertThisInitialized(_this), "_dropdownFilterEl", document.querySelector(".dropdown"));
+
     _this.setFavouriteIcon();
 
     return _this;
-  }
+  } // hideFiltersView() {
+  //   if (
+  //     this._resultsHeading.textContent === "Favourites" ||
+  //     this._resultsHeading.textContent === "Featured"
+  //   ) {
+  //     this._dropdownFilterEl.style.display = "none";
+  //     this._resultsHeading.style.marginBottom = "3rem";
+  //   }
+  // }
+
 
   _createClass(FavouritesView, [{
     key: "_setRecipeID",
@@ -974,9 +987,13 @@ var FeaturedView = /*#__PURE__*/function (_View) {
 
     _defineProperty(_assertThisInitialized(_this), "_titleView", "Featured");
 
-    _defineProperty(_assertThisInitialized(_this), "_allFavouritesBtn", document.querySelector(".nav__favorites--btn"));
+    _defineProperty(_assertThisInitialized(_this), "_allFavouritesBtn", document.querySelector(".nav__favourites--btn"));
 
     _defineProperty(_assertThisInitialized(_this), "_resultsHeading", document.querySelector(".results__heading"));
+
+    _defineProperty(_assertThisInitialized(_this), "_dropdownFilterEl", document.querySelector(".dropdown"));
+
+    _defineProperty(_assertThisInitialized(_this), "_titleView", "Featured");
 
     _this.setFeaturedIcon();
 
@@ -1191,7 +1208,7 @@ var MenuView = /*#__PURE__*/function (_View) {
 
     _defineProperty(_assertThisInitialized(_this), "_titleView", "Favourites");
 
-    _defineProperty(_assertThisInitialized(_this), "_allFavouritesBtn", document.querySelector(".nav__favorites--btn"));
+    _defineProperty(_assertThisInitialized(_this), "_allFavouritesBtn", document.querySelector(".nav__favourites--btn"));
 
     _defineProperty(_assertThisInitialized(_this), "_allfavouritesMenuBtn", document.querySelector(".menu-view__list--favourites"));
 
@@ -1551,7 +1568,9 @@ var SearchRecipeView = /*#__PURE__*/function (_View) {
 
     _defineProperty(_assertThisInitialized(_this), "_searchEl", document.querySelector(".search__input"));
 
-    _defineProperty(_assertThisInitialized(_this), "_titleView", "Search results");
+    _defineProperty(_assertThisInitialized(_this), "_titleView", "Search Results");
+
+    _defineProperty(_assertThisInitialized(_this), "_dropdownFilterEl", document.querySelector(".dropdown"));
 
     return _this;
   }
@@ -1644,8 +1663,20 @@ var View = /*#__PURE__*/function () {
 
       this._resultsHeading.textContent = "".concat(this._titleView);
 
+      this._hideFiltersView();
+
       if (pageNum) {
         this._toggleActivePage(pageNum);
+      }
+    }
+  }, {
+    key: "_hideFiltersView",
+    value: function _hideFiltersView() {
+      if (this._resultsHeading.textContent === "Favourites" || this._resultsHeading.textContent === "Featured") {
+        this._dropdownFilterEl.style.display = "none";
+        this._resultsHeading.style.marginBottom = "3rem";
+      } else {
+        this._dropdownFilterEl.style.display = "block";
       }
     }
   }, {
@@ -1679,8 +1710,13 @@ var View = /*#__PURE__*/function () {
     key: "renderSuccessMessage",
     value: function renderSuccessMessage() {
       this._parentEl.innerHTML = "";
+      this._parentEl.style.marginBottom = "70rem";
 
       this._parentEl.insertAdjacentHTML("beforeend", this._generateSuccessMarkup());
+
+      this._parentEl.scrollIntoView({
+        behavior: "smooth"
+      });
     }
   }, {
     key: "closeMessage",
@@ -1691,8 +1727,13 @@ var View = /*#__PURE__*/function () {
     key: "renderFailMessage",
     value: function renderFailMessage(err) {
       this._parentEl.innerHTML = "";
+      this._parentEl.style.marginBottom = "70rem";
 
       this._parentEl.insertAdjacentHTML("beforeend", this._generateFailMarkup(err));
+
+      this._parentEl.scrollIntoView({
+        behavior: "smooth"
+      });
     }
   }, {
     key: "_generateSuccessMarkup",
@@ -2618,6 +2659,7 @@ var controlAddRecipe = /*#__PURE__*/function () {
 
             setTimeout(function () {
               _view_addRecipeView__WEBPACK_IMPORTED_MODULE_2__.default.closeMessage();
+              location.reload();
             }, _config_js__WEBPACK_IMPORTED_MODULE_9__.TIMEOUT);
             _context.next = 14;
             break;

@@ -27,6 +27,7 @@ const controlAddRecipe = async function (url, uploadData) {
     //3. close Success Message
     setTimeout(function () {
       addRecipeView.closeMessage();
+      location.reload();
     }, TIMEOUT);
   } catch (err) {
     //Render fail message
