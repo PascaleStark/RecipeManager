@@ -15,6 +15,7 @@ class RecipeView extends View {
   constructor() {
     super();
     this._closeRecipeView();
+    this._closeErrMsgModal();
   }
 
   openRecipeView(handler) {

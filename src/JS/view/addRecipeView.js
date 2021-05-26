@@ -9,6 +9,7 @@ class AddRecipeView extends View {
   _form = document.querySelector(".add-recipe-view__form");
   _closeForm = document.querySelector(".icon__close-form");
   _addRecipeMenuBtn = document.querySelector(".addrecipe");
+  _failAddRecipeBtn = document.querySelector(".sub-message__btn");
   _viewMenu = document.querySelector(".menu-section");
   _successMessage = "Your recipe has been posted successfully!";
   _failMessage = "Something went wrong, please try again later!";
@@ -17,6 +18,7 @@ class AddRecipeView extends View {
     super();
     this._openAddRecipeView();
     this._closeAddRecipeView();
+    this._closeErrMsgModal();
   }
 
   showForm(e) {

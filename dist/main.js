@@ -584,6 +584,8 @@ var AddRecipeView = /*#__PURE__*/function (_View) {
 
     _defineProperty(_assertThisInitialized(_this), "_addRecipeMenuBtn", document.querySelector(".addrecipe"));
 
+    _defineProperty(_assertThisInitialized(_this), "_failAddRecipeBtn", document.querySelector(".sub-message__btn"));
+
     _defineProperty(_assertThisInitialized(_this), "_viewMenu", document.querySelector(".menu-section"));
 
     _defineProperty(_assertThisInitialized(_this), "_successMessage", "Your recipe has been posted successfully!");
@@ -593,6 +595,8 @@ var AddRecipeView = /*#__PURE__*/function (_View) {
     _this._openAddRecipeView();
 
     _this._closeAddRecipeView();
+
+    _this._closeErrMsgModal();
 
     return _this;
   }
@@ -1571,6 +1575,8 @@ var RecipeView = /*#__PURE__*/function (_View) {
 
     _this._closeRecipeView();
 
+    _this._closeErrMsgModal();
+
     return _this;
   }
 
@@ -1873,6 +1879,17 @@ var View = /*#__PURE__*/function () {
       this._parentEl.innerHTML = "";
 
       this._parentEl.insertAdjacentHTML("afterbegin", this._generateNoResultMarkup());
+    }
+  }, {
+    key: "_hideErrMsgModal",
+    value: function _hideErrMsgModal(e) {
+      var targetEl = e.target.closest(".sub-message__btn");
+      if (targetEl) this.hideModalView();
+    }
+  }, {
+    key: "_closeErrMsgModal",
+    value: function _closeErrMsgModal() {
+      this._body.addEventListener("click", this._hideErrMsgModal.bind(this));
     }
   }, {
     key: "_generateNoResultMarkup",
@@ -2987,15 +3004,16 @@ var controlLoadFavourites = /*#__PURE__*/function () {
             _view_favouritesView__WEBPACK_IMPORTED_MODULE_4__.default.renderResultsView(favouritesResults.recipes); ///////////FETCHING HEADER INFORMATION//////////
 
             fetchHeaderInfo();
-            _context5.next = 12;
+            _context5.next = 13;
             break;
 
           case 9:
             _context5.prev = 9;
             _context5.t0 = _context5["catch"](0);
             console.error(_context5.t0);
+            _view_errorView__WEBPACK_IMPORTED_MODULE_12__.default.showErrorView(_context5.t0);
 
-          case 12:
+          case 13:
           case "end":
             return _context5.stop();
         }
@@ -3031,15 +3049,16 @@ var controlLoadFeatured = /*#__PURE__*/function () {
             _view_featuredView__WEBPACK_IMPORTED_MODULE_10__.default.renderResultsView(featuredResults.recipes); ///////////FETCHING HEADER INFORMATION//////////
 
             fetchHeaderInfo();
-            _context6.next = 12;
+            _context6.next = 13;
             break;
 
           case 9:
             _context6.prev = 9;
             _context6.t0 = _context6["catch"](0);
             console.error(_context6.t0);
+            _view_errorView__WEBPACK_IMPORTED_MODULE_12__.default.showErrorView(_context6.t0);
 
-          case 12:
+          case 13:
           case "end":
             return _context6.stop();
         }
