@@ -489,7 +489,7 @@ var deleteRecipe = /*#__PURE__*/function () {
               break;
             }
 
-            throw new Error("Could not delete this recipe, please try again later! ".concat(resp.status));
+            throw new Error("Could not delete this recipe, please try again later! Server responded with status ".concat(resp.status));
 
           case 7:
             console.log(resp);
@@ -498,7 +498,7 @@ var deleteRecipe = /*#__PURE__*/function () {
           case 11:
             _context7.prev = 11;
             _context7.t0 = _context7["catch"](0);
-            console.log(_context7.t0);
+            throw _context7.t0;
 
           case 14:
           case "end":
@@ -1879,7 +1879,7 @@ var View = /*#__PURE__*/function () {
   }, {
     key: "_generateFailMarkup",
     value: function _generateFailMarkup(err) {
-      return "\n    <div class=\"sub-message\">\n    <p class=\"sub-message__msg\">\n      <svg class=\"icon sub-message__icon\">\n        <use\n          xlink:href=\"./src/img/icons.svg#icon-warning\"\n        ></use>\n      </svg>\n      ".concat(this._failMessage, " ").concat(err, "\n    </p>\n  </div>\n    </div>\n    ");
+      return "\n    <div class=\"sub-message\">\n    <p class=\"sub-message__msg\">\n      <svg class=\"icon sub-message__icon\">\n        <use\n          xlink:href=\"./src/img/icons.svg#icon-warning\"\n        ></use>\n      </svg>\n      ".concat(this._failMessage, " ").concat(err, "\n    </p>\n    <button class=\"sub-message__btn\">OK</button>\n  </div>\n    </div>\n    ");
     }
   }, {
     key: "_generateMarkup",
@@ -2930,15 +2930,16 @@ var controlFavouriteRecipes = /*#__PURE__*/function () {
           case 3:
             favouriteRec = _context4.sent;
             console.log(favouriteRec);
-            _context4.next = 10;
+            _context4.next = 11;
             break;
 
           case 7:
             _context4.prev = 7;
             _context4.t0 = _context4["catch"](0);
             console.error(_context4.t0);
+            _view_errorView__WEBPACK_IMPORTED_MODULE_12__.default.showErrorView(_context4.t0);
 
-          case 10:
+          case 11:
           case "end":
             return _context4.stop();
         }
@@ -3101,15 +3102,16 @@ var controlfilterSearch = /*#__PURE__*/function () {
 
             fetchHeaderInfo();
             _view_filterView__WEBPACK_IMPORTED_MODULE_7__.default.toggleDropdownFilters();
-            _context8.next = 15;
+            _context8.next = 16;
             break;
 
           case 12:
             _context8.prev = 12;
             _context8.t0 = _context8["catch"](0);
             console.error(_context8.t0);
+            _view_errorView__WEBPACK_IMPORTED_MODULE_12__.default.showErrorView(_context8.t0);
 
-          case 15:
+          case 16:
           case "end":
             return _context8.stop();
         }
@@ -3237,28 +3239,38 @@ var controlDeleteRecipe = /*#__PURE__*/function () {
 
           case 3:
             deleteRec = _context11.sent;
-            console.log(deleteRec); //render success message
+            console.log(deleteRec);
 
+            if (deleteRec) {
+              _context11.next = 7;
+              break;
+            }
+
+            throw err;
+
+          case 7:
+            //render success message
             _view_alertView__WEBPACK_IMPORTED_MODULE_6__.default.renderSuccessMessage(); //close success message after 3s
 
             setTimeout(function () {
               _view_alertView__WEBPACK_IMPORTED_MODULE_6__.default.closeMessage();
               location.reload();
             }, _config_js__WEBPACK_IMPORTED_MODULE_9__.TIMEOUT);
-            _context11.next = 12;
+            _context11.next = 15;
             break;
 
-          case 9:
-            _context11.prev = 9;
+          case 11:
+            _context11.prev = 11;
             _context11.t0 = _context11["catch"](0);
             console.log(_context11.t0);
+            _view_errorView__WEBPACK_IMPORTED_MODULE_12__.default.showErrorView(_context11.t0);
 
-          case 12:
+          case 15:
           case "end":
             return _context11.stop();
         }
       }
-    }, _callee11, null, [[0, 9]]);
+    }, _callee11, null, [[0, 11]]);
   }));
 
   return function controlDeleteRecipe() {

@@ -130,6 +130,7 @@ export default class View {
       </svg>
       ${this._failMessage} ${err}
     </p>
+    <button class="sub-message__btn">OK</button>
   </div>
     </div>
     `;
