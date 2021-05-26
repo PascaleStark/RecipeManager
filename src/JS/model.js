@@ -99,6 +99,7 @@ export const searchRecipes = async function (url, query) {
       method: "GET",
     });
     const resp = await Promise.race([fetchOptions, timeout(30)]);
+    console.log(resp);
     if (!resp.ok)
       throw new Error(
         `We couldn't find a recipe that matches your search. Server responded with a status (${resp.status})`

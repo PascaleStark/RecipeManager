@@ -9,6 +9,7 @@ class FilterView extends View {
   _dropdownBtn = document.querySelector(".dropdown__btn");
   _titleView = "Search results";
   _body = document.getElementsByTagName("body")[0];
+  _dropdownFilterEl = document.querySelector(".dropdown");
 
   constructor() {
     super();
@@ -33,7 +34,7 @@ class FilterView extends View {
       const searchQuery = document.querySelector(".search__input").value;
       const filterQuery = targetEl.textContent;
       handler(searchQuery, filterQuery);
-      searchEl.value = "";
+      //searchEl.value = "";
     });
   }
 }

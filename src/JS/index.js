@@ -58,6 +58,7 @@ const controlSearchRecipe = async function (query) {
       `${URL}/search?q=${query}`,
       query
     );
+    console.log(searchResults);
     if (!searchResults) throw error;
     //1. render spinner
     searchRecipeView.renderSpinner();
@@ -137,12 +138,14 @@ const controlfilterSearch = async function (searchQuery, filterQuery) {
     filterView.renderSpinner();
     //2. look for all the recipes with the given keyword
     const filteredResults = await model.searchRecipes(
-      `${URL}/search?q=${searchQuery}&filter=category&value=${filterQuery}`
+      `${URL}/search?q=${searchQuery}&filter=category&value=${filterQuery}`,
+      searchQuery
     );
     //3. render the recipe cards with pagination
     // if (searchResults.length === 0)
     //   throw new Error(`There are no results for your search!`);
     console.log(filteredResults.recipes);
+    console.log(filteredResults.url);
     filterView.renderResultsView(filteredResults.recipes);
     ///////////FETCHING HEADER INFORMATION//////////
     fetchHeaderInfo();
