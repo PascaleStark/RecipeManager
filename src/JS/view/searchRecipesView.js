@@ -10,6 +10,8 @@ class SearchRecipeView extends View {
   _searchEl = document.querySelector(".search__input");
   _titleView = "Search Results";
   _dropdownFilterEl = document.querySelector(".dropdown");
+  _noResultMsg =
+    "Sorry, we could not find a recipe that matches your search. Try searching for another recipe.";
 
   _showSearchRecipeView(handler, e) {
     e.preventDefault();
@@ -26,21 +28,6 @@ class SearchRecipeView extends View {
       "submit",
       this._showSearchRecipeView.bind(this, handler)
     );
-  }
-
-  renderNoResultsMsg() {
-    this._resultsHeading.textContent = "Search Results";
-    this._parentEl.innerHTML = "";
-    this._parentEl.insertAdjacentHTML(
-      "afterbegin",
-      this._generateNoResultMarkup()
-    );
-  }
-
-  _generateNoResultMarkup() {
-    return `<div class="recipe__no-result">
-    <p class="recipe__no-result--msg">Sorry, we could not find a recipe that matches your search. Try searching for another recipe.</p>
-    </div>`;
   }
 }
 

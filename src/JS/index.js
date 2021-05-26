@@ -151,7 +151,12 @@ const controlfilterSearch = async function (searchQuery, filterQuery) {
     //   throw new Error(`There are no results for your search!`);
     console.log(filteredResults.recipes);
     console.log(filteredResults.url);
-    filterView.renderResultsView(filteredResults.recipes);
+    if (!filteredResults) throw error;
+    if (filteredResults.recipes.length === 0) {
+      filterView.renderNoResultsMsg();
+    } else {
+      filterView.renderResultsView(filteredResults.recipes);
+    }
     ///////////FETCHING HEADER INFORMATION//////////
     fetchHeaderInfo();
     filterView.toggleDropdownFilters();

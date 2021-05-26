@@ -1236,6 +1236,8 @@ var FilterView = /*#__PURE__*/function (_View) {
 
     _defineProperty(_assertThisInitialized(_this), "_dropdownFilterEl", document.querySelector(".dropdown"));
 
+    _defineProperty(_assertThisInitialized(_this), "_noResultMsg", "Sorry, we could not find a recipe that matches your filter search. Try selecting a different category.");
+
     _this.showDropdownFilters();
 
     return _this;
@@ -1699,6 +1701,8 @@ var SearchRecipeView = /*#__PURE__*/function (_View) {
 
     _defineProperty(_assertThisInitialized(_this), "_dropdownFilterEl", document.querySelector(".dropdown"));
 
+    _defineProperty(_assertThisInitialized(_this), "_noResultMsg", "Sorry, we could not find a recipe that matches your search. Try searching for another recipe.");
+
     return _this;
   }
 
@@ -1716,19 +1720,6 @@ var SearchRecipeView = /*#__PURE__*/function (_View) {
     key: "openSearchRecipeView",
     value: function openSearchRecipeView(handler) {
       this._searchForm.addEventListener("submit", this._showSearchRecipeView.bind(this, handler));
-    }
-  }, {
-    key: "renderNoResultsMsg",
-    value: function renderNoResultsMsg() {
-      this._resultsHeading.textContent = "Search Results";
-      this._parentEl.innerHTML = "";
-
-      this._parentEl.insertAdjacentHTML("afterbegin", this._generateNoResultMarkup());
-    }
-  }, {
-    key: "_generateNoResultMarkup",
-    value: function _generateNoResultMarkup() {
-      return "<div class=\"recipe__no-result\">\n    <p class=\"recipe__no-result--msg\">Sorry, we could not find a recipe that matches your search. Try searching for another recipe.</p>\n    </div>";
     }
   }]);
 
@@ -1874,6 +1865,19 @@ var View = /*#__PURE__*/function () {
       this._parentEl.scrollIntoView({
         behavior: "smooth"
       });
+    }
+  }, {
+    key: "renderNoResultsMsg",
+    value: function renderNoResultsMsg() {
+      this._resultsHeading.textContent = "Search Results";
+      this._parentEl.innerHTML = "";
+
+      this._parentEl.insertAdjacentHTML("afterbegin", this._generateNoResultMarkup());
+    }
+  }, {
+    key: "_generateNoResultMarkup",
+    value: function _generateNoResultMarkup() {
+      return "<div class=\"recipe__no-result\">\n    <p class=\"recipe__no-result--msg\">".concat(this._noResultMsg, "</p>\n    </div>");
     }
   }, {
     key: "_generateSuccessMarkup",
@@ -3107,25 +3111,39 @@ var controlfilterSearch = /*#__PURE__*/function () {
             //   throw new Error(`There are no results for your search!`);
             console.log(filteredResults.recipes);
             console.log(filteredResults.url);
-            _view_filterView__WEBPACK_IMPORTED_MODULE_7__.default.renderResultsView(filteredResults.recipes); ///////////FETCHING HEADER INFORMATION//////////
+
+            if (filteredResults) {
+              _context8.next = 9;
+              break;
+            }
+
+            throw error;
+
+          case 9:
+            if (filteredResults.recipes.length === 0) {
+              _view_filterView__WEBPACK_IMPORTED_MODULE_7__.default.renderNoResultsMsg();
+            } else {
+              _view_filterView__WEBPACK_IMPORTED_MODULE_7__.default.renderResultsView(filteredResults.recipes);
+            } ///////////FETCHING HEADER INFORMATION//////////
+
 
             fetchHeaderInfo();
             _view_filterView__WEBPACK_IMPORTED_MODULE_7__.default.toggleDropdownFilters();
-            _context8.next = 16;
+            _context8.next = 18;
             break;
 
-          case 12:
-            _context8.prev = 12;
+          case 14:
+            _context8.prev = 14;
             _context8.t0 = _context8["catch"](0);
             console.error(_context8.t0);
             _view_errorView__WEBPACK_IMPORTED_MODULE_12__.default.showErrorView(_context8.t0);
 
-          case 16:
+          case 18:
           case "end":
             return _context8.stop();
         }
       }
-    }, _callee8, null, [[0, 12]]);
+    }, _callee8, null, [[0, 14]]);
   }));
 
   return function controlfilterSearch(_x7, _x8) {
