@@ -112,6 +112,15 @@ export default class View {
     );
   }
 
+  _hideErrMsgModal(e) {
+    const targetEl = e.target.closest(".sub-message__btn");
+    if (targetEl) this.hideModalView();
+  }
+
+  _closeErrMsgModal() {
+    this._body.addEventListener("click", this._hideErrMsgModal.bind(this));
+  }
+
   _generateNoResultMarkup() {
     return `<div class="recipe__no-result">
     <p class="recipe__no-result--msg">${this._noResultMsg}</p>

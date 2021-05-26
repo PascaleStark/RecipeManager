@@ -103,6 +103,7 @@ const controlLoadFavourites = async function () {
     fetchHeaderInfo();
   } catch (err) {
     console.error(err);
+    errorView.showErrorView(err);
   }
 };
 ////////////////////FEATURED//////////////////////////////
@@ -122,6 +123,7 @@ const controlLoadFeatured = async function () {
     fetchHeaderInfo();
   } catch (err) {
     console.error(err);
+    errorView.showErrorView(err);
   }
 };
 
