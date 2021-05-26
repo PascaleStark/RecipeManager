@@ -102,12 +102,10 @@ export const searchRecipes = async function (url, query) {
     console.log(resp);
     if (!resp.ok)
       throw new Error(
-        `We couldn't find a recipe that matches your search. Server responded with a status (${resp.status})`
+        `Something went wrong. Server responded with a status (${resp.status})`
       );
     const data = await resp.json();
     console.log(data);
-    if (!data || data.length === 0)
-      throw new Error(`We couldn't find a recipe that matches your search`);
     //catch url
     this.state.url = url;
     //update query

@@ -27,6 +27,21 @@ class SearchRecipeView extends View {
       this._showSearchRecipeView.bind(this, handler)
     );
   }
+
+  renderNoResultsMsg() {
+    this._resultsHeading.textContent = "Search Results";
+    this._parentEl.innerHTML = "";
+    this._parentEl.insertAdjacentHTML(
+      "afterbegin",
+      this._generateNoResultMarkup()
+    );
+  }
+
+  _generateNoResultMarkup() {
+    return `<div class="recipe__no-result">
+    <p class="recipe__no-result--msg">Sorry, we could not find a recipe that matches your search. Try searching for another recipe.</p>
+    </div>`;
+  }
 }
 
 export default new SearchRecipeView();

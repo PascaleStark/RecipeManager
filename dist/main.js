@@ -258,7 +258,7 @@ var searchRecipes = /*#__PURE__*/function () {
               break;
             }
 
-            throw new Error("We couldn't find a recipe that matches your search. Server responded with a status (".concat(resp.status, ")"));
+            throw new Error("Something went wrong. Server responded with a status (".concat(resp.status, ")"));
 
           case 8:
             _context3.next = 10;
@@ -266,17 +266,8 @@ var searchRecipes = /*#__PURE__*/function () {
 
           case 10:
             data = _context3.sent;
-            console.log(data);
+            console.log(data); //catch url
 
-            if (!(!data || data.length === 0)) {
-              _context3.next = 14;
-              break;
-            }
-
-            throw new Error("We couldn't find a recipe that matches your search");
-
-          case 14:
-            //catch url
             this.state.url = url; //update query
 
             this.state.search.query = query; //refactoring the recipe object
@@ -289,17 +280,17 @@ var searchRecipes = /*#__PURE__*/function () {
               url: this.state.url
             });
 
-          case 21:
-            _context3.prev = 21;
+          case 19:
+            _context3.prev = 19;
             _context3.t0 = _context3["catch"](0);
             throw _context3.t0;
 
-          case 24:
+          case 22:
           case "end":
             return _context3.stop();
         }
       }
-    }, _callee3, this, [[0, 21]]);
+    }, _callee3, this, [[0, 19]]);
   }));
 
   return function searchRecipes(_x4, _x5) {
@@ -1726,6 +1717,19 @@ var SearchRecipeView = /*#__PURE__*/function (_View) {
     value: function openSearchRecipeView(handler) {
       this._searchForm.addEventListener("submit", this._showSearchRecipeView.bind(this, handler));
     }
+  }, {
+    key: "renderNoResultsMsg",
+    value: function renderNoResultsMsg() {
+      this._resultsHeading.textContent = "Search Results";
+      this._parentEl.innerHTML = "";
+
+      this._parentEl.insertAdjacentHTML("afterbegin", this._generateNoResultMarkup());
+    }
+  }, {
+    key: "_generateNoResultMarkup",
+    value: function _generateNoResultMarkup() {
+      return "<div class=\"recipe__no-result\">\n    <p class=\"recipe__no-result--msg\">Sorry, we could not find a recipe that matches your search. Try searching for another recipe.</p>\n    </div>";
+    }
   }]);
 
   return SearchRecipeView;
@@ -2887,27 +2891,32 @@ var controlSearchRecipe = /*#__PURE__*/function () {
             throw error;
 
           case 7:
-            //1. render spinner
-            _view_searchRecipesView__WEBPACK_IMPORTED_MODULE_3__.default.renderSpinner(); //3. render the recipe cards with pagination
+            if (searchResults.recipes.length === 0) {
+              _view_searchRecipesView__WEBPACK_IMPORTED_MODULE_3__.default.renderNoResultsMsg();
+            } else {
+              //1. render spinner
+              _view_searchRecipesView__WEBPACK_IMPORTED_MODULE_3__.default.renderSpinner(); //3. render the recipe cards with pagination
 
-            _view_searchRecipesView__WEBPACK_IMPORTED_MODULE_3__.default.renderResultsView(searchResults.recipes); ///////////FETCHING HEADER INFORMATION//////////
+              _view_searchRecipesView__WEBPACK_IMPORTED_MODULE_3__.default.renderResultsView(searchResults.recipes); ///////////FETCHING HEADER INFORMATION//////////
 
-            fetchHeaderInfo();
-            _context3.next = 16;
+              fetchHeaderInfo();
+            }
+
+            _context3.next = 14;
             break;
 
-          case 12:
-            _context3.prev = 12;
+          case 10:
+            _context3.prev = 10;
             _context3.t0 = _context3["catch"](0);
             console.error(_context3.t0);
             _view_errorView__WEBPACK_IMPORTED_MODULE_12__.default.showErrorView(_context3.t0);
 
-          case 16:
+          case 14:
           case "end":
             return _context3.stop();
         }
       }
-    }, _callee3, null, [[0, 12]]);
+    }, _callee3, null, [[0, 10]]);
   }));
 
   return function controlSearchRecipe(_x4) {
