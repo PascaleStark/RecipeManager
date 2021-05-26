@@ -9,6 +9,13 @@
       grid-template-columns: repeat(2, 1fr);
     }
   }
+  &__no-result {
+    padding: 3rem;
+    grid-column: 1 / -1;
+    &--msg {
+      font-size: 2rem;
+    }
+  }
   &__card {
     position: relative;
     box-shadow: 0.5rem 0.5rem 1.5rem 3px rgba(0, 0, 0, 0.4);
