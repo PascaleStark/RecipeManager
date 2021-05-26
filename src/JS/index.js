@@ -79,6 +79,7 @@ const controlFavouriteRecipes = async function (url) {
     console.log(favouriteRec);
   } catch (err) {
     console.error(err);
+    errorView.showErrorView(err);
   }
 };
 
@@ -152,6 +153,7 @@ const controlfilterSearch = async function (searchQuery, filterQuery) {
     filterView.toggleDropdownFilters();
   } catch (err) {
     console.error(err);
+    errorView.showErrorView(err);
   }
 };
 
@@ -216,6 +218,7 @@ const controlDeleteRecipe = async function () {
   try {
     const deleteRec = await model.deleteRecipe();
     console.log(deleteRec);
+    if (!deleteRec) throw err;
     //render success message
     alertView.renderSuccessMessage();
     //close success message after 3s
@@ -225,6 +228,7 @@ const controlDeleteRecipe = async function () {
     }, TIMEOUT);
   } catch (err) {
     console.log(err);
+    errorView.showErrorView(err);
   }
 };
 

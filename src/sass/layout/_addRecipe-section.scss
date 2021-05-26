@@ -139,7 +139,9 @@
   }
 }
 
+// MOVE TO OWN FILE
 .sub-message {
+  display: flex;
   //animation: slide ease-in 0.2s;
   margin-top: 3rem;
   margin-bottom: 3rem;
@@ -147,9 +149,13 @@
   p {
     font-size: 2rem;
     padding: 2rem;
+    margin-bottom: 3rem;
   }
 
   &__icon {
     transform: translateY(0.5rem);
+  }
+  &__btn {
+    @include btn-error;
   }
 }

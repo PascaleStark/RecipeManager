@@ -142,7 +142,6 @@ export const editFavourites = async function (url) {
       );
     const data = await resp.json();
     console.log(data);
-
     return data;
   } catch (err) {
     throw err;
@@ -203,11 +202,11 @@ export const deleteRecipe = async function () {
     const resp = await Promise.race([fetchOptions, timeout(30)]);
     if (!resp.ok)
       throw new Error(
-        `Could not delete this recipe, please try again later! ${resp.status}`
+        `Could not delete this recipe, please try again later! Server responded with status ${resp.status}`
       );
     console.log(resp);
     return resp;
   } catch (err) {
-    console.log(err);
+    throw err;
   }
 };
