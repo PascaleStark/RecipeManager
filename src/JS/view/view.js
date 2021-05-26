@@ -103,6 +103,21 @@ export default class View {
     this._parentEl.scrollIntoView({ behavior: "smooth" });
   }
 
+  renderNoResultsMsg() {
+    this._resultsHeading.textContent = "Search Results";
+    this._parentEl.innerHTML = "";
+    this._parentEl.insertAdjacentHTML(
+      "afterbegin",
+      this._generateNoResultMarkup()
+    );
+  }
+
+  _generateNoResultMarkup() {
+    return `<div class="recipe__no-result">
+    <p class="recipe__no-result--msg">${this._noResultMsg}</p>
+    </div>`;
+  }
+
   _generateSuccessMarkup() {
     return `
     <div class="sub-message">

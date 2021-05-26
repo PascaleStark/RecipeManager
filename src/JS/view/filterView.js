@@ -10,6 +10,8 @@ class FilterView extends View {
   _titleView = "Search results";
   _body = document.getElementsByTagName("body")[0];
   _dropdownFilterEl = document.querySelector(".dropdown");
+  _noResultMsg =
+    "Sorry, we could not find a recipe that matches your filter search. Try selecting a different category.";
 
   constructor() {
     super();
