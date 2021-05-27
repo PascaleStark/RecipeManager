@@ -67,15 +67,16 @@
         }
 
         @include respond(tab-port) {
-          min-width: 45rem;
+          min-width: 50rem;
+          padding: 1.5rem;
         }
 
         @include respond(phone) {
-          min-width: 55rem;
+          min-width: 35rem;
+          padding: 2rem 1.5rem;
         }
-
         @include respond(phone-small) {
-          min-width: 40rem;
+          min-width: 30rem;
         }
       }
 

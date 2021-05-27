@@ -562,21 +562,23 @@ body {
           .add-recipe-view__form textarea[type="url"],
           .add-recipe-view__form select[type="text"],
           .add-recipe-view__form select[type="url"] {
-            min-width: 45rem; } }
+            min-width: 50rem;
+            padding: 1.5rem; } }
         @media (max-width: 37.5em) {
           .add-recipe-view__form input[type="text"], .add-recipe-view__form input[type="url"],
           .add-recipe-view__form textarea[type="text"],
           .add-recipe-view__form textarea[type="url"],
           .add-recipe-view__form select[type="text"],
           .add-recipe-view__form select[type="url"] {
-            min-width: 55rem; } }
+            min-width: 35rem;
+            padding: 2rem 1.5rem; } }
         @media (max-width: 29.68em) {
           .add-recipe-view__form input[type="text"], .add-recipe-view__form input[type="url"],
           .add-recipe-view__form textarea[type="text"],
           .add-recipe-view__form textarea[type="url"],
           .add-recipe-view__form select[type="text"],
           .add-recipe-view__form select[type="url"] {
-            min-width: 40rem; } }
+            min-width: 30rem; } }
       .add-recipe-view__form input::placeholder,
       .add-recipe-view__form textarea::placeholder,
       .add-recipe-view__form select::placeholder {
