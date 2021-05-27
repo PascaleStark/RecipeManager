@@ -1,12 +1,4 @@
 .modal-view {
-  // position: fixed;
-  // top: 0;
-  // right: 0;
-  //height: 100%;
-  // width: 100%;
-  // background-color: rgba(0, 0, 0, 0.6);
-  // -webkit-backdrop-filter: blur(2px);
-  // backdrop-filter: blur(2px);
   z-index: 8;
   &__msg {
     @include position-modal-element;
@@ -16,18 +8,41 @@
     font-size: 3rem;
     margin-bottom: 50rem;
 
+    @include respond(tab-port) {
+      width: 75%;
+      font-size: 2.5rem;
+    }
+
+    @include respond(phone) {
+      width: 80%;
+      font-size: 2rem;
+    }
+
     svg {
       height: 3.5rem;
       width: 3.5rem;
       margin-right: 2rem;
       transform: translateY(0.5rem);
+
+      @include respond(phone) {
+        height: 2.5rem;
+        width: 2.5rem;
+      }
     }
   }
 
   &__container-btn {
     display: flex;
     justify-content: space-around;
-    margin-top: 10rem;
+    margin-top: 9rem;
+
+    @include respond(tab-port) {
+      margin-top: 6rem;
+    }
+
+    @include respond(phone) {
+      margin-top: 5rem;
+    }
 
     &--btn {
       font-family: inherit;
@@ -36,10 +51,14 @@
       color: $color-font-primary;
       background-color: $color-salmon-primary;
       text-transform: uppercase;
-      padding: 1.5rem 1.5rem;
+      padding: 1.5rem;
       border: none;
       outline: none;
       cursor: pointer;
+
+      @include respond(phone) {
+        padding: 1rem;
+      }
 
       &:hover {
         box-shadow: 0rem 0rem 0.5rem rgba(0, 0, 0, 0.4);
