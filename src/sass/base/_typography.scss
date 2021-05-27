@@ -36,6 +36,10 @@
   @include respond(tab-port) {
     font-size: 2rem;
   }
+
+  @include respond(phone) {
+    font-size: 2.5rem;
+  }
 }
 
 .heading--tertiary {
@@ -49,13 +53,17 @@
     font-size: 2rem;
   }
 
-  @include respond(tab-land) {
+  @include respond(tab-port) {
     font-size: 1.5rem;
+  }
+
+  @include respond(phone) {
+    font-size: 2rem;
   }
 }
 
 .heading--menu {
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-family: inherit;
   color: $color-grey-light;
   text-transform: uppercase;

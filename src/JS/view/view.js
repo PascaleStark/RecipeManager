@@ -189,8 +189,8 @@ export default class View {
     <ul class="recipe__card--options">
     <li class="recipe__card--btn-options recipe__card--btn-options-delete" id="btn-delete" data-id="${
       result.id
-    }">Delete Recipe</li>
-    <li class="recipe__card--btn-options recipe__card--btn-edit">Edit Recipe</li>
+    }">Delete</li>
+    <li class="recipe__card--btn-options recipe__card--btn-edit">Edit</li>
     </ul>
     </div>
     
