@@ -87,5 +87,9 @@
   li {
     padding: 0.5rem;
     color: $color-font-primary;
+
+    @include respond(phone) {
+      padding: 0;
+    }
   }
 }
