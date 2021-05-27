@@ -13,7 +13,7 @@ html {
       font-size: 46.9%; } }
   @media (max-width: 37.5em) {
     html {
-      font-size: 43.75%; } }
+      font-size: 60%; } }
   @media (min-width: 112.5em) {
     html {
       font-size: 75%; } }
@@ -138,6 +138,9 @@ body {
   .list-style li {
     padding: 0.5rem;
     color: #5c646c; }
+    @media (max-width: 37.5em) {
+      .list-style li {
+        padding: 0; } }
 
 .modal-view {
   z-index: 8; }
@@ -279,9 +282,12 @@ body {
   grid-template-rows: repeat(2, minmax(min-content, 15rem));
   grid-template-columns: repeat(3, 1fr);
   gap: 6.5rem 3.5rem; }
-  @media (max-width: 37.5em) {
+  @media (max-width: 56.25em) {
     .recipe__container {
       grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 37.5em) {
+    .recipe__container {
+      grid-template-columns: repeat(1, 1fr); } }
 
 .recipe__no-result {
   padding: 3rem;
@@ -312,10 +318,15 @@ body {
     width: 2.2rem;
     cursor: pointer;
     z-index: 2; }
+    @media (max-width: 37.5em) {
+      .recipe__card--icon {
+        height: 2.5rem;
+        width: 2.5rem; } }
   .recipe__card--icon-heart {
     left: 1rem; }
   .recipe__card--icon-star {
-    right: 4rem; }
+    right: 4rem;
+    margin-right: 2rem; }
   .recipe__card--icon-delete {
     right: 0.1rem; }
   .recipe__card--title {
@@ -795,7 +806,7 @@ body {
     .recipe-view {
       margin: 5rem 0;
       width: 90vw;
-      padding: 3rem 4rem; } }
+      padding: 3rem 1rem; } }
   .recipe-view .icon__close-outline {
     position: absolute;
     top: 0.8rem;
@@ -838,7 +849,7 @@ body {
       .recipe-view__ingredients {
         grid-row: 2 / 3;
         margin: 2.5rem 0rem 2.5rem 0rem;
-        line-height: 200%; } }
+        line-height: 300%; } }
     .recipe-view__ingredients--details ul {
       border: none; }
     .recipe-view__ingredients--details li svg {
@@ -848,7 +859,7 @@ body {
     @media (max-width: 37.5em) {
       .recipe-view__directions {
         margin: 1.5rem 0rem 1.5rem 0rem;
-        line-height: 200%; } }
+        line-height: 300%; } }
     .recipe-view__directions--details ul {
       border: none; }
       @media (max-width: 37.5em) {

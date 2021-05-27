@@ -5,8 +5,12 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 6.5rem 3.5rem;
 
-    @include respond(phone) {
+    @include respond(tab-port) {
       grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include respond(phone) {
+      grid-template-columns: repeat(1, 1fr);
     }
   }
   &__no-result {
@@ -44,6 +48,11 @@
       width: 2.2rem;
       cursor: pointer;
       z-index: 2;
+
+      @include respond(phone) {
+        height: 2.5rem;
+        width: 2.5rem;
+      }
     }
 
     &--icon-heart {
@@ -51,6 +60,7 @@
     }
     &--icon-star {
       right: 4rem;
+      margin-right: 2rem;
     }
     &--icon-delete {
       right: 0.1rem;
