@@ -56,7 +56,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "searchRecipesByPage": () => (/* binding */ searchRecipesByPage),
 /* harmony export */   "getHeaders": () => (/* binding */ getHeaders),
 /* harmony export */   "setDeleteID": () => (/* binding */ setDeleteID),
-/* harmony export */   "deleteRecipe": () => (/* binding */ deleteRecipe)
+/* harmony export */   "deleteRecipe": () => (/* binding */ deleteRecipe),
+/* harmony export */   "updateImageFile": () => (/* binding */ updateImageFile),
+/* harmony export */   "saveImageFile": () => (/* binding */ saveImageFile)
 /* harmony export */ });
 /* harmony import */ var _helper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./helper */ "./src/JS/helper.js");
 /* harmony import */ var regenerator_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! regenerator-runtime */ "./node_modules/regenerator-runtime/runtime.js");
@@ -82,7 +84,8 @@ var state = {
   },
   url: "",
   pageNum: 1,
-  deleteID: ""
+  deleteID: "",
+  imageFile: []
 };
 var addRecipe = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee(url, uploadData) {
@@ -503,6 +506,61 @@ var deleteRecipe = /*#__PURE__*/function () {
     return _ref7.apply(this, arguments);
   };
 }();
+var updateImageFile = function updateImageFile(imageFile) {
+  state.imageFile = imageFile;
+  console.log(state.imageFile);
+};
+var saveImageFile = /*#__PURE__*/function () {
+  var _ref8 = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee8(url) {
+    var formData, fetchOptions, resp;
+    return regenerator_runtime__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee8$(_context8) {
+      while (1) {
+        switch (_context8.prev = _context8.next) {
+          case 0:
+            _context8.prev = 0;
+            console.log(url);
+            formData = new FormData();
+            formData.append("".concat(state.imageFile[0]), "".concat(state.imageFile[1]));
+            console.log(formData); //load recipe object
+
+            fetchOptions = fetch(url, {
+              method: "POST",
+              body: formData
+            });
+            _context8.next = 8;
+            return Promise.race([fetchOptions, (0,_helper__WEBPACK_IMPORTED_MODULE_0__.timeout)(30)]);
+
+          case 8:
+            resp = _context8.sent;
+            console.log(resp);
+
+            if (resp.ok) {
+              _context8.next = 12;
+              break;
+            }
+
+            throw new Error("Something went wrong. Server responded with a status (".concat(resp.status, ")"));
+
+          case 12:
+            return _context8.abrupt("return", resp);
+
+          case 15:
+            _context8.prev = 15;
+            _context8.t0 = _context8["catch"](0);
+            throw _context8.t0;
+
+          case 18:
+          case "end":
+            return _context8.stop();
+        }
+      }
+    }, _callee8, null, [[0, 15]]);
+  }));
+
+  return function saveImageFile(_x8) {
+    return _ref8.apply(this, arguments);
+  };
+}();
 
 /***/ }),
 
@@ -570,6 +628,8 @@ var AddRecipeView = /*#__PURE__*/function (_View) {
 
     _this = _super.call(this);
 
+    _defineProperty(_assertThisInitialized(_this), "_imageFile", []);
+
     _defineProperty(_assertThisInitialized(_this), "_body", document.getElementsByTagName("body")[0]);
 
     _defineProperty(_assertThisInitialized(_this), "_addRecipeBtn", document.querySelector(".nav__add-recipe--btn"));
@@ -629,13 +689,30 @@ var AddRecipeView = /*#__PURE__*/function (_View) {
       });
     }
   }, {
+    key: "extractImageFile",
+    value: function extractImageFile(formDataArr) {
+      console.log(formDataArr);
+      var imageFile = formDataArr.filter(function (item) {
+        return item[0] === "file";
+      });
+      console.log(imageFile);
+      this._imageFile = imageFile;
+      console.log(this._imageFile);
+    }
+  }, {
     key: "addFormEventHandler",
     value: function addFormEventHandler(handler) {
+      var self = this;
+
       this._form.addEventListener("submit", function (e) {
         e.preventDefault();
 
         var dataArr = _toConsumableArray(new FormData(this));
 
+        console.log(dataArr);
+        self.extractImageFile(dataArr);
+        dataArr.pop();
+        console.log(dataArr);
         var data = Object.fromEntries(dataArr);
         console.log(data);
         this.reset();
@@ -2780,6 +2857,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _view_errorView__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./view/errorView */ "./src/JS/view/errorView.js");
 
 
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
@@ -2821,25 +2910,28 @@ var controlAddRecipe = /*#__PURE__*/function () {
             _view_addRecipeView__WEBPACK_IMPORTED_MODULE_2__.default.renderSuccessMessage(); //3. close Success Message
 
             setTimeout(function () {
-              _view_addRecipeView__WEBPACK_IMPORTED_MODULE_2__.default.closeMessage();
-              location.reload();
-            }, _config_js__WEBPACK_IMPORTED_MODULE_9__.TIMEOUT);
-            _context.next = 14;
+              _view_addRecipeView__WEBPACK_IMPORTED_MODULE_2__.default.closeMessage(); //location.reload();
+            }, _config_js__WEBPACK_IMPORTED_MODULE_9__.TIMEOUT); //4. send imageFile
+
+            controlImageFile(); //5. post the image
+
+            _model__WEBPACK_IMPORTED_MODULE_0__.saveImageFile("".concat(_config_js__WEBPACK_IMPORTED_MODULE_9__.URL, "/upload/").concat(result[0].id));
+            _context.next = 16;
             break;
 
-          case 10:
-            _context.prev = 10;
+          case 12:
+            _context.prev = 12;
             _context.t0 = _context["catch"](0);
             //Render fail message
             console.log(_context.t0);
             _view_addRecipeView__WEBPACK_IMPORTED_MODULE_2__.default.renderFailMessage(_context.t0);
 
-          case 14:
+          case 16:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 10]]);
+    }, _callee, null, [[0, 12]]);
   }));
 
   return function controlAddRecipe(_x, _x2) {
@@ -3326,6 +3418,12 @@ var controlDeleteRecipe = /*#__PURE__*/function () {
 
 var controlSetDeleteID = function controlSetDeleteID(id) {
   _model__WEBPACK_IMPORTED_MODULE_0__.setDeleteID(id);
+}; ////////////////////////////////////////////////////////
+
+
+var controlImageFile = function controlImageFile() {
+  _model__WEBPACK_IMPORTED_MODULE_0__.updateImageFile.apply(_model__WEBPACK_IMPORTED_MODULE_0__, _toConsumableArray(_view_addRecipeView__WEBPACK_IMPORTED_MODULE_2__.default._imageFile));
+  console.log(_view_addRecipeView__WEBPACK_IMPORTED_MODULE_2__.default._imageFile);
 }; //Event handlers using Publisher-Subscriber pattern
 
 

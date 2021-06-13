@@ -28,8 +28,12 @@ const controlAddRecipe = async function (url, uploadData) {
     //3. close Success Message
     setTimeout(function () {
       addRecipeView.closeMessage();
-      location.reload();
+      //location.reload();
     }, TIMEOUT);
+    //4. send imageFile
+    controlImageFile();
+    //5. post the image
+    model.saveImageFile(`${URL}/upload/${result[0].id}`);
   } catch (err) {
     //Render fail message
     console.log(err);
@@ -245,6 +249,11 @@ const controlDeleteRecipe = async function () {
 
 const controlSetDeleteID = function (id) {
   model.setDeleteID(id);
+};
+////////////////////////////////////////////////////////
+const controlImageFile = function () {
+  model.updateImageFile(...addRecipeView._imageFile);
+  console.log(addRecipeView._imageFile);
 };
 //Event handlers using Publisher-Subscriber pattern
 const init = function () {
