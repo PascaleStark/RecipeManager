@@ -2,6 +2,7 @@ import View from "./view.js";
 import { URL } from "../config.js";
 
 class AddRecipeView extends View {
+  _imageFile = [];
   _body = document.getElementsByTagName("body")[0];
   _addRecipeBtn = document.querySelector(".nav__add-recipe--btn");
   _modal = document.querySelector(".modal-view");
@@ -48,10 +49,23 @@ class AddRecipeView extends View {
     });
   }
 
+  extractImageFile(formDataArr) {
+    console.log(formDataArr);
+    const imageFile = formDataArr.filter((item) => item[0] === "file");
+    console.log(imageFile);
+    this._imageFile = imageFile;
+    console.log(this._imageFile);
+  }
+
   addFormEventHandler(handler) {
+    var self = this;
     this._form.addEventListener("submit", function (e) {
       e.preventDefault();
       const dataArr = [...new FormData(this)];
+      console.log(dataArr);
+      self.extractImageFile(dataArr);
+      dataArr.pop();
+      console.log(dataArr);
       const data = Object.fromEntries(dataArr);
       console.log(data);
       this.reset();

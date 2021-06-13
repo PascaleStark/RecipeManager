@@ -10,6 +10,7 @@ export const state = {
   url: "",
   pageNum: 1,
   deleteID: "",
+  imageFile: [],
 };
 
 export const addRecipe = async function (url, uploadData) {
@@ -203,6 +204,39 @@ export const deleteRecipe = async function () {
         `Could not delete this recipe, please try again later! Server responded with status ${resp.status}`
       );
     console.log(resp);
+    return resp;
+  } catch (err) {
+    throw err;
+  }
+};
+
+export const updateImageFile = function (imageFile) {
+  state.imageFile = imageFile;
+  console.log(state.imageFile);
+};
+
+export const saveImageFile = async function (url) {
+  try {
+    console.log(url);
+    let formData = new FormData();
+    formData.append(`${state.imageFile[0]}`, `${state.imageFile[1]}`);
+    console.log(formData);
+    //load recipe object
+    const fetchOptions = fetch(url, {
+      method: "POST",
+      body: formData,
+    });
+    const resp = await Promise.race([fetchOptions, timeout(30)]);
+    console.log(resp);
+    if (!resp.ok)
+      throw new Error(
+        `Something went wrong. Server responded with a status (${resp.status})`
+      );
+    // const data = await resp.json();
+    // console.log(data);
+    //refactoring the recipe object
+    // this.state.recipe = renderRecipeObj(data);
+    // console.log(this.state.recipe);
     return resp;
   } catch (err) {
     throw err;
