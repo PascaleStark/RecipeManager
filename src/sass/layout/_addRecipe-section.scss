@@ -140,6 +140,12 @@
   }
 }
 
+.file-restrictions {
+  font-family: inherit;
+  font-size: $font-size-primary;
+  color: $color-font-primary;
+}
+
 // MOVE TO OWN FILE
 .sub-message {
   display: flex;

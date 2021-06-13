@@ -68,6 +68,7 @@ export const loadRecipe = async function (url) {
       directions: recipeObject.directions,
       favourites: recipeObject.favourites,
       featured: recipeObject.featured,
+      imageUrl: recipeObject.imageUrl,
     };
     return recipe;
   } catch (err) {
@@ -89,6 +90,7 @@ const renderRecipeObj = function (data) {
     directions: res.directions,
     favourites: res.favourites,
     featured: res.featured,
+    imageUrl: res.imageUrl,
   }));
   return results;
 };
@@ -218,8 +220,11 @@ export const updateImageFile = function (imageFile) {
 export const saveImageFile = async function (url) {
   try {
     console.log(url);
+    const key = state.imageFile[0];
+    const value = state.imageFile[1];
+    console.log(key, value);
     let formData = new FormData();
-    formData.append(`${state.imageFile[0]}`, `${state.imageFile[1]}`);
+    formData.append(key, value);
     console.log(formData);
     //load recipe object
     const fetchOptions = fetch(url, {

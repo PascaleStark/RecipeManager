@@ -195,7 +195,8 @@ var loadRecipe = /*#__PURE__*/function () {
               ingredients: recipeObject.ingredients,
               directions: recipeObject.directions,
               favourites: recipeObject.favourites,
-              featured: recipeObject.featured
+              featured: recipeObject.featured,
+              imageUrl: recipeObject.imageUrl
             };
             return _context2.abrupt("return", recipe);
 
@@ -231,7 +232,8 @@ var renderRecipeObj = function renderRecipeObj(data) {
       ingredients: res.ingredients,
       directions: res.directions,
       favourites: res.favourites,
-      featured: res.featured
+      featured: res.featured,
+      imageUrl: res.imageUrl
     };
   });
   return results;
@@ -512,49 +514,52 @@ var updateImageFile = function updateImageFile(imageFile) {
 };
 var saveImageFile = /*#__PURE__*/function () {
   var _ref8 = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee8(url) {
-    var formData, fetchOptions, resp;
+    var key, value, formData, fetchOptions, resp;
     return regenerator_runtime__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee8$(_context8) {
       while (1) {
         switch (_context8.prev = _context8.next) {
           case 0:
             _context8.prev = 0;
             console.log(url);
+            key = state.imageFile[0];
+            value = state.imageFile[1];
+            console.log(key, value);
             formData = new FormData();
-            formData.append("".concat(state.imageFile[0]), "".concat(state.imageFile[1]));
+            formData.append(key, value);
             console.log(formData); //load recipe object
 
             fetchOptions = fetch(url, {
               method: "POST",
               body: formData
             });
-            _context8.next = 8;
+            _context8.next = 11;
             return Promise.race([fetchOptions, (0,_helper__WEBPACK_IMPORTED_MODULE_0__.timeout)(30)]);
 
-          case 8:
+          case 11:
             resp = _context8.sent;
             console.log(resp);
 
             if (resp.ok) {
-              _context8.next = 12;
+              _context8.next = 15;
               break;
             }
 
             throw new Error("Something went wrong. Server responded with a status (".concat(resp.status, ")"));
 
-          case 12:
+          case 15:
             return _context8.abrupt("return", resp);
 
-          case 15:
-            _context8.prev = 15;
+          case 18:
+            _context8.prev = 18;
             _context8.t0 = _context8["catch"](0);
             throw _context8.t0;
 
-          case 18:
+          case 21:
           case "end":
             return _context8.stop();
         }
       }
-    }, _callee8, null, [[0, 15]]);
+    }, _callee8, null, [[0, 18]]);
   }));
 
   return function saveImageFile(_x8) {
@@ -1986,7 +1991,7 @@ var View = /*#__PURE__*/function () {
   }, {
     key: "_generateMarkup",
     value: function _generateMarkup(result) {
-      return "<div class=\"recipe__card\">\n    <img\n      src=\"./src/img/pizza.jpg\"\n      class=\"recipe__card--img\"\n      alt=\"recipe img\"\n    />\n    <div class=\"recipe__card--icons\">\n    <svg class=\"icon-heart recipe__card--icon recipe__card--icon-heart ".concat(result.favourites ? "filled-icon" : "empty-icon", "\" data-id=\"").concat(result.id, "\">\n      <use xlink:href=\"./src/img/icons.svg#icon-heart\"></use>\n    </svg>\n    <svg class=\"icon-star recipe__card--icon recipe__card--icon-star  ").concat(result.featured ? "filled-icon" : "empty-icon", "\" data-id=\"").concat(result.id, "\">\n      <use xlink:href=\"./src/img/icons.svg#icon-star-full\"></use>\n    </svg>\n    </div>\n    <svg id=\"three-dots\" class=\"icon icon-delete recipe__card--icon recipe__card--icon-delete\">\n      <use xlink:href=\"./src/img/icons.svg#icon-dots-three-vertical\"></use>\n    </svg>\n    \n    <h3 class=\"recipe__card--title heading--tertiary\">").concat(result.title, "</h3>\n    <div class=\"recipe__card--back\">\n    <div id=\"options-list\" class=\"hidden\">\n    <ul class=\"recipe__card--options\">\n    <li class=\"recipe__card--btn-options recipe__card--btn-options-delete\" id=\"btn-delete\" data-id=\"").concat(result.id, "\">Delete</li>\n    <li class=\"recipe__card--btn-options recipe__card--btn-edit\">Edit</li>\n    </ul>\n    </div>\n    \n    <div id=\"btn-view\" data-id=\"").concat(result.id, "\">\n    <button class=\"btn recipe__card--btn hidden\"><span class=\"underline\">View Recipe &rarr;</span></button>\n    </div>\n      \n    </div>\n    </div>");
+      return "<div class=\"recipe__card\">\n    <img\n      src=".concat(result.imageUrl, "\n      class=\"recipe__card--img\"\n      alt=\"recipe img\"\n    />\n    <div class=\"recipe__card--icons\">\n    <svg class=\"icon-heart recipe__card--icon recipe__card--icon-heart ").concat(result.favourites ? "filled-icon" : "empty-icon", "\" data-id=\"").concat(result.id, "\">\n      <use xlink:href=\"./src/img/icons.svg#icon-heart\"></use>\n    </svg>\n    <svg class=\"icon-star recipe__card--icon recipe__card--icon-star  ").concat(result.featured ? "filled-icon" : "empty-icon", "\" data-id=\"").concat(result.id, "\">\n      <use xlink:href=\"./src/img/icons.svg#icon-star-full\"></use>\n    </svg>\n    </div>\n    <svg id=\"three-dots\" class=\"icon icon-delete recipe__card--icon recipe__card--icon-delete\">\n      <use xlink:href=\"./src/img/icons.svg#icon-dots-three-vertical\"></use>\n    </svg>\n    \n    <h3 class=\"recipe__card--title heading--tertiary\">").concat(result.title, "</h3>\n    <div class=\"recipe__card--back\">\n    <div id=\"options-list\" class=\"hidden\">\n    <ul class=\"recipe__card--options\">\n    <li class=\"recipe__card--btn-options recipe__card--btn-options-delete\" id=\"btn-delete\" data-id=\"").concat(result.id, "\">Delete</li>\n    <li class=\"recipe__card--btn-options recipe__card--btn-edit\">Edit</li>\n    </ul>\n    </div>\n    \n    <div id=\"btn-view\" data-id=\"").concat(result.id, "\">\n    <button class=\"btn recipe__card--btn hidden\"><span class=\"underline\">View Recipe &rarr;</span></button>\n    </div>\n      \n    </div>\n    </div>");
     }
   }]);
 

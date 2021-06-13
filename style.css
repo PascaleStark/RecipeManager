@@ -624,6 +624,11 @@ body {
           margin-top: -3rem;
           justify-self: start; } }
 
+.file-restrictions {
+  font-family: inherit;
+  font-size: 1.6rem;
+  color: #5c646c; }
+
 .sub-message {
   display: flex;
   margin-top: 3rem;
