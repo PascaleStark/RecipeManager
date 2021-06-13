@@ -163,7 +163,7 @@ export default class View {
   _generateMarkup(result) {
     return `<div class="recipe__card">
     <img
-      src="./src/img/pizza.jpg"
+      src=${result.imageUrl}
       class="recipe__card--img"
       alt="recipe img"
     />
