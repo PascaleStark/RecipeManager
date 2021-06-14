@@ -13,6 +13,7 @@ import featuredView from "./view/featuredView";
 import filterView from "./view/filterView";
 import menuView from "./view/menuView";
 import errorView from "./view/errorView";
+import editRecipeView from "./view/editRecipeView";
 
 ////////////////////ADD RECIPE//////////////////////////////
 //Add a recipe
@@ -250,10 +251,24 @@ const controlDeleteRecipe = async function () {
 const controlSetDeleteID = function (id) {
   model.setDeleteID(id);
 };
-////////////////////////////////////////////////////////
+///////////////////UPLOAD RECIPE IMAGE/////////////////////////
 const controlImageFile = function () {
   model.updateImageFile(...addRecipeView._imageFile);
   console.log(addRecipeView._imageFile);
+};
+///////////////////UPLOAD RECIPE IMAGE/////////////////////////
+const controlEditRecipe = async function (url) {
+  try {
+    //1. render spinner
+    //DOES NOT WORK!
+    //editRecipeView.renderSpinner();
+    //2. Load recipe Object
+    const recipe = await model.loadRecipe(url);
+    editRecipeView.fillEditRecipeForm(recipe);
+  } catch (err) {
+    console.log(err);
+    recipeView.renderFailMessage(err);
+  }
 };
 //Event handlers using Publisher-Subscriber pattern
 const init = function () {
@@ -268,6 +283,7 @@ const init = function () {
   paginationView.togglePageView(controlPaginationNumber);
   alertView.showAlertMsg(controlSetDeleteID);
   alertView.deleteRecipeHandler(controlDeleteRecipe);
+  editRecipeView.openEditRecipeView(controlEditRecipe);
 };
 
 init();
