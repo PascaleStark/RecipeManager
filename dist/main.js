@@ -188,7 +188,7 @@ var loadRecipe = /*#__PURE__*/function () {
               title: recipeObject.name,
               publisher: recipeObject.addedBy,
               category: recipeObject.category,
-              prepartionTime: recipeObject.prepTime,
+              prepTime: recipeObject.prepTime,
               cookingTime: recipeObject.cookingTime,
               servings: recipeObject.servings,
               url: recipeObject.url,
@@ -225,7 +225,6 @@ var renderRecipeObj = function renderRecipeObj(data) {
       title: res.name,
       publisher: res.addedBy,
       category: res.category,
-      prepartionTime: res.prepTime,
       cookingTime: res.cookingTime,
       servings: res.servings,
       url: res.url,
@@ -875,6 +874,130 @@ var AlertView = /*#__PURE__*/function (_View) {
 }(_view_js__WEBPACK_IMPORTED_MODULE_1__.default);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (new AlertView());
+
+/***/ }),
+
+/***/ "./src/JS/view/editRecipeView.js":
+/*!***************************************!*\
+  !*** ./src/JS/view/editRecipeView.js ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _view_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./view.js */ "./src/JS/view/view.js");
+/* harmony import */ var _config_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../config.js */ "./src/JS/config.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+var AddRecipeView = /*#__PURE__*/function (_View) {
+  _inherits(AddRecipeView, _View);
+
+  var _super = _createSuper(AddRecipeView);
+
+  function AddRecipeView() {
+    var _this;
+
+    _classCallCheck(this, AddRecipeView);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _super.call.apply(_super, [this].concat(args));
+
+    _defineProperty(_assertThisInitialized(_this), "_imageFile", []);
+
+    _defineProperty(_assertThisInitialized(_this), "_body", document.getElementsByTagName("body")[0]);
+
+    _defineProperty(_assertThisInitialized(_this), "_editRecipeBtn", document.querySelector(".recipe__card--btn-edit"));
+
+    _defineProperty(_assertThisInitialized(_this), "_modal", document.querySelector(".modal-view"));
+
+    _defineProperty(_assertThisInitialized(_this), "_parentEl", document.querySelector(".add-recipe-view"));
+
+    _defineProperty(_assertThisInitialized(_this), "_form", document.querySelector(".add-recipe-view__form"));
+
+    _defineProperty(_assertThisInitialized(_this), "_closeForm", document.querySelector(".icon__close-form"));
+
+    _defineProperty(_assertThisInitialized(_this), "_addRecipeMenuBtn", document.querySelector(".addrecipe"));
+
+    _defineProperty(_assertThisInitialized(_this), "_failAddRecipeBtn", document.querySelector(".sub-message__btn"));
+
+    _defineProperty(_assertThisInitialized(_this), "_viewMenu", document.querySelector(".menu-section"));
+
+    _defineProperty(_assertThisInitialized(_this), "_successMessage", "Your recipe has been edited successfully!");
+
+    _defineProperty(_assertThisInitialized(_this), "_failMessage", "Something went wrong, please try again later!");
+
+    return _this;
+  }
+
+  _createClass(AddRecipeView, [{
+    key: "fillEditRecipeForm",
+    value: function fillEditRecipeForm(recipeData) {
+      var recipeID = recipeData.id;
+      var allFields = this._form.elements;
+      var allFieldsArr = Array.from(allFields);
+      var allFieldsArr2 = allFieldsArr.filter(function (item) {
+        return item.id !== "file";
+      });
+      allFieldsArr2.map(function (item) {
+        var itemId = item.id;
+        var seeItemValues = document.getElementById(itemId);
+        if (seeItemValues) seeItemValues.value = recipeData[itemId];
+      });
+    }
+  }, {
+    key: "_openEditForm",
+    value: function _openEditForm(handler, e) {
+      var targetEl = e.target.closest(".recipe__card--btn-edit");
+
+      if (targetEl) {
+        var editID = targetEl.dataset.id;
+        this._viewMenu.style.display = "none";
+        this.showModalView();
+        handler("".concat(_config_js__WEBPACK_IMPORTED_MODULE_1__.URL, "/where?id=").concat(editID));
+      }
+    }
+  }, {
+    key: "openEditRecipeView",
+    value: function openEditRecipeView(handler) {
+      this._body.addEventListener("click", this._openEditForm.bind(this, handler));
+    }
+  }]);
+
+  return AddRecipeView;
+}(_view_js__WEBPACK_IMPORTED_MODULE_0__.default);
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (new AddRecipeView());
 
 /***/ }),
 
@@ -1991,7 +2114,7 @@ var View = /*#__PURE__*/function () {
   }, {
     key: "_generateMarkup",
     value: function _generateMarkup(result) {
-      return "<div class=\"recipe__card\">\n    <img\n      src=".concat(result.imageUrl, "\n      class=\"recipe__card--img\"\n      alt=\"recipe img\"\n    />\n    <div class=\"recipe__card--icons\">\n    <svg class=\"icon-heart recipe__card--icon recipe__card--icon-heart ").concat(result.favourites ? "filled-icon" : "empty-icon", "\" data-id=\"").concat(result.id, "\">\n      <use xlink:href=\"./src/img/icons.svg#icon-heart\"></use>\n    </svg>\n    <svg class=\"icon-star recipe__card--icon recipe__card--icon-star  ").concat(result.featured ? "filled-icon" : "empty-icon", "\" data-id=\"").concat(result.id, "\">\n      <use xlink:href=\"./src/img/icons.svg#icon-star-full\"></use>\n    </svg>\n    </div>\n    <svg id=\"three-dots\" class=\"icon icon-delete recipe__card--icon recipe__card--icon-delete\">\n      <use xlink:href=\"./src/img/icons.svg#icon-dots-three-vertical\"></use>\n    </svg>\n    \n    <h3 class=\"recipe__card--title heading--tertiary\">").concat(result.title, "</h3>\n    <div class=\"recipe__card--back\">\n    <div id=\"options-list\" class=\"hidden\">\n    <ul class=\"recipe__card--options\">\n    <li class=\"recipe__card--btn-options recipe__card--btn-options-delete\" id=\"btn-delete\" data-id=\"").concat(result.id, "\">Delete</li>\n    <li class=\"recipe__card--btn-options recipe__card--btn-edit\">Edit</li>\n    </ul>\n    </div>\n    \n    <div id=\"btn-view\" data-id=\"").concat(result.id, "\">\n    <button class=\"btn recipe__card--btn hidden\"><span class=\"underline\">View Recipe &rarr;</span></button>\n    </div>\n      \n    </div>\n    </div>");
+      return "<div class=\"recipe__card\">\n    <img\n      src=".concat(result.imageUrl, "\n      class=\"recipe__card--img\"\n      alt=\"recipe img\"\n    />\n    <div class=\"recipe__card--icons\">\n    <svg class=\"icon-heart recipe__card--icon recipe__card--icon-heart ").concat(result.favourites ? "filled-icon" : "empty-icon", "\" data-id=\"").concat(result.id, "\">\n      <use xlink:href=\"./src/img/icons.svg#icon-heart\"></use>\n    </svg>\n    <svg class=\"icon-star recipe__card--icon recipe__card--icon-star  ").concat(result.featured ? "filled-icon" : "empty-icon", "\" data-id=\"").concat(result.id, "\">\n      <use xlink:href=\"./src/img/icons.svg#icon-star-full\"></use>\n    </svg>\n    </div>\n    <svg id=\"three-dots\" class=\"icon icon-delete recipe__card--icon recipe__card--icon-delete\">\n      <use xlink:href=\"./src/img/icons.svg#icon-dots-three-vertical\"></use>\n    </svg>\n    \n    <h3 class=\"recipe__card--title heading--tertiary\">").concat(result.title, "</h3>\n    <div class=\"recipe__card--back\">\n    <div id=\"options-list\" class=\"hidden\">\n    <ul class=\"recipe__card--options\">\n    <li class=\"recipe__card--btn-options recipe__card--btn-options-delete\" id=\"btn-delete\" data-id=\"").concat(result.id, "\">Delete</li>\n    <li class=\"recipe__card--btn-options recipe__card--btn-edit\" data-id=\"").concat(result.id, "\">Edit</li>\n    </ul>\n    </div>\n    \n    <div id=\"btn-view\" data-id=\"").concat(result.id, "\">\n    <button class=\"btn recipe__card--btn hidden\"><span class=\"underline\">View Recipe &rarr;</span></button>\n    </div>\n      \n    </div>\n    </div>");
     }
   }]);
 
@@ -2860,6 +2983,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _view_featuredView__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./view/featuredView */ "./src/JS/view/featuredView.js");
 /* harmony import */ var _view_menuView__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./view/menuView */ "./src/JS/view/menuView.js");
 /* harmony import */ var _view_errorView__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./view/errorView */ "./src/JS/view/errorView.js");
+/* harmony import */ var _view_editRecipeView__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./view/editRecipeView */ "./src/JS/view/editRecipeView.js");
 
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
@@ -2877,6 +3001,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 
 
 
@@ -3423,13 +3548,50 @@ var controlDeleteRecipe = /*#__PURE__*/function () {
 
 var controlSetDeleteID = function controlSetDeleteID(id) {
   _model__WEBPACK_IMPORTED_MODULE_0__.setDeleteID(id);
-}; ////////////////////////////////////////////////////////
+}; ///////////////////UPLOAD RECIPE IMAGE/////////////////////////
 
 
 var controlImageFile = function controlImageFile() {
   _model__WEBPACK_IMPORTED_MODULE_0__.updateImageFile.apply(_model__WEBPACK_IMPORTED_MODULE_0__, _toConsumableArray(_view_addRecipeView__WEBPACK_IMPORTED_MODULE_2__.default._imageFile));
   console.log(_view_addRecipeView__WEBPACK_IMPORTED_MODULE_2__.default._imageFile);
-}; //Event handlers using Publisher-Subscriber pattern
+}; ///////////////////UPLOAD RECIPE IMAGE/////////////////////////
+
+
+var controlEditRecipe = /*#__PURE__*/function () {
+  var _ref12 = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_8___default().mark(function _callee12(url) {
+    var recipe;
+    return regenerator_runtime__WEBPACK_IMPORTED_MODULE_8___default().wrap(function _callee12$(_context12) {
+      while (1) {
+        switch (_context12.prev = _context12.next) {
+          case 0:
+            _context12.prev = 0;
+            _context12.next = 3;
+            return _model__WEBPACK_IMPORTED_MODULE_0__.loadRecipe(url);
+
+          case 3:
+            recipe = _context12.sent;
+            _view_editRecipeView__WEBPACK_IMPORTED_MODULE_13__.default.fillEditRecipeForm(recipe);
+            _context12.next = 11;
+            break;
+
+          case 7:
+            _context12.prev = 7;
+            _context12.t0 = _context12["catch"](0);
+            console.log(_context12.t0);
+            _view_recipeView__WEBPACK_IMPORTED_MODULE_1__.default.renderFailMessage(_context12.t0);
+
+          case 11:
+          case "end":
+            return _context12.stop();
+        }
+      }
+    }, _callee12, null, [[0, 7]]);
+  }));
+
+  return function controlEditRecipe(_x10) {
+    return _ref12.apply(this, arguments);
+  };
+}(); //Event handlers using Publisher-Subscriber pattern
 
 
 var init = function init() {
@@ -3444,6 +3606,7 @@ var init = function init() {
   _view_paginationView__WEBPACK_IMPORTED_MODULE_5__.default.togglePageView(controlPaginationNumber);
   _view_alertView__WEBPACK_IMPORTED_MODULE_6__.default.showAlertMsg(controlSetDeleteID);
   _view_alertView__WEBPACK_IMPORTED_MODULE_6__.default.deleteRecipeHandler(controlDeleteRecipe);
+  _view_editRecipeView__WEBPACK_IMPORTED_MODULE_13__.default.openEditRecipeView(controlEditRecipe);
 };
 
 init();
