@@ -63,14 +63,11 @@ class AddRecipeView extends View {
     this._form.addEventListener("submit", function (e) {
       e.preventDefault();
       const dataArr = [...new FormData(this)];
-      console.log(dataArr);
       self.extractImageFile(dataArr);
       const postData = dataArr.filter((pair) => pair[0] !== "file");
-      console.log(postData);
       const postData2 = postData.filter(
         (pair) => !(pair[0] === "id" && pair[1] === "")
       );
-      console.log(postData2);
       const data = Object.fromEntries(postData2);
       console.log(data);
       this.reset();
