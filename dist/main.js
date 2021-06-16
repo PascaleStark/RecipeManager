@@ -968,7 +968,7 @@ var AddRecipeView = /*#__PURE__*/function (_View) {
   _createClass(AddRecipeView, [{
     key: "fillEditRecipeForm",
     value: function fillEditRecipeForm(recipeData) {
-      var recipeID = recipeData.id;
+      // const recipeID = recipeData.id;
       var allFields = this._form.elements;
       var allFieldsArr = Array.from(allFields);
       var allFieldsArr2 = allFieldsArr.filter(function (item) {

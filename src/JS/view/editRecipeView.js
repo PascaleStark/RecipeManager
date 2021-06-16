@@ -16,7 +16,7 @@ class AddRecipeView extends View {
   _failMessage = "Something went wrong, please try again later!";
 
   fillEditRecipeForm(recipeData) {
-    const recipeID = recipeData.id;
+    // const recipeID = recipeData.id;
     const allFields = this._form.elements;
     const allFieldsArr = Array.from(allFields);
     const allFieldsArr2 = allFieldsArr.filter((item) => item.id !== "file");
