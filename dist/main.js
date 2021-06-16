@@ -656,6 +656,8 @@ var AddRecipeView = /*#__PURE__*/function (_View) {
 
     _defineProperty(_assertThisInitialized(_this), "_failMessage", "Something went wrong, please try again later!");
 
+    _defineProperty(_assertThisInitialized(_this), "_editID", void 0);
+
     _this._openAddRecipeView();
 
     _this._closeAddRecipeView();
@@ -710,14 +712,21 @@ var AddRecipeView = /*#__PURE__*/function (_View) {
 
       this._form.addEventListener("submit", function (e) {
         e.preventDefault();
+        console.log(this._editID);
 
         var dataArr = _toConsumableArray(new FormData(this));
 
         console.log(dataArr);
         self.extractImageFile(dataArr);
-        dataArr.pop();
-        console.log(dataArr);
-        var data = Object.fromEntries(dataArr);
+        var postData = dataArr.filter(function (pair) {
+          return pair[0] !== "file" || !(pair[0] === "id" && pair[1] === "");
+        });
+        console.log(postData); // const postData2 = postData.filter(
+        //   (pair) => !(pair[0] === "id" && pair[1] === "")
+        // );
+
+        console.log(postData);
+        var data = Object.fromEntries(postData);
         console.log(data);
         this.reset();
         handler(_config_js__WEBPACK_IMPORTED_MODULE_1__.URL, data);
@@ -969,11 +978,16 @@ var AddRecipeView = /*#__PURE__*/function (_View) {
       var allFieldsArr2 = allFieldsArr.filter(function (item) {
         return item.id !== "file";
       });
-      allFieldsArr2.map(function (item) {
+      var dataArr = allFieldsArr2.map(function (item) {
         var itemId = item.id;
         var seeItemValues = document.getElementById(itemId);
-        if (seeItemValues) seeItemValues.value = recipeData[itemId];
+        console.log(seeItemValues);
+
+        if (seeItemValues) {
+          seeItemValues.value = recipeData[itemId];
+        }
       });
+      console.log(dataArr);
     }
   }, {
     key: "_openEditForm",
@@ -3558,7 +3572,7 @@ var controlImageFile = function controlImageFile() {
 
 
 var controlEditRecipe = /*#__PURE__*/function () {
-  var _ref12 = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_8___default().mark(function _callee12(url) {
+  var _ref12 = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_8___default().mark(function _callee12(url, id) {
     var recipe;
     return regenerator_runtime__WEBPACK_IMPORTED_MODULE_8___default().wrap(function _callee12$(_context12) {
       while (1) {
@@ -3570,25 +3584,26 @@ var controlEditRecipe = /*#__PURE__*/function () {
 
           case 3:
             recipe = _context12.sent;
+            console.log(recipe);
             _view_editRecipeView__WEBPACK_IMPORTED_MODULE_13__.default.fillEditRecipeForm(recipe);
-            _context12.next = 11;
+            _context12.next = 12;
             break;
 
-          case 7:
-            _context12.prev = 7;
+          case 8:
+            _context12.prev = 8;
             _context12.t0 = _context12["catch"](0);
             console.log(_context12.t0);
             _view_recipeView__WEBPACK_IMPORTED_MODULE_1__.default.renderFailMessage(_context12.t0);
 
-          case 11:
+          case 12:
           case "end":
             return _context12.stop();
         }
       }
-    }, _callee12, null, [[0, 7]]);
+    }, _callee12, null, [[0, 8]]);
   }));
 
-  return function controlEditRecipe(_x10) {
+  return function controlEditRecipe(_x10, _x11) {
     return _ref12.apply(this, arguments);
   };
 }(); //Event handlers using Publisher-Subscriber pattern

@@ -14,6 +14,7 @@ class AddRecipeView extends View {
   _viewMenu = document.querySelector(".menu-section");
   _successMessage = "Your recipe has been posted successfully!";
   _failMessage = "Something went wrong, please try again later!";
+  _editID;
 
   constructor() {
     super();
@@ -61,12 +62,19 @@ class AddRecipeView extends View {
     var self = this;
     this._form.addEventListener("submit", function (e) {
       e.preventDefault();
+      console.log(this._editID);
       const dataArr = [...new FormData(this)];
       console.log(dataArr);
       self.extractImageFile(dataArr);
-      dataArr.pop();
-      console.log(dataArr);
-      const data = Object.fromEntries(dataArr);
+      const postData = dataArr.filter(
+        (pair) => pair[0] !== "file" || !(pair[0] === "id" && pair[1] === "")
+      );
+      console.log(postData);
+      // const postData2 = postData.filter(
+      //   (pair) => !(pair[0] === "id" && pair[1] === "")
+      // );
+      console.log(postData);
+      const data = Object.fromEntries(postData);
       console.log(data);
       this.reset();
       handler(URL, data);

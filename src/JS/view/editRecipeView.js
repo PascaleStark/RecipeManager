@@ -20,11 +20,15 @@ class AddRecipeView extends View {
     const allFields = this._form.elements;
     const allFieldsArr = Array.from(allFields);
     const allFieldsArr2 = allFieldsArr.filter((item) => item.id !== "file");
-    allFieldsArr2.map((item) => {
+    const dataArr = allFieldsArr2.map((item) => {
       const itemId = item.id;
       const seeItemValues = document.getElementById(itemId);
-      if (seeItemValues) seeItemValues.value = recipeData[itemId];
+      console.log(seeItemValues);
+      if (seeItemValues) {
+        seeItemValues.value = recipeData[itemId];
+      }
     });
+    console.log(dataArr);
   }
 
   _openEditForm(handler, e) {

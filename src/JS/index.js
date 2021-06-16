@@ -257,13 +257,14 @@ const controlImageFile = function () {
   console.log(addRecipeView._imageFile);
 };
 ///////////////////UPLOAD RECIPE IMAGE/////////////////////////
-const controlEditRecipe = async function (url) {
+const controlEditRecipe = async function (url, id) {
   try {
     //1. render spinner
     //DOES NOT WORK!
     //editRecipeView.renderSpinner();
     //2. Load recipe Object
     const recipe = await model.loadRecipe(url);
+    console.log(recipe);
     editRecipeView.fillEditRecipeForm(recipe);
   } catch (err) {
     console.log(err);
