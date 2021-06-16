@@ -712,21 +712,20 @@ var AddRecipeView = /*#__PURE__*/function (_View) {
 
       this._form.addEventListener("submit", function (e) {
         e.preventDefault();
-        console.log(this._editID);
 
         var dataArr = _toConsumableArray(new FormData(this));
 
         console.log(dataArr);
         self.extractImageFile(dataArr);
         var postData = dataArr.filter(function (pair) {
-          return pair[0] !== "file" || !(pair[0] === "id" && pair[1] === "");
+          return pair[0] !== "file";
         });
-        console.log(postData); // const postData2 = postData.filter(
-        //   (pair) => !(pair[0] === "id" && pair[1] === "")
-        // );
-
         console.log(postData);
-        var data = Object.fromEntries(postData);
+        var postData2 = postData.filter(function (pair) {
+          return !(pair[0] === "id" && pair[1] === "");
+        });
+        console.log(postData2);
+        var data = Object.fromEntries(postData2);
         console.log(data);
         this.reset();
         handler(_config_js__WEBPACK_IMPORTED_MODULE_1__.URL, data);
