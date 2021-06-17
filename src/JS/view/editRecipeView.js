@@ -17,18 +17,22 @@ class AddRecipeView extends View {
 
   fillEditRecipeForm(recipeData) {
     // const recipeID = recipeData.id;
+    console.log(recipeData);
     const allFields = this._form.elements;
+    console.log(allFields);
     const allFieldsArr = Array.from(allFields);
     const allFieldsArr2 = allFieldsArr.filter((item) => item.id !== "file");
+    console.log(allFieldsArr2);
     const dataArr = allFieldsArr2.map((item) => {
       const itemId = item.id;
       const seeItemValues = document.getElementById(itemId);
       console.log(seeItemValues);
       if (seeItemValues) {
-        seeItemValues.value = recipeData[itemId];
+        itemId === "ingredients" || itemId === "directions"
+          ? (seeItemValues.value = recipeData[itemId].join("#"))
+          : (seeItemValues.value = recipeData[itemId]);
       }
     });
-    console.log(dataArr);
   }
 
   _openEditForm(handler, e) {
