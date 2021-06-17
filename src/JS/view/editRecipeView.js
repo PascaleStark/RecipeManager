@@ -16,17 +16,14 @@ class AddRecipeView extends View {
   _failMessage = "Something went wrong, please try again later!";
 
   fillEditRecipeForm(recipeData) {
-    // const recipeID = recipeData.id;
-    console.log(recipeData);
+    //Getting all input fields in htmlCollection
     const allFields = this._form.elements;
-    console.log(allFields);
     const allFieldsArr = Array.from(allFields);
     const allFieldsArr2 = allFieldsArr.filter((item) => item.id !== "file");
     console.log(allFieldsArr2);
-    const dataArr = allFieldsArr2.map((item) => {
+    allFieldsArr2.map((item) => {
       const itemId = item.id;
       const seeItemValues = document.getElementById(itemId);
-      console.log(seeItemValues);
       if (seeItemValues) {
         itemId === "ingredients" || itemId === "directions"
           ? (seeItemValues.value = recipeData[itemId].join("#"))
