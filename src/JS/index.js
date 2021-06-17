@@ -35,6 +35,8 @@ const controlAddRecipe = async function (url, uploadData) {
     controlImageFile();
     //5. post the image
     model.saveImageFile(`${URL}/upload/${result[0].id}`);
+    //6. reload page
+    location.reload();
   } catch (err) {
     //Render fail message
     console.log(err);

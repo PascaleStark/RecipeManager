@@ -968,19 +968,16 @@ var AddRecipeView = /*#__PURE__*/function (_View) {
   _createClass(AddRecipeView, [{
     key: "fillEditRecipeForm",
     value: function fillEditRecipeForm(recipeData) {
-      // const recipeID = recipeData.id;
-      console.log(recipeData);
+      //Getting all input fields in htmlCollection
       var allFields = this._form.elements;
-      console.log(allFields);
       var allFieldsArr = Array.from(allFields);
       var allFieldsArr2 = allFieldsArr.filter(function (item) {
         return item.id !== "file";
       });
       console.log(allFieldsArr2);
-      var dataArr = allFieldsArr2.map(function (item) {
+      allFieldsArr2.map(function (item) {
         var itemId = item.id;
         var seeItemValues = document.getElementById(itemId);
-        console.log(seeItemValues);
 
         if (seeItemValues) {
           itemId === "ingredients" || itemId === "directions" ? seeItemValues.value = recipeData[itemId].join("#") : seeItemValues.value = recipeData[itemId];
@@ -3057,23 +3054,25 @@ var controlAddRecipe = /*#__PURE__*/function () {
 
             controlImageFile(); //5. post the image
 
-            _model__WEBPACK_IMPORTED_MODULE_0__.saveImageFile("".concat(_config_js__WEBPACK_IMPORTED_MODULE_9__.URL, "/upload/").concat(result[0].id));
-            _context.next = 16;
+            _model__WEBPACK_IMPORTED_MODULE_0__.saveImageFile("".concat(_config_js__WEBPACK_IMPORTED_MODULE_9__.URL, "/upload/").concat(result[0].id)); //6. reload page
+
+            location.reload();
+            _context.next = 17;
             break;
 
-          case 12:
-            _context.prev = 12;
+          case 13:
+            _context.prev = 13;
             _context.t0 = _context["catch"](0);
             //Render fail message
             console.log(_context.t0);
             _view_addRecipeView__WEBPACK_IMPORTED_MODULE_2__.default.renderFailMessage(_context.t0);
 
-          case 16:
+          case 17:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 12]]);
+    }, _callee, null, [[0, 13]]);
   }));
 
   return function controlAddRecipe(_x, _x2) {
