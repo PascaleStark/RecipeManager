@@ -969,21 +969,23 @@ var AddRecipeView = /*#__PURE__*/function (_View) {
     key: "fillEditRecipeForm",
     value: function fillEditRecipeForm(recipeData) {
       // const recipeID = recipeData.id;
+      console.log(recipeData);
       var allFields = this._form.elements;
+      console.log(allFields);
       var allFieldsArr = Array.from(allFields);
       var allFieldsArr2 = allFieldsArr.filter(function (item) {
         return item.id !== "file";
       });
+      console.log(allFieldsArr2);
       var dataArr = allFieldsArr2.map(function (item) {
         var itemId = item.id;
         var seeItemValues = document.getElementById(itemId);
         console.log(seeItemValues);
 
         if (seeItemValues) {
-          seeItemValues.value = recipeData[itemId];
+          itemId === "ingredients" || itemId === "directions" ? seeItemValues.value = recipeData[itemId].join("#") : seeItemValues.value = recipeData[itemId];
         }
       });
-      console.log(dataArr);
     }
   }, {
     key: "_openEditForm",
