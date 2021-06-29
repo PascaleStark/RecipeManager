@@ -31,6 +31,8 @@ To organize recipes in a flexible and practical way, many features were built in
  
 # Features FlowChart
 <p align="center">
-     <img src="<p align="center">
     <img src="https://github.com/PascaleStark/RecipeManager/blob/main/src/img/Architecture/RecipeManageFlowChart.cmap.jpg" />
 </p>
+
+# API Endpoints
+To implement the features above, the application sends HTTP requests to the backend (or uses REST APIs). In all cases, the sent data and the received data is in the JSON Format. 
