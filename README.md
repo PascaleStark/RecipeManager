@@ -37,4 +37,21 @@ To organize recipes in a flexible and practical way, many features were built in
 # API Endpoints
 To implement the features above, the application sends HTTP requests to the backend (or uses REST APIs). In all cases, the sent data and the received data is in the JSON Format. The backend part of the project is done by Dani Stark https://github.com/danistark1/recipesAPI.
 
+# More details about the project and How to use it
 
+- Project's Design and responsiveness
+The project is responsive. It is built with a Desktop-first strategy that accounts for bigger and for smaller screens using media queries. Breakpoints selection is based on average sizes of groups of devices in portrait and landscape modes as well as following the points where the design breaks. 
+
+See the below example for responsiveness of the header section that transforms to a burger menu for devices with a screen size smaller than 600px.
+
+<p align="center">
+    <img src="https://github.com/PascaleStark/RecipeManager/blob/main/src/img/screenshot-howToUseProject/resp-Header1.png" />
+</p>
+
+<p align="center">
+    <img src="https://github.com/PascaleStark/RecipeManager/blob/main/src/img/screenshot-howToUseProject/resp-Header2.png" />
+</p>
+
+<p align="center">
+    <img src="https://github.com/PascaleStark/RecipeManager/blob/main/src/img/screenshot-howToUseProject/resp-Header3.png" />
+</p>
