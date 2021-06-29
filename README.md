@@ -55,6 +55,7 @@ See the below example for responsiveness of the header section that transforms t
 <p align="center">
     <img src="https://github.com/PascaleStark/RecipeManager/blob/main/src/img/screenshot-howToUseProject/resp-Header3.png" />
 </p>
-
+<br>
+<br>
 - 7-1 CSS architechture with SASS <br>
 CSS styling is based on the 7-1 CSS architecture with SASS where 7 folders are created in the same SASS folder (Abstracts, base, components, layout, pages, thems, and vendors). Not all of them are required for this project. See the src folder for more details https://github.com/PascaleStark/RecipeManager/tree/main/src/sass
