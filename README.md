@@ -35,4 +35,6 @@ To organize recipes in a flexible and practical way, many features were built in
 </p>
 
 # API Endpoints
-To implement the features above, the application sends HTTP requests to the backend (or uses REST APIs). In all cases, the sent data and the received data is in the JSON Format. 
+To implement the features above, the application sends HTTP requests to the backend (or uses REST APIs). In all cases, the sent data and the received data is in the JSON Format. The backend part of the project is done by Dani Stark https://github.com/danistark1/recipesAPI.
+
+
