@@ -39,7 +39,7 @@ To implement the features above, the application sends HTTP requests to the back
 
 # More details about the project and How to use it
 
-- Project's Design and responsiveness
+- Project's Design and responsiveness: <br>
 The project is responsive. It is built with a Desktop-first strategy that accounts for bigger and for smaller screens using media queries. Breakpoints selection is based on average sizes of groups of devices in portrait and landscape modes as well as following the points where the design breaks. 
 
 See the below example for responsiveness of the header section that transforms to a burger menu for devices with a screen size smaller than 600px.
@@ -55,3 +55,6 @@ See the below example for responsiveness of the header section that transforms t
 <p align="center">
     <img src="https://github.com/PascaleStark/RecipeManager/blob/main/src/img/screenshot-howToUseProject/resp-Header3.png" />
 </p>
+
+- 7-1 CSS architechture with SASS <br>
+CSS styling is based on the 7-1 CSS architecture with SASS where 7 folders are created in the same SASS folder (Abstracts, base, components, layout, pages, thems, and vendors). Not all of them are required for this project. See the src folder for more details https://github.com/PascaleStark/RecipeManager/tree/main/src/sass
