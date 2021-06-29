@@ -29,3 +29,8 @@ To organize recipes in a flexible and practical way, many features were built in
 | As a user, I want to be able to find the recipes I added and to see my favourites list whenever I use the app | Display the list of **favourites** in the results section in the form of card components and add pagination for a better organization |
 | As a user, I want to see my featured recipes whenever i open (load) the application | Implement the **star icon** functionality on each card component that, on click, sends a request to the backend in order to change the boolean value of a featured property |
  
+# Features FlowChart
+<p align="center">
+     <img src="<p align="center">
+    <img src="https://github.com/PascaleStark/RecipeManager/blob/main/src/img/Architecture/RecipeManageFlowChart.cmap.jpg" />
+</p>
