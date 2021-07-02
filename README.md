@@ -66,7 +66,7 @@ CSS styling is based on the 7-1 CSS architecture with SASS where 7 folders are c
 
 
 # Credits
-- APIs: Dani Stark
+- APIs: [Dani Stark](https://github.com/danistark1)
 - Logo: [hatchful](https://www.hatchful.shopify.com)
 - Main picture: [unsplash](https://www.unsplash.com)
 - Other card pictures: [unsplash](https://www.unsplash.com)
