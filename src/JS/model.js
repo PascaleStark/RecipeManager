@@ -2,81 +2,8 @@ import { timeout } from "./helper";
 import regeneratorRuntime, { async } from "regenerator-runtime";
 import { URL } from "./config";
 
-export const state = {
-  recipe: {},
-  search: {
-    query: "",
-  },
-  url: "",
-  pageNum: 1,
-  deleteID: "",
-  imageFile: [],
-};
-
-export const addRecipe = async function (url, uploadData) {
-  try {
-    console.log(url);
-    console.log(uploadData);
-    const fetchOptions = fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify(uploadData),
-    });
-    const resp = await Promise.race([fetchOptions, timeout(10)]);
-    console.log(resp);
-    if (!resp.ok)
-      throw new Error(`Server responded with a status (${resp.status})`);
-    const data = await resp.json();
-    console.log(data);
-    return data;
-  } catch (err) {
-    throw err;
-  }
-};
-
-export const loadRecipe = async function (url) {
-  try {
-    //load recipe object
-    const fetchOptions = fetch(url, {
-      method: "GET",
-      headers: {
-        "Content-type": "application/json",
-      },
-    });
-    const resp = await Promise.race([fetchOptions, timeout(30)]);
-    console.log(resp);
-    if (!resp.ok)
-      throw new Error(`Server responded with a status (${resp.status})`);
-    const data = await resp.json();
-    console.log(data);
-
-    //refactoring the recipe object
-    const recipeObject = data[0];
-    console.log(recipeObject);
-    const recipe = {
-      id: recipeObject.id,
-      title: recipeObject.name,
-      publisher: recipeObject.addedBy,
-      category: recipeObject.category,
-      prepTime: recipeObject.prepTime,
-      cookingTime: recipeObject.cookingTime,
-      servings: recipeObject.servings,
-      url: recipeObject.url,
-      ingredients: recipeObject.ingredients,
-      directions: recipeObject.directions,
-      favourites: recipeObject.favourites,
-      featured: recipeObject.featured,
-      imageUrl: recipeObject.imageUrl,
-    };
-    return recipe;
-  } catch (err) {
-    throw err;
-  }
-};
-
 const renderRecipeObj = function (data) {
+  console.log(data);
   const results = data.map((res) => ({
     id: res.id,
     title: res.name,
@@ -94,6 +21,57 @@ const renderRecipeObj = function (data) {
   return results;
 };
 
+export const state = {
+  recipe: {},
+  search: {
+    query: "",
+  },
+  url: "",
+  pageNum: 1,
+  deleteID: "",
+  imageFile: [],
+};
+
+export const addRecipe = async function (url, uploadData) {
+  try {
+    const fetchOptions = fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(uploadData),
+    });
+    const resp = await Promise.race([fetchOptions, timeout(10)]);
+    if (!resp.ok)
+      throw new Error(`Server responded with a status (${resp.status})`);
+    const data = await resp.json();
+    return data;
+  } catch (err) {
+    throw err;
+  }
+};
+
+export const loadRecipe = async function (url) {
+  try {
+    //load recipe object
+    const fetchOptions = fetch(url, {
+      method: "GET",
+      headers: {
+        "Content-type": "application/json",
+      },
+    });
+    const resp = await Promise.race([fetchOptions, timeout(30)]);
+    if (!resp.ok)
+      throw new Error(`Server responded with a status (${resp.status})`);
+    const data = await resp.json();
+    //refactoring the recipe object
+    const recipe = renderRecipeObj(data);
+    return recipe[0];
+  } catch (err) {
+    throw err;
+  }
+};
+
 export const searchRecipes = async function (url, query) {
   try {
     //load recipe object
@@ -101,13 +79,11 @@ export const searchRecipes = async function (url, query) {
       method: "GET",
     });
     const resp = await Promise.race([fetchOptions, timeout(30)]);
-    console.log(resp);
     if (!resp.ok)
       throw new Error(
         `Something went wrong. Server responded with a status (${resp.status})`
       );
     const data = await resp.json();
-    console.log(data);
     //catch url
     this.state.url = url;
     //update query

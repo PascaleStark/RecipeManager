@@ -4,14 +4,13 @@ import { URL } from "../config.js";
 class AddRecipeView extends View {
   _imageFile = [];
   _body = document.getElementsByTagName("body")[0];
-  _addRecipeBtn = document.querySelector(".nav__add-recipe--btn");
-  _modal = document.querySelector(".modal-view");
+  _viewMenu = document.querySelector(".menu-section");
   _parentEl = document.querySelector(".add-recipe-view");
+  _addRecipeBtn = document.querySelector(".nav__add-recipe--btn");
+  _addRecipeMenuBtn = document.querySelector(".addrecipe");
   _form = document.querySelector(".add-recipe-view__form");
   _closeForm = document.querySelector(".icon__close-form");
-  _addRecipeMenuBtn = document.querySelector(".addrecipe");
   _failAddRecipeBtn = document.querySelector(".sub-message__btn");
-  _viewMenu = document.querySelector(".menu-section");
   _successMessage = "Your recipe has been posted successfully!";
   _failMessage = "Something went wrong, please try again later!";
   _editID;
@@ -39,23 +38,17 @@ class AddRecipeView extends View {
   }
 
   _closeAddRecipeView() {
-    [this._closeForm, this._modal].forEach((item) => {
-      item.addEventListener(
-        "click",
-        function () {
-          console.log(item);
-          this.hideModalView();
-        }.bind(this)
-      );
-    });
+    this._closeForm.addEventListener(
+      "click",
+      function () {
+        this.hideModalView();
+      }.bind(this)
+    );
   }
 
   extractImageFile(formDataArr) {
-    console.log(formDataArr);
     const imageFile = formDataArr.filter((item) => item[0] === "file");
-    console.log(imageFile);
     this._imageFile = imageFile;
-    console.log(this._imageFile);
   }
 
   addFormEventHandler(handler) {
@@ -69,7 +62,6 @@ class AddRecipeView extends View {
         (pair) => !(pair[0] === "id" && pair[1] === "")
       );
       const data = Object.fromEntries(postData2);
-      console.log(data);
       this.reset();
       handler(URL, data);
     });

@@ -3,10 +3,10 @@ import View from "./view.js";
 import { URL } from "../config.js";
 
 class RecipeView extends View {
+  _recipeContainer = document.querySelector(".recipe__container");
   _parentEl = document.querySelector(".recipe-view");
   _viewRecipeBtn = document.querySelector(".recipe__card--btn");
   _body = document.getElementsByTagName("body")[0];
-  _recipeContainer = document.querySelector(".recipe__container");
   _deleteRecipeBtn = document.querySelector(
     ".recipe__card--btn-options-delete"
   );
@@ -27,7 +27,6 @@ class RecipeView extends View {
 
   _setRecipeID(handler, e) {
     const targetEl = e.target.closest("#btn-view");
-    console.log(targetEl);
     if (
       targetEl &&
       targetEl.id === "btn-view" &&
