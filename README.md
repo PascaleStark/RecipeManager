@@ -39,7 +39,7 @@ To implement the features above, the application sends HTTP requests to the back
 
 # More details about the project and How to use it
 
-1. Project's Design and responsiveness: <br><br>
+1. Project's Design and responsiveness: <br>
 - Desktop-first approach<br>
 The project is responsive. It is built with a Desktop-first strategy that accounts for bigger and for smaller screens using media queries. Breakpoints selection is based on average sizes of groups of devices in portrait and landscape modes as well as following the points where the design breaks. 
 
