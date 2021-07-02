@@ -63,6 +63,8 @@ CSS styling is based on the 7-1 CSS architecture with SASS where 7 folders are c
 
 - CSS concepts and featured used in this project: <br>
   - layout with Flexbox and CSS grids
+  - CSS positioning
+  - Other CSS properties (backdrop-filter, transform, [background-image](https://github.com/PascaleStark/RecipeManager/blob/295922a1eab1f27e6ebd32537958a5fdcdd22482/src/sass/layout/_main-section.scss#L8) to create a filter of an image , 
 
 
 # Credits
