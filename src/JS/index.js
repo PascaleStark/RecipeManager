@@ -6,7 +6,6 @@ import searchRecipeView from "./view/searchRecipesView";
 import favouritesView from "./view/favouritesView";
 import paginationView from "./view/paginationView";
 import alertView from "./view/alertView";
-import filter from "./view/filterView";
 import regeneratorRuntime, { mark } from "regenerator-runtime";
 import { URL, TIMEOUT } from "./config.js";
 import featuredView from "./view/featuredView";
@@ -23,7 +22,6 @@ const controlAddRecipe = async function (url, uploadData) {
     addRecipeView.renderSpinner();
     //1. Add Recipe
     const result = await model.addRecipe(url, uploadData);
-    console.log(result);
     //2. Render Success Message
     addRecipeView.renderSuccessMessage();
     //3. close Success Message
@@ -51,6 +49,7 @@ const controlrecipeView = async function (url) {
     //2. Load recipe
     const recipe = await model.loadRecipe(url);
     //3. render recipe view
+    console.log(recipe);
     recipeView.renderView(recipe);
   } catch (err) {
     console.log(err);
