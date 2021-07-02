@@ -64,12 +64,12 @@ CSS styling is based on the 7-1 CSS architecture with SASS where 7 folders are c
 - CSS concepts and featured used in this project: <br>
   - layout with Flexbox and CSS grids
   - CSS positioning
-  - Other CSS properties (backdrop-filter, transform, [background-image](https://github.com/PascaleStark/RecipeManager/blob/295922a1eab1f27e6ebd32537958a5fdcdd22482/src/sass/layout/_main-section.scss#L8) to create a filter of an image , 
+  - Other CSS properties (backdrop-filter, transform, [background-image](https://github.com/PascaleStark/RecipeManager/blob/295922a1eab1f27e6ebd32537958a5fdcdd22482/src/sass/layout/_main-section.scss#L8) to create a filter of an image , center divs with [position absolute](https://github.com/PascaleStark/RecipeManager/blob/480379ddfd7b362183e961612a269821f76970f5/src/sass/components/_search.scss#L2) and margin: x auto 
 
 
 # Credits
 - APIs: [Dani Stark](https://github.com/danistark1)
 - Logo: [hatchful](https://www.hatchful.shopify.com)
-- Main picture: [unsplash](https://www.unsplash.com)
-- Other card pictures: [unsplash](https://www.unsplash.com)
+- Main picture: [unsplash](https://unsplash.com/@priscilladupreez)
+- Other recipe cards pictures: [unsplash](https://www.unsplash.com)
 - SVG icons: [icomoon](https://www.icomoon.io)
