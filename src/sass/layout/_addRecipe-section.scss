@@ -1,7 +1,9 @@
 .add-recipe-view {
   @include position-modal-element;
-  //margin-bottom: 70rem;
 
+  @include respond(tab-land) {
+    width: 98vw;
+  }
   @include respond(phone) {
     margin: 5rem 0;
     width: 95vw;
@@ -59,7 +61,7 @@
       transition: all 0.2s;
 
       &[type="text"],
-      &[type="url"] {
+      &[type="url"], &[type="file"] {
         min-width: 36rem;
 
         @include respond(tab-land) {
@@ -77,6 +79,7 @@
         }
         @include respond(phone-small) {
           min-width: 30rem;
+          max-width: 30rem;
         }
       }
 
@@ -130,11 +133,13 @@
       }
     }
     &--btn {
-      justify-self: center;
+      grid-column: 1 / -1;
+      justify-self: end;
+      margin: 2rem 0 2rem 2rem;
 
-      @include respond(tab-port) {
-        margin-top: -3rem;
-        justify-self: start;
+      @include respond(phone) {
+        margin-top: -1rem;
+        justify-self: center;
       }
     }
   }
@@ -144,6 +149,7 @@
   font-family: inherit;
   font-size: $font-size-primary;
   color: $color-font-primary;
+  margin-top: -1rem;
 }
 
 // MOVE TO OWN FILE
