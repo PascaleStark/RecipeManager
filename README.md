@@ -35,7 +35,7 @@ To organize recipes in a flexible and practical way, many features were built in
 </p>
 
 # API Endpoints
-To implement the features above, the application sends HTTP requests to the backend (or uses REST APIs). In all cases, the sent data and the received data is in the JSON Format. The backend part of the project is done by Dani Stark https://github.com/danistark1/recipesAPI.
+To implement the features above, the application sends HTTP requests to the backend (or uses APIs). In all cases, the sent data and the received data is in the JSON Format. The backend part of the project is done by Dani Stark https://github.com/danistark1/recipesAPI.
 
 # More details about the project and How to use it
 
@@ -63,3 +63,11 @@ CSS styling is based on the 7-1 CSS architecture with SASS where 7 folders are c
 
 - CSS concepts and featured used in this project: <br>
   - layout with Flexbox and CSS grids
+
+
+# Credits
+- APIs: Dani Stark
+- Logo: [hatchful](https://www.hatchful.shopify.com)
+- Main picture: [unsplash](https://www.unsplash.com)
+- Other card pictures: [unsplash](https://www.unsplash.com)
+- SVG icons: [icomoon](https://www.icomoon.io)
