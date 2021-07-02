@@ -41,7 +41,7 @@ To implement the features above, the application sends HTTP requests to the back
 
 1. Project's Design and responsiveness: <br>
 - Desktop-first approach<br>
-The project is responsive. It is built with a Desktop-first strategy that accounts for bigger and for smaller screens using media queries. Breakpoints selection is based on average sizes of groups of devices in portrait and landscape modes as well as following the points where the design breaks. 
+The project is responsive. It is built with a Desktop-first strategy that accounts for bigger and for smaller screens using media queries. [Breakpoints](https://github.com/PascaleStark/RecipeManager/blob/8d3fec97a68268840962459509aa417859bc7f2d/src/sass/abstracts/_mixins.scss#L54) selection is based on average sizes of groups of devices in portrait and landscape modes as well as following the points where the design breaks. 
 
 See the below example for responsiveness of the header section that transforms to a burger menu for devices with a screen size smaller than 600px.
 
