@@ -301,6 +301,11 @@ body {
     .pagination__link:hover {
       background-color: #e1dada;
       box-shadow: 0rem 0rem 0.5rem rgba(0, 0, 0, 0.2); }
+    @media (max-width: 37.5em) {
+      .pagination__link {
+        font-size: 1.2rem;
+        margin-right: 1rem;
+        padding: 1rem; } }
   .pagination__icon {
     transform: translateY(0.5rem); }
 
@@ -494,6 +499,9 @@ body {
   border-radius: 3px;
   box-shadow: 0.5rem 0.5rem 1.5rem 3px rgba(0, 0, 0, 0.4);
   height: 100%; }
+  @media (max-width: 75em) {
+    .add-recipe-view {
+      width: 98vw; } }
   @media (max-width: 37.5em) {
     .add-recipe-view {
       margin: 5rem 0;
@@ -543,42 +551,53 @@ body {
       color: #5c646c;
       margin-bottom: 2rem;
       transition: all 0.2s; }
-      .add-recipe-view__form input[type="text"], .add-recipe-view__form input[type="url"],
+      .add-recipe-view__form input[type="text"], .add-recipe-view__form input[type="url"], .add-recipe-view__form input[type="file"],
       .add-recipe-view__form textarea[type="text"],
       .add-recipe-view__form textarea[type="url"],
+      .add-recipe-view__form textarea[type="file"],
       .add-recipe-view__form select[type="text"],
-      .add-recipe-view__form select[type="url"] {
+      .add-recipe-view__form select[type="url"],
+      .add-recipe-view__form select[type="file"] {
         min-width: 36rem; }
         @media (max-width: 75em) {
-          .add-recipe-view__form input[type="text"], .add-recipe-view__form input[type="url"],
+          .add-recipe-view__form input[type="text"], .add-recipe-view__form input[type="url"], .add-recipe-view__form input[type="file"],
           .add-recipe-view__form textarea[type="text"],
           .add-recipe-view__form textarea[type="url"],
+          .add-recipe-view__form textarea[type="file"],
           .add-recipe-view__form select[type="text"],
-          .add-recipe-view__form select[type="url"] {
+          .add-recipe-view__form select[type="url"],
+          .add-recipe-view__form select[type="file"] {
             min-width: 30rem; } }
         @media (max-width: 56.25em) {
-          .add-recipe-view__form input[type="text"], .add-recipe-view__form input[type="url"],
+          .add-recipe-view__form input[type="text"], .add-recipe-view__form input[type="url"], .add-recipe-view__form input[type="file"],
           .add-recipe-view__form textarea[type="text"],
           .add-recipe-view__form textarea[type="url"],
+          .add-recipe-view__form textarea[type="file"],
           .add-recipe-view__form select[type="text"],
-          .add-recipe-view__form select[type="url"] {
+          .add-recipe-view__form select[type="url"],
+          .add-recipe-view__form select[type="file"] {
             min-width: 50rem;
             padding: 1.5rem; } }
         @media (max-width: 37.5em) {
-          .add-recipe-view__form input[type="text"], .add-recipe-view__form input[type="url"],
+          .add-recipe-view__form input[type="text"], .add-recipe-view__form input[type="url"], .add-recipe-view__form input[type="file"],
           .add-recipe-view__form textarea[type="text"],
           .add-recipe-view__form textarea[type="url"],
+          .add-recipe-view__form textarea[type="file"],
           .add-recipe-view__form select[type="text"],
-          .add-recipe-view__form select[type="url"] {
+          .add-recipe-view__form select[type="url"],
+          .add-recipe-view__form select[type="file"] {
             min-width: 35rem;
             padding: 2rem 1.5rem; } }
         @media (max-width: 29.68em) {
-          .add-recipe-view__form input[type="text"], .add-recipe-view__form input[type="url"],
+          .add-recipe-view__form input[type="text"], .add-recipe-view__form input[type="url"], .add-recipe-view__form input[type="file"],
           .add-recipe-view__form textarea[type="text"],
           .add-recipe-view__form textarea[type="url"],
+          .add-recipe-view__form textarea[type="file"],
           .add-recipe-view__form select[type="text"],
-          .add-recipe-view__form select[type="url"] {
-            min-width: 30rem; } }
+          .add-recipe-view__form select[type="url"],
+          .add-recipe-view__form select[type="file"] {
+            min-width: 30rem;
+            max-width: 30rem; } }
       .add-recipe-view__form input::placeholder,
       .add-recipe-view__form textarea::placeholder,
       .add-recipe-view__form select::placeholder {
@@ -618,16 +637,19 @@ body {
       .add-recipe-view__form button:hover {
         box-shadow: 0.5rem 0.5rem 1.5rem 3px rgba(0, 0, 0, 0.2); }
     .add-recipe-view__form--btn {
-      justify-self: center; }
-      @media (max-width: 56.25em) {
+      grid-column: 1 / -1;
+      justify-self: end;
+      margin: 2rem 0 2rem 2rem; }
+      @media (max-width: 37.5em) {
         .add-recipe-view__form--btn {
-          margin-top: -3rem;
-          justify-self: start; } }
+          margin-top: -1rem;
+          justify-self: center; } }
 
 .file-restrictions {
   font-family: inherit;
   font-size: 1.6rem;
-  color: #5c646c; }
+  color: #5c646c;
+  margin-top: -1rem; }
 
 .sub-message {
   display: flex;
@@ -743,8 +765,8 @@ body {
   height: 3rem;
   width: 3rem; }
   .menu-view__icon--home {
-    height: 4rem;
-    width: 4rem;
+    height: 3.5rem;
+    width: 3.5rem;
     margin-right: 3rem;
     transform: translateY(0.5rem); }
 
@@ -755,14 +777,12 @@ body {
   align-items: center; }
 
 .menu-view__list {
-  display: inline-block;
   list-style-type: none;
   padding-top: 5rem; }
   .menu-view__list--item {
     padding: 1.5rem; }
     .menu-view__list--item a:link,
     .menu-view__list--item a:visited {
-      display: block;
       text-decoration: none;
       text-transform: uppercase;
       color: #e1dada;
