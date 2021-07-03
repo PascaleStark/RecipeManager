@@ -77,9 +77,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
+var state = {
+  recipe: {},
+  search: {
+    query: ""
+  },
+  url: "",
+  pageNum: 1,
+  deleteID: "",
+  imageFile: []
+};
 
 var renderRecipeObj = function renderRecipeObj(data) {
-  console.log(data);
+  //console.log(data);
   var results = data.map(function (res) {
     return {
       id: res.id,
@@ -99,16 +109,6 @@ var renderRecipeObj = function renderRecipeObj(data) {
   return results;
 };
 
-var state = {
-  recipe: {},
-  search: {
-    query: ""
-  },
-  url: "",
-  pageNum: 1,
-  deleteID: "",
-  imageFile: []
-};
 var addRecipe = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee(url, uploadData) {
     var fetchOptions, resp, data;

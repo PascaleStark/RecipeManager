@@ -2,8 +2,19 @@ import { timeout } from "./helper";
 import regeneratorRuntime, { async } from "regenerator-runtime";
 import { URL } from "./config";
 
+export const state = {
+  recipe: {},
+  search: {
+    query: "",
+  },
+  url: "",
+  pageNum: 1,
+  deleteID: "",
+  imageFile: [],
+};
+
 const renderRecipeObj = function (data) {
-  console.log(data);
+  //console.log(data);
   const results = data.map((res) => ({
     id: res.id,
     title: res.name,
@@ -19,17 +30,6 @@ const renderRecipeObj = function (data) {
     imageUrl: res.imageUrl,
   }));
   return results;
-};
-
-export const state = {
-  recipe: {},
-  search: {
-    query: "",
-  },
-  url: "",
-  pageNum: 1,
-  deleteID: "",
-  imageFile: [],
 };
 
 export const addRecipe = async function (url, uploadData) {
