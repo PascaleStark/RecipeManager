@@ -1902,7 +1902,7 @@ var SearchRecipeView = /*#__PURE__*/function (_View) {
         behavior: "smooth"
       });
       var query = this._searchEl.value;
-      handler(query); // searchEl.value = "";
+      handler(query.trimStart()); // searchEl.value = "";
     }
   }, {
     key: "openSearchRecipeView",
@@ -3112,7 +3112,7 @@ var controlSearchRecipe = /*#__PURE__*/function () {
 
           case 5:
             _context3.next = 7;
-            return _model__WEBPACK_IMPORTED_MODULE_0__.searchRecipes("".concat(_config_js__WEBPACK_IMPORTED_MODULE_8__.URL, "/search?q=").concat(query.trimStart()), query);
+            return _model__WEBPACK_IMPORTED_MODULE_0__.searchRecipes("".concat(_config_js__WEBPACK_IMPORTED_MODULE_8__.URL, "/search?q=").concat(query), query);
 
           case 7:
             searchResults = _context3.sent;
