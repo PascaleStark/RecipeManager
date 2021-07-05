@@ -67,7 +67,64 @@ CSS styling is based on the 7-1 CSS architecture with SASS where 7 folders are c
   - CSS [positioning](https://github.com/PascaleStark/RecipeManager/blob/e8c45d0473bfbae0b63712d00c84014b6c047f02/src/sass/components/_recipeCard.scss#L23)
   - Other CSS properties (backdrop-filter, transform, [background-image](https://github.com/PascaleStark/RecipeManager/blob/295922a1eab1f27e6ebd32537958a5fdcdd22482/src/sass/layout/_main-section.scss#L8) to create a filter of an image , center divs with [position absolute](https://github.com/PascaleStark/RecipeManager/blob/480379ddfd7b362183e961612a269821f76970f5/src/sass/components/_search.scss#L2) and margin: x auto, [webkit-input-placeholder](https://github.com/PascaleStark/RecipeManager/blob/480379ddfd7b362183e961612a269821f76970f5/src/sass/components/_search.scss#L2), [::after](https://github.com/PascaleStark/RecipeManager/blob/e8c45d0473bfbae0b63712d00c84014b6c047f02/src/sass/components/_recipeCard.scss#L27) pseudo-element to maintain a fixed image aspect ratio etc.) 
 
+2. Project's architecture and patterns <br>
+- MVC architecture <br>
+In this project, we use Vanilla JS in a [Model](https://github.com/PascaleStark/RecipeManager/blob/main/src/JS/model.js#L1)-[View](https://github.com/PascaleStark/RecipeManager/tree/main/src/JS/view)-[Controller](https://github.com/PascaleStark/RecipeManager/blob/main/src/JS/index.js) architecture pattern structure. One [model](https://github.com/PascaleStark/RecipeManager/blob/main/src/JS/model.js#L1)-[View](https://github.com/PascaleStark/RecipeManager/tree/main/src/JS/view) js file (module) takes care of the communication with the backend by sending http request using ES6 async/await. One [controller](https://github.com/PascaleStark/RecipeManager/blob/main/src/JS/index.js) index.js file that controls communication with the model and the view. A publisher-subscriber pattern is used to invoke a handler function in the view in order to send the data from the UI to the controller.  
 
+
+ ```js //In controller:
+  
+//Add a recipe
+const controlAddRecipe = async function (url, uploadData) {
+  try {
+    //1. render spinner
+    addRecipeView.renderSpinner();
+    //1. Add Recipe
+    const result = await model.addRecipe(url, uploadData);
+    //2. Render Success Message
+    addRecipeView.renderSuccessMessage();
+    //3. close Success Message
+    setTimeout(function () {
+      addRecipeView.closeMessage();
+      //location.reload();
+    }, TIMEOUT);
+    //4. send imageFile
+    controlImageFile();
+    //5. post the image
+    model.saveImageFile(`${URL}/upload/${result[0].id}`);
+    //6. reload page
+    location.reload();
+  } catch (err) {
+    //Render fail message
+    console.log(err);
+    addRecipeView.renderFailMessage(err);
+  }
+};
+
+//Event handlers using Publisher-Subscriber pattern
+  const init = function () {
+  addRecipeView.addFormEventHandler(controlAddRecipe);
+};
+init();
+
+//In addRecipeView:
+ addFormEventHandler(handler) {
+    var self = this;
+    this._form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const dataArr = [...new FormData(this)];
+      self.extractImageFile(dataArr);
+      const postData = dataArr.filter((pair) => pair[0] !== "file");
+      const postData2 = postData.filter(
+        (pair) => !(pair[0] === "id" && pair[1] === "")
+      );
+      const data = Object.fromEntries(postData2);
+      this.reset();
+      handler(URL, data);
+    });
+```
+The view is a folder that contains the different views of the different functionalities of the project. Each view is an ES6 class (parent or child that extends the parent). Children classes use prototypal inheritance to access props or methods of a parent class. 
+  
 # Credits
 - APIs: [Dani Stark](https://github.com/danistark1)
 - Logo: [hatchful](https://www.hatchful.shopify.com)
