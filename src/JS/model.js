@@ -21,6 +21,7 @@ const renderRecipeObj = function (data) {
     publisher: res.addedBy,
     category: res.category,
     cookingTime: res.cookingTime,
+    prepTime: res.prepTime,
     servings: res.servings,
     url: res.url,
     ingredients: res.ingredients,
@@ -64,8 +65,10 @@ export const loadRecipe = async function (url) {
     if (!resp.ok)
       throw new Error(`Server responded with a status (${resp.status})`);
     const data = await resp.json();
+    console.log(data);
     //refactoring the recipe object
     const recipe = renderRecipeObj(data);
+    console.log(recipe);
     return recipe[0];
   } catch (err) {
     throw err;

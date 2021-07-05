@@ -97,6 +97,7 @@ var renderRecipeObj = function renderRecipeObj(data) {
       publisher: res.addedBy,
       category: res.category,
       cookingTime: res.cookingTime,
+      prepTime: res.prepTime,
       servings: res.servings,
       url: res.url,
       ingredients: res.ingredients,
@@ -196,21 +197,23 @@ var loadRecipe = /*#__PURE__*/function () {
 
           case 9:
             data = _context2.sent;
-            //refactoring the recipe object
+            console.log(data); //refactoring the recipe object
+
             recipe = renderRecipeObj(data);
+            console.log(recipe);
             return _context2.abrupt("return", recipe[0]);
 
-          case 14:
-            _context2.prev = 14;
+          case 16:
+            _context2.prev = 16;
             _context2.t0 = _context2["catch"](0);
             throw _context2.t0;
 
-          case 17:
+          case 19:
           case "end":
             return _context2.stop();
         }
       }
-    }, _callee2, null, [[0, 14]]);
+    }, _callee2, null, [[0, 16]]);
   }));
 
   return function loadRecipe(_x3) {
@@ -1800,7 +1803,7 @@ var RecipeView = /*#__PURE__*/function (_View) {
     value: function _generateMarkup() {
       return "<svg class=\"icon icon__close-view icon__close-outline\" id=\"closeModal\">\n    <use\n      xlink:href=\"./src/img/icons.svg#icon-close-outline\"\n    ></use></svg>\n<h1 class=\" heading--secondary\">".concat(this._data.title, "</h1>\n<div class=\"recipe-view__info\">\n<div class=\"recipe-view__ingredients\">\n  <h2 class=\"heading--tertiary\">Ingredients</h2>\n  \n  <div class=\"recipe-view__ingredients--details\">\n    <ul class=\"list-style\">\n    ").concat(this._data.ingredients.map(function (ing) {
         return "<li><svg class=\"icon icon__cheveron-right\">\n      <use\n        xlink:href=\"./src/img/icons.svg#icon-cheveron-right\"\n      ></use></svg\n    ><span class=\"recipe-view__element--text\">".concat(ing, "</span></li>");
-      }).join(""), "\n    </ul>\n  </div>\n</div>\n\n<div class=\"recipe-view__info--details\">\n  <svg class=\"icon icon__file--text\">\n    <use\n      xlink:href=\"./src/img/icons.svg#icon-file-text\"\n    ></use></svg\n  >\n  <ul class=\"list-style\">\n    <li><span class=\"text-bolder\">Preparation time:</span> ").concat(this._data.prepartionTime, "</li>\n    <li><span class=\"text-bolder\">Cooking time:</span> ").concat(this._data.cookingTime, "</li>\n    <li><span class=\"text-bolder\">Servings:</span> ").concat(this._data.servings, "</li>\n    <li><span class=\"text-bolder\">Category:</span> ").concat(this._data.category, "</li>\n    <li><span class=\"text-bolder\">Publisher:</span> ").concat(this._data.publisher, "</li>\n  </ul>\n</div>\n</div>\n\n<div class=\"recipe-view__directions\">\n<h2 class=\"heading--tertiary\">Directions</h2>\n<div class=\"recipe-view__directions--details\">\n  <ul class=\"list-style\">\n    ").concat(this._data.directions.map(function (direc, i) {
+      }).join(""), "\n    </ul>\n  </div>\n</div>\n\n<div class=\"recipe-view__info--details\">\n  <svg class=\"icon icon__file--text\">\n    <use\n      xlink:href=\"./src/img/icons.svg#icon-file-text\"\n    ></use></svg\n  >\n  <ul class=\"list-style\">\n    <li><span class=\"text-bolder\">Preparation time:</span> ").concat(this._data.prepTime, "</li>\n    <li><span class=\"text-bolder\">Cooking time:</span> ").concat(this._data.cookingTime, "</li>\n    <li><span class=\"text-bolder\">Servings:</span> ").concat(this._data.servings, "</li>\n    <li><span class=\"text-bolder\">Category:</span> ").concat(this._data.category, "</li>\n    <li><span class=\"text-bolder\">Publisher:</span> ").concat(this._data.publisher, "</li>\n  </ul>\n</div>\n</div>\n\n<div class=\"recipe-view__directions\">\n<h2 class=\"heading--tertiary\">Directions</h2>\n<div class=\"recipe-view__directions--details\">\n  <ul class=\"list-style\">\n    ").concat(this._data.directions.map(function (direc, i) {
         return "<li class=\"recipe-view__directions--element\"><svg class=\"icon icon__checkmark-outline\">\n      <use\n        xlink:href=\"./src/img/icons.svg#icon-checkmark-outline\"\n      ></use></svg\n    ><span class=\"text-bolder\">Step ".concat(i + 1, ":&nbsp;</span>").concat(direc, "</li>");
       }).join(""), "\n  </ul>\n</div>\n</div>\n<div class=\"recipe-view__url\">\n      Source: <a href=\"").concat(this._data.url, "\" target=\"_blank\">").concat(this._data.url, " </a>\n</div>");
     }
@@ -3065,23 +3068,22 @@ var controlrecipeView = /*#__PURE__*/function () {
           case 4:
             recipe = _context2.sent;
             //3. render recipe view
-            console.log(recipe);
             _view_recipeView__WEBPACK_IMPORTED_MODULE_1__.default.renderView(recipe);
-            _context2.next = 13;
+            _context2.next = 12;
             break;
 
-          case 9:
-            _context2.prev = 9;
+          case 8:
+            _context2.prev = 8;
             _context2.t0 = _context2["catch"](0);
             console.log(_context2.t0);
             _view_recipeView__WEBPACK_IMPORTED_MODULE_1__.default.renderFailMessage(_context2.t0);
 
-          case 13:
+          case 12:
           case "end":
             return _context2.stop();
         }
       }
-    }, _callee2, null, [[0, 9]]);
+    }, _callee2, null, [[0, 8]]);
   }));
 
   return function controlrecipeView(_x3) {
@@ -3098,47 +3100,52 @@ var controlSearchRecipe = /*#__PURE__*/function () {
         switch (_context3.prev = _context3.next) {
           case 0:
             _context3.prev = 0;
-            _context3.next = 3;
+
+            if (!(query === "")) {
+              _context3.next = 4;
+              break;
+            }
+
+            _view_searchRecipesView__WEBPACK_IMPORTED_MODULE_3__.default.renderNoResultsMsg();
+            return _context3.abrupt("return");
+
+          case 4:
+            _context3.next = 6;
             return _model__WEBPACK_IMPORTED_MODULE_0__.searchRecipes("".concat(_config_js__WEBPACK_IMPORTED_MODULE_8__.URL, "/search?q=").concat(query), query);
 
-          case 3:
+          case 6:
             searchResults = _context3.sent;
             console.log(searchResults);
 
             if (searchResults) {
-              _context3.next = 7;
+              _context3.next = 10;
               break;
             }
 
             throw error;
 
-          case 7:
-            if (searchResults.recipes.length === 0) {
-              _view_searchRecipesView__WEBPACK_IMPORTED_MODULE_3__.default.renderNoResultsMsg();
-            } else {
-              //1. render spinner
-              _view_searchRecipesView__WEBPACK_IMPORTED_MODULE_3__.default.renderSpinner(); //3. render the recipe cards with pagination
+          case 10:
+            //1. render spinner
+            _view_searchRecipesView__WEBPACK_IMPORTED_MODULE_3__.default.renderSpinner(); //3. render the recipe cards with pagination
 
-              _view_searchRecipesView__WEBPACK_IMPORTED_MODULE_3__.default.renderResultsView(searchResults.recipes); ///////////FETCHING HEADER INFORMATION//////////
+            _view_searchRecipesView__WEBPACK_IMPORTED_MODULE_3__.default.renderResultsView(searchResults.recipes); ///////////FETCHING HEADER INFORMATION//////////
 
-              fetchHeaderInfo();
-            }
-
-            _context3.next = 14;
+            fetchHeaderInfo();
+            _context3.next = 19;
             break;
 
-          case 10:
-            _context3.prev = 10;
+          case 15:
+            _context3.prev = 15;
             _context3.t0 = _context3["catch"](0);
             console.error(_context3.t0);
             _view_errorView__WEBPACK_IMPORTED_MODULE_12__.default.showErrorView(_context3.t0);
 
-          case 14:
+          case 19:
           case "end":
             return _context3.stop();
         }
       }
-    }, _callee3, null, [[0, 10]]);
+    }, _callee3, null, [[0, 15]]);
   }));
 
   return function controlSearchRecipe(_x4) {
