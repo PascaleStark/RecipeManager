@@ -3112,7 +3112,7 @@ var controlSearchRecipe = /*#__PURE__*/function () {
 
           case 5:
             _context3.next = 7;
-            return _model__WEBPACK_IMPORTED_MODULE_0__.searchRecipes("".concat(_config_js__WEBPACK_IMPORTED_MODULE_8__.URL, "/search?q=").concat(query), query);
+            return _model__WEBPACK_IMPORTED_MODULE_0__.searchRecipes("".concat(_config_js__WEBPACK_IMPORTED_MODULE_8__.URL, "/search?q=").concat(query.trimStart()), query);
 
           case 7:
             searchResults = _context3.sent;
@@ -3129,7 +3129,7 @@ var controlSearchRecipe = /*#__PURE__*/function () {
             if (searchResults.recipes.length === 0) {
               _view_searchRecipesView__WEBPACK_IMPORTED_MODULE_3__.default.renderNoResultsMsg();
             } else {
-              //1. render spinner
+              //2. render spinner
               _view_searchRecipesView__WEBPACK_IMPORTED_MODULE_3__.default.renderSpinner(); //3. render the recipe cards with pagination
 
               _view_searchRecipesView__WEBPACK_IMPORTED_MODULE_3__.default.renderResultsView(searchResults.recipes); ///////////FETCHING HEADER INFORMATION//////////
