@@ -3101,7 +3101,7 @@ var controlSearchRecipe = /*#__PURE__*/function () {
           case 0:
             _context3.prev = 0;
 
-            if (!(query === "")) {
+            if (!(query.trim() === "")) {
               _context3.next = 4;
               break;
             }
@@ -3125,27 +3125,32 @@ var controlSearchRecipe = /*#__PURE__*/function () {
             throw error;
 
           case 10:
-            //1. render spinner
-            _view_searchRecipesView__WEBPACK_IMPORTED_MODULE_3__.default.renderSpinner(); //3. render the recipe cards with pagination
+            if (searchResults.recipes.length === 0) {
+              _view_searchRecipesView__WEBPACK_IMPORTED_MODULE_3__.default.renderNoResultsMsg();
+            } else {
+              //1. render spinner
+              _view_searchRecipesView__WEBPACK_IMPORTED_MODULE_3__.default.renderSpinner(); //3. render the recipe cards with pagination
 
-            _view_searchRecipesView__WEBPACK_IMPORTED_MODULE_3__.default.renderResultsView(searchResults.recipes); ///////////FETCHING HEADER INFORMATION//////////
+              _view_searchRecipesView__WEBPACK_IMPORTED_MODULE_3__.default.renderResultsView(searchResults.recipes); ///////////FETCHING HEADER INFORMATION//////////
 
-            fetchHeaderInfo();
-            _context3.next = 19;
+              fetchHeaderInfo();
+            }
+
+            _context3.next = 17;
             break;
 
-          case 15:
-            _context3.prev = 15;
+          case 13:
+            _context3.prev = 13;
             _context3.t0 = _context3["catch"](0);
             console.error(_context3.t0);
             _view_errorView__WEBPACK_IMPORTED_MODULE_12__.default.showErrorView(_context3.t0);
 
-          case 19:
+          case 17:
           case "end":
             return _context3.stop();
         }
       }
-    }, _callee3, null, [[0, 15]]);
+    }, _callee3, null, [[0, 13]]);
   }));
 
   return function controlSearchRecipe(_x4) {
