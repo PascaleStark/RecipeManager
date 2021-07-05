@@ -61,7 +61,8 @@
       transition: all 0.2s;
 
       &[type="text"],
-      &[type="url"], &[type="file"] {
+      &[type="url"],
+      &[type="file"] {
         min-width: 36rem;
 
         @include respond(tab-land) {
@@ -150,6 +151,12 @@
   font-size: $font-size-primary;
   color: $color-font-primary;
   margin-top: -1rem;
+}
+
+.required-text {
+  font-size: 1.3rem;
+  font-style: italic;
+  color: $color-salmon-primary;
 }
 
 // MOVE TO OWN FILE
