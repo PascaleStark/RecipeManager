@@ -28,6 +28,7 @@ export default class View {
   renderResultsView(data, pageNum) {
     this._parentEl.innerHTML = "";
     this._data = data;
+    console.log(data);
     this._data.forEach((result) => {
       this._parentEl.insertAdjacentHTML(
         "afterbegin",
@@ -37,8 +38,14 @@ export default class View {
     this._resultsHeading.textContent = `${this._titleView}`;
     this._hideFiltersView();
     if (pageNum) {
+      console.log(pageNum);
       this._toggleActivePage(pageNum);
     }
+    // else {
+    //   const firstPage = document.querySelector("#pagination-number");
+    //   console.log(firstPage);
+    //   firstPage.classList.add("active");
+    // }
   }
 
   _hideFiltersView() {
@@ -55,10 +62,12 @@ export default class View {
 
   _toggleActivePage(pageNum) {
     const allPageBoxes = document.querySelectorAll("#pagination-number");
+    console.log(allPageBoxes);
     allPageBoxes.forEach((el) => {
       el.classList.remove("active");
     });
     const pageNumBox = document.querySelector(`[data-pg="${pageNum}"]`);
+    console.log(pageNumBox);
     pageNumBox.classList.add("active");
   }
 
@@ -207,15 +216,3 @@ export default class View {
     </div>`;
   }
 }
-
-// hideForm(e) {
-//   if (
-//     e.target.matches(".icon__close-form") ||
-//     !e.target.closest(".modal-view")
-//   )
-//     this.hideModalView();
-// }
-
-// _closeAddRecipeView() {
-//   this._body.addEventListener("click", this.hideForm.bind(this));
-// }

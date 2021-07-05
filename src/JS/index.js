@@ -13,6 +13,7 @@ import filterView from "./view/filterView";
 import menuView from "./view/menuView";
 import errorView from "./view/errorView";
 import editRecipeView from "./view/editRecipeView";
+import View from "./view/view";
 
 ////////////////////ADD RECIPE//////////////////////////////
 //Add a recipe
@@ -79,6 +80,7 @@ const controlSearchRecipe = async function (query) {
       searchRecipeView.renderResultsView(searchResults.recipes);
       ///////////FETCHING HEADER INFORMATION//////////
       fetchHeaderInfo();
+      //paginationView._toggleActivePage(1);
     }
   } catch (err) {
     console.error(err);
@@ -106,8 +108,6 @@ const controlLoadFavourites = async function () {
       `${URL}/where?favourites=1`
     );
     //3. render the recipe cards with pagination
-    // if (searchResults.length === 0)
-    //   throw new Error(`There are no results for your search!`);
     favouritesView.renderResultsView(favouritesResults.recipes);
     ///////////FETCHING HEADER INFORMATION//////////
     fetchHeaderInfo();
@@ -125,9 +125,8 @@ const controlLoadFeatured = async function () {
     const featuredResults = await model.searchRecipes(
       `${URL}/where?featured=1`
     );
+    console.log(featuredResults);
     //3. render the recipe cards with pagination
-    // if (searchResults.length === 0)
-    //   throw new Error(`There are no results for your search!`);
     featuredView.renderResultsView(featuredResults.recipes);
     ///////////FETCHING HEADER INFORMATION//////////
     fetchHeaderInfo();
@@ -159,8 +158,6 @@ const controlfilterSearch = async function (searchQuery, filterQuery) {
       searchQuery
     );
     //3. render the recipe cards with pagination
-    // if (searchResults.length === 0)
-    //   throw new Error(`There are no results for your search!`);
     console.log(filteredResults.recipes);
     console.log(filteredResults.url);
     if (!filteredResults) throw error;

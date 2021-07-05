@@ -7,6 +7,7 @@ class PaginationView extends View {
   _paginationBox = document.querySelector(".pagination__number");
   _body = document.getElementsByTagName("body")[0];
 
+  ///////////HIGHLIGHTS PAGE 1//////////////////////////////////////////////
   // renderActive() {
   //   const allPageBoxes = this._body.querySelectorAll("#pagination-number");
   //   console.log(allPageBoxes);
