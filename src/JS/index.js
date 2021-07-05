@@ -58,14 +58,14 @@ const controlrecipeView = async function (url) {
 ////////////////////SEARCH//////////////////////////////
 const controlSearchRecipe = async function (query) {
   try {
-    //2. look for all the recipes with the given keyword
     if (query.trim() === "") {
       searchRecipeView.renderNoResultsMsg();
       fetchHeaderInfo();
       return;
     }
+    //1. look for all the recipes with the given keyword
     const searchResults = await model.searchRecipes(
-      `${URL}/search?q=${query}`,
+      `${URL}/search?q=${query.trimStart()}`,
       query
     );
     console.log(searchResults);
@@ -73,7 +73,7 @@ const controlSearchRecipe = async function (query) {
     if (searchResults.recipes.length === 0) {
       searchRecipeView.renderNoResultsMsg();
     } else {
-      //1. render spinner
+      //2. render spinner
       searchRecipeView.renderSpinner();
       //3. render the recipe cards with pagination
       searchRecipeView.renderResultsView(searchResults.recipes);
