@@ -49,7 +49,6 @@ const controlrecipeView = async function (url) {
     //2. Load recipe
     const recipe = await model.loadRecipe(url);
     //3. render recipe view
-    console.log(recipe);
     recipeView.renderView(recipe);
   } catch (err) {
     console.log(err);
@@ -60,22 +59,22 @@ const controlrecipeView = async function (url) {
 const controlSearchRecipe = async function (query) {
   try {
     //2. look for all the recipes with the given keyword
+    if (query === "") {
+      searchRecipeView.renderNoResultsMsg();
+      return;
+    }
     const searchResults = await model.searchRecipes(
       `${URL}/search?q=${query}`,
       query
     );
     console.log(searchResults);
     if (!searchResults) throw error;
-    if (searchResults.recipes.length === 0) {
-      searchRecipeView.renderNoResultsMsg();
-    } else {
-      //1. render spinner
-      searchRecipeView.renderSpinner();
-      //3. render the recipe cards with pagination
-      searchRecipeView.renderResultsView(searchResults.recipes);
-      ///////////FETCHING HEADER INFORMATION//////////
-      fetchHeaderInfo();
-    }
+    //1. render spinner
+    searchRecipeView.renderSpinner();
+    //3. render the recipe cards with pagination
+    searchRecipeView.renderResultsView(searchResults.recipes);
+    ///////////FETCHING HEADER INFORMATION//////////
+    fetchHeaderInfo();
   } catch (err) {
     console.error(err);
     errorView.showErrorView(err);

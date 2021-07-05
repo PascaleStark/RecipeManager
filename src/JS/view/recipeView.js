@@ -85,7 +85,7 @@ class RecipeView extends View {
   >
   <ul class="list-style">
     <li><span class="text-bolder">Preparation time:</span> ${
-      this._data.prepartionTime
+      this._data.prepTime
     }</li>
     <li><span class="text-bolder">Cooking time:</span> ${
       this._data.cookingTime
