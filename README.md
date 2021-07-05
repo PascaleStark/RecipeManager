@@ -37,7 +37,7 @@ To organize recipes in a flexible and practical way, many features were built in
 # API Endpoints
 To implement the features above, the application sends HTTP requests to the backend (or uses APIs). In all cases, the sent data and the received data is in the JSON Format. The backend part of the project is done by Dani Stark https://github.com/danistark1/recipesAPI.
 
-# More details about the project and How to use it
+# More details about the project's design and architecture
 
 1. Project's Design and responsiveness: <br>
 - Desktop-first approach<br>
@@ -124,6 +124,8 @@ init();
     });
 ```
 The [view](https://github.com/PascaleStark/RecipeManager/tree/main/src/JS/view)  is a folder that contains the different views of the different functionalities of the project. Each view is an ES6 class (parent or child that extends the parent). Children classes use prototypal inheritance to access props or methods of a parent class. 
+
+# More details about how to use the project
   
 # Credits
 - APIs: [Dani Stark](https://github.com/danistark1)
