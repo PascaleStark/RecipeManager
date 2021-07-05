@@ -125,6 +125,21 @@ init();
 ```
 The [view](https://github.com/PascaleStark/RecipeManager/tree/main/src/JS/view)  is a folder that contains the different views of the different functionalities of the project. Each view is an ES6 class (parent or child that extends the parent). Children classes use prototypal inheritance to access props or methods of a parent class. 
 
+3. Webpack configuration
+
+The webpack configuration of this project is rather simple. Refer to the file [webpack.config.js](https://github.com/PascaleStark/RecipeManager/blob/main/webpack.config.js) to check it out. A reference to a [.babelrc](https://github.com/PascaleStark/RecipeManager/blob/main/.babelrc) file is included.
+
+# Setup
+
+- In your command line, cd into the desired directory and then clone the project
+
+`git clone git@github.com:PascaleStark/RecipeManager.git`
+
+- To download all dependencies required for this project use `npm install`. This will download all dependencies that are included in the `package.json`file.
+
+- To open the project in a live server, use the command `live-server`
+
+
 # More details about how to use the project
   
 # Credits
