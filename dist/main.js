@@ -3102,29 +3102,30 @@ var controlSearchRecipe = /*#__PURE__*/function () {
             _context3.prev = 0;
 
             if (!(query.trim() === "")) {
-              _context3.next = 4;
+              _context3.next = 5;
               break;
             }
 
             _view_searchRecipesView__WEBPACK_IMPORTED_MODULE_3__.default.renderNoResultsMsg();
+            fetchHeaderInfo();
             return _context3.abrupt("return");
 
-          case 4:
-            _context3.next = 6;
+          case 5:
+            _context3.next = 7;
             return _model__WEBPACK_IMPORTED_MODULE_0__.searchRecipes("".concat(_config_js__WEBPACK_IMPORTED_MODULE_8__.URL, "/search?q=").concat(query), query);
 
-          case 6:
+          case 7:
             searchResults = _context3.sent;
             console.log(searchResults);
 
             if (searchResults) {
-              _context3.next = 10;
+              _context3.next = 11;
               break;
             }
 
             throw error;
 
-          case 10:
+          case 11:
             if (searchResults.recipes.length === 0) {
               _view_searchRecipesView__WEBPACK_IMPORTED_MODULE_3__.default.renderNoResultsMsg();
             } else {
@@ -3136,21 +3137,21 @@ var controlSearchRecipe = /*#__PURE__*/function () {
               fetchHeaderInfo();
             }
 
-            _context3.next = 17;
+            _context3.next = 18;
             break;
 
-          case 13:
-            _context3.prev = 13;
+          case 14:
+            _context3.prev = 14;
             _context3.t0 = _context3["catch"](0);
             console.error(_context3.t0);
             _view_errorView__WEBPACK_IMPORTED_MODULE_12__.default.showErrorView(_context3.t0);
 
-          case 17:
+          case 18:
           case "end":
             return _context3.stop();
         }
       }
-    }, _callee3, null, [[0, 13]]);
+    }, _callee3, null, [[0, 14]]);
   }));
 
   return function controlSearchRecipe(_x4) {

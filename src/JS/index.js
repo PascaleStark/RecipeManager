@@ -61,6 +61,7 @@ const controlSearchRecipe = async function (query) {
     //2. look for all the recipes with the given keyword
     if (query.trim() === "") {
       searchRecipeView.renderNoResultsMsg();
+      fetchHeaderInfo();
       return;
     }
     const searchResults = await model.searchRecipes(
