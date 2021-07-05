@@ -65,7 +65,7 @@ const controlSearchRecipe = async function (query) {
     }
     //1. look for all the recipes with the given keyword
     const searchResults = await model.searchRecipes(
-      `${URL}/search?q=${query.trimStart()}`,
+      `${URL}/search?q=${query}`,
       query
     );
     console.log(searchResults);
