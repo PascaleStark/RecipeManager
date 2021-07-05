@@ -3101,51 +3101,57 @@ var controlSearchRecipe = /*#__PURE__*/function () {
           case 0:
             _context3.prev = 0;
 
-            if (!(query === "")) {
-              _context3.next = 4;
+            if (!(query.trim() === "")) {
+              _context3.next = 5;
               break;
             }
 
             _view_searchRecipesView__WEBPACK_IMPORTED_MODULE_3__.default.renderNoResultsMsg();
+            fetchHeaderInfo();
             return _context3.abrupt("return");
 
-          case 4:
-            _context3.next = 6;
+          case 5:
+            _context3.next = 7;
             return _model__WEBPACK_IMPORTED_MODULE_0__.searchRecipes("".concat(_config_js__WEBPACK_IMPORTED_MODULE_8__.URL, "/search?q=").concat(query), query);
 
-          case 6:
+          case 7:
             searchResults = _context3.sent;
             console.log(searchResults);
 
             if (searchResults) {
-              _context3.next = 10;
+              _context3.next = 11;
               break;
             }
 
             throw error;
 
-          case 10:
-            //1. render spinner
-            _view_searchRecipesView__WEBPACK_IMPORTED_MODULE_3__.default.renderSpinner(); //3. render the recipe cards with pagination
+          case 11:
+            if (searchResults.recipes.length === 0) {
+              _view_searchRecipesView__WEBPACK_IMPORTED_MODULE_3__.default.renderNoResultsMsg();
+            } else {
+              //1. render spinner
+              _view_searchRecipesView__WEBPACK_IMPORTED_MODULE_3__.default.renderSpinner(); //3. render the recipe cards with pagination
 
-            _view_searchRecipesView__WEBPACK_IMPORTED_MODULE_3__.default.renderResultsView(searchResults.recipes); ///////////FETCHING HEADER INFORMATION//////////
+              _view_searchRecipesView__WEBPACK_IMPORTED_MODULE_3__.default.renderResultsView(searchResults.recipes); ///////////FETCHING HEADER INFORMATION//////////
 
-            fetchHeaderInfo();
-            _context3.next = 19;
+              fetchHeaderInfo();
+            }
+
+            _context3.next = 18;
             break;
 
-          case 15:
-            _context3.prev = 15;
+          case 14:
+            _context3.prev = 14;
             _context3.t0 = _context3["catch"](0);
             console.error(_context3.t0);
             _view_errorView__WEBPACK_IMPORTED_MODULE_12__.default.showErrorView(_context3.t0);
 
-          case 19:
+          case 18:
           case "end":
             return _context3.stop();
         }
       }
-    }, _callee3, null, [[0, 15]]);
+    }, _callee3, null, [[0, 14]]);
   }));
 
   return function controlSearchRecipe(_x4) {
