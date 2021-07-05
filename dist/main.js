@@ -2063,7 +2063,11 @@ var View = /*#__PURE__*/function () {
     key: "_hideErrMsgModal",
     value: function _hideErrMsgModal(e) {
       var targetEl = e.target.closest(".sub-message__btn");
-      if (targetEl) this.hideModalView();
+
+      if (targetEl) {
+        this.hideModalView();
+        location.reload();
+      }
     }
   }, {
     key: "_closeErrMsgModal",

@@ -114,7 +114,10 @@ export default class View {
 
   _hideErrMsgModal(e) {
     const targetEl = e.target.closest(".sub-message__btn");
-    if (targetEl) this.hideModalView();
+    if (targetEl) {
+      this.hideModalView();
+      location.reload();
+    }
   }
 
   _closeErrMsgModal() {
