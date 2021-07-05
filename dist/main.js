@@ -1657,7 +1657,8 @@ var PaginationView = /*#__PURE__*/function (_View) {
 
   _createClass(PaginationView, [{
     key: "renderView",
-    value: // renderActive() {
+    value: ///////////HIGHLIGHTS PAGE 1//////////////////////////////////////////////
+    // renderActive() {
     //   const allPageBoxes = this._body.querySelectorAll("#pagination-number");
     //   console.log(allPageBoxes);
     //   allPageBoxes.forEach((el) => {
@@ -1975,6 +1976,7 @@ var View = /*#__PURE__*/function () {
 
       this._parentEl.innerHTML = "";
       this._data = data;
+      console.log(data);
 
       this._data.forEach(function (result) {
         _this._parentEl.insertAdjacentHTML("afterbegin", _this._generateMarkup(result));
@@ -1985,8 +1987,15 @@ var View = /*#__PURE__*/function () {
       this._hideFiltersView();
 
       if (pageNum) {
+        console.log(pageNum);
+
         this._toggleActivePage(pageNum);
-      }
+      } // else {
+      //   const firstPage = document.querySelector("#pagination-number");
+      //   console.log(firstPage);
+      //   firstPage.classList.add("active");
+      // }
+
     }
   }, {
     key: "_hideFiltersView",
@@ -2002,10 +2011,12 @@ var View = /*#__PURE__*/function () {
     key: "_toggleActivePage",
     value: function _toggleActivePage(pageNum) {
       var allPageBoxes = document.querySelectorAll("#pagination-number");
+      console.log(allPageBoxes);
       allPageBoxes.forEach(function (el) {
         el.classList.remove("active");
       });
       var pageNumBox = document.querySelector("[data-pg=\"".concat(pageNum, "\"]"));
+      console.log(pageNumBox);
       pageNumBox.classList.add("active");
     }
   }, {
@@ -2100,17 +2111,7 @@ var View = /*#__PURE__*/function () {
   }]);
 
   return View;
-}(); // hideForm(e) {
-//   if (
-//     e.target.matches(".icon__close-form") ||
-//     !e.target.closest(".modal-view")
-//   )
-//     this.hideModalView();
-// }
-// _closeAddRecipeView() {
-//   this._body.addEventListener("click", this.hideForm.bind(this));
-// }
-
+}();
 
 
 
@@ -2965,6 +2966,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _view_menuView__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./view/menuView */ "./src/JS/view/menuView.js");
 /* harmony import */ var _view_errorView__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./view/errorView */ "./src/JS/view/errorView.js");
 /* harmony import */ var _view_editRecipeView__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./view/editRecipeView */ "./src/JS/view/editRecipeView.js");
+/* harmony import */ var _view_view__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./view/view */ "./src/JS/view/view.js");
 
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
@@ -2982,6 +2984,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 
 
 
@@ -3134,7 +3137,7 @@ var controlSearchRecipe = /*#__PURE__*/function () {
 
               _view_searchRecipesView__WEBPACK_IMPORTED_MODULE_3__.default.renderResultsView(searchResults.recipes); ///////////FETCHING HEADER INFORMATION//////////
 
-              fetchHeaderInfo();
+              fetchHeaderInfo(); //paginationView._toggleActivePage(1);
             }
 
             _context3.next = 18;
@@ -3213,8 +3216,6 @@ var controlLoadFavourites = /*#__PURE__*/function () {
           case 4:
             favouritesResults = _context5.sent;
             //3. render the recipe cards with pagination
-            // if (searchResults.length === 0)
-            //   throw new Error(`There are no results for your search!`);
             _view_favouritesView__WEBPACK_IMPORTED_MODULE_4__.default.renderResultsView(favouritesResults.recipes); ///////////FETCHING HEADER INFORMATION//////////
 
             fetchHeaderInfo();
@@ -3257,27 +3258,26 @@ var controlLoadFeatured = /*#__PURE__*/function () {
 
           case 4:
             featuredResults = _context6.sent;
-            //3. render the recipe cards with pagination
-            // if (searchResults.length === 0)
-            //   throw new Error(`There are no results for your search!`);
+            console.log(featuredResults); //3. render the recipe cards with pagination
+
             _view_featuredView__WEBPACK_IMPORTED_MODULE_9__.default.renderResultsView(featuredResults.recipes); ///////////FETCHING HEADER INFORMATION//////////
 
             fetchHeaderInfo();
-            _context6.next = 13;
+            _context6.next = 14;
             break;
 
-          case 9:
-            _context6.prev = 9;
+          case 10:
+            _context6.prev = 10;
             _context6.t0 = _context6["catch"](0);
             console.error(_context6.t0);
             _view_errorView__WEBPACK_IMPORTED_MODULE_12__.default.showErrorView(_context6.t0);
 
-          case 13:
+          case 14:
           case "end":
             return _context6.stop();
         }
       }
-    }, _callee6, null, [[0, 9]]);
+    }, _callee6, null, [[0, 10]]);
   }));
 
   return function controlLoadFeatured() {
@@ -3340,8 +3340,6 @@ var controlfilterSearch = /*#__PURE__*/function () {
           case 4:
             filteredResults = _context8.sent;
             //3. render the recipe cards with pagination
-            // if (searchResults.length === 0)
-            //   throw new Error(`There are no results for your search!`);
             console.log(filteredResults.recipes);
             console.log(filteredResults.url);
 
