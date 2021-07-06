@@ -125,7 +125,7 @@ init();
 ```
 The [view](https://github.com/PascaleStark/RecipeManager/tree/main/src/JS/view)  is a folder that contains the different views of the different functionalities of the project. Each view is an ES6 class (parent or child that extends the parent). Children classes use prototypal inheritance to access props or methods of a parent class. 
 
-3. Webpack configuration
+3. **Webpack configuration**
 
 The webpack configuration of this project is rather simple. Refer to the file [webpack.config.js](https://github.com/PascaleStark/RecipeManager/blob/main/webpack.config.js) to check it out. A reference to a [.babelrc](https://github.com/PascaleStark/RecipeManager/blob/main/.babelrc) file is included.
 
