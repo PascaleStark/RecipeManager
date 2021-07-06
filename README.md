@@ -140,7 +140,12 @@ The webpack configuration of this project is rather simple. Refer to the file [w
 - To open the project in a live server, use the command `live-server`
 
 
-# More details about how to use the project
+# Demo: How to use the project
+Download Links:<br>
+- [Search and Filter](https://github.com/PascaleStark/RecipeManager/blob/main/src/howToUseVids/00_search%26Filter.mp4)
+- [Add and View](https://github.com/PascaleStark/RecipeManager/blob/main/src/howToUseVids/01_addARecipe.mp4)
+- [Add to Favourites](https://github.com/PascaleStark/RecipeManager/blob/main/src/howToUseVids/02_addToFavourites%20%2310.mp4)
+- [Edit and Delete](https://github.com/PascaleStark/RecipeManager/blob/main/src/howToUseVids/03_EditDelete.mp4)
   
 # Credits
 - APIs: [Dani Stark](https://github.com/danistark1)
