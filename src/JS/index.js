@@ -17,6 +17,7 @@ import View from "./view/view";
 
 ////////////////////ADD RECIPE//////////////////////////////
 //Add a recipe
+const header = document.querySelector(".header");
 const controlAddRecipe = async function (url, uploadData) {
   try {
     //1. render spinner
@@ -35,7 +36,8 @@ const controlAddRecipe = async function (url, uploadData) {
     //5. post the image
     model.saveImageFile(`${URL}/upload/${result[0].id}`);
     //6. reload page
-    location.reload();
+    setTimeout(() => {location.reload();
+      header.scrollIntoView();}, 1000);
   } catch (err) {
     //Render fail message
     console.log(err);

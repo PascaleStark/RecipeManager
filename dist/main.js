@@ -2992,6 +2992,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
  ////////////////////ADD RECIPE//////////////////////////////
 //Add a recipe
 
+var header = document.querySelector(".header");
+
 var controlAddRecipe = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().mark(function _callee(url, uploadData) {
     var result;
@@ -3019,7 +3021,10 @@ var controlAddRecipe = /*#__PURE__*/function () {
 
             _model__WEBPACK_IMPORTED_MODULE_0__.saveImageFile("".concat(_config_js__WEBPACK_IMPORTED_MODULE_8__.URL, "/upload/").concat(result[0].id)); //6. reload page
 
-            location.reload();
+            setTimeout(function () {
+              location.reload();
+              header.scrollIntoView();
+            }, 1000);
             _context.next = 16;
             break;
 
