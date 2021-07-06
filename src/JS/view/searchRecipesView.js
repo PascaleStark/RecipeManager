@@ -13,6 +13,10 @@ class SearchRecipeView extends View {
   _noResultMsg =
     "Sorry, we could not find a recipe that matches your search. Try searching for another recipe.";
 
+    clearSearchInput() {
+      this._searchEl.value = "";
+    }
+
   _showSearchRecipeView(handler, e) {
     e.preventDefault();
     document

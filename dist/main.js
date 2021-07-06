@@ -1894,6 +1894,11 @@ var SearchRecipeView = /*#__PURE__*/function (_View) {
   }
 
   _createClass(SearchRecipeView, [{
+    key: "clearSearchInput",
+    value: function clearSearchInput() {
+      this._searchEl.value = "";
+    }
+  }, {
     key: "_showSearchRecipeView",
     value: function _showSearchRecipeView(handler, e) {
       e.preventDefault();
@@ -3506,7 +3511,9 @@ var controlDeleteRecipe = /*#__PURE__*/function () {
 
             setTimeout(function () {
               _view_alertView__WEBPACK_IMPORTED_MODULE_6__.default.closeMessage();
-              location.reload();
+              header.scrollIntoView(); //clear search input
+
+              _view_searchRecipesView__WEBPACK_IMPORTED_MODULE_3__.default.clearSearchInput();
             }, _config_js__WEBPACK_IMPORTED_MODULE_8__.TIMEOUT);
             _context11.next = 15;
             break;
