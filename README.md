@@ -72,12 +72,13 @@ CSS styling is based on the 7-1 CSS architecture with SASS where 7 folders are c
 In this project, I use Vanilla JS in a [Model](https://github.com/PascaleStark/RecipeManager/blob/main/src/JS/model.js#L1)-[View](https://github.com/PascaleStark/RecipeManager/tree/main/src/JS/view)-[Controller](https://github.com/PascaleStark/RecipeManager/blob/main/src/JS/index.js) architecture pattern structure. One [model](https://github.com/PascaleStark/RecipeManager/blob/main/src/JS/model.js#L1) js file (module) takes care of the communication with the backend by sending http request using ES6 async/await. One [controller](https://github.com/PascaleStark/RecipeManager/blob/main/src/JS/index.js) index.js file that controls communication with the model and the view. A publisher-subscriber pattern is used to invoke a handler function in the view in order to send the data from the UI to the controller.  
 
 
- ```js //In controller:
+ ```js 
+ //In controller:
   
 //Add a recipe
 const controlAddRecipe = async function (url, uploadData) {
   try {
-    //1. render spinner
+    //0. render spinner
     addRecipeView.renderSpinner();
     //1. Add Recipe
     const result = await model.addRecipe(url, uploadData);
