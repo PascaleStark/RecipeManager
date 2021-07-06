@@ -215,11 +215,6 @@ export const saveImageFile = async function (url) {
       throw new Error(
         `Something went wrong. Server responded with a status (${resp.status})`
       );
-    // const data = await resp.json();
-    // console.log(data);
-    //refactoring the recipe object
-    // this.state.recipe = renderRecipeObj(data);
-    // console.log(this.state.recipe);
     return resp;
   } catch (err) {
     throw err;

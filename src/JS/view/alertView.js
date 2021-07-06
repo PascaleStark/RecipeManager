@@ -1,6 +1,5 @@
 import regeneratorRuntime from "regenerator-runtime";
 import View from "./view.js";
-import { URL } from "../config.js";
 
 class AlertView extends View {
   _parentEl = document.querySelector(".modal-view__msg");
@@ -47,7 +46,6 @@ class AlertView extends View {
     if (targetEl && targetEl.id === "btn-delete") {
       this.showModalView();
       const deleteID = targetEl.dataset.id;
-      //   console.log(deleteID);
       handler(deleteID);
     }
   }

@@ -19,7 +19,6 @@ class FeaturedView extends View {
 
   _setRecipeID(handler, e) {
     const targetEl = e.target.closest(".icon-star");
-    console.log(targetEl);
     if (targetEl) {
       const id = targetEl.dataset.id;
       handler(`${URL}/featured/${id}`);
@@ -32,7 +31,6 @@ class FeaturedView extends View {
 
   _toggleStarIcon(e) {
     const targetEl = e.target.closest(".icon-star");
-    console.log(targetEl);
     if (targetEl) {
       targetEl.classList.toggle("empty-icon");
       targetEl.classList.toggle("filled-icon");

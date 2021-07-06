@@ -235,7 +235,6 @@ const fetchHeaderInfo = async function () {
 const controlDeleteRecipe = async function () {
   try {
     const deleteRec = await model.deleteRecipe();
-    console.log(deleteRec);
     if (!deleteRec) throw err;
     //render success message
     alertView.renderSuccessMessage();
@@ -247,8 +246,7 @@ const controlDeleteRecipe = async function () {
       searchRecipeView.clearSearchInput();
     }, TIMEOUT);
   } catch (err) {
-    console.log(err);
-    errorView.showErrorView(err);
+    errorView.showErrorView(err)
   }
 };
 
