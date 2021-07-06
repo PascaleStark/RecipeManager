@@ -68,7 +68,7 @@ CSS styling is based on the 7-1 CSS architecture with SASS where 7 folders are c
   - Other CSS properties (backdrop-filter, transform, [background-image](https://github.com/PascaleStark/RecipeManager/blob/295922a1eab1f27e6ebd32537958a5fdcdd22482/src/sass/layout/_main-section.scss#L8) to create a filter of an image , center divs with [position absolute](https://github.com/PascaleStark/RecipeManager/blob/480379ddfd7b362183e961612a269821f76970f5/src/sass/components/_search.scss#L2) and margin: x auto, [webkit-input-placeholder](https://github.com/PascaleStark/RecipeManager/blob/480379ddfd7b362183e961612a269821f76970f5/src/sass/components/_search.scss#L2), [::after](https://github.com/PascaleStark/RecipeManager/blob/e8c45d0473bfbae0b63712d00c84014b6c047f02/src/sass/components/_recipeCard.scss#L27) pseudo-element to maintain a fixed image aspect ratio etc.) 
 
 2. **Architecture and patterns** <br>
-- MVC architecture <br>
+- **MVC architecture** <br>
 In this project, I use Vanilla JS in a [Model](https://github.com/PascaleStark/RecipeManager/blob/main/src/JS/model.js#L1)-[View](https://github.com/PascaleStark/RecipeManager/tree/main/src/JS/view)-[Controller](https://github.com/PascaleStark/RecipeManager/blob/main/src/JS/index.js) architecture pattern structure. One [model](https://github.com/PascaleStark/RecipeManager/blob/main/src/JS/model.js#L1) js file (module) takes care of the communication with the backend by sending http request using ES6 async/await. One [controller](https://github.com/PascaleStark/RecipeManager/blob/main/src/JS/index.js) index.js file that controls communication with the model and the view. A publisher-subscriber pattern is used to invoke a handler function in the view in order to send the data from the UI to the controller.  
 
 
@@ -131,9 +131,7 @@ The webpack configuration of this project is rather simple. Refer to the file [w
 
 # Setup
 
-- In your command line, cd into the desired directory and then clone the project
-
-`git clone git@github.com:PascaleStark/RecipeManager.git`
+- From the command line, clone the project.
 
 - To download all dependencies required for this project use `npm install`. This will download all dependencies that are included in the `package.json`file.
 
