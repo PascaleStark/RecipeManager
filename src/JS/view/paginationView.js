@@ -8,20 +8,15 @@ class PaginationView extends View {
   _body = document.getElementsByTagName("body")[0];
 
   ///////////HIGHLIGHTS PAGE 1//////////////////////////////////////////////
-  // renderActive() {
-  //   const allPageBoxes = this._body.querySelectorAll("#pagination-number");
-  //   console.log(allPageBoxes);
-  //   allPageBoxes.forEach((el) => {
-  //     el.classList.add("active");
-  //   });
-  // }
-
   renderView(data) {
     this._parentEl.innerHTML = "";
     this._data = data;
+    console.log(data);
     this._generateMarkup();
+    console.log(this._generateMarkup());
     this._parentEl.insertAdjacentHTML("beforeend", this._generateMarkup());
-    //this.renderActive();
+    //highlight first page
+    this.toggleActivePage("1"); 
   }
 
   _generateMarkup() {

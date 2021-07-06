@@ -80,7 +80,6 @@ const controlSearchRecipe = async function (query) {
       searchRecipeView.renderResultsView(searchResults.recipes);
       ///////////FETCHING HEADER INFORMATION//////////
       fetchHeaderInfo();
-      //paginationView._toggleActivePage(1);
     }
   } catch (err) {
     console.error(err);
@@ -125,7 +124,6 @@ const controlLoadFeatured = async function () {
     const featuredResults = await model.searchRecipes(
       `${URL}/where?featured=1`
     );
-    console.log(featuredResults);
     //3. render the recipe cards with pagination
     featuredView.renderResultsView(featuredResults.recipes);
     ///////////FETCHING HEADER INFORMATION//////////
