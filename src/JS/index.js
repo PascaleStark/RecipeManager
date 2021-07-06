@@ -242,7 +242,9 @@ const controlDeleteRecipe = async function () {
     //close success message after 3s
     setTimeout(function () {
       alertView.closeMessage();
-      location.reload();
+      header.scrollIntoView();
+      //clear search input
+      searchRecipeView.clearSearchInput();
     }, TIMEOUT);
   } catch (err) {
     console.log(err);
