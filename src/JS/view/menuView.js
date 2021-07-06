@@ -1,6 +1,5 @@
 import regeneratorRuntime from "regenerator-runtime";
 import View from "./view";
-import { URL } from "../config.js";
 
 class MenuView extends View {
   _parentEl = document.querySelector(".recipe__container");

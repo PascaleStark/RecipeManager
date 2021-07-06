@@ -1,6 +1,5 @@
 import regeneratorRuntime from "regenerator-runtime";
 import View from "./view.js";
-import { URL } from "../config.js";
 
 class ErrorView extends View {
   _parentEl = document.querySelector(".error-modal");
@@ -27,7 +26,6 @@ class ErrorView extends View {
 
   _hideErrorView(e) {
     const targetEl = e.target.closest(".error-modal__btn");
-    console.log(targetEl);
     if (targetEl) {
       this._parentEl.classList.add("hidden");
       location.reload();

@@ -55,21 +55,17 @@ export default class View {
 
   toggleActivePage(pageNum) {
     const allPageBoxes = document.querySelectorAll("#pagination-number");
-    console.log(allPageBoxes);
     allPageBoxes.forEach((el) => {
       el.classList.remove("active");
     });
     const pageNumBox = document.querySelector(`[data-pg="${pageNum}"]`);
-    console.log(pageNumBox);
     pageNumBox.classList.add("active");
   }
 
   _setRecipePageID(handler, e) {
     const targetEl = e.target.closest(".pagination__link");
-    console.log(targetEl);
     if (targetEl) {
       const pageNum = targetEl.dataset.pg;
-      console.log(pageNum);
       handler(pageNum);
     }
   }

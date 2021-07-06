@@ -32,11 +32,9 @@ class FilterView extends View {
     this._body.addEventListener("click", function (e) {
       const targetEl = e.target.closest(".dropdown__category");
       if (!targetEl) return;
-      const searchEl = document.querySelector(".search__input");
       const searchQuery = document.querySelector(".search__input").value;
       const filterQuery = targetEl.textContent;
       handler(searchQuery, filterQuery);
-      //searchEl.value = "";
     });
   }
 }

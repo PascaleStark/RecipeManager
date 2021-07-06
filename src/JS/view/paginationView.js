@@ -11,9 +11,7 @@ class PaginationView extends View {
   renderView(data) {
     this._parentEl.innerHTML = "";
     this._data = data;
-    console.log(data);
     this._generateMarkup();
-    console.log(this._generateMarkup());
     this._parentEl.insertAdjacentHTML("beforeend", this._generateMarkup());
     //highlight first page
     this.toggleActivePage("1"); 

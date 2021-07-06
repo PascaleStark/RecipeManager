@@ -1,7 +1,6 @@
 import regeneratorRuntime from "regenerator-runtime";
 import View from "./view";
 import { URL } from "../config.js";
-import { hideFilters } from "../helper";
 
 class FavouritesView extends View {
   _parentEl = document.querySelector(".recipe__container");
@@ -22,19 +21,8 @@ class FavouritesView extends View {
     this.setFavouriteIcon();
   }
 
-  // hideFiltersView() {
-  //   if (
-  //     this._resultsHeading.textContent === "Favourites" ||
-  //     this._resultsHeading.textContent === "Featured"
-  //   ) {
-  //     this._dropdownFilterEl.style.display = "none";
-  //     this._resultsHeading.style.marginBottom = "3rem";
-  //   }
-  // }
-
   _setRecipeID(handler, e) {
     const targetEl = e.target.closest(".icon-heart");
-    console.log(targetEl);
     if (targetEl) {
       const id = targetEl.dataset.id;
       handler(`${URL}/favourites/${id}`);
@@ -47,7 +35,6 @@ class FavouritesView extends View {
 
   _toggleHeartIcon(e) {
     const targetEl = e.target.closest(".icon-heart");
-    console.log(targetEl);
     if (targetEl) {
       targetEl.classList.toggle("empty-icon");
       targetEl.classList.toggle("filled-icon");
