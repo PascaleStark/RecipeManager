@@ -39,8 +39,8 @@ To implement the features above, the application sends HTTP requests to the back
 
 # Project's design and architecture
 
-1. Design and responsiveness <br>
-- Desktop-first approach<br>
+1. **Design and responsiveness** <br>
+- **A Desktop-first approach**<br>
 The project is responsive. It is built with a Desktop-first strategy that accounts for bigger and for smaller screens using media queries. [Breakpoints](https://github.com/PascaleStark/RecipeManager/blob/8d3fec97a68268840962459509aa417859bc7f2d/src/sass/abstracts/_mixins.scss#L54) selection is based on the average sizes of groups of devices in portrait and landscape modes as well as on the points where the design breaks. 
 
 See the below example for responsiveness of the header section that transforms to a burger menu for devices with a screen size smaller than 600px.
@@ -59,17 +59,17 @@ See the below example for responsiveness of the header section that transforms t
 <br>
 <br>
 
-- 7-1 CSS architechture with SASS <br>
+- **7-1 CSS architechture with SASS** <br>
 CSS styling is based on the 7-1 CSS architecture with SASS where 7 folders are created in the same SASS folder (Abstracts, base, components, layout, pages, thems, and vendors). Not all of them are required for this project. See the src folder for more details https://github.com/PascaleStark/RecipeManager/tree/main/src/sass
 
-- CSS concepts and featured used in this project: <br>
+- **CSS concepts and featured used in this project** <br>
   - layout with [Flexbox](https://github.com/PascaleStark/RecipeManager/blob/b919ec735bd387e54ae3fd7733946350a341d512/src/sass/layout/_results-section.scss#L1) and CSS [grids](https://github.com/PascaleStark/RecipeManager/blob/d604d9a3b253daaaccffef1757c157feffe540fe/src/sass/components/_recipeCard.scss#L3)
   - CSS [positioning](https://github.com/PascaleStark/RecipeManager/blob/e8c45d0473bfbae0b63712d00c84014b6c047f02/src/sass/components/_recipeCard.scss#L23)
   - Other CSS properties (backdrop-filter, transform, [background-image](https://github.com/PascaleStark/RecipeManager/blob/295922a1eab1f27e6ebd32537958a5fdcdd22482/src/sass/layout/_main-section.scss#L8) to create a filter of an image , center divs with [position absolute](https://github.com/PascaleStark/RecipeManager/blob/480379ddfd7b362183e961612a269821f76970f5/src/sass/components/_search.scss#L2) and margin: x auto, [webkit-input-placeholder](https://github.com/PascaleStark/RecipeManager/blob/480379ddfd7b362183e961612a269821f76970f5/src/sass/components/_search.scss#L2), [::after](https://github.com/PascaleStark/RecipeManager/blob/e8c45d0473bfbae0b63712d00c84014b6c047f02/src/sass/components/_recipeCard.scss#L27) pseudo-element to maintain a fixed image aspect ratio etc.) 
 
-2. Project's architecture and patterns <br>
+2. **Architecture and patterns** <br>
 - MVC architecture <br>
-In this project, we use Vanilla JS in a [Model](https://github.com/PascaleStark/RecipeManager/blob/main/src/JS/model.js#L1)-[View](https://github.com/PascaleStark/RecipeManager/tree/main/src/JS/view)-[Controller](https://github.com/PascaleStark/RecipeManager/blob/main/src/JS/index.js) architecture pattern structure. One [model](https://github.com/PascaleStark/RecipeManager/blob/main/src/JS/model.js#L1) js file (module) takes care of the communication with the backend by sending http request using ES6 async/await. One [controller](https://github.com/PascaleStark/RecipeManager/blob/main/src/JS/index.js) index.js file that controls communication with the model and the view. A publisher-subscriber pattern is used to invoke a handler function in the view in order to send the data from the UI to the controller.  
+In this project, I use Vanilla JS in a [Model](https://github.com/PascaleStark/RecipeManager/blob/main/src/JS/model.js#L1)-[View](https://github.com/PascaleStark/RecipeManager/tree/main/src/JS/view)-[Controller](https://github.com/PascaleStark/RecipeManager/blob/main/src/JS/index.js) architecture pattern structure. One [model](https://github.com/PascaleStark/RecipeManager/blob/main/src/JS/model.js#L1) js file (module) takes care of the communication with the backend by sending http request using ES6 async/await. One [controller](https://github.com/PascaleStark/RecipeManager/blob/main/src/JS/index.js) index.js file that controls communication with the model and the view. A publisher-subscriber pattern is used to invoke a handler function in the view in order to send the data from the UI to the controller.  
 
 
  ```js //In controller:
