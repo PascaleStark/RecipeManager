@@ -136,7 +136,9 @@ The webpack configuration of this project is rather simple. Refer to the file [w
 
 - To download all dependencies required for this project use `npm install`. This will download all dependencies that are included in the `package.json`file.
 
-- To open the project in a live server, use the command `live-server`
+- For backend setup, click [here]().
+
+- To open the project in a live server, use the command `live-server`.
 
 
 # Demo (How to use the project)
