@@ -151,6 +151,7 @@ The webpack configuration of this project is rather simple. Refer to the file [w
 # Credits
 - APIs: [Dani Stark](https://github.com/danistark1)
 - Logo: [hatchful](https://www.hatchful.shopify.com)
-- Main picture: [unsplash](https://unsplash.com/@priscilladupreez)
+- Main picture: [unsplash, Priscilla Du Preez
+](https://unsplash.com/@priscilladupreez)
 - Other recipe cards pictures: [unsplash](https://www.unsplash.com)
 - SVG icons: [icomoon](https://www.icomoon.io)
