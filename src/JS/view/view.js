@@ -28,7 +28,6 @@ export default class View {
   renderResultsView(data, pageNum) {
     this._parentEl.innerHTML = "";
     this._data = data;
-    console.log(data);
     this._data.forEach((result) => {
       this._parentEl.insertAdjacentHTML(
         "afterbegin",
@@ -38,14 +37,8 @@ export default class View {
     this._resultsHeading.textContent = `${this._titleView}`;
     this._hideFiltersView();
     if (pageNum) {
-      console.log(pageNum);
-      this._toggleActivePage(pageNum);
+      this.toggleActivePage(pageNum);
     }
-    // else {
-    //   const firstPage = document.querySelector("#pagination-number");
-    //   console.log(firstPage);
-    //   firstPage.classList.add("active");
-    // }
   }
 
   _hideFiltersView() {
@@ -60,7 +53,7 @@ export default class View {
     }
   }
 
-  _toggleActivePage(pageNum) {
+  toggleActivePage(pageNum) {
     const allPageBoxes = document.querySelectorAll("#pagination-number");
     console.log(allPageBoxes);
     allPageBoxes.forEach((el) => {

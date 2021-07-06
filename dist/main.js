@@ -1658,21 +1658,19 @@ var PaginationView = /*#__PURE__*/function (_View) {
   _createClass(PaginationView, [{
     key: "renderView",
     value: ///////////HIGHLIGHTS PAGE 1//////////////////////////////////////////////
-    // renderActive() {
-    //   const allPageBoxes = this._body.querySelectorAll("#pagination-number");
-    //   console.log(allPageBoxes);
-    //   allPageBoxes.forEach((el) => {
-    //     el.classList.add("active");
-    //   });
-    // }
     function renderView(data) {
       this._parentEl.innerHTML = "";
       this._data = data;
+      console.log(data);
 
       this._generateMarkup();
 
-      this._parentEl.insertAdjacentHTML("beforeend", this._generateMarkup()); //this.renderActive();
+      console.log(this._generateMarkup());
 
+      this._parentEl.insertAdjacentHTML("beforeend", this._generateMarkup()); //highlight first page
+
+
+      this.toggleActivePage("1");
     }
   }, {
     key: "_generateMarkup",
@@ -1976,7 +1974,6 @@ var View = /*#__PURE__*/function () {
 
       this._parentEl.innerHTML = "";
       this._data = data;
-      console.log(data);
 
       this._data.forEach(function (result) {
         _this._parentEl.insertAdjacentHTML("afterbegin", _this._generateMarkup(result));
@@ -1987,15 +1984,8 @@ var View = /*#__PURE__*/function () {
       this._hideFiltersView();
 
       if (pageNum) {
-        console.log(pageNum);
-
-        this._toggleActivePage(pageNum);
-      } // else {
-      //   const firstPage = document.querySelector("#pagination-number");
-      //   console.log(firstPage);
-      //   firstPage.classList.add("active");
-      // }
-
+        this.toggleActivePage(pageNum);
+      }
     }
   }, {
     key: "_hideFiltersView",
@@ -2008,8 +1998,8 @@ var View = /*#__PURE__*/function () {
       }
     }
   }, {
-    key: "_toggleActivePage",
-    value: function _toggleActivePage(pageNum) {
+    key: "toggleActivePage",
+    value: function toggleActivePage(pageNum) {
       var allPageBoxes = document.querySelectorAll("#pagination-number");
       console.log(allPageBoxes);
       allPageBoxes.forEach(function (el) {
@@ -3137,7 +3127,7 @@ var controlSearchRecipe = /*#__PURE__*/function () {
 
               _view_searchRecipesView__WEBPACK_IMPORTED_MODULE_3__.default.renderResultsView(searchResults.recipes); ///////////FETCHING HEADER INFORMATION//////////
 
-              fetchHeaderInfo(); //paginationView._toggleActivePage(1);
+              fetchHeaderInfo();
             }
 
             _context3.next = 18;
@@ -3258,26 +3248,25 @@ var controlLoadFeatured = /*#__PURE__*/function () {
 
           case 4:
             featuredResults = _context6.sent;
-            console.log(featuredResults); //3. render the recipe cards with pagination
-
+            //3. render the recipe cards with pagination
             _view_featuredView__WEBPACK_IMPORTED_MODULE_9__.default.renderResultsView(featuredResults.recipes); ///////////FETCHING HEADER INFORMATION//////////
 
             fetchHeaderInfo();
-            _context6.next = 14;
+            _context6.next = 13;
             break;
 
-          case 10:
-            _context6.prev = 10;
+          case 9:
+            _context6.prev = 9;
             _context6.t0 = _context6["catch"](0);
             console.error(_context6.t0);
             _view_errorView__WEBPACK_IMPORTED_MODULE_12__.default.showErrorView(_context6.t0);
 
-          case 14:
+          case 13:
           case "end":
             return _context6.stop();
         }
       }
-    }, _callee6, null, [[0, 10]]);
+    }, _callee6, null, [[0, 9]]);
   }));
 
   return function controlLoadFeatured() {
