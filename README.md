@@ -19,7 +19,7 @@ To organize recipes in a flexible and practical way, many features were built in
 
 | User Stories  | Features      |
 | ------------- | ------------- |
-| As a user, I want to be able to search recipes using one or more keywords to find new and multiple ideas  | Implement a **search** functionality that sends an API request to get the data on submit. Display the search results in a results section using **cards** components and add pagination for a better organization |
+| As a user, I want to be able to search recipes using one or more keywords to find new and multiple ideas  | Implement a **search** functionality that sends an API request to get the data on submit. Display the search results in a results section using **cards** components and add **pagination** for a better organization |
 | As a user, I want to be able to filter searched recipes by category  | Implement a **filter** search functionality that filters search results according to a selected category |
 | As a user, I want to be able to view the entire recipe when I click on it | Implement a **View recipe** button on each card to render the recipe in a scrollable modal section by inserting a dynamic html element  |
 | As a user, I want to be able to add a recipe to the database of the existing recipes | Implement an **add recipe** functionality to open a form, enter the details, validate form on the client's side and send an API request on submit to add the recipe details to the database |
