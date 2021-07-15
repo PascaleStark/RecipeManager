@@ -71,59 +71,6 @@ CSS styling is based on the 7-1 CSS architecture with SASS where 7 folders are c
 - **MVC architecture** <br>
 In this project, I use Vanilla JS in a [Model](https://github.com/PascaleStark/RecipeManager/blob/main/src/JS/model.js#L1)-[View](https://github.com/PascaleStark/RecipeManager/tree/main/src/JS/view)-[Controller](https://github.com/PascaleStark/RecipeManager/blob/main/src/JS/index.js) architecture pattern structure. One [model](https://github.com/PascaleStark/RecipeManager/blob/main/src/JS/model.js#L1) js file (module) takes care of the communication with the backend by sending http request using ES6 async/await. One [controller](https://github.com/PascaleStark/RecipeManager/blob/main/src/JS/index.js) index.js file that controls communication with the model and the view. A publisher-subscriber pattern is used to invoke a handler function in the view in order to send the data from the UI to the controller.  
 
-
- ```js 
- //In controller:
-  
-//Add a recipe
-const controlAddRecipe = async function (url, uploadData) {
-  try {
-    //0. render spinner
-    addRecipeView.renderSpinner();
-    //1. Add Recipe
-    const result = await model.addRecipe(url, uploadData);
-    //2. Render Success Message
-    addRecipeView.renderSuccessMessage();
-    //3. close Success Message
-    setTimeout(function () {
-      addRecipeView.closeMessage();
-      //location.reload();
-    }, TIMEOUT);
-    //4. send imageFile
-    controlImageFile();
-    //5. post the image
-    model.saveImageFile(`${URL}/upload/${result[0].id}`);
-    //6. reload page
-    location.reload();
-  } catch (err) {
-    //Render fail message
-    console.log(err);
-    addRecipeView.renderFailMessage(err);
-  }
-};
-
-//Event handlers using Publisher-Subscriber pattern
-  const init = function () {
-  addRecipeView.addFormEventHandler(controlAddRecipe);
-};
-init();
-
-//In addRecipeView:
- addFormEventHandler(handler) {
-    var self = this;
-    this._form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      const dataArr = [...new FormData(this)];
-      self.extractImageFile(dataArr);
-      const postData = dataArr.filter((pair) => pair[0] !== "file");
-      const postData2 = postData.filter(
-        (pair) => !(pair[0] === "id" && pair[1] === "")
-      );
-      const data = Object.fromEntries(postData2);
-      this.reset();
-      handler(URL, data);
-    });
-```
 The [view](https://github.com/PascaleStark/RecipeManager/tree/main/src/JS/view)  is a folder that contains the different views of the different functionalities of the project. Each view is an ES6 class (parent or child that extends the parent). Children classes use prototypal inheritance to access props or methods of a parent class. 
 
 3. **Webpack configuration**
