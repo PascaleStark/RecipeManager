@@ -85,7 +85,9 @@ The webpack configuration of this project is rather simple. Refer to the file [w
 
 - For backend setup, click [here](https://github.com/danistark1/recipesAPI).
 
-- To open the project in a live server, use the command `live-server`.
+- To open the project in a live server, use the command `live-server`. 
+
+Note: To install live-server globally click [here](https://www.npmjs.com/package/live-server).
 
 
 # Demo (How to use the project)
