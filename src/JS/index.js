@@ -36,8 +36,10 @@ const controlAddRecipe = async function (url, uploadData) {
     //5. post the image
     model.saveImageFile(`${URL}/upload/${result[0].id}`);
     //6. reload page
-    setTimeout(() => {location.reload();
-      header.scrollIntoView();}, 1000);
+    setTimeout(() => {
+      location.reload();
+      header.scrollIntoView();
+    }, 1000);
   } catch (err) {
     //Render fail message
     console.log(err);
@@ -213,9 +215,10 @@ const controlPaginationNumber = async function (pageNum) {
   try {
     //1. load page results
     const pageResults = await model.searchRecipesByPage(pageNum);
+    console.log(pageResults.url);
     //2. Choose title View
     const checkTitleView = pageResults.recipes.every(
-      (el) => el.favourites === true
+      (el) => el.favourites === true && pageResults.url.includes("favourites")
     );
     //3. render page results with title View
     checkTitleView
@@ -246,7 +249,7 @@ const controlDeleteRecipe = async function () {
       searchRecipeView.clearSearchInput();
     }, TIMEOUT);
   } catch (err) {
-    errorView.showErrorView(err)
+    errorView.showErrorView(err);
   }
 };
 
