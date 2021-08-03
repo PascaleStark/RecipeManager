@@ -141,6 +141,7 @@ export const searchRecipesByPage = async function (pageNum) {
     console.log(this.state.recipe);
     return {
       recipes: this.state.recipe,
+      url: this.state.url,
     };
   } catch (err) {
     console.log(err);

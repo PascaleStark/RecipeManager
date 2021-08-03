@@ -363,7 +363,8 @@ var searchRecipesByPage = /*#__PURE__*/function () {
             this.state.recipe = renderRecipeObj(data);
             console.log(this.state.recipe);
             return _context5.abrupt("return", {
-              recipes: this.state.recipe
+              recipes: this.state.recipe,
+              url: this.state.url
             });
 
           case 13:
@@ -3396,26 +3397,27 @@ var controlPaginationNumber = /*#__PURE__*/function () {
 
           case 3:
             pageResults = _context9.sent;
-            //2. Choose title View
+            console.log(pageResults.url); //2. Choose title View
+
             checkTitleView = pageResults.recipes.every(function (el) {
-              return el.favourites === true;
+              return el.favourites === true && pageResults.url.includes("favourites");
             }); //3. render page results with title View
 
             checkTitleView ? "".concat(_view_favouritesView__WEBPACK_IMPORTED_MODULE_4__.default.renderResultsView(pageResults.recipes, pageNum)) : "".concat(_view_searchRecipesView__WEBPACK_IMPORTED_MODULE_3__.default.renderResultsView(pageResults.recipes, pageNum));
-            _context9.next = 11;
+            _context9.next = 12;
             break;
 
-          case 8:
-            _context9.prev = 8;
+          case 9:
+            _context9.prev = 9;
             _context9.t0 = _context9["catch"](0);
             console.log(_context9.t0);
 
-          case 11:
+          case 12:
           case "end":
             return _context9.stop();
         }
       }
-    }, _callee9, null, [[0, 8]]);
+    }, _callee9, null, [[0, 9]]);
   }));
 
   return function controlPaginationNumber(_x9) {
