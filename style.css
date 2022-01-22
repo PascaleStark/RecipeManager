@@ -728,7 +728,7 @@ body {
   .nav__list {
     display: flex;
     list-style-type: none; }
-  .nav__add-recipe--btn, .nav__favourites--btn {
+  .nav__add-recipe--btn, .nav__favourites--btn, .nav__all-recipes--btn {
     height: 100%; }
   @media (max-width: 37.5em) {
     .nav {
