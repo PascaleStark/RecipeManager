@@ -13,6 +13,7 @@ import filterView from "./view/filterView";
 import menuView from "./view/menuView";
 import errorView from "./view/errorView";
 import editRecipeView from "./view/editRecipeView";
+import allRecipesView from "./view/allRecipesView";
 import View from "./view/view";
 
 ////////////////////ADD RECIPE//////////////////////////////
@@ -149,6 +150,24 @@ const controlFeaturedRecipes = async function (url) {
   }
 };
 controlLoadFeatured();
+
+////////////////////All RECIPES//////////////////////////////
+const controlLoadAllRecipes = async function () {
+  try {
+    //1. render spinner
+    allRecipesView.renderSpinner();
+    //2. look for all the recipes with the given keyword
+    const allRecipesResults = await model.searchRecipes(`${URL}/all?page=1`);
+    //3. render the recipe cards with pagination
+    allRecipesView.renderResultsView(allRecipesResults.recipes);
+    ///////////FETCHING HEADER INFORMATION//////////
+    fetchHeaderInfo();
+  } catch (err) {
+    console.error(err);
+    errorView.showErrorView(err);
+  }
+};
+
 ////////////////////FILTERED//////////////////////////////
 const controlfilterSearch = async function (searchQuery, filterQuery) {
   try {
@@ -283,7 +302,9 @@ const init = function () {
   searchRecipeView.openSearchRecipeView(controlSearchRecipe);
   favouritesView.toggleFavourites(controlFavouriteRecipes);
   favouritesView.openFavouritesView(controlLoadFavourites);
+  allRecipesView.openAllRecipesView(controlLoadAllRecipes);
   menuView.openFavouritesMenuView(controlLoadFavourites);
+  menuView.openAllRecipesMenuView(controlLoadAllRecipes);
   featuredView.toggleFeatured(controlFeaturedRecipes);
   filterView.openFilterSearchView(controlfilterSearch);
   paginationView.togglePageView(controlPaginationNumber);
