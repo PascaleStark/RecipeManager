@@ -10,6 +10,7 @@ class MenuView extends View {
   _allfavouritesMenuBtn = document.querySelector(
     ".menu-view__list--favourites"
   );
+  _allRecipesMenuBtn = document.querySelector(".menu-view__list--all-recipes");
   _resultsHeading = document.querySelector(".results__heading");
   _viewMenu = document.querySelector(".menu-section");
   _closeMenu = document.querySelector(".menu-view__icon");
@@ -39,6 +40,19 @@ class MenuView extends View {
 
   openFavouritesMenuView(handler) {
     this._allfavouritesMenuBtn.addEventListener(
+      "click",
+      function () {
+        this.hideMenuView();
+        document
+          .querySelector(".results__heading")
+          .scrollIntoView({ behavior: "smooth" });
+        handler();
+      }.bind(this)
+    );
+  }
+
+  openAllRecipesMenuView(handler) {
+    this._allRecipesMenuBtn.addEventListener(
       "click",
       function () {
         this.hideMenuView();

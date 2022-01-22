@@ -304,6 +304,7 @@ const init = function () {
   favouritesView.openFavouritesView(controlLoadFavourites);
   allRecipesView.openAllRecipesView(controlLoadAllRecipes);
   menuView.openFavouritesMenuView(controlLoadFavourites);
+  menuView.openAllRecipesMenuView(controlLoadAllRecipes);
   featuredView.toggleFeatured(controlFeaturedRecipes);
   filterView.openFilterSearchView(controlfilterSearch);
   paginationView.togglePageView(controlPaginationNumber);

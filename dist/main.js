@@ -1598,6 +1598,8 @@ var MenuView = /*#__PURE__*/function (_View) {
 
     _defineProperty(_assertThisInitialized(_this), "_allfavouritesMenuBtn", document.querySelector(".menu-view__list--favourites"));
 
+    _defineProperty(_assertThisInitialized(_this), "_allRecipesMenuBtn", document.querySelector(".menu-view__list--all-recipes"));
+
     _defineProperty(_assertThisInitialized(_this), "_resultsHeading", document.querySelector(".results__heading"));
 
     _defineProperty(_assertThisInitialized(_this), "_viewMenu", document.querySelector(".menu-section"));
@@ -1641,6 +1643,17 @@ var MenuView = /*#__PURE__*/function (_View) {
     key: "openFavouritesMenuView",
     value: function openFavouritesMenuView(handler) {
       this._allfavouritesMenuBtn.addEventListener("click", function () {
+        this.hideMenuView();
+        document.querySelector(".results__heading").scrollIntoView({
+          behavior: "smooth"
+        });
+        handler();
+      }.bind(this));
+    }
+  }, {
+    key: "openAllRecipesMenuView",
+    value: function openAllRecipesMenuView(handler) {
+      this._allRecipesMenuBtn.addEventListener("click", function () {
         this.hideMenuView();
         document.querySelector(".results__heading").scrollIntoView({
           behavior: "smooth"
@@ -3701,6 +3714,7 @@ var init = function init() {
   _view_favouritesView__WEBPACK_IMPORTED_MODULE_4__.default.openFavouritesView(controlLoadFavourites);
   _view_allRecipesView__WEBPACK_IMPORTED_MODULE_14__.default.openAllRecipesView(controlLoadAllRecipes);
   _view_menuView__WEBPACK_IMPORTED_MODULE_11__.default.openFavouritesMenuView(controlLoadFavourites);
+  _view_menuView__WEBPACK_IMPORTED_MODULE_11__.default.openAllRecipesMenuView(controlLoadAllRecipes);
   _view_featuredView__WEBPACK_IMPORTED_MODULE_9__.default.toggleFeatured(controlFeaturedRecipes);
   _view_filterView__WEBPACK_IMPORTED_MODULE_10__.default.openFilterSearchView(controlfilterSearch);
   _view_paginationView__WEBPACK_IMPORTED_MODULE_5__.default.togglePageView(controlPaginationNumber);
