@@ -849,6 +849,99 @@ var AlertView = /*#__PURE__*/function (_View) {
 
 /***/ }),
 
+/***/ "./src/JS/view/allRecipesView.js":
+/*!***************************************!*\
+  !*** ./src/JS/view/allRecipesView.js ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var regenerator_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! regenerator-runtime */ "./node_modules/regenerator-runtime/runtime.js");
+/* harmony import */ var regenerator_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(regenerator_runtime__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _view__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./view */ "./src/JS/view/view.js");
+/* harmony import */ var _config_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../config.js */ "./src/JS/config.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+var AllRecipesView = /*#__PURE__*/function (_View) {
+  _inherits(AllRecipesView, _View);
+
+  var _super = _createSuper(AllRecipesView);
+
+  function AllRecipesView() {
+    var _this;
+
+    _classCallCheck(this, AllRecipesView);
+
+    _this = _super.call(this);
+
+    _defineProperty(_assertThisInitialized(_this), "_parentEl", document.querySelector(".recipe__container"));
+
+    _defineProperty(_assertThisInitialized(_this), "_featuredRecipeBtn", document.querySelector(".icon-lnr-layers"));
+
+    _defineProperty(_assertThisInitialized(_this), "_body", document.getElementsByTagName("body")[0]);
+
+    _defineProperty(_assertThisInitialized(_this), "_titleView", "All recipes");
+
+    _defineProperty(_assertThisInitialized(_this), "_allRecipesBtn", document.querySelector(".nav__all-recipes--btn"));
+
+    _defineProperty(_assertThisInitialized(_this), "_resultsHeading", document.querySelector(".results__heading"));
+
+    _defineProperty(_assertThisInitialized(_this), "_dropdownFilterEl", document.querySelector(".dropdown"));
+
+    _defineProperty(_assertThisInitialized(_this), "_titleView", "All recipes");
+
+    return _this;
+  }
+
+  _createClass(AllRecipesView, [{
+    key: "openAllRecipesView",
+    value: function openAllRecipesView(handler) {
+      this._allRecipesBtn.addEventListener("click", function () {
+        document.querySelector(".results__heading").scrollIntoView({
+          behavior: "smooth"
+        });
+        handler();
+      });
+    }
+  }]);
+
+  return AllRecipesView;
+}(_view__WEBPACK_IMPORTED_MODULE_1__.default);
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (new AllRecipesView());
+
+/***/ }),
+
 /***/ "./src/JS/view/editRecipeView.js":
 /*!***************************************!*\
   !*** ./src/JS/view/editRecipeView.js ***!
@@ -2931,7 +3024,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _view_menuView__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./view/menuView */ "./src/JS/view/menuView.js");
 /* harmony import */ var _view_errorView__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./view/errorView */ "./src/JS/view/errorView.js");
 /* harmony import */ var _view_editRecipeView__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./view/editRecipeView */ "./src/JS/view/editRecipeView.js");
-/* harmony import */ var _view_view__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./view/view */ "./src/JS/view/view.js");
+/* harmony import */ var _view_allRecipesView__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./view/allRecipesView */ "./src/JS/view/allRecipesView.js");
+/* harmony import */ var _view_view__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./view/view */ "./src/JS/view/view.js");
 
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
@@ -2949,6 +3043,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 
 
 
@@ -3290,30 +3385,73 @@ var controlFeaturedRecipes = /*#__PURE__*/function () {
   };
 }();
 
-controlLoadFeatured(); ////////////////////FILTERED//////////////////////////////
+controlLoadFeatured(); ////////////////////All RECIPES//////////////////////////////
 
-var controlfilterSearch = /*#__PURE__*/function () {
-  var _ref8 = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().mark(function _callee8(searchQuery, filterQuery) {
-    var filteredResults;
+var controlLoadAllRecipes = /*#__PURE__*/function () {
+  var _ref8 = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().mark(function _callee8() {
+    var allRecipesResults;
     return regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().wrap(function _callee8$(_context8) {
       while (1) {
         switch (_context8.prev = _context8.next) {
           case 0:
             _context8.prev = 0;
             //1. render spinner
-            _view_filterView__WEBPACK_IMPORTED_MODULE_10__.default.renderSpinner(); //2. look for all the recipes with the given keyword
+            _view_allRecipesView__WEBPACK_IMPORTED_MODULE_14__.default.renderSpinner(); //2. look for all the recipes with the given keyword
 
             _context8.next = 4;
+            return _model__WEBPACK_IMPORTED_MODULE_0__.searchRecipes("".concat(_config_js__WEBPACK_IMPORTED_MODULE_8__.URL, "/all?page=1"));
+
+          case 4:
+            allRecipesResults = _context8.sent;
+            //3. render the recipe cards with pagination
+            _view_allRecipesView__WEBPACK_IMPORTED_MODULE_14__.default.renderResultsView(allRecipesResults.recipes); ///////////FETCHING HEADER INFORMATION//////////
+
+            fetchHeaderInfo();
+            _context8.next = 13;
+            break;
+
+          case 9:
+            _context8.prev = 9;
+            _context8.t0 = _context8["catch"](0);
+            console.error(_context8.t0);
+            _view_errorView__WEBPACK_IMPORTED_MODULE_12__.default.showErrorView(_context8.t0);
+
+          case 13:
+          case "end":
+            return _context8.stop();
+        }
+      }
+    }, _callee8, null, [[0, 9]]);
+  }));
+
+  return function controlLoadAllRecipes() {
+    return _ref8.apply(this, arguments);
+  };
+}(); ////////////////////FILTERED//////////////////////////////
+
+
+var controlfilterSearch = /*#__PURE__*/function () {
+  var _ref9 = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().mark(function _callee9(searchQuery, filterQuery) {
+    var filteredResults;
+    return regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().wrap(function _callee9$(_context9) {
+      while (1) {
+        switch (_context9.prev = _context9.next) {
+          case 0:
+            _context9.prev = 0;
+            //1. render spinner
+            _view_filterView__WEBPACK_IMPORTED_MODULE_10__.default.renderSpinner(); //2. look for all the recipes with the given keyword
+
+            _context9.next = 4;
             return _model__WEBPACK_IMPORTED_MODULE_0__.searchRecipes("".concat(_config_js__WEBPACK_IMPORTED_MODULE_8__.URL, "/search?q=").concat(searchQuery, "&filter=category&value=").concat(filterQuery), searchQuery);
 
           case 4:
-            filteredResults = _context8.sent;
+            filteredResults = _context9.sent;
             //3. render the recipe cards with pagination
             console.log(filteredResults.recipes);
             console.log(filteredResults.url);
 
             if (filteredResults) {
-              _context8.next = 9;
+              _context9.next = 9;
               break;
             }
 
@@ -3329,25 +3467,25 @@ var controlfilterSearch = /*#__PURE__*/function () {
 
             fetchHeaderInfo();
             _view_filterView__WEBPACK_IMPORTED_MODULE_10__.default.toggleDropdownFilters();
-            _context8.next = 18;
+            _context9.next = 18;
             break;
 
           case 14:
-            _context8.prev = 14;
-            _context8.t0 = _context8["catch"](0);
-            console.error(_context8.t0);
-            _view_errorView__WEBPACK_IMPORTED_MODULE_12__.default.showErrorView(_context8.t0);
+            _context9.prev = 14;
+            _context9.t0 = _context9["catch"](0);
+            console.error(_context9.t0);
+            _view_errorView__WEBPACK_IMPORTED_MODULE_12__.default.showErrorView(_context9.t0);
 
           case 18:
           case "end":
-            return _context8.stop();
+            return _context9.stop();
         }
       }
-    }, _callee8, null, [[0, 14]]);
+    }, _callee9, null, [[0, 14]]);
   }));
 
   return function controlfilterSearch(_x7, _x8) {
-    return _ref8.apply(this, arguments);
+    return _ref9.apply(this, arguments);
   };
 }(); // const controlfilterFavourites = async function (filterQuery) {
 //   try {
@@ -3385,18 +3523,18 @@ var controlPagination = function controlPagination(pagInfo) {
 };
 
 var controlPaginationNumber = /*#__PURE__*/function () {
-  var _ref9 = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().mark(function _callee9(pageNum) {
+  var _ref10 = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().mark(function _callee10(pageNum) {
     var pageResults, checkTitleView;
-    return regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().wrap(function _callee9$(_context9) {
+    return regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().wrap(function _callee10$(_context10) {
       while (1) {
-        switch (_context9.prev = _context9.next) {
+        switch (_context10.prev = _context10.next) {
           case 0:
-            _context9.prev = 0;
-            _context9.next = 3;
+            _context10.prev = 0;
+            _context10.next = 3;
             return _model__WEBPACK_IMPORTED_MODULE_0__.searchRecipesByPage(pageNum);
 
           case 3:
-            pageResults = _context9.sent;
+            pageResults = _context10.sent;
             console.log(pageResults.url); //2. Choose title View
 
             checkTitleView = pageResults.recipes.every(function (el) {
@@ -3404,72 +3542,72 @@ var controlPaginationNumber = /*#__PURE__*/function () {
             }); //3. render page results with title View
 
             checkTitleView ? "".concat(_view_favouritesView__WEBPACK_IMPORTED_MODULE_4__.default.renderResultsView(pageResults.recipes, pageNum)) : "".concat(_view_searchRecipesView__WEBPACK_IMPORTED_MODULE_3__.default.renderResultsView(pageResults.recipes, pageNum));
-            _context9.next = 12;
+            _context10.next = 12;
             break;
 
           case 9:
-            _context9.prev = 9;
-            _context9.t0 = _context9["catch"](0);
-            console.log(_context9.t0);
+            _context10.prev = 9;
+            _context10.t0 = _context10["catch"](0);
+            console.log(_context10.t0);
 
           case 12:
           case "end":
-            return _context9.stop();
+            return _context10.stop();
         }
       }
-    }, _callee9, null, [[0, 9]]);
+    }, _callee10, null, [[0, 9]]);
   }));
 
   return function controlPaginationNumber(_x9) {
-    return _ref9.apply(this, arguments);
+    return _ref10.apply(this, arguments);
   };
 }();
 
 var fetchHeaderInfo = /*#__PURE__*/function () {
-  var _ref10 = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().mark(function _callee10() {
+  var _ref11 = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().mark(function _callee11() {
     var pagInfo;
-    return regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().wrap(function _callee10$(_context10) {
+    return regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().wrap(function _callee11$(_context11) {
       while (1) {
-        switch (_context10.prev = _context10.next) {
+        switch (_context11.prev = _context11.next) {
           case 0:
-            _context10.next = 2;
+            _context11.next = 2;
             return _model__WEBPACK_IMPORTED_MODULE_0__.getHeaders();
 
           case 2:
-            pagInfo = _context10.sent;
+            pagInfo = _context11.sent;
             console.log(pagInfo);
             controlPagination(pagInfo);
 
           case 5:
           case "end":
-            return _context10.stop();
+            return _context11.stop();
         }
       }
-    }, _callee10);
+    }, _callee11);
   }));
 
   return function fetchHeaderInfo() {
-    return _ref10.apply(this, arguments);
+    return _ref11.apply(this, arguments);
   };
 }(); ////////////////////DELETE RECIPE//////////////////////////////
 
 
 var controlDeleteRecipe = /*#__PURE__*/function () {
-  var _ref11 = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().mark(function _callee11() {
+  var _ref12 = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().mark(function _callee12() {
     var deleteRec;
-    return regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().wrap(function _callee11$(_context11) {
+    return regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().wrap(function _callee12$(_context12) {
       while (1) {
-        switch (_context11.prev = _context11.next) {
+        switch (_context12.prev = _context12.next) {
           case 0:
-            _context11.prev = 0;
-            _context11.next = 3;
+            _context12.prev = 0;
+            _context12.next = 3;
             return _model__WEBPACK_IMPORTED_MODULE_0__.deleteRecipe();
 
           case 3:
-            deleteRec = _context11.sent;
+            deleteRec = _context12.sent;
 
             if (deleteRec) {
-              _context11.next = 6;
+              _context12.next = 6;
               break;
             }
 
@@ -3485,24 +3623,24 @@ var controlDeleteRecipe = /*#__PURE__*/function () {
 
               _view_searchRecipesView__WEBPACK_IMPORTED_MODULE_3__.default.clearSearchInput();
             }, _config_js__WEBPACK_IMPORTED_MODULE_8__.TIMEOUT);
-            _context11.next = 13;
+            _context12.next = 13;
             break;
 
           case 10:
-            _context11.prev = 10;
-            _context11.t0 = _context11["catch"](0);
-            _view_errorView__WEBPACK_IMPORTED_MODULE_12__.default.showErrorView(_context11.t0);
+            _context12.prev = 10;
+            _context12.t0 = _context12["catch"](0);
+            _view_errorView__WEBPACK_IMPORTED_MODULE_12__.default.showErrorView(_context12.t0);
 
           case 13:
           case "end":
-            return _context11.stop();
+            return _context12.stop();
         }
       }
-    }, _callee11, null, [[0, 10]]);
+    }, _callee12, null, [[0, 10]]);
   }));
 
   return function controlDeleteRecipe() {
-    return _ref11.apply(this, arguments);
+    return _ref12.apply(this, arguments);
   };
 }();
 
@@ -3518,39 +3656,39 @@ var controlImageFile = function controlImageFile() {
 
 
 var controlEditRecipe = /*#__PURE__*/function () {
-  var _ref12 = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().mark(function _callee12(url, id) {
+  var _ref13 = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().mark(function _callee13(url, id) {
     var recipe;
-    return regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().wrap(function _callee12$(_context12) {
+    return regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().wrap(function _callee13$(_context13) {
       while (1) {
-        switch (_context12.prev = _context12.next) {
+        switch (_context13.prev = _context13.next) {
           case 0:
-            _context12.prev = 0;
-            _context12.next = 3;
+            _context13.prev = 0;
+            _context13.next = 3;
             return _model__WEBPACK_IMPORTED_MODULE_0__.loadRecipe(url);
 
           case 3:
-            recipe = _context12.sent;
+            recipe = _context13.sent;
             console.log(recipe);
             _view_editRecipeView__WEBPACK_IMPORTED_MODULE_13__.default.fillEditRecipeForm(recipe);
-            _context12.next = 12;
+            _context13.next = 12;
             break;
 
           case 8:
-            _context12.prev = 8;
-            _context12.t0 = _context12["catch"](0);
-            console.log(_context12.t0);
-            _view_recipeView__WEBPACK_IMPORTED_MODULE_1__.default.renderFailMessage(_context12.t0);
+            _context13.prev = 8;
+            _context13.t0 = _context13["catch"](0);
+            console.log(_context13.t0);
+            _view_recipeView__WEBPACK_IMPORTED_MODULE_1__.default.renderFailMessage(_context13.t0);
 
           case 12:
           case "end":
-            return _context12.stop();
+            return _context13.stop();
         }
       }
-    }, _callee12, null, [[0, 8]]);
+    }, _callee13, null, [[0, 8]]);
   }));
 
   return function controlEditRecipe(_x10, _x11) {
-    return _ref12.apply(this, arguments);
+    return _ref13.apply(this, arguments);
   };
 }(); //Event handlers using Publisher-Subscriber pattern
 
@@ -3561,6 +3699,7 @@ var init = function init() {
   _view_searchRecipesView__WEBPACK_IMPORTED_MODULE_3__.default.openSearchRecipeView(controlSearchRecipe);
   _view_favouritesView__WEBPACK_IMPORTED_MODULE_4__.default.toggleFavourites(controlFavouriteRecipes);
   _view_favouritesView__WEBPACK_IMPORTED_MODULE_4__.default.openFavouritesView(controlLoadFavourites);
+  _view_allRecipesView__WEBPACK_IMPORTED_MODULE_14__.default.openAllRecipesView(controlLoadAllRecipes);
   _view_menuView__WEBPACK_IMPORTED_MODULE_11__.default.openFavouritesMenuView(controlLoadFavourites);
   _view_featuredView__WEBPACK_IMPORTED_MODULE_9__.default.toggleFeatured(controlFeaturedRecipes);
   _view_filterView__WEBPACK_IMPORTED_MODULE_10__.default.openFilterSearchView(controlfilterSearch);
