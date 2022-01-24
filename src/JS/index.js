@@ -42,8 +42,6 @@ const controlAddRecipe = async function (url, uploadData) {
       header.scrollIntoView();
     }, 1000);
   } catch (err) {
-    //Render fail message
-    console.log(err);
     addRecipeView.renderFailMessage(err);
   }
 };
@@ -57,7 +55,6 @@ const controlrecipeView = async function (url) {
     //3. render recipe view
     recipeView.renderView(recipe);
   } catch (err) {
-    console.log(err);
     recipeView.renderFailMessage(err);
   }
 };
@@ -74,7 +71,6 @@ const controlSearchRecipe = async function (query) {
       `${URL}/search?q=${query}`,
       query
     );
-    console.log(searchResults);
     if (!searchResults) throw error;
     if (searchResults.recipes.length === 0) {
       searchRecipeView.renderNoResultsMsg();
@@ -95,8 +91,7 @@ const controlSearchRecipe = async function (query) {
 const controlFavouriteRecipes = async function (url) {
   try {
     //1. look for all the recipes with the given keyword
-    const favouriteRec = await model.editFavourites(url);
-    console.log(favouriteRec);
+    await model.editFavourites(url);
   } catch (err) {
     console.error(err);
     errorView.showErrorView(err);
@@ -142,8 +137,7 @@ const controlLoadFeatured = async function () {
 const controlFeaturedRecipes = async function (url) {
   try {
     //1. look for all the recipes with the given keyword
-    const featuredRec = await model.editFavourites(url);
-    console.log(featuredRec);
+    await model.editFavourites(url);
     //2. toggle star icon fill
   } catch (err) {
     console.error(err);
@@ -170,9 +164,6 @@ const controlLoadAllRecipes = async function () {
 
 ////////////////////FILTERED//////////////////////////////
 const controlfilterSearch = async function (searchQuery, filterQuery) {
-  console.log(
-    `I am called to control filter with searchquery = ${searchQuery}`
-  );
   try {
     //1. render spinner
     filterView.renderSpinner();
@@ -190,8 +181,6 @@ const controlfilterSearch = async function (searchQuery, filterQuery) {
     }
 
     //3. render the recipe cards with pagination
-    console.log(filteredResults.recipes);
-    console.log(filteredResults.url);
     if (!filteredResults) throw error;
     if (filteredResults.recipes.length === 0) {
       filterView.renderNoResultsMsg();
@@ -206,54 +195,6 @@ const controlfilterSearch = async function (searchQuery, filterQuery) {
     errorView.showErrorView(err);
   }
 };
-
-////////////////////FILTERED-ALL//////////////////////////////
-// const controlfilterAll = async function (filterQuery) {
-//   try {
-//     //1. render spinner
-//     filterView.renderSpinner();
-//     //2. look for all the recipes with the given keyword
-//     const filteredResults = await model.searchRecipes(
-//       `${URL}/all?filter=category&value=${filterQuery}&page=1`
-//     );
-//     //3. render the recipe cards with pagination
-//     console.log(filteredResults.recipes);
-//     console.log(filteredResults.url);
-//     if (!filteredResults) throw error;
-//     if (filteredResults.recipes.length === 0) {
-//       filterView.renderNoResultsMsg();
-//     } else {
-//       filterView.renderResultsView(filteredResults.recipes);
-//     }
-//     ///////////FETCHING HEADER INFORMATION//////////
-//     fetchHeaderInfo();
-//     filterView.toggleDropdownFilters();
-//   } catch (err) {
-//     console.error(err);
-//     errorView.showErrorView(err);
-//   }
-// };
-
-// const controlfilterFavourites = async function (filterQuery) {
-//   try {
-//     //1. render spinner
-//     filterView.renderSpinner();
-//     //2. look for all the recipes with the given keyword
-//     const filteredResults = await model.searchRecipes(
-//       `${URL}/favourites=1&filter=category&category=${filterQuery}`
-//     );
-//     //3. render the recipe cards with pagination
-//     // if (searchResults.length === 0)
-//     //   throw new Error(`There are no results for your search!`);
-//     console.log(filteredResults.recipes);
-//     filterView.renderResultsView(filteredResults.recipes);
-//     ///////////FETCHING HEADER INFORMATION//////////
-//     fetchHeaderInfo();
-//     filterView.toggleDropdownFilters();
-//   } catch (err) {
-//     console.error(err);
-//   }
-// };
 ////////////////////PAGINATION//////////////////////////////
 const controlPagination = function (pagInfo) {
   const paginationArr = [];
@@ -263,7 +204,6 @@ const controlPagination = function (pagInfo) {
       i + 1
     }" class="pagination__link" id="pagination-number">${i + 1}</button>`;
     paginationArr.push(markupPage);
-    console.log(paginationArr);
   }
   paginationView.renderView(paginationArr);
 };
@@ -272,7 +212,6 @@ const controlPaginationNumber = async function (pageNum) {
   try {
     //1. load page results
     const pageResults = await model.searchRecipesByPage(pageNum);
-    console.log(pageResults.url);
     //2. Choose title View
     const checkTitleView = pageResults.recipes.every(
       (el) => el.favourites === true && pageResults.url.includes("favourites")
@@ -288,7 +227,6 @@ const controlPaginationNumber = async function (pageNum) {
 
 const fetchHeaderInfo = async function () {
   const pagInfo = await model.getHeaders();
-  console.log(pagInfo);
   controlPagination(pagInfo);
 };
 ////////////////////DELETE RECIPE//////////////////////////////
@@ -316,7 +254,6 @@ const controlSetDeleteID = function (id) {
 ///////////////////UPLOAD RECIPE IMAGE/////////////////////////
 const controlImageFile = function () {
   model.updateImageFile(...addRecipeView._imageFile);
-  console.log(addRecipeView._imageFile);
 };
 ///////////////////UPLOAD RECIPE IMAGE/////////////////////////
 const controlEditRecipe = async function (url, id) {
@@ -326,10 +263,8 @@ const controlEditRecipe = async function (url, id) {
     //editRecipeView.renderSpinner();
     //2. Load recipe Object
     const recipe = await model.loadRecipe(url);
-    console.log(recipe);
     editRecipeView.fillEditRecipeForm(recipe);
   } catch (err) {
-    console.log(err);
     recipeView.renderFailMessage(err);
   }
 };
