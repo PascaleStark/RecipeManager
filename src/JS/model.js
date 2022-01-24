@@ -75,7 +75,7 @@ export const loadRecipe = async function (url) {
   }
 };
 
-export const searchRecipes = async function (url, query) {
+export const searchRecipes = async function (url, query = null) {
   try {
     //load recipe object
     const fetchOptions = fetch(url, {
@@ -90,7 +90,7 @@ export const searchRecipes = async function (url, query) {
     //catch url
     this.state.url = url;
     //update query
-    this.state.search.query = query;
+    if (query) this.state.search.query = query;
     //refactoring the recipe object
     this.state.recipe = renderRecipeObj(data);
     console.log(this.state.recipe);

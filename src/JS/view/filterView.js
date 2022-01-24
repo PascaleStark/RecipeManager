@@ -7,7 +7,7 @@ class FilterView extends View {
   _dropdownEl = document.querySelector(".dropdown");
   _dropdownFilter = document.querySelector(".dropdown__filters");
   _dropdownBtn = document.querySelector(".dropdown__btn");
-  _titleView = "Search results";
+  _titleView = "Search Results";
   _body = document.getElementsByTagName("body")[0];
   _dropdownFilterEl = document.querySelector(".dropdown");
   _noResultMsg =
@@ -29,13 +29,25 @@ class FilterView extends View {
   }
 
   openFilterSearchView(handler) {
-    this._body.addEventListener("click", function (e) {
-      const targetEl = e.target.closest(".dropdown__category");
-      if (!targetEl) return;
-      const searchQuery = document.querySelector(".search__input").value;
-      const filterQuery = targetEl.textContent;
-      handler(searchQuery, filterQuery);
-    });
+    if (this._resultsHeading.textContent === `${this._titleView}`) {
+      this._body.addEventListener("click", function (e) {
+        const targetEl = e.target.closest(".dropdown__category");
+        if (!targetEl) return;
+        const searchQuery = document.querySelector(".search__input").value;
+        const filterQuery = targetEl.textContent;
+        handler(searchQuery, filterQuery);
+      });
+    }
+  }
+
+  openFilterAllView(handler) {
+    if (this._resultsHeading.textContent !== `${this._titleView}`)
+      this._body.addEventListener("click", function (e) {
+        const targetEl = e.target.closest(".dropdown__category");
+        if (!targetEl) return;
+        const filterQuery = targetEl.textContent;
+        handler(filterQuery);
+      });
   }
 }
 
