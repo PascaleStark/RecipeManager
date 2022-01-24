@@ -29,25 +29,18 @@ class FilterView extends View {
   }
 
   openFilterSearchView(handler) {
-    if (this._resultsHeading.textContent === `${this._titleView}`) {
-      this._body.addEventListener("click", function (e) {
-        const targetEl = e.target.closest(".dropdown__category");
-        if (!targetEl) return;
-        const searchQuery = document.querySelector(".search__input").value;
-        const filterQuery = targetEl.textContent;
+    this._body.addEventListener("click", function (e) {
+      const targetEl = e.target.closest(".dropdown__category");
+      if (!targetEl) return;
+      const searchQuery = document.querySelector(".search__input").value;
+      console.log(`I am the searchquery PPPP ${searchQuery}`);
+      const filterQuery = targetEl.textContent;
+      if (searchQuery) {
         handler(searchQuery, filterQuery);
-      });
-    }
-  }
-
-  openFilterAllView(handler) {
-    if (this._resultsHeading.textContent !== `${this._titleView}`)
-      this._body.addEventListener("click", function (e) {
-        const targetEl = e.target.closest(".dropdown__category");
-        if (!targetEl) return;
-        const filterQuery = targetEl.textContent;
-        handler(filterQuery);
-      });
+      } else {
+        handler(null, filterQuery);
+      }
+    });
   }
 }
 

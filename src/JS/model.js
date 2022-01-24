@@ -76,6 +76,7 @@ export const loadRecipe = async function (url) {
 };
 
 export const searchRecipes = async function (url, query = null) {
+  console.log(`I am searching for filter with query = ${query}`);
   try {
     //load recipe object
     const fetchOptions = fetch(url, {

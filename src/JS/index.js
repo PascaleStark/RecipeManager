@@ -170,14 +170,25 @@ const controlLoadAllRecipes = async function () {
 
 ////////////////////FILTERED//////////////////////////////
 const controlfilterSearch = async function (searchQuery, filterQuery) {
+  console.log(
+    `I am called to control filter with searchquery = ${searchQuery}`
+  );
   try {
     //1. render spinner
     filterView.renderSpinner();
     //2. look for all the recipes with the given keyword
-    const filteredResults = await model.searchRecipes(
-      `${URL}/search?q=${searchQuery}&filter=category&value=${filterQuery}`,
-      searchQuery
-    );
+    let filteredResults;
+    if (searchQuery) {
+      filteredResults = await model.searchRecipes(
+        `${URL}/search?q=${searchQuery}&filter=category&value=${filterQuery}`,
+        searchQuery
+      );
+    } else {
+      filteredResults = await model.searchRecipes(
+        `${URL}/all?filter=category&value=${filterQuery}&page=1`
+      );
+    }
+
     //3. render the recipe cards with pagination
     console.log(filteredResults.recipes);
     console.log(filteredResults.url);
@@ -197,31 +208,31 @@ const controlfilterSearch = async function (searchQuery, filterQuery) {
 };
 
 ////////////////////FILTERED-ALL//////////////////////////////
-const controlfilterAll = async function (filterQuery) {
-  try {
-    //1. render spinner
-    filterView.renderSpinner();
-    //2. look for all the recipes with the given keyword
-    const filteredResults = await model.searchRecipes(
-      `${URL}/all?filter=category&value=${filterQuery}&page=1`
-    );
-    //3. render the recipe cards with pagination
-    console.log(filteredResults.recipes);
-    console.log(filteredResults.url);
-    if (!filteredResults) throw error;
-    if (filteredResults.recipes.length === 0) {
-      filterView.renderNoResultsMsg();
-    } else {
-      filterView.renderResultsView(filteredResults.recipes);
-    }
-    ///////////FETCHING HEADER INFORMATION//////////
-    fetchHeaderInfo();
-    filterView.toggleDropdownFilters();
-  } catch (err) {
-    console.error(err);
-    errorView.showErrorView(err);
-  }
-};
+// const controlfilterAll = async function (filterQuery) {
+//   try {
+//     //1. render spinner
+//     filterView.renderSpinner();
+//     //2. look for all the recipes with the given keyword
+//     const filteredResults = await model.searchRecipes(
+//       `${URL}/all?filter=category&value=${filterQuery}&page=1`
+//     );
+//     //3. render the recipe cards with pagination
+//     console.log(filteredResults.recipes);
+//     console.log(filteredResults.url);
+//     if (!filteredResults) throw error;
+//     if (filteredResults.recipes.length === 0) {
+//       filterView.renderNoResultsMsg();
+//     } else {
+//       filterView.renderResultsView(filteredResults.recipes);
+//     }
+//     ///////////FETCHING HEADER INFORMATION//////////
+//     fetchHeaderInfo();
+//     filterView.toggleDropdownFilters();
+//   } catch (err) {
+//     console.error(err);
+//     errorView.showErrorView(err);
+//   }
+// };
 
 // const controlfilterFavourites = async function (filterQuery) {
 //   try {
@@ -334,7 +345,6 @@ const init = function () {
   menuView.openAllRecipesMenuView(controlLoadAllRecipes);
   featuredView.toggleFeatured(controlFeaturedRecipes);
   filterView.openFilterSearchView(controlfilterSearch);
-  filterView.openFilterAllView(controlfilterAll);
   paginationView.togglePageView(controlPaginationNumber);
   alertView.showAlertMsg(controlSetDeleteID);
   alertView.deleteRecipeHandler(controlDeleteRecipe);

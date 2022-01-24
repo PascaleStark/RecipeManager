@@ -232,29 +232,30 @@ var searchRecipes = /*#__PURE__*/function () {
         switch (_context3.prev = _context3.next) {
           case 0:
             query = _args3.length > 1 && _args3[1] !== undefined ? _args3[1] : null;
-            _context3.prev = 1;
+            console.log("I am searching for filter with query = ".concat(query));
+            _context3.prev = 2;
             //load recipe object
             fetchOptions = fetch(url, {
               method: "GET"
             });
-            _context3.next = 5;
+            _context3.next = 6;
             return Promise.race([fetchOptions, (0,_helper__WEBPACK_IMPORTED_MODULE_0__.timeout)(30)]);
 
-          case 5:
+          case 6:
             resp = _context3.sent;
 
             if (resp.ok) {
-              _context3.next = 8;
+              _context3.next = 9;
               break;
             }
 
             throw new Error("Something went wrong. Server responded with a status (".concat(resp.status, ")"));
 
-          case 8:
-            _context3.next = 10;
+          case 9:
+            _context3.next = 11;
             return resp.json();
 
-          case 10:
+          case 11:
             data = _context3.sent;
             //catch url
             this.state.url = url; //update query
@@ -269,17 +270,17 @@ var searchRecipes = /*#__PURE__*/function () {
               url: this.state.url
             });
 
-          case 18:
-            _context3.prev = 18;
-            _context3.t0 = _context3["catch"](1);
+          case 19:
+            _context3.prev = 19;
+            _context3.t0 = _context3["catch"](2);
             throw _context3.t0;
 
-          case 21:
+          case 22:
           case "end":
             return _context3.stop();
         }
       }
-    }, _callee3, this, [[1, 18]]);
+    }, _callee3, this, [[2, 19]]);
   }));
 
   return function searchRecipes(_x4) {
@@ -1521,24 +1522,18 @@ var FilterView = /*#__PURE__*/function (_View) {
   }, {
     key: "openFilterSearchView",
     value: function openFilterSearchView(handler) {
-      if (this._resultsHeading.textContent === "".concat(this._titleView)) {
-        this._body.addEventListener("click", function (e) {
-          var targetEl = e.target.closest(".dropdown__category");
-          if (!targetEl) return;
-          var searchQuery = document.querySelector(".search__input").value;
-          var filterQuery = targetEl.textContent;
-          handler(searchQuery, filterQuery);
-        });
-      }
-    }
-  }, {
-    key: "openFilterAllView",
-    value: function openFilterAllView(handler) {
-      if (this._resultsHeading.textContent !== "".concat(this._titleView)) this._body.addEventListener("click", function (e) {
+      this._body.addEventListener("click", function (e) {
         var targetEl = e.target.closest(".dropdown__category");
         if (!targetEl) return;
+        var searchQuery = document.querySelector(".search__input").value;
+        console.log("I am the searchquery PPPP ".concat(searchQuery));
         var filterQuery = targetEl.textContent;
-        handler(filterQuery);
+
+        if (searchQuery) {
+          handler(searchQuery, filterQuery);
+        } else {
+          handler(null, filterQuery);
+        }
       });
     }
   }]);
@@ -3467,27 +3462,44 @@ var controlfilterSearch = /*#__PURE__*/function () {
       while (1) {
         switch (_context9.prev = _context9.next) {
           case 0:
-            _context9.prev = 0;
+            console.log("I am called to control filter with searchquery = ".concat(searchQuery));
+            _context9.prev = 1;
             //1. render spinner
             _view_filterView__WEBPACK_IMPORTED_MODULE_10__.default.renderSpinner(); //2. look for all the recipes with the given keyword
 
-            _context9.next = 4;
+            if (!searchQuery) {
+              _context9.next = 9;
+              break;
+            }
+
+            _context9.next = 6;
             return _model__WEBPACK_IMPORTED_MODULE_0__.searchRecipes("".concat(_config_js__WEBPACK_IMPORTED_MODULE_8__.URL, "/search?q=").concat(searchQuery, "&filter=category&value=").concat(filterQuery), searchQuery);
 
-          case 4:
+          case 6:
             filteredResults = _context9.sent;
+            _context9.next = 12;
+            break;
+
+          case 9:
+            _context9.next = 11;
+            return _model__WEBPACK_IMPORTED_MODULE_0__.searchRecipes("".concat(_config_js__WEBPACK_IMPORTED_MODULE_8__.URL, "/all?filter=category&value=").concat(filterQuery, "&page=1"));
+
+          case 11:
+            filteredResults = _context9.sent;
+
+          case 12:
             //3. render the recipe cards with pagination
             console.log(filteredResults.recipes);
             console.log(filteredResults.url);
 
             if (filteredResults) {
-              _context9.next = 9;
+              _context9.next = 16;
               break;
             }
 
             throw error;
 
-          case 9:
+          case 16:
             if (filteredResults.recipes.length === 0) {
               _view_filterView__WEBPACK_IMPORTED_MODULE_10__.default.renderNoResultsMsg();
             } else {
@@ -3497,87 +3509,53 @@ var controlfilterSearch = /*#__PURE__*/function () {
 
             fetchHeaderInfo();
             _view_filterView__WEBPACK_IMPORTED_MODULE_10__.default.toggleDropdownFilters();
-            _context9.next = 18;
+            _context9.next = 25;
             break;
 
-          case 14:
-            _context9.prev = 14;
-            _context9.t0 = _context9["catch"](0);
+          case 21:
+            _context9.prev = 21;
+            _context9.t0 = _context9["catch"](1);
             console.error(_context9.t0);
             _view_errorView__WEBPACK_IMPORTED_MODULE_12__.default.showErrorView(_context9.t0);
 
-          case 18:
+          case 25:
           case "end":
             return _context9.stop();
         }
       }
-    }, _callee9, null, [[0, 14]]);
+    }, _callee9, null, [[1, 21]]);
   }));
 
   return function controlfilterSearch(_x7, _x8) {
     return _ref9.apply(this, arguments);
   };
 }(); ////////////////////FILTERED-ALL//////////////////////////////
-
-
-var controlfilterAll = /*#__PURE__*/function () {
-  var _ref10 = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().mark(function _callee10(filterQuery) {
-    var filteredResults;
-    return regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().wrap(function _callee10$(_context10) {
-      while (1) {
-        switch (_context10.prev = _context10.next) {
-          case 0:
-            _context10.prev = 0;
-            //1. render spinner
-            _view_filterView__WEBPACK_IMPORTED_MODULE_10__.default.renderSpinner(); //2. look for all the recipes with the given keyword
-
-            _context10.next = 4;
-            return _model__WEBPACK_IMPORTED_MODULE_0__.searchRecipes("".concat(_config_js__WEBPACK_IMPORTED_MODULE_8__.URL, "/all?filter=category&value=").concat(filterQuery, "&page=1"));
-
-          case 4:
-            filteredResults = _context10.sent;
-            //3. render the recipe cards with pagination
-            console.log(filteredResults.recipes);
-            console.log(filteredResults.url);
-
-            if (filteredResults) {
-              _context10.next = 9;
-              break;
-            }
-
-            throw error;
-
-          case 9:
-            if (filteredResults.recipes.length === 0) {
-              _view_filterView__WEBPACK_IMPORTED_MODULE_10__.default.renderNoResultsMsg();
-            } else {
-              _view_filterView__WEBPACK_IMPORTED_MODULE_10__.default.renderResultsView(filteredResults.recipes);
-            } ///////////FETCHING HEADER INFORMATION//////////
-
-
-            fetchHeaderInfo();
-            _view_filterView__WEBPACK_IMPORTED_MODULE_10__.default.toggleDropdownFilters();
-            _context10.next = 18;
-            break;
-
-          case 14:
-            _context10.prev = 14;
-            _context10.t0 = _context10["catch"](0);
-            console.error(_context10.t0);
-            _view_errorView__WEBPACK_IMPORTED_MODULE_12__.default.showErrorView(_context10.t0);
-
-          case 18:
-          case "end":
-            return _context10.stop();
-        }
-      }
-    }, _callee10, null, [[0, 14]]);
-  }));
-
-  return function controlfilterAll(_x9) {
-    return _ref10.apply(this, arguments);
-  };
-}(); // const controlfilterFavourites = async function (filterQuery) {
+// const controlfilterAll = async function (filterQuery) {
+//   try {
+//     //1. render spinner
+//     filterView.renderSpinner();
+//     //2. look for all the recipes with the given keyword
+//     const filteredResults = await model.searchRecipes(
+//       `${URL}/all?filter=category&value=${filterQuery}&page=1`
+//     );
+//     //3. render the recipe cards with pagination
+//     console.log(filteredResults.recipes);
+//     console.log(filteredResults.url);
+//     if (!filteredResults) throw error;
+//     if (filteredResults.recipes.length === 0) {
+//       filterView.renderNoResultsMsg();
+//     } else {
+//       filterView.renderResultsView(filteredResults.recipes);
+//     }
+//     ///////////FETCHING HEADER INFORMATION//////////
+//     fetchHeaderInfo();
+//     filterView.toggleDropdownFilters();
+//   } catch (err) {
+//     console.error(err);
+//     errorView.showErrorView(err);
+//   }
+// };
+// const controlfilterFavourites = async function (filterQuery) {
 //   try {
 //     //1. render spinner
 //     filterView.renderSpinner();
@@ -3613,18 +3591,18 @@ var controlPagination = function controlPagination(pagInfo) {
 };
 
 var controlPaginationNumber = /*#__PURE__*/function () {
-  var _ref11 = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().mark(function _callee11(pageNum) {
+  var _ref10 = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().mark(function _callee10(pageNum) {
     var pageResults, checkTitleView;
-    return regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().wrap(function _callee11$(_context11) {
+    return regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().wrap(function _callee10$(_context10) {
       while (1) {
-        switch (_context11.prev = _context11.next) {
+        switch (_context10.prev = _context10.next) {
           case 0:
-            _context11.prev = 0;
-            _context11.next = 3;
+            _context10.prev = 0;
+            _context10.next = 3;
             return _model__WEBPACK_IMPORTED_MODULE_0__.searchRecipesByPage(pageNum);
 
           case 3:
-            pageResults = _context11.sent;
+            pageResults = _context10.sent;
             console.log(pageResults.url); //2. Choose title View
 
             checkTitleView = pageResults.recipes.every(function (el) {
@@ -3632,72 +3610,72 @@ var controlPaginationNumber = /*#__PURE__*/function () {
             }); //3. render page results with title View
 
             checkTitleView ? "".concat(_view_favouritesView__WEBPACK_IMPORTED_MODULE_4__.default.renderResultsView(pageResults.recipes, pageNum)) : "".concat(_view_searchRecipesView__WEBPACK_IMPORTED_MODULE_3__.default.renderResultsView(pageResults.recipes, pageNum));
-            _context11.next = 12;
+            _context10.next = 12;
             break;
 
           case 9:
-            _context11.prev = 9;
-            _context11.t0 = _context11["catch"](0);
-            console.log(_context11.t0);
+            _context10.prev = 9;
+            _context10.t0 = _context10["catch"](0);
+            console.log(_context10.t0);
 
           case 12:
           case "end":
-            return _context11.stop();
+            return _context10.stop();
         }
       }
-    }, _callee11, null, [[0, 9]]);
+    }, _callee10, null, [[0, 9]]);
   }));
 
-  return function controlPaginationNumber(_x10) {
-    return _ref11.apply(this, arguments);
+  return function controlPaginationNumber(_x9) {
+    return _ref10.apply(this, arguments);
   };
 }();
 
 var fetchHeaderInfo = /*#__PURE__*/function () {
-  var _ref12 = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().mark(function _callee12() {
+  var _ref11 = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().mark(function _callee11() {
     var pagInfo;
-    return regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().wrap(function _callee12$(_context12) {
+    return regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().wrap(function _callee11$(_context11) {
       while (1) {
-        switch (_context12.prev = _context12.next) {
+        switch (_context11.prev = _context11.next) {
           case 0:
-            _context12.next = 2;
+            _context11.next = 2;
             return _model__WEBPACK_IMPORTED_MODULE_0__.getHeaders();
 
           case 2:
-            pagInfo = _context12.sent;
+            pagInfo = _context11.sent;
             console.log(pagInfo);
             controlPagination(pagInfo);
 
           case 5:
           case "end":
-            return _context12.stop();
+            return _context11.stop();
         }
       }
-    }, _callee12);
+    }, _callee11);
   }));
 
   return function fetchHeaderInfo() {
-    return _ref12.apply(this, arguments);
+    return _ref11.apply(this, arguments);
   };
 }(); ////////////////////DELETE RECIPE//////////////////////////////
 
 
 var controlDeleteRecipe = /*#__PURE__*/function () {
-  var _ref13 = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().mark(function _callee13() {
+  var _ref12 = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().mark(function _callee12() {
     var deleteRec;
-    return regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().wrap(function _callee13$(_context13) {
+    return regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().wrap(function _callee12$(_context12) {
       while (1) {
-        switch (_context13.prev = _context13.next) {
+        switch (_context12.prev = _context12.next) {
           case 0:
-            _context13.prev = 0;
-            _context13.next = 3;
+            _context12.prev = 0;
+            _context12.next = 3;
             return _model__WEBPACK_IMPORTED_MODULE_0__.deleteRecipe();
 
           case 3:
-            deleteRec = _context13.sent;
+            deleteRec = _context12.sent;
 
             if (deleteRec) {
-              _context13.next = 6;
+              _context12.next = 6;
               break;
             }
 
@@ -3713,24 +3691,24 @@ var controlDeleteRecipe = /*#__PURE__*/function () {
 
               _view_searchRecipesView__WEBPACK_IMPORTED_MODULE_3__.default.clearSearchInput();
             }, _config_js__WEBPACK_IMPORTED_MODULE_8__.TIMEOUT);
-            _context13.next = 13;
+            _context12.next = 13;
             break;
 
           case 10:
-            _context13.prev = 10;
-            _context13.t0 = _context13["catch"](0);
-            _view_errorView__WEBPACK_IMPORTED_MODULE_12__.default.showErrorView(_context13.t0);
+            _context12.prev = 10;
+            _context12.t0 = _context12["catch"](0);
+            _view_errorView__WEBPACK_IMPORTED_MODULE_12__.default.showErrorView(_context12.t0);
 
           case 13:
           case "end":
-            return _context13.stop();
+            return _context12.stop();
         }
       }
-    }, _callee13, null, [[0, 10]]);
+    }, _callee12, null, [[0, 10]]);
   }));
 
   return function controlDeleteRecipe() {
-    return _ref13.apply(this, arguments);
+    return _ref12.apply(this, arguments);
   };
 }();
 
@@ -3746,39 +3724,39 @@ var controlImageFile = function controlImageFile() {
 
 
 var controlEditRecipe = /*#__PURE__*/function () {
-  var _ref14 = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().mark(function _callee14(url, id) {
+  var _ref13 = _asyncToGenerator( /*#__PURE__*/regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().mark(function _callee13(url, id) {
     var recipe;
-    return regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().wrap(function _callee14$(_context14) {
+    return regenerator_runtime__WEBPACK_IMPORTED_MODULE_7___default().wrap(function _callee13$(_context13) {
       while (1) {
-        switch (_context14.prev = _context14.next) {
+        switch (_context13.prev = _context13.next) {
           case 0:
-            _context14.prev = 0;
-            _context14.next = 3;
+            _context13.prev = 0;
+            _context13.next = 3;
             return _model__WEBPACK_IMPORTED_MODULE_0__.loadRecipe(url);
 
           case 3:
-            recipe = _context14.sent;
+            recipe = _context13.sent;
             console.log(recipe);
             _view_editRecipeView__WEBPACK_IMPORTED_MODULE_13__.default.fillEditRecipeForm(recipe);
-            _context14.next = 12;
+            _context13.next = 12;
             break;
 
           case 8:
-            _context14.prev = 8;
-            _context14.t0 = _context14["catch"](0);
-            console.log(_context14.t0);
-            _view_recipeView__WEBPACK_IMPORTED_MODULE_1__.default.renderFailMessage(_context14.t0);
+            _context13.prev = 8;
+            _context13.t0 = _context13["catch"](0);
+            console.log(_context13.t0);
+            _view_recipeView__WEBPACK_IMPORTED_MODULE_1__.default.renderFailMessage(_context13.t0);
 
           case 12:
           case "end":
-            return _context14.stop();
+            return _context13.stop();
         }
       }
-    }, _callee14, null, [[0, 8]]);
+    }, _callee13, null, [[0, 8]]);
   }));
 
-  return function controlEditRecipe(_x11, _x12) {
-    return _ref14.apply(this, arguments);
+  return function controlEditRecipe(_x10, _x11) {
+    return _ref13.apply(this, arguments);
   };
 }(); //Event handlers using Publisher-Subscriber pattern
 
@@ -3794,7 +3772,6 @@ var init = function init() {
   _view_menuView__WEBPACK_IMPORTED_MODULE_11__.default.openAllRecipesMenuView(controlLoadAllRecipes);
   _view_featuredView__WEBPACK_IMPORTED_MODULE_9__.default.toggleFeatured(controlFeaturedRecipes);
   _view_filterView__WEBPACK_IMPORTED_MODULE_10__.default.openFilterSearchView(controlfilterSearch);
-  _view_filterView__WEBPACK_IMPORTED_MODULE_10__.default.openFilterAllView(controlfilterAll);
   _view_paginationView__WEBPACK_IMPORTED_MODULE_5__.default.togglePageView(controlPaginationNumber);
   _view_alertView__WEBPACK_IMPORTED_MODULE_6__.default.showAlertMsg(controlSetDeleteID);
   _view_alertView__WEBPACK_IMPORTED_MODULE_6__.default.deleteRecipeHandler(controlDeleteRecipe);
