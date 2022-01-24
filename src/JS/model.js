@@ -14,7 +14,6 @@ export const state = {
 };
 
 const renderRecipeObj = function (data) {
-  //console.log(data);
   const results = data.map((res) => ({
     id: res.id,
     title: res.name,
@@ -65,10 +64,8 @@ export const loadRecipe = async function (url) {
     if (!resp.ok)
       throw new Error(`Server responded with a status (${resp.status})`);
     const data = await resp.json();
-    console.log(data);
     //refactoring the recipe object
     const recipe = renderRecipeObj(data);
-    console.log(recipe);
     return recipe[0];
   } catch (err) {
     throw err;
@@ -76,7 +73,6 @@ export const loadRecipe = async function (url) {
 };
 
 export const searchRecipes = async function (url, query = null) {
-  console.log(`I am searching for filter with query = ${query}`);
   try {
     //load recipe object
     const fetchOptions = fetch(url, {
@@ -94,7 +90,6 @@ export const searchRecipes = async function (url, query = null) {
     if (query) this.state.search.query = query;
     //refactoring the recipe object
     this.state.recipe = renderRecipeObj(data);
-    console.log(this.state.recipe);
     return {
       recipes: this.state.recipe,
       query: this.state.search.query,
@@ -107,7 +102,6 @@ export const searchRecipes = async function (url, query = null) {
 
 export const editFavourites = async function (url) {
   try {
-    console.log(url);
     const fetchOptions = fetch(url, {
       method: "PATCH",
       headers: {
@@ -115,13 +109,11 @@ export const editFavourites = async function (url) {
       },
     });
     const resp = await Promise.race([fetchOptions, timeout(10)]);
-    console.log(resp);
     if (!resp.ok)
       throw new Error(
         `Recipe could not be added to your favourites list, please try again later! Server responded with status (${resp.status})`
       );
     const data = await resp.json();
-    console.log(data);
     return data;
   } catch (err) {
     throw err;
@@ -139,7 +131,6 @@ export const searchRecipesByPage = async function (pageNum) {
     // if (!data) throw new Error(`No recipe is found`);
     // //refactoring the recipe object
     this.state.recipe = renderRecipeObj(data);
-    console.log(this.state.recipe);
     return {
       recipes: this.state.recipe,
       url: this.state.url,
@@ -185,7 +176,6 @@ export const deleteRecipe = async function () {
       throw new Error(
         `Could not delete this recipe, please try again later! Server responded with status ${resp.status}`
       );
-    console.log(resp);
     return resp;
   } catch (err) {
     throw err;
@@ -194,25 +184,20 @@ export const deleteRecipe = async function () {
 
 export const updateImageFile = function (imageFile) {
   state.imageFile = imageFile;
-  console.log(state.imageFile);
 };
 
 export const saveImageFile = async function (url) {
   try {
-    console.log(url);
     const key = state.imageFile[0];
     const value = state.imageFile[1];
-    console.log(key, value);
     let formData = new FormData();
     formData.append(key, value);
-    console.log(formData);
     //load recipe object
     const fetchOptions = fetch(url, {
       method: "POST",
       body: formData,
     });
     const resp = await Promise.race([fetchOptions, timeout(30)]);
-    console.log(resp);
     if (!resp.ok)
       throw new Error(
         `Something went wrong. Server responded with a status (${resp.status})`
