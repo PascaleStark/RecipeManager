@@ -13,7 +13,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "URL": () => (/* binding */ URL),
 /* harmony export */   "TIMEOUT": () => (/* binding */ TIMEOUT)
 /* harmony export */ });
-var URL = "http://192.168.4.10:8300/recipes";
+var URL = "http://192.168.4.13/recipes";
 var TIMEOUT = 1500;
 
 /***/ }),
