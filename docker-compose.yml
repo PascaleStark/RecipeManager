@@ -1,0 +1,15 @@
+version: "3.8"
+services:
+  recipemanager_nginx:
+    build: .
+    container_name: recipemanager_nginx
+    volumes:
+      - .:/usr/share/nginx/html
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - gateway_network
+    restart: unless-stopped
+
+networks:
+  gateway_network:
+    external: true
